@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiLab Beauty - 美容業界のAI・DXパートナー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .flyer {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  }
+
+  /* ===== ヒーローセクション ===== */
+  .hero {
+    background: linear-gradient(135deg, #1a0533 0%, #3d1a6e 30%, #8b2fc9 60%, #d946a8 85%, #ff6b9d 100%);
+    padding: 50px 40px 45px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(217,70,168,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 18px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    color: #fff;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.2);
+  }
+
+  .hero h1 .highlight {
+    background: linear-gradient(90deg, #ffd700, #ffaa00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    color: rgba(255,255,255,0.85);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+    max-width: 420px;
+  }
+
+  .hero-logo {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    z-index: 1;
+  }
+
+  .hero-logo .logo-text {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+  .hero-logo .logo-sub {
+    color: rgba(255,255,255,0.7);
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-align: right;
+  }
+
+  /* ===== 課題セクション ===== */
+  .problems {
+    background: linear-gradient(180deg, #faf5ff 0%, #fff 100%);
+    padding: 30px 40px 25px;
+  }
+
+  .problems h2 {
+    font-size: 17px;
+    font-weight: 700;
+    color: #3d1a6e;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .problems h2 .emoji {
+    font-size: 20px;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .problem-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #e8daf5;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    color: #444;
+    line-height: 1.5;
+    transition: transform 0.2s;
+  }
+
+  .problem-item .icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background: linear-gradient(135deg, #8b2fc9, #d946a8);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  /* ===== ソリューションセクション ===== */
+  .solutions {
+    padding: 25px 40px;
+  }
+
+  .solutions h2 {
+    font-size: 18px;
+    font-weight: 900;
+    color: #1a0533;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .solutions .solutions-sub {
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+
+  .solution-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .solution-card {
+    background: linear-gradient(135deg, #faf5ff 0%, #f0e6ff 100%);
+    border-radius: 14px;
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution-card::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(139,47,201,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .solution-card .card-num {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #8b2fc9, #d946a8);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+
+  .solution-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2d1050;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .solution-card p {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ===== 実績セクション ===== */
+  .stats {
+    background: linear-gradient(135deg, #1a0533, #3d1a6e);
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-item .number {
+    font-size: 28px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #ffd700, #ffaa00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .stat-item .number .unit {
+    font-size: 14px;
+  }
+
+  .stat-item .label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 2px;
+    letter-spacing: 1px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* ===== 導入メリットセクション ===== */
+  .benefits {
+    padding: 25px 40px 20px;
+  }
+
+  .benefits h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a0533;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .benefit-list {
+    display: flex;
+    gap: 15px;
+  }
+
+  .benefit-item {
+    flex: 1;
+    text-align: center;
+    padding: 15px 10px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #e8daf5;
+  }
+
+  .benefit-item .benefit-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 8px;
+    background: linear-gradient(135deg, #f0e6ff, #fce4f0);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+  }
+
+  .benefit-item h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #3d1a6e;
+    margin-bottom: 4px;
+  }
+
+  .benefit-item p {
+    font-size: 10px;
+    color: #888;
+    line-height: 1.5;
+  }
+
+  /* ===== CTAセクション ===== */
+  .cta {
+    background: linear-gradient(135deg, #8b2fc9 0%, #d946a8 50%, #ff6b9d 100%);
+    padding: 25px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cta h2 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta p {
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #fff;
+    color: #8b2fc9;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    letter-spacing: 1px;
+  }
+
+  /* ===== フッター ===== */
+  .footer {
+    background: #1a0533;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left .footer-logo {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+
+  .footer-left .footer-url {
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+  }
+
+  .footer-right {
+    text-align: right;
+  }
+
+  .footer-right .contact-label {
+    color: rgba(255,255,255,0.5);
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .footer-right .contact-email {
+    color: #ffd700;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .footer-right .contact-url {
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+  }
+
+  /* ===== 印刷時 ===== */
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+    }
+    .flyer {
+      box-shadow: none;
+      width: 100%;
+      min-height: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="flyer">
+
+  <!-- ヒーローセクション -->
+  <section class="hero">
+    <div class="hero-logo">
+      <div class="logo-text">DigiLab Beauty</div>
+      <div class="logo-sub">DIGITAL LABORATORY</div>
+    </div>
+    <div class="hero-badge">FOR BEAUTY PROFESSIONALS</div>
+    <h1>
+      美容業界の<br>
+      <span class="highlight">AI・DX</span>を、<br>
+      ここから始める。
+    </h1>
+    <p class="hero-subtitle">
+      サロン運営の効率化から顧客体験の向上まで。<br>
+      AIテクノロジーで美容ビジネスの未来を創造します。
+    </p>
+  </section>
+
+  <!-- 課題セクション -->
+  <section class="problems">
+    <h2><span class="emoji">💭</span> こんなお悩みはありませんか？</h2>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="icon">📊</div>
+        <span>顧客データを活用しきれていない</span>
+      </div>
+      <div class="problem-item">
+        <div class="icon">🤖</div>
+        <span>AI導入に興味はあるが何から始めればいいかわからない</span>
+      </div>
+      <div class="problem-item">
+        <div class="icon">📈</div>
+        <span>スタッフの技術研修に時間とコストがかかりすぎる</span>
+      </div>
+      <div class="problem-item">
+        <div class="icon">🔄</div>
+        <span>予約管理・顧客対応を効率化したい</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ソリューションセクション -->
+  <section class="solutions">
+    <h2>DigiLab Beauty の ソリューション</h2>
+    <p class="solutions-sub">SOLUTIONS FOR YOUR BUSINESS</p>
+    <div class="solution-cards">
+      <div class="solution-card">
+        <div class="card-num">1</div>
+        <h3>AIカウンセリング<br>支援システム</h3>
+        <p>顧客データをAIが分析し、最適な施術メニューを提案。カウンセリングの質を大幅に向上させます。</p>
+      </div>
+      <div class="solution-card">
+        <div class="card-num">2</div>
+        <h3>顧客データ分析<br>LTV最大化</h3>
+        <p>来店頻度・施術履歴をAIが分析。リピート率向上と顧客単価アップを同時に実現します。</p>
+      </div>
+      <div class="solution-card">
+        <div class="card-num">3</div>
+        <h3>AI研修<br>プログラム</h3>
+        <p>スタッフのスキルレベルに合わせたAI教育プログラム。効率的な人材育成を支援します。</p>
+      </div>
+      <div class="solution-card">
+        <div class="card-num">4</div>
+        <h3>美容業界DX<br>コンサルティング</h3>
+        <p>業務フロー分析からシステム導入まで。美容業界に特化したDX戦略をサポートします。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 実績セクション -->
+  <section class="stats">
+    <div class="stat-item">
+      <div class="number">98<span class="unit">%</span></div>
+      <div class="label">顧客満足度</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="number">150<span class="unit">%</span></div>
+      <div class="label">リピート率向上</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="number">40<span class="unit">%</span></div>
+      <div class="label">業務効率化</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="number">30<span class="unit">min</span></div>
+      <div class="label">無料オンラインデモ</div>
+    </div>
+  </section>
+
+  <!-- 導入メリット -->
+  <section class="benefits">
+    <h2>✨ 選ばれる3つの理由</h2>
+    <div class="benefit-list">
+      <div class="benefit-item">
+        <div class="benefit-icon">🏆</div>
+        <h4>美容業界特化</h4>
+        <p>エステ・ネイル・まつエクなど美容業界の深い知見を持つ専門チーム</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">⚡</div>
+        <h4>最短2週間で導入</h4>
+        <p>既存システムとの連携もスムーズ。最短2週間で運用開始可能</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🤝</div>
+        <h4>伴走型サポート</h4>
+        <p>導入後も専任担当者が継続サポート。安心してご利用いただけます</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>まずは無料相談から</h2>
+    <p>30分のオンラインデモで、貴社に最適なソリューションをご提案します</p>
+    <a href="https://digilab-beauty.com/" class="cta-button">無料相談を予約する →</a>
+  </section>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-left">
+      <div class="footer-logo">DigiLab Beauty</div>
+      <div class="footer-url">Digital Laboratory for Beauty Industry</div>
+    </div>
+    <div class="footer-right">
+      <div class="contact-label">CONTACT US</div>
+      <div class="contact-email">info@digilab-beauty.com</div>
+      <div class="contact-url">https://digilab-beauty.com/</div>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
