@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI活用スターターガイド｜DigiLab Beauty</title>
+<style>
+  @page { size: A4; margin: 15mm 12mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 11px; color: #1a1a2e; background: #fff; line-height: 1.7; }
+
+  /* ヘッダー */
+  .cover {
+    background: linear-gradient(135deg, #1a0533 0%, #3d1a6e 40%, #8b2fc9 70%, #d946a8 100%);
+    color: #fff;
+    padding: 28px 24px 22px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: avoid;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: rgba(255,215,0,0.25);
+    border: 1px solid rgba(255,215,0,0.5);
+    color: #ffd700;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 3px 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .cover h1 { font-size: 22px; font-weight: 900; line-height: 1.3; margin-bottom: 6px; }
+  .cover h1 span { color: #ffd700; }
+  .cover-sub { font-size: 11px; opacity: 0.85; margin-bottom: 14px; }
+  .cover-meta { font-size: 9px; opacity: 0.6; }
+
+  /* セクション */
+  .section { padding: 16px 0 10px; border-bottom: 1px solid #f0e8ff; page-break-inside: avoid; }
+  .section:last-child { border-bottom: none; }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 900;
+    color: #6b1fa0;
+    margin-bottom: 10px;
+  }
+  .section-title .num {
+    background: linear-gradient(135deg, #8b2fc9, #d946a8);
+    color: #fff;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .lead { font-size: 10.5px; color: #444; margin-bottom: 10px; line-height: 1.8; }
+
+  /* プロンプトカード */
+  .prompt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .prompt-card {
+    background: #faf5ff;
+    border-left: 3px solid #8b2fc9;
+    border-radius: 4px;
+    padding: 8px 10px;
+  }
+  .prompt-card .label { font-size: 9px; font-weight: 700; color: #8b2fc9; margin-bottom: 4px; }
+  .prompt-card .text { font-size: 9.5px; color: #333; line-height: 1.6; }
+  .prompt-card code {
+    display: block;
+    background: #fff;
+    border: 1px solid #e0ccff;
+    border-radius: 3px;
+    padding: 5px 7px;
+    font-family: 'Courier New', monospace;
+    font-size: 8.5px;
+    color: #4a0080;
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+
+  /* ツール比較表 */
+  table { width: 100%; border-collapse: collapse; font-size: 9.5px; margin-bottom: 8px; }
+  th { background: linear-gradient(135deg, #8b2fc9, #d946a8); color: #fff; padding: 5px 7px; text-align: left; font-size: 9px; }
+  td { padding: 5px 7px; border-bottom: 1px solid #f0e8ff; vertical-align: top; }
+  tr:nth-child(even) td { background: #faf5ff; }
+  .free { color: #2e7d32; font-weight: 700; }
+  .paid { color: #8b2fc9; font-weight: 700; }
+
+  /* テンプレートカード */
+  .template-block {
+    background: #fff8f0;
+    border: 1px solid #ffd700;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  .template-block .t-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: #b8860b;
+    margin-bottom: 4px;
+  }
+  .template-block .t-text { font-size: 9.5px; color: #333; line-height: 1.7; }
+  .template-block .t-tag { display: inline-block; background: #fff3cd; color: #856404; font-size: 8px; border-radius: 3px; padding: 1px 5px; margin: 2px 1px; }
+
+  /* チェックリスト */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #e8d8ff;
+    font-size: 10px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li .box {
+    width: 14px; height: 14px;
+    border: 2px solid #8b2fc9;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .checklist li strong { color: #6b1fa0; }
+
+  /* フッター */
+  .footer {
+    background: linear-gradient(135deg, #1a0533, #3d1a6e);
+    color: #fff;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    border-radius: 6px;
+  }
+  .footer .brand { font-size: 12px; font-weight: 900; }
+  .footer .brand span { color: #ffd700; }
+  .footer .info { font-size: 8.5px; opacity: 0.7; text-align: right; }
+
+  /* ページ区切り調整 */
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<!-- カバー -->
+<div class="cover">
+  <div class="cover-badge">DigiLab Beauty 会員限定資料</div>
+  <h1>美容サロンのための<br><span>AI活用</span>スターターガイド</h1>
+  <p class="cover-sub">今日から使えるプロンプト集・ツール比較・投稿テンプレート完全収録</p>
+  <p class="cover-meta">2026年5月版 ／ DigiLab Beauty編集部</p>
+</div>
+
+<!-- SECTION 1: ChatGPTプロンプト集 -->
+<div class="section">
+  <div class="section-title"><span class="num">1</span>すぐ使える！ChatGPTプロンプト集</div>
+  <p class="lead">以下のプロンプトをそのままChatGPTにコピー＆ペーストしてください。【　】の部分だけ書き換えればOKです。</p>
+
+  <div class="prompt-grid">
+    <div class="prompt-card">
+      <div class="label">📋 初回カウンセリング質問リスト</div>
+      <div class="text">お客様の悩みを引き出す質問を自動生成</div>
+      <code>「エステサロンの初回カウンセリングで、【40代女性・たるみ・ほうれい線】が悩みのお客様に聞くべき質問を10個作成してください。押しつけがましくなく、共感を引き出せる順番で並べてください」</code>
+    </div>
+    <div class="prompt-card">
+      <div class="label">🛍️ 物販クロスセルトーク</div>
+      <div class="text">施術後に自然な流れで提案するトーク</div>
+      <code>「エステ施術後に【セラミド美容液・3,800円】を自然に提案するトークスクリプトを3パターン作成してください。押し売り感がなく、お客様が『試してみたい』と思えるものにしてください」</code>
+    </div>
+    <div class="prompt-card">
+      <div class="label">📅 次回予約クロージング</div>
+      <div class="text">次回予約率を上げるトーク</div>
+      <code>「エステ施術後の次回予約クロージングトークを作成してください。施術内容:【フェイシャル保湿】、改善した点:【乾燥・くすみ】、推奨インターバル:【28日】で、お客様が自然と『じゃあ予約します』と言いたくなる流れにしてください」</code>
+    </div>
+    <div class="prompt-card">
+      <div class="label">📲 LINE配信メッセージ</div>
+      <div class="text">休眠顧客を呼び戻す配信文</div>
+      <code>「エステサロンのLINE公式アカウントで【2ヶ月来店がない30代女性】に送る配信メッセージを作成してください。季節:【梅雨前・肌荒れ気になる時期】、特典:【次回10%OFF】で、200字以内・温かいトーンで」</code>
+    </div>
+    <div class="prompt-card">
+      <div class="label">✍️ スタッフ向け業務指示書</div>
+      <div class="text">口頭説明をマニュアル化</div>
+      <code>「以下の説明をスタッフ向け業務マニュアルに変換してください。【（ベテランスタッフの説明をここに貼り付ける）】。フォーマット: 手順番号／作業内容／所要時間／注意点／理由」</code>
+    </div>
+    <div class="prompt-card">
+      <div class="label">⭐ Google口コミ返信文</div>
+      <div class="text">口コミへのプロな返信を自動作成</div>
+      <code>「エステサロンへのGoogle口コミに返信する文章を作成してください。口コミ内容:【（口コミをここに貼り付ける）】。評価:【★4 / ★3 / ★1】（選択）。誠実で温かく、次回来店につながる締めにしてください」</code>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: AIツール比較表 -->
+<div class="section">
+  <div class="section-title"><span class="num">2</span>サロン業務に使えるAIツール比較表（2026年版）</div>
+  <p class="lead">無料または月額3,000円以内で使えるツールを厳選しました。まずは無料ツールから試してください。</p>
+
+  <table>
+    <tr>
+      <th>ツール名</th>
+      <th>主な用途</th>
+      <th>料金</th>
+      <th>難易度</th>
+      <th>おすすめポイント</th>
+    </tr>
+    <tr>
+      <td><strong>ChatGPT（無料版）</strong></td>
+      <td>文章作成・トーク練習・メニュー表作成・マニュアル化</td>
+      <td class="free">無料</td>
+      <td>★☆☆</td>
+      <td>これ1つで業務の70%対応。まず最初に使うべきツール</td>
+    </tr>
+    <tr>
+      <td><strong>Canva（無料版）</strong></td>
+      <td>Instagram投稿・チラシ・POP・メニュー表デザイン</td>
+      <td class="free">無料</td>
+      <td>★☆☆</td>
+      <td>テンプレートが豊富でAI画像生成も一部無料で使える</td>
+    </tr>
+    <tr>
+      <td><strong>Notion AI</strong></td>
+      <td>議事録の自動要約・スタッフ向けナレッジベース構築</td>
+      <td class="paid">月額2,000円〜</td>
+      <td>★★☆</td>
+      <td>ミーティング内容をAIが自動まとめ。属人化解消に最適</td>
+    </tr>
+    <tr>
+      <td><strong>Adobe Firefly</strong></td>
+      <td>サロンの雰囲気に合った画像・バナー生成</td>
+      <td class="paid">月額680円〜</td>
+      <td>★★☆</td>
+      <td>商用利用OKのAI画像生成。著作権問題が少ない</td>
+    </tr>
+    <tr>
+      <td><strong>LINE公式アカウント + Lステップ</strong></td>
+      <td>休眠顧客の自動フォロー・誕生日配信・セグメント配信</td>
+      <td class="paid">月額3,000円〜</td>
+      <td>★★★</td>
+      <td>一度設定すれば自動で売上が生まれる最強の仕組み化ツール</td>
+    </tr>
+  </table>
+  <p style="font-size:8.5px;color:#888;margin-top:4px;">※料金は2026年5月時点。変更される場合があります。</p>
+</div>
+
+<!-- SECTION 3: Instagram投稿テンプレート -->
+<div class="section">
+  <div class="section-title"><span class="num">3</span>Instagram投稿テンプレート 3パターン</div>
+  <p class="lead">以下のテンプレートに【】を書き換えるだけで、プロ品質の投稿文が完成します。</p>
+
+  <div class="template-block">
+    <div class="t-label">📸 パターン①｜ビフォーアフター投稿（反応率が最も高い）</div>
+    <div class="t-text">
+      ✨ 【施術名】で、【悩み】が改善！<br>
+      ・・・・・・・・・・・・・・<br>
+      「【悩みの具体的な状況】で悩んでいた○○さん（【年代】）。<br>
+      【施術名】を【回数・期間】続けた結果、【改善された具体的な変化】になりました。<br><br>
+      ○○さんのコメント：<br>
+      『【お客様の感想（できれば実際のお言葉）】』<br><br>
+      【サロン名】では【月数】以内に【効果】を実感いただけるよう、一人ひとりの肌に合わせた施術をご提供しています。<br><br>
+      ✅ 初回体験のご予約は→プロフィールのリンクから<br>
+      ・・・・・・・・・・・・・・
+    </div>
+    <div style="margin-top:6px;">
+      <span class="t-tag">#エステ体験</span>
+      <span class="t-tag">#ビフォーアフター</span>
+      <span class="t-tag">#【地域名】エステ</span>
+      <span class="t-tag">#【施術名】</span>
+      <span class="t-tag">#サロン予約</span>
+    </div>
+  </div>
+
+  <div class="template-block">
+    <div class="t-label">💡 パターン②｜お役立ち情報投稿（保存率・シェア率が高い）</div>
+    <div class="t-text">
+      【季節・悩み】に効く！プロが教える【お題】3選🌿<br>
+      ・・・・・・・・・・・・・・<br>
+      【テーマ（例：梅雨の肌荒れ対策）】について、<br>
+      エステティシャン歴【年数】年の私が実際に効果を感じた方法をご紹介します。<br><br>
+      ①【方法1：シンプルに1文で】<br>
+      →【理由・補足を1〜2文で】<br><br>
+      ②【方法2】<br>
+      →【理由・補足】<br><br>
+      ③【方法3】<br>
+      →【理由・補足】<br><br>
+      保存して、ぜひ今日から試してみてください📌<br>
+      ・・・・・・・・・・・・・・
+    </div>
+    <div style="margin-top:6px;">
+      <span class="t-tag">#美容知識</span>
+      <span class="t-tag">#スキンケア</span>
+      <span class="t-tag">#【悩み名】改善</span>
+      <span class="t-tag">#エステティシャン監修</span>
+    </div>
+  </div>
+
+  <div class="template-block">
+    <div class="t-label">🔥 パターン③｜キャンペーン告知投稿（予約獲得に直結）</div>
+    <div class="t-text">
+      【残り○席】【期間限定】【施術名】体験キャンペーン🎁<br>
+      ・・・・・・・・・・・・・・<br>
+      いつもありがとうございます✨<br>
+      【理由（例：周年記念・新メニュー導入）】を記念して、<br>
+      特別キャンペーンをご用意しました。<br><br>
+      ━━━━━━━━━━━━<br>
+      🌸 【施術名】体験コース<br>
+      通常【通常価格】→ 特別【特別価格】<br>
+      期間：【開始日】〜【終了日】<br>
+      残り：【残席数】席<br>
+      ━━━━━━━━━━━━<br><br>
+      ご予約・お問い合わせは<br>
+      👆 プロフィールのURLから<br>
+      または DM でも受け付けています！<br>
+      ・・・・・・・・・・・・・・
+    </div>
+    <div style="margin-top:6px;">
+      <span class="t-tag">#期間限定</span>
+      <span class="t-tag">#キャンペーン</span>
+      <span class="t-tag">#【地域名】サロン</span>
+      <span class="t-tag">#エステ予約</span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: チェックリスト -->
+<div class="section">
+  <div class="section-title"><span class="num">4</span>今日からできる！AI活用10のチェックリスト</div>
+  <p class="lead">まず「✅ 簡単」から始めてください。1つ実践するだけでも違いが出ます。</p>
+
+  <ul class="checklist">
+    <li><span class="box"></span><strong>✅ 簡単</strong>｜ChatGPTに「うちのサロンのInstagramプロフィール文を書いて」と頼んでみる</li>
+    <li><span class="box"></span><strong>✅ 簡単</strong>｜来週1週間分の投稿テーマをChatGPTに提案してもらう</li>
+    <li><span class="box"></span><strong>✅ 簡単</strong>｜Canva無料版に登録し、既存チラシをAIテンプレートでリメイクする</li>
+    <li><span class="box"></span><strong>✅ 簡単</strong>｜口コミへの返信文をChatGPTで下書きしてもらう（最後は必ず自分で確認）</li>
+    <li><span class="box"></span><strong>💪 普通</strong>｜来月のメニュー表をChatGPTで「売れる言葉」に書き直してもらう</li>
+    <li><span class="box"></span><strong>💪 普通</strong>｜ベテランスタッフの施術手順をChatGPTでマニュアル化する</li>
+    <li><span class="box"></span><strong>💪 普通</strong>｜休眠顧客リストを整理し、LINE配信文をChatGPTで3パターン作る</li>
+    <li><span class="box"></span><strong>💪 普通</strong>｜Instagram投稿をCanva AIで週3本作るルーティンを決める</li>
+    <li><span class="box"></span><strong>🚀 上級</strong>｜LINE公式アカウントを開設し、来店30日後の自動フォローを設定する</li>
+    <li><span class="box"></span><strong>🚀 上級</strong>｜Notion AIで月次ミーティングの自動要約フローを構築する</li>
+  </ul>
+</div>
+
+<!-- フッター -->
+<div class="footer">
+  <div>
+    <div class="brand">Digi<span>Lab</span> Beauty</div>
+    <div style="font-size:8px;opacity:0.6;margin-top:2px;">美容業界のAI・DXパートナー</div>
+  </div>
+  <div class="info">
+    会員専用資料 ／ 無断転載禁止<br>
+    DigiLab Beauty 会員サービス<br>
+    2026年5月発行
+  </div>
+</div>
+
+</body>
+</html>
