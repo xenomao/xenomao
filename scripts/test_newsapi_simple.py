@@ -8,8 +8,10 @@ import urllib.request
 import urllib.parse
 import json
 
-# APIキー（.envから手動でコピー）
-NEWSAPI_KEY = "d28b5d379b234515b40cd8d2bbb64068"
+import os
+
+# APIキーは環境変数から取得
+NEWSAPI_KEY = os.environ.get("NEWSAPI_KEY", "")
 
 def test_newsapi_simple():
     """NewsAPI接続テスト（標準ライブラリのみ）"""
