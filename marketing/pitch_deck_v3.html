@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiLab Beauty | AIを入れた。でも、成果が出ていない。</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --p:#8b2fc9;--pk:#d946a8;--g:#ffd700;
+  --dk:#1a0533;--md:#3d1a6e;--lt:#f5eeff;
+  --gr:#555;--red:#e03040;
+}
+body{font-family:'Noto Sans JP','Hiragino Sans',sans-serif;background:#111;}
+.slide{width:100%;min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;position:relative;overflow:hidden;
+  page-break-after:always;break-after:page;}
+.inner{max-width:1060px;width:100%;margin:0 auto;padding:52px 60px;}
+.snum{position:absolute;bottom:26px;right:36px;font-size:11px;
+  letter-spacing:2px;font-weight:600;}
+.logo{position:absolute;top:30px;right:44px;text-align:right;}
+.logo .l{font-size:15px;font-weight:900;letter-spacing:.5px;}
+.logo .s{font-size:8px;letter-spacing:3px;margin-top:1px;}
+
+/* type */
+.ey{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;}
+.disp{font-size:clamp(36px,5.5vw,68px);font-weight:900;line-height:1.12;}
+.h1{font-size:clamp(26px,3.8vw,46px);font-weight:900;line-height:1.2;}
+.h2{font-size:clamp(18px,2.2vw,26px);font-weight:700;line-height:1.3;}
+.lead{font-size:clamp(14px,1.6vw,17px);line-height:1.8;}
+.gd{background:linear-gradient(90deg,var(--p),var(--pk));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.gg{background:linear-gradient(90deg,#ffd700,#ff9500);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.bar{width:48px;height:3px;border-radius:2px;margin:16px 0;
+  background:linear-gradient(90deg,var(--p),var(--pk));}
+.bar.r{background:var(--red);}
+.bar.g{background:linear-gradient(90deg,var(--g),#ff9500);}
+
+/* ═══════════════════════
+   S01 HOOK
+═══════════════════════ */
+.s01{background:linear-gradient(150deg,#0d0120,#1a0533,#2d0854);}
+.s01 .logo .l{color:rgba(255,255,255,.9);}
+.s01 .logo .s{color:rgba(255,255,255,.3);}
+.s01 .snum{color:rgba(255,255,255,.2);}
+.s01-glow{position:absolute;bottom:-20%;right:-10%;width:480px;height:480px;
+  border-radius:50%;background:radial-gradient(circle,rgba(217,70,168,.18) 0%,transparent 70%);}
+.hook-eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.6);font-size:10px;letter-spacing:3px;
+  padding:7px 20px;border-radius:20px;margin-bottom:28px;}
+.hook-q{color:#fff;margin-bottom:8px;}
+.hook-q .red{color:#ff4060;}
+.hook-sub{color:rgba(255,255,255,.5);max-width:600px;margin-bottom:40px;}
+.hook-cards{display:flex;gap:14px;flex-wrap:wrap;}
+.hc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:12px;}
+.hc-icon{font-size:22px;}
+.hc-text{color:rgba(255,255,255,.65);font-size:13px;line-height:1.5;}
+.hc-text strong{color:#fff;}
+
+/* ═══════════════════════
+   S02 WHY FAIL
+═══════════════════════ */
+.s02{background:#fff;}
+.s02 .logo .l{color:var(--dk);}
+.s02 .logo .s{color:rgba(0,0,0,.3);}
+.s02 .snum{color:rgba(0,0,0,.2);}
+.fail-intro{font-size:clamp(15px,1.8vw,19px);font-weight:700;
+  color:var(--dk);line-height:1.6;max-width:680px;margin-bottom:32px;}
+.fail-intro .red{color:var(--red);}
+.fail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.fail-card{border-radius:14px;padding:24px 20px;border-top:3px solid;}
+.fail-card:nth-child(1){background:#fff5f5;border-color:var(--red);}
+.fail-card:nth-child(2){background:#fff8f0;border-color:#ff8800;}
+.fail-card:nth-child(3){background:#f5f0ff;border-color:var(--p);}
+.fc-num{font-size:32px;font-weight:900;line-height:1;margin-bottom:8px;}
+.fail-card:nth-child(1) .fc-num{color:var(--red);}
+.fail-card:nth-child(2) .fc-num{color:#ff8800;}
+.fail-card:nth-child(3) .fc-num{color:var(--p);}
+.fc-title{font-size:14px;font-weight:700;color:var(--dk);margin-bottom:8px;}
+.fc-body{font-size:12px;color:var(--gr);line-height:1.6;}
+.fc-example{margin-top:10px;font-size:11px;font-style:italic;
+  color:rgba(0,0,0,.35);border-left:2px solid rgba(0,0,0,.1);padding-left:10px;}
+.fail-truth{margin-top:24px;padding:16px 24px;
+  background:var(--dk);border-radius:12px;
+  display:flex;align-items:center;gap:16px;}
+.ft-text{color:rgba(255,255,255,.8);font-size:13px;line-height:1.6;}
+.ft-text strong{color:var(--g);}
+
+/* ═══════════════════════
+   S03 COST OF FAILURE
+═══════════════════════ */
+.s03{background:var(--dk);}
+.s03 .logo .l{color:rgba(255,255,255,.9);}
+.s03 .logo .s{color:rgba(255,255,255,.3);}
+.s03 .snum{color:rgba(255,255,255,.2);}
+.cost-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
+.cost-card{border-radius:14px;padding:26px 24px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);}
+.cost-label{font-size:10px;letter-spacing:3px;margin-bottom:10px;}
+.cost-card:nth-child(1) .cost-label{color:var(--red);}
+.cost-card:nth-child(2) .cost-label{color:#ff8800;}
+.cost-card:nth-child(3) .cost-label{color:var(--p);}
+.cost-card:nth-child(4) .cost-label{color:rgba(255,255,255,.35);}
+.cost-num{font-size:42px;font-weight:900;line-height:1;margin-bottom:6px;}
+.cost-card:nth-child(1) .cost-num{color:var(--red);}
+.cost-card:nth-child(2) .cost-num{color:#ff8800;}
+.cost-card:nth-child(3) .cost-num{color:var(--p);}
+.cost-card:nth-child(4) .cost-num{color:rgba(255,255,255,.3);}
+.cost-title{color:#fff;font-size:14px;font-weight:700;margin-bottom:6px;}
+.cost-body{color:rgba(255,255,255,.45);font-size:12px;line-height:1.5;}
+.cost-warn{margin-top:24px;padding:20px 28px;
+  background:rgba(255,64,96,.08);border:1px solid rgba(255,64,96,.25);
+  border-radius:12px;text-align:center;}
+.cw-text{color:rgba(255,255,255,.8);font-size:15px;font-weight:700;line-height:1.6;}
+.cw-text .red{color:#ff4060;}
+
+/* ═══════════════════════
+   S04 INFRA CONCEPT
+═══════════════════════ */
+.s04{background:var(--lt);}
+.s04 .logo .l{color:var(--dk);}
+.s04 .logo .s{color:rgba(0,0,0,.3);}
+.s04 .snum{color:rgba(0,0,0,.2);}
+.infra-compare{display:grid;grid-template-columns:1fr 1fr;gap:0;
+  margin-top:32px;border-radius:16px;overflow:hidden;}
+.ic-col{padding:32px 28px;}
+.ic-col.left{background:#e8e8e8;}
+.ic-col.right{background:linear-gradient(135deg,var(--dk),var(--md));}
+.ic-head{font-size:13px;font-weight:700;letter-spacing:1px;margin-bottom:20px;}
+.ic-col.left .ic-head{color:#999;}
+.ic-col.right .ic-head{color:var(--g);}
+.ic-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;}
+.ic-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.ic-col.left .ic-dot{background:#bbb;}
+.ic-col.right .ic-dot{background:var(--pk);}
+.ic-text{font-size:13px;line-height:1.5;}
+.ic-col.left .ic-text{color:#999;}
+.ic-col.right .ic-text{color:rgba(255,255,255,.8);}
+.ic-result{margin-top:18px;padding:12px 16px;border-radius:10px;
+  font-size:13px;font-weight:700;}
+.ic-col.left .ic-result{background:#d5d5d5;color:#999;}
+.ic-col.right .ic-result{background:rgba(255,215,0,.12);color:var(--g);}
+.infra-def{margin-top:20px;padding:18px 24px;
+  background:linear-gradient(135deg,var(--dk),var(--md));
+  border-radius:12px;}
+.id-text{color:#fff;font-size:14px;font-weight:700;line-height:1.7;}
+.id-text .g{color:var(--g);}
+.id-text .pk{color:var(--pk);}
+
+/* ═══════════════════════
+   S05 MECHANISM
+═══════════════════════ */
+.s05{background:#fff;}
+.s05 .logo .l{color:var(--dk);}
+.s05 .logo .s{color:rgba(0,0,0,.3);}
+.s05 .snum{color:rgba(0,0,0,.2);}
+.mech-intro{font-size:15px;color:var(--gr);line-height:1.7;
+  max-width:680px;margin-bottom:32px;}
+.mech-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  position:relative;margin-top:8px;}
+.mech-steps::before{content:'';position:absolute;top:28px;
+  left:calc(100%/8);right:calc(100%/8);height:2px;
+  background:linear-gradient(90deg,var(--p),var(--pk));}
+.ms{padding:0 8px;text-align:center;}
+.ms-dot{width:20px;height:20px;border-radius:50%;margin:18px auto 14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:#fff;position:relative;z-index:1;}
+.ms:nth-child(1) .ms-dot{background:var(--p);}
+.ms:nth-child(2) .ms-dot{background:#6b1fa0;}
+.ms:nth-child(3) .ms-dot{background:var(--pk);}
+.ms:nth-child(4) .ms-dot{background:linear-gradient(135deg,var(--pk),#ff4080);}
+.ms-title{font-size:14px;font-weight:700;color:var(--dk);margin-bottom:8px;}
+.ms-body{font-size:11px;color:var(--gr);line-height:1.5;}
+.ms-ex{margin-top:10px;font-size:11px;color:var(--p);font-weight:600;
+  background:var(--lt);padding:6px 10px;border-radius:8px;line-height:1.4;}
+.mech-note{margin-top:28px;padding:16px 24px;
+  background:var(--lt);border-radius:12px;border-left:3px solid var(--p);}
+.mn-text{font-size:13px;color:var(--dk);line-height:1.6;font-weight:500;}
+.mn-text strong{color:var(--p);}
+
+/* ═══════════════════════
+   S06 BEFORE/AFTER
+═══════════════════════ */
+.s06{background:var(--dk);}
+.s06 .logo .l{color:rgba(255,255,255,.9);}
+.s06 .logo .s{color:rgba(255,255,255,.3);}
+.s06 .snum{color:rgba(255,255,255,.2);}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px;}
+.ba-col{}
+.ba-head{font-size:11px;letter-spacing:3px;margin-bottom:16px;
+  padding:8px 16px;border-radius:8px;display:inline-block;}
+.ba-col:nth-child(1) .ba-head{background:rgba(255,64,96,.15);color:#ff4060;}
+.ba-col:nth-child(2) .ba-head{background:rgba(255,215,0,.1);color:var(--g);}
+.ba-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;
+  padding:14px 16px;border-radius:10px;}
+.ba-col:nth-child(1) .ba-item{background:rgba(255,255,255,.03);}
+.ba-col:nth-child(2) .ba-item{background:rgba(255,215,0,.04);
+  border:1px solid rgba(255,215,0,.1);}
+.ba-icon{font-size:18px;flex-shrink:0;}
+.ba-text{}
+.ba-title{font-size:13px;font-weight:700;margin-bottom:3px;}
+.ba-col:nth-child(1) .ba-title{color:rgba(255,255,255,.4);}
+.ba-col:nth-child(2) .ba-title{color:#fff;}
+.ba-body{font-size:11px;line-height:1.5;}
+.ba-col:nth-child(1) .ba-body{color:rgba(255,255,255,.3);}
+.ba-col:nth-child(2) .ba-body{color:rgba(255,255,255,.6);}
+.ba-result{margin-top:24px;padding:18px 28px;
+  background:linear-gradient(90deg,rgba(139,47,201,.2),rgba(217,70,168,.15));
+  border:1px solid rgba(217,70,168,.25);border-radius:12px;
+  text-align:center;}
+.bar-text{color:#fff;font-size:15px;font-weight:700;line-height:1.6;}
+.bar-text .g{color:var(--g);}
+
+/* ═══════════════════════
+   S07 PROOF
+═══════════════════════ */
+.s07{background:#fff;}
+.s07 .logo .l{color:var(--dk);}
+.s07 .logo .s{color:rgba(0,0,0,.3);}
+.s07 .snum{color:rgba(0,0,0,.2);}
+.proof-intro{font-size:14px;color:var(--gr);line-height:1.7;
+  max-width:700px;margin-bottom:28px;}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+.kpi-card{border-radius:12px;padding:20px 16px;text-align:center;}
+.kpi-card:nth-child(1){background:var(--lt);border:1.5px solid #ddd0f5;}
+.kpi-card:nth-child(2){background:#fff5fc;border:1.5px solid #f0c0e0;}
+.kpi-card:nth-child(3){background:#fffbe0;border:1.5px solid #ffe080;}
+.kpi-card:nth-child(4){background:#f0fff8;border:1.5px solid #80e8c0;}
+.kpi-label{font-size:10px;letter-spacing:2px;margin-bottom:8px;}
+.kpi-card:nth-child(1) .kpi-label{color:var(--p);}
+.kpi-card:nth-child(2) .kpi-label{color:var(--pk);}
+.kpi-card:nth-child(3) .kpi-label{color:#cc8800;}
+.kpi-card:nth-child(4) .kpi-label{color:#00a060;}
+.kpi-num{font-size:32px;font-weight:900;line-height:1;margin-bottom:4px;}
+.kpi-card:nth-child(1) .kpi-num{color:var(--p);}
+.kpi-card:nth-child(2) .kpi-num{color:var(--pk);}
+.kpi-card:nth-child(3) .kpi-num{color:#cc8800;}
+.kpi-card:nth-child(4) .kpi-num{color:#00a060;}
+.kpi-desc{font-size:11px;color:var(--gr);line-height:1.4;}
+.proof-timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.pt-card{border-radius:12px;padding:18px 16px;
+  background:#f8f8f8;border:1.5px solid #e8e8e8;}
+.ptc-month{font-size:10px;letter-spacing:2px;color:var(--gr);margin-bottom:6px;}
+.ptc-title{font-size:14px;font-weight:700;color:var(--dk);margin-bottom:8px;}
+.ptc-item{font-size:12px;color:var(--gr);margin-bottom:5px;
+  display:flex;gap:7px;align-items:flex-start;}
+.ptc-dot{width:5px;height:5px;border-radius:50%;
+  background:var(--p);flex-shrink:0;margin-top:5px;}
+.ptc-result{margin-top:10px;font-size:12px;font-weight:700;
+  color:var(--p);background:var(--lt);padding:6px 12px;border-radius:8px;}
+
+/* ═══════════════════════
+   S08 INFRA PRICE
+═══════════════════════ */
+.s08{background:var(--lt);}
+.s08 .logo .l{color:var(--dk);}
+.s08 .logo .s{color:rgba(0,0,0,.3);}
+.s08 .snum{color:rgba(0,0,0,.2);}
+.price-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px;}
+.price-card{border-radius:16px;padding:28px;}
+.price-card.a{background:#fff;border:2px solid #e0d0f5;}
+.price-card.b{background:linear-gradient(135deg,var(--dk),var(--md));
+  border:2px solid var(--p);}
+.pc-tier{font-size:10px;letter-spacing:3px;margin-bottom:12px;}
+.price-card.a .pc-tier{color:var(--p);}
+.price-card.b .pc-tier{color:var(--g);}
+.pc-price{font-size:clamp(28px,3.5vw,40px);font-weight:900;line-height:1;margin-bottom:4px;}
+.price-card.a .pc-price{color:var(--dk);}
+.price-card.b .pc-price{color:#fff;}
+.pc-unit{font-size:12px;margin-bottom:16px;}
+.price-card.a .pc-unit{color:var(--gr);}
+.price-card.b .pc-unit{color:rgba(255,255,255,.4);}
+.pc-name{font-size:16px;font-weight:700;margin-bottom:14px;}
+.price-card.a .pc-name{color:var(--dk);}
+.price-card.b .pc-name{color:#fff;}
+.pc-feat{display:flex;gap:8px;align-items:flex-start;margin-bottom:9px;font-size:12px;}
+.pc-check{flex-shrink:0;font-size:13px;}
+.price-card.a .pc-check{color:var(--p);}
+.price-card.b .pc-check{color:var(--g);}
+.pc-feat-text{}
+.price-card.a .pc-feat-text{color:var(--gr);}
+.price-card.b .pc-feat-text{color:rgba(255,255,255,.75);}
+.pc-rec{position:absolute;top:14px;right:14px;
+  background:var(--g);color:var(--dk);
+  font-size:9px;font-weight:700;padding:3px 10px;border-radius:10px;letter-spacing:1px;}
+.be-box{margin-top:24px;padding:20px 28px;
+  background:linear-gradient(135deg,var(--dk),var(--md));
+  border-radius:14px;grid-column:span 2;
+  display:flex;align-items:center;gap:24px;}
+.be-left{flex:1;color:rgba(255,255,255,.65);font-size:14px;line-height:1.7;}
+.be-left strong{color:#fff;}
+.be-right{text-align:right;flex-shrink:0;}
+.be-right .rnum{font-size:40px;font-weight:900;color:var(--g);line-height:1;}
+.be-right .rlabel{color:rgba(255,255,255,.4);font-size:11px;margin-top:4px;}
+
+/* ═══════════════════════
+   S09 CTA
+═══════════════════════ */
+.s09{background:linear-gradient(150deg,#080112,#1a0533,#2d0854);}
+.s09::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 60%,rgba(139,47,201,.2) 0%,transparent 50%),
+             radial-gradient(circle at 80% 25%,rgba(217,70,168,.15) 0%,transparent 40%);}
+.s09 .snum{color:rgba(255,255,255,.2);}
+.cta-inner{position:relative;z-index:1;text-align:center;}
+.cta-ey{display:inline-block;border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.55);font-size:10px;letter-spacing:4px;
+  padding:7px 22px;border-radius:20px;margin-bottom:28px;}
+.cta-t{color:#fff;margin-bottom:12px;}
+.cta-sub{color:rgba(255,255,255,.5);font-size:15px;margin-bottom:36px;line-height:1.8;}
+.cta-steps{display:flex;justify-content:center;gap:14px;margin-bottom:36px;}
+.cst{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;padding:22px 20px;min-width:180px;text-align:center;}
+.cst-n{width:30px;height:30px;border-radius:50%;
+  margin:0 auto 12px;
+  background:linear-gradient(135deg,var(--p),var(--pk));
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:#fff;}
+.cst-title{color:#fff;font-size:13px;font-weight:700;margin-bottom:4px;}
+.cst-body{color:rgba(255,255,255,.4);font-size:11px;line-height:1.5;}
+.cta-btn{display:inline-block;
+  background:linear-gradient(90deg,var(--p),var(--pk));
+  color:#fff;font-size:16px;font-weight:700;letter-spacing:1px;
+  padding:16px 52px;border-radius:40px;text-decoration:none;
+  box-shadow:0 8px 32px rgba(139,47,201,.4);margin-bottom:18px;}
+.cta-contact{color:rgba(255,255,255,.3);font-size:12px;}
+.cta-contact a{color:rgba(255,215,0,.7);}
+
+@media print{
+  body{background:#fff;}
+  .slide{min-height:auto;height:100vh;page-break-after:always;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ S01 HOOK ══ -->
+<div class="slide s01">
+  <div class="s01-glow"></div>
+  <div class="logo"><div class="l">DigiLab Beauty</div><div class="s">DIGITAL LABORATORY</div></div>
+  <div class="inner">
+    <div class="hook-eyebrow">FOR BEAUTY EXECUTIVES 2026</div>
+    <h1 class="disp hook-q">
+      AIを入れた。<br>
+      でも、<span class="red">成果が出ていない</span>。<br>
+      <span style="font-size:.65em;color:rgba(255,255,255,.55);">── その問題、放置していませんか？</span>
+    </h1>
+    <p class="lead hook-sub" style="margin-top:20px;">
+      LINE公式、予約システム、CRM、AI診断ツール……<br>
+      導入した。費用も払った。でも、売上は変わっていない。<br>
+      それは「使い方」の問題ではありません。
+    </p>
+    <div class="hook-cards">
+      <div class="hc">
+        <div class="hc-icon">📉</div>
+        <div class="hc-text">AI導入企業のうち<strong>成果が出ているのは約20%</strong></div>
+      </div>
+      <div class="hc">
+        <div class="hc-icon">💸</div>
+        <div class="hc-text">残り<strong>80%のAI投資は「眠ったまま」</strong></div>
+      </div>
+      <div class="hc">
+        <div class="hc-icon">🔍</div>
+        <div class="hc-text">問題は<strong>ツールではなく「設計」にある</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">01 / 09</div>
+</div>
+
+<!-- ══ S02 WHY FAIL ══ -->
+<div class="slide s02">
+  <div class="logo"><div class="l">DigiLab Beauty</div><div class="s">DIGITAL LABORATORY</div></div>
+  <div class="inner">
+    <div class="ey" style="color:var(--red)">WHY AI FAILS</div>
+    <h2 class="h1" style="color:var(--dk)">美容業界で<span class="gd">AIが成果を出せない</span><br>3つの構造的理由</h2>
+    <div class="bar r"></div>
+    <p class="fail-intro">
+      「もっとちゃんと使えば成果が出る」は<span class="red">間違いです</span>。<br>
+      成果が出ない原因は、ツールの外にある「設計の問題」です。
+    </p>
+    <div class="fail-grid">
+      <div class="fail-card">
+        <div class="fc-num">01</div>
+        <div class="fc-title">ツールが「点」で存在している</div>
+        <div class="fc-body">
+          LINE、POS、CRM、AI診断がそれぞれ独立していて連携していない。顧客情報が分断されたまま。
+        </div>
+        <div class="fc-example">「LINEで配信したが、どの顧客に何を送るか判断する情報がない」</div>
+      </div>
+      <div class="fail-card">
+        <div class="fc-num">02</div>
+        <div class="fc-title">データが「見るだけ」で終わる</div>
+        <div class="fc-body">
+          データはある。レポートも出る。でも「だから何をすべきか」に繋がっていない。分析が行動に変わらない。
+        </div>
+        <div class="fc-example">「月次レポートを眺めるが、次の打ち手に落とし込めていない」</div>
+      </div>
+      <div class="fail-card">
+        <div class="fc-num">03</div>
+        <div class="fc-title">「誰が動かすか」が決まっていない</div>
+        <div class="fc-body">
+          ツールはある。でも現場は忙しい。AI活用を担う人がいない。結果、誰も使わなくなる。
+        </div>
+        <div class="fc-example">「導入時に使い始めたが3ヶ月後には誰も触っていない」</div>
+      </div>
+    </div>
+    <div class="fail-truth">
+      <div style="font-size:22px">💡</div>
+      <div class="ft-text">
+        これらは「人の問題」でも「ツールの問題」でもない。<strong>「AI投資を成果に変える設計」</strong>が存在しないことが問題です。
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">02 / 09</div>
+</div>
+
+<!-- ══ S03 COST OF FAILURE ══ -->
+<div class="slide s03">
+  <div class="logo"><div class="l">DigiLab Beauty</div><div class="s">DIGITAL LABORATORY</div></div>
+  <div class="inner">
+    <div class="ey" style="color:var(--pk)">THE HIDDEN COST</div>
+    <h2 class="h1 white">「成果が出ないAI」を<br>放置し続けるコスト</h2>
+    <div class="bar g"></div>
+    <div class="cost-grid">
+      <div class="cost-card">
+        <div class="cost-label">SUNK COST</div>
+        <div class="cost-num">毎月</div>
+        <div class="cost-title">ツール費用だけ払い続ける</div>
+        <div class="cost-body">LINE公式、予約システム、CRM等のSaaS費用は毎月発生する。使われなくても請求は止まらない。</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-label">OPPORTUNITY COST</div>
+        <div class="cost-num">60%</div>
+        <div class="cost-title">休眠顧客が放置され続ける</div>
+        <div class="cost-body">顧客リストの60%が休眠状態。AIがあれば取り戻せるはずの顧客が、今日も離れ続けている。</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-label">COMPETITIVE COST</div>
+        <div class="cost-num">2027</div>
+        <div class="cost-title">AIを活用した競合に差をつけられる</div>
+        <div class="cost-body">同じ投資をしても、活用できた企業とできなかった企業の差は2027年以降に一気に開く。</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-label">MORALE COST</div>
+        <div class="cost-num">低下</div>
+        <div class="cost-title">「またDXか」というスタッフの不信</div>
+        <div class="cost-body">導入しては使われないを繰り返すと、次の変化への組織的な抵抗が生まれる。</div>
+      </div>
+    </div>
+    <div class="cost-warn">
+      <div class="cw-text">
+        「成果が出ないAI」を放置するコストは、<span class="red">ツール代より遥かに大きい。</span><br>
+        今必要なのは「新しいツール」ではなく「既存投資を成果に変える設計」です。
+      </div>
+    </div>
+  </div>
+  <div class="snum">03 / 09</div>
+</div>
+
+<!-- ══ S04 INFRA CONCEPT ══ -->
+<div class="slide s04">
+  <div class="logo"><div class="l">DigiLab Beauty</div><div class="s">DIGITAL LABORATORY</div></div>
+  <div class="inner">
+    <div class="ey" style="color:var(--p)">OUR POSITION</div>
+    <h2 class="h1" style="color:var(--dk)">「もう一つのAIツール」ではなく<br><span class="gd">「成果を出すインフラ」</span></h2>
+    <div class="bar"></div>
+    <div class="infra-compare">
+      <div class="ic-col left">
+        <div class="ic-head">✗ 従来の「AIツール・教育」業者</div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">新しいツールを売る・導入させる</div></div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">使い方を教える（その後は任せる）</div></div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">「導入完了」で仕事終了</div></div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">成果が出なくても責任を取らない</div></div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">プロジェクト型（単発）</div></div>
+        <div class="ic-result">結果：また「使われないAI」が増える</div>
+      </div>
+      <div class="ic-col right">
+        <div class="ic-head">✦ DigiLab Beauty（インフラ）</div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">既存の投資を「成果」に繋げる設計をする</div></div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">データ・ツール・行動をつなぐ「設計者」</div></div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">成果が出るまで伴走し続ける</div></div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">「数字が出なければ続けるな」と言う</div></div>
+        <div class="ic-item"><div class="ic-dot"></div><div class="ic-text">インフラ型（継続・月次）</div></div>
+        <div class="ic-result">結果：AI投資が実際の売上に変わる</div>
+      </div>
+    </div>
+    <div class="infra-def">
+      <div class="id-text">
+        インフラとは、<span class="g">「気にしなくても動いている基盤」</span>のこと。<br>
+        電気・水道を意識しないように、<span class="pk">デジラボビューティーも意識されないまま</span>、
+        貴社のAI投資を売上に変え続けます。
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">04 / 09</div>
+</div>
+
+<!-- ══ S05 MECHANISM ══ -->
+<div class="slide s05">
+  <div class="logo"><div class="l">DigiLab Beauty</div><div class="s">DIGITAL LABORATORY</div></div>
+  <div class="inner">
+    <div class="ey" style="color:var(--p)">HOW IT WORKS</div>
+    <h2 class="h1" style="color:var(--dk)">「AI投資 → 成果」を<br><span class="gd">繋げる4つの設計</span></h2>
+    <div class="bar"></div>
+    <p class="mech-intro">
+      新しいツールは導入しません。貴社がすでに持っているデータとツールを使います。<br>
+      私たちが設計するのは「それらをつなぎ、動かし、成果に変える仕組み」です。
+    </p>
+    <div class="mech-steps">
+      <div class="ms">
+        <div class="ms-dot">1</div>
+        <div class="ms-title">診断</div>
+        <div class="ms-body">現状のAI・ツール・データ活用状況を棚卸し。「どこが詰まっているか」を特定する。</div>
+        <div class="ms-ex">「貴社にはすでに何がありますか？」</div>
+      </div>
+      <div class="ms">
+        <div class="ms-dot">2</div>
+        <div class="ms-title">設計</div>
+        <div class="ms-body">データ・ツール・顧客行動をつなぐ「成果設計図」を作る。何をすれば何が変わるかを可視化。</div>
+        <div class="ms-ex">「この順番でつなぐと成果が出ます」</div>
+      </div>
+      <div class="ms">
+        <div class="ms-dot">3</div>
+        <div class="ms-title">実装</div>
+        <div class="ms-body">設計を現場に落とし込む。スタッフが「何をすべきか」がわかる運用フローをつくる。</div>
+        <div class="ms-ex">「今日から誰がどう動くか」</div>
+      </div>
+      <div class="ms">
+        <div class="ms-dot">4</div>
+        <div class="ms-title">計測</div>
+        <div class="ms-body">毎月、売上・リピート率・LTVを実測。「設計が成果を生んでいるか」を確認し改善し続ける。</div>
+        <div class="ms-ex">「数字が出ているかを月次で確認」</div>
+      </div>
+    </div>
+    <div class="mech-note">
+      <div class="mn-text">
+        重要：<strong>新しいAIツールの導入も、AI研修も、デプロイも、必要ありません。</strong>
+        貴社がすでに投資したものを、正しく設計し直すだけです。
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">05 / 09</div>
+</div>
+
+<!-- ══ S06 BEFORE/AFTER ══ -->
+<div class="slide s06">
+  <div class="logo"><div class="l">DigiLab Beauty</div><div class="s">DIGITAL LABORATORY</div></div>
+  <div class="inner">
+    <div class="ey" style="color:var(--pk)">TRANSFORMATION</div>
+    <h2 class="h1 white">設計が変わると<br><span class="gg">何が変わるか</span></h2>
+    <div class="bar g"></div>
+    <div class="ba-grid">
+      <div class="ba-col">
+        <div class="ba-head">BEFORE ── 設計なし</div>
+        <div class="ba-item">
+          <div class="ba-icon">📊</div>
+          <div class="ba-text">
+            <div class="ba-title">LINEで月1回一斉配信している</div>
+            <div class="ba-body">誰に何を送るか決まっていない。既読されても反応なし。</div>
+          </div>
+        </div>
+        <div class="ba-item">
+          <div class="ba-icon">🗂</div>
+          <div class="ba-text">
+            <div class="ba-title">顧客データはPOSに入っている</div>
+            <div class="ba-body">月次売上は見るが、「誰が来なくなったか」は誰も見ていない。</div>
+          </div>
+        </div>
+        <div class="ba-item">
+          <div class="ba-icon">👤</div>
+          <div class="ba-text">
+            <div class="ba-title">カウンセリングは担当者次第</div>
+            <div class="ba-body">優秀なスタッフの客単価が高いが、その再現方法を誰も知らない。</div>
+          </div>
+        </div>
+        <div class="ba-item">
+          <div class="ba-icon">📈</div>
+          <div class="ba-text">
+            <div class="ba-title">新規集客に毎月コストをかける</div>
+            <div class="ba-body">新規は来る。でもリピートしない。また集客コストをかける繰り返し。</div>
+          </div>
+        </div>
+      </div>
+      <div class="ba-col">
+        <div class="ba-head">AFTER ── 設計あり</div>
+        <div class="ba-item">
+          <div class="ba-icon">🎯</div>
+          <div class="ba-text">
+            <div class="ba-title">休眠顧客へ最適なタイミングで配信</div>
+            <div class="ba-body">誰が・いつ・何を受け取るかが設計されている。反応率が3〜5倍になる。</div>
+          </div>
+        </div>
+        <div class="ba-item">
+          <div class="ba-icon">🔍</div>
+          <div class="ba-text">
+            <div class="ba-title">「誰が来なくなったか」が毎月見える</div>
+            <div class="ba-body">休眠リストが自動更新される。手を打つタイミングを逃さない。</div>
+          </div>
+        </div>
+        <div class="ba-item">
+          <div class="ba-icon">⚙️</div>
+          <div class="ba-text">
+            <div class="ba-title">高単価カウンセリングが再現される</div>
+            <div class="ba-body">トップスタッフの「問いかけ設計」をフロー化。誰がやっても同水準に。</div>
+          </div>
+        </div>
+        <div class="ba-item">
+          <div class="ba-icon">🔄</div>
+          <div class="ba-text">
+            <div class="ba-title">既存顧客からの売上が先に増える</div>
+            <div class="ba-body">集客コストゼロで収益が上がる。新規集客の依存度が下がる。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ba-result">
+      <div class="bar-text">
+        変わるのは「ツール」ではない。<span class="g">「ツールと顧客と売上を繋ぐ設計」</span>が変わる。
+      </div>
+    </div>
+  </div>
+  <div class="snum">06 / 09</div>
+</div>
+
+<!-- ══ S07 PROOF ══ -->
+<div class="slide s07">
+  <div class="logo"><div class="l">DigiLab Beauty</div><div class="s">DIGITAL LABORATORY</div></div>
+  <div class="inner">
+    <div class="ey" style="color:var(--p)">WHAT CHANGES</div>
+    <h2 class="h1" style="color:var(--dk)">設計が変わると<br><span class="gd">数字はこう動く</span></h2>
+    <div class="bar"></div>
+    <p class="proof-intro">
+      新しいツールを入れずに、設計を変えるだけで実現できる数字の変化です。<br>
+      前提：顧客リスト1,000名・平均施術単価¥18,000・現在のリピート率38%のサロン想定
+    </p>
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-label">REPEAT RATE</div>
+        <div class="kpi-num">+20<span style="font-size:18px">pt</span></div>
+        <div class="kpi-desc">リピート率<br>38%→58%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">DORMANT RECOVERY</div>
+        <div class="kpi-num">+90<span style="font-size:18px">名</span></div>
+        <div class="kpi-desc">休眠顧客が<br>月90名復帰</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">MONTHLY REVENUE</div>
+        <div class="kpi-num">+162<span style="font-size:18px">万</span></div>
+        <div class="kpi-desc">月次売上増分<br>（試算）</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">NEW CLIENT COST</div>
+        <div class="kpi-num">−40<span style="font-size:18px">%</span></div>
+        <div class="kpi-desc">新規集客コスト<br>依存度が低下</div>
+      </div>
+    </div>
+    <div class="proof-timeline">
+      <div class="pt-card">
+        <div class="ptc-month">MONTH 1</div>
+        <div class="ptc-title">現状を可視化する</div>
+        <div class="ptc-item"><div class="ptc-dot"></div>AI・ツール・データの棚卸し</div>
+        <div class="ptc-item"><div class="ptc-dot"></div>休眠顧客数と潜在価値を算出</div>
+        <div class="ptc-item"><div class="ptc-dot"></div>成果設計図の作成・合意</div>
+        <div class="ptc-result">→ 「何が詰まっているか」が見える</div>
+      </div>
+      <div class="pt-card">
+        <div class="ptc-month">MONTH 2</div>
+        <div class="ptc-title">最初の設計を動かす</div>
+        <div class="ptc-item"><div class="ptc-dot"></div>休眠顧客アプローチ設計・実行</div>
+        <div class="ptc-item"><div class="ptc-dot"></div>カウンセリングフローの再設計</div>
+        <div class="ptc-item"><div class="ptc-dot"></div>初回効果測定・数字確認</div>
+        <div class="ptc-result">→ 「最初の数字の変化」が出る</div>
+      </div>
+      <div class="pt-card">
+        <div class="ptc-month">MONTH 3</div>
+        <div class="ptc-title">設計を改善・定着させる</div>
+        <div class="ptc-item"><div class="ptc-dot"></div>Before/After実績レポート提出</div>
+        <div class="ptc-item"><div class="ptc-dot"></div>次の設計課題の特定</div>
+        <div class="ptc-item"><div class="ptc-dot"></div>継続・拡張の判断をともに行う</div>
+        <div class="ptc-result">→ 数字が出なければ継続しない</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">07 / 09</div>
+</div>
+
+<!-- ══ S08 PRICE ══ -->
+<div class="slide s08">
+  <div class="logo"><div class="l">DigiLab Beauty</div><div class="s">DIGITAL LABORATORY</div></div>
+  <div class="inner">
+    <div class="ey" style="color:var(--p)">INVESTMENT</div>
+    <h2 class="h1" style="color:var(--dk)">インフラとしての<span class="gd">費用設計</span></h2>
+    <div class="bar"></div>
+    <div class="price-layout">
+      <div class="price-card a" style="position:relative;">
+        <div class="pc-tier">STARTER</div>
+        <div class="pc-price">¥80,000</div>
+        <div class="pc-unit">/月</div>
+        <div class="pc-name">診断 ＋ 設計</div>
+        <div class="pc-feat"><div class="pc-check">✓</div><div class="pc-feat-text">現状AI投資の棚卸し・診断</div></div>
+        <div class="pc-feat"><div class="pc-check">✓</div><div class="pc-feat-text">成果設計図の作成</div></div>
+        <div class="pc-feat"><div class="pc-check">✓</div><div class="pc-feat-text">月次成果レポート</div></div>
+        <div class="pc-feat"><div class="pc-check">✓</div><div class="pc-feat-text">月1回戦略ミーティング</div></div>
+      </div>
+      <div class="price-card b" style="position:relative;">
+        <div class="pc-rec">RECOMMENDED</div>
+        <div class="pc-tier">STANDARD</div>
+        <div class="pc-price">¥150,000</div>
+        <div class="pc-unit">/月</div>
+        <div class="pc-name">診断 ＋ 設計 ＋ 実装</div>
+        <div class="pc-feat"><div class="pc-check">✓</div><div class="pc-feat-text">Starterの全内容</div></div>
+        <div class="pc-feat"><div class="pc-check">✓</div><div class="pc-feat-text">休眠顧客アプローチ設計・実行支援</div></div>
+        <div class="pc-feat"><div class="pc-check">✓</div><div class="pc-feat-text">カウンセリングフロー再設計</div></div>
+        <div class="pc-feat"><div class="pc-check">✓</div><div class="pc-feat-text">スタッフ運用フローの構築</div></div>
+        <div class="pc-feat"><div class="pc-check">✓</div><div class="pc-feat-text">月次KPI管理・改善提案</div></div>
+      </div>
+      <div class="be-box">
+        <div class="be-left">
+          <strong>元が取れる試算：</strong><br>
+          月¥150,000 ÷ 施術単価¥18,000 ＝ <strong>月に9名</strong>が設計によって戻れば投資回収。<br>
+          休眠顧客1,000名×15%復帰 ＝ 月150名。確率の問題ではなく<strong>設計の問題</strong>です。
+        </div>
+        <div class="be-right">
+          <div class="rnum">9<span style="font-size:20px">名</span></div>
+          <div class="rlabel">月に増えれば<br>元が取れる</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">08 / 09</div>
+</div>
+
+<!-- ══ S09 CTA ══ -->
+<div class="slide s09">
+  <div class="inner">
+    <div class="cta-inner">
+      <div class="cta-ey">FIRST STEP</div>
+      <h2 class="disp cta-t">
+        まず、<span class="gg">30分</span>で<br>診断させてください。
+      </h2>
+      <p class="lead cta-sub">
+        「貴社のAI投資は、今どこで詰まっているか」<br>
+        それだけを明らかにする30分です。提案も売り込みもしません。<br>
+        診断結果を見て、続けるかどうかを決めてください。
+      </p>
+      <div class="cta-steps">
+        <div class="cst">
+          <div class="cst-n">1</div>
+          <div class="cst-title">現状診断（30分）</div>
+          <div class="cst-body">今あるツール・データ・成果の状況を確認。「何が詰まっているか」をその場で提示</div>
+        </div>
+        <div class="cst">
+          <div class="cst-n">2</div>
+          <div class="cst-title">設計提案（1週間後）</div>
+          <div class="cst-body">診断をもとに「どう設計すれば成果が出るか」の具体案を提示</div>
+        </div>
+        <div class="cst">
+          <div class="cst-n">3</div>
+          <div class="cst-title">判断はその後で</div>
+          <div class="cst-body">設計提案を見て、「やるかやらないか」を決めてください。費用はそこから</div>
+        </div>
+      </div>
+      <a href="https://digilab-beauty.com/" class="cta-btn">30分の無料診断を申し込む →</a>
+      <div class="cta-contact">
+        info@digilab-beauty.com　|
+        <a href="https://digilab-beauty.com/">https://digilab-beauty.com/</a>
+      </div>
+    </div>
+  </div>
+  <div class="snum">09 / 09</div>
+</div>
+
+</body>
+</html>
