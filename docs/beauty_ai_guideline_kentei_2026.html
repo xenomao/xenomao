@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美容業界AI活用ガイドライン 1.0 ／ 美容AI活用推進検定 設計書</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 14mm 0; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --red: #b41e2e;
+    --darkred: #7c1420;
+    --ink: #1c1c1c;
+    --gray: #6a6a6a;
+    --line: #d9d9d9;
+    --bg: #f4f1f1;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 0;
+    line-height: 1.7;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    padding: 22mm 20mm;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    position: relative;
+  }
+
+  .page-foot {
+    position: absolute;
+    bottom: 12mm;
+    left: 20mm;
+    right: 20mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: #aaa;
+    letter-spacing: 1px;
+    border-top: 1px solid var(--line);
+    padding-top: 6px;
+  }
+
+  /* ===== 表紙 ===== */
+  .cover {
+    background: linear-gradient(135deg, #5e0f17 0%, #8c1622 45%, #b41e2e 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30mm 22mm;
+  }
+  .cover .kicker {
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.8);
+    border-left: 3px solid #fff;
+    padding-left: 12px;
+  }
+  .cover h1 {
+    font-size: 46px;
+    font-weight: 900;
+    line-height: 1.32;
+    margin-top: 18px;
+  }
+  .cover h1 .sub {
+    display: block;
+    font-size: 24px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.88);
+    margin-top: 14px;
+  }
+  .cover .lead-box {
+    font-size: 14px;
+    line-height: 1.95;
+    color: rgba(255,255,255,0.92);
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 20px;
+    max-width: 150mm;
+  }
+  .cover .meta {
+    font-size: 13px;
+    line-height: 2;
+  }
+  .cover .meta strong { font-weight: 700; font-size: 15px; }
+
+  /* ===== 共通見出し ===== */
+  .doc-title {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+  .part-band {
+    background: var(--red);
+    color: #fff;
+    font-size: 22px;
+    font-weight: 900;
+    padding: 12px 20px;
+    margin-bottom: 6px;
+  }
+  .part-band span { font-size: 13px; font-weight: 500; opacity: 0.85; }
+  .part-desc {
+    font-size: 12.5px;
+    color: var(--gray);
+    margin-bottom: 26px;
+  }
+
+  .sec-tags {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .sec-no {
+    background: var(--red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    letter-spacing: 1px;
+  }
+  .sec-org {
+    border: 1px solid var(--line);
+    color: var(--gray);
+    font-size: 10.5px;
+    padding: 3px 10px;
+  }
+  .headline {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.42;
+    margin-bottom: 10px;
+  }
+  .headline em { color: var(--red); font-style: normal; }
+  .lead {
+    font-size: 12px;
+    color: var(--gray);
+    line-height: 1.85;
+    margin-bottom: 18px;
+  }
+
+  .twocol {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-bottom: 16px;
+  }
+  .col h4 {
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .col.main h4 { border-color: var(--red); color: var(--red); }
+  .col ul { list-style: none; }
+  .col li {
+    font-size: 11.5px;
+    line-height: 1.7;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 5px;
+  }
+  .col li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 5px; height: 5px;
+    background: #999;
+  }
+  .col.main li::before { background: var(--red); }
+
+  .effect-bar {
+    background: var(--darkred);
+    color: #fff;
+    padding: 13px 18px;
+    margin-bottom: 4px;
+  }
+  .effect-bar .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+  }
+  .effect-bar .text {
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.55;
+  }
+  .effect-note {
+    font-size: 10px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 30px;
+  }
+
+  .divider { height: 26px; }
+
+  /* ===== 本文要素 ===== */
+  p.body { font-size: 12px; line-height: 1.95; margin-bottom: 12px; }
+  .note {
+    background: #faf3f3;
+    border-left: 4px solid var(--red);
+    padding: 12px 16px;
+    font-size: 11.5px;
+    line-height: 1.8;
+    margin: 14px 0;
+  }
+  .note strong { color: var(--red); }
+
+  table.tbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin: 12px 0 20px;
+  }
+  table.tbl th {
+    background: var(--red);
+    color: #fff;
+    text-align: left;
+    padding: 7px 10px;
+    font-weight: 700;
+  }
+  table.tbl td {
+    border: 1px solid var(--line);
+    padding: 7px 10px;
+    vertical-align: top;
+    line-height: 1.65;
+  }
+  table.tbl tr:nth-child(even) td { background: #faf8f8; }
+
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin: 14px 0 22px;
+  }
+  .flow .step {
+    background: #faf3f3;
+    border: 1px solid #e3c9cc;
+    color: var(--darkred);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 8px 13px;
+  }
+  .flow .arrow { color: var(--red); font-weight: 700; }
+
+  h3.block {
+    font-size: 15px;
+    font-weight: 900;
+    margin: 22px 0 8px;
+    padding-left: 11px;
+    border-left: 5px solid var(--red);
+  }
+  h4.sub {
+    font-size: 12.5px;
+    font-weight: 700;
+    margin: 14px 0 6px;
+    color: var(--darkred);
+  }
+  ul.plain { list-style: none; margin: 6px 0 14px; }
+  ul.plain li {
+    font-size: 11.5px;
+    line-height: 1.75;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+  ul.plain li::before {
+    content: '▪';
+    color: var(--red);
+    position: absolute;
+    left: 0;
+  }
+  ol.checks { margin: 6px 0 14px 20px; }
+  ol.checks li { font-size: 11.5px; line-height: 1.8; margin-bottom: 4px; }
+
+  /* 模擬問題 */
+  .q {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--red);
+    padding: 11px 14px;
+    margin-bottom: 9px;
+    font-size: 11px;
+    line-height: 1.7;
+    page-break-inside: avoid;
+  }
+  .q .qn { font-weight: 700; color: var(--red); }
+  .q .opts { margin: 4px 0; }
+  .q .ans { font-weight: 700; }
+  .q .exp { color: var(--gray); font-size: 10.5px; }
+
+  .toc { font-size: 12px; line-height: 2.3; }
+  .toc .t-part { font-weight: 900; color: var(--red); margin-top: 10px; }
+  .toc .t-item { padding-left: 18px; }
+  .toc .dots { color: var(--line); }
+
+  .pagebreak { page-break-before: always; }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      width: 100%;
+      min-height: auto;
+      padding: 0 20mm;
+    }
+    .page-foot { position: fixed; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 表紙 ============ -->
+<div class="page cover">
+  <div>
+    <div class="kicker">BEAUTY INDUSTRY AI STANDARD &nbsp;|&nbsp; 2026 AUTUMN RELEASE</div>
+    <h1>
+      美容業界AI活用<br>ガイドライン 1.0
+      <span class="sub">美容AI活用推進検定 設計書</span>
+    </h1>
+  </div>
+  <div class="lead-box">
+    生成AIの普及により、美容業界もまた大きな転換点を迎えています。本書は、サロンが
+    AIを「安全に・実務的に・成果につながる形で」活用するための業界共通の基準を定め、
+    その理解度を測る検定制度の設計をまとめたものです。国の政策議論（AIホワイトペーパー
+    2.0「AI駆動型国家への構造転換」）が掲げる「中小事業者へのAX推進」「AIリテラシー
+    向上」「信頼の設計」を、美容業界の現場に翻訳する民間の取り組みとして位置づけます。
+  </div>
+  <div class="meta">
+    <strong>デジラボビューティー（DigiLab Beauty）</strong><br>
+    美容業界AI実装支援プラットフォーム<br>
+    2026年4月　第1版ドラフト
+  </div>
+</div>
+
+<!-- ============ 目次 ============ -->
+<div class="page">
+  <div class="doc-title">CONTENTS</div>
+  <div class="part-band">目次 <span>／ 本書の構成</span></div>
+  <div class="part-desc">本書は「ガイドライン本体」「検定設計」「プラットフォームとロードマップ」の3部で構成されます。</div>
+
+  <div class="toc">
+    <div class="t-part">はじめに　美容テックの進化とデジラボビューティーの使命</div>
+
+    <div class="t-part">第1部　美容業界AI活用ガイドライン</div>
+    <div class="t-item">1-1　ガイドラインの位置づけと3つの基本原則</div>
+    <div class="t-item">1-2　第1章　情報管理 ― 顧客情報をAIに入力しない</div>
+    <div class="t-item">1-3　第2章　法令配慮 ― 薬機法・景品表示法の基本</div>
+    <div class="t-item">1-4　第3章　広告・表現ルール ― 誇大・断定表現を避ける</div>
+    <div class="t-item">1-5　第4章　人間中心の運用 ― 最終確認は人が行う</div>
+    <div class="t-item">1-6　第5章　サロン内ルールの整備 ― 続けられる仕組み</div>
+
+    <div class="t-part">第2部　美容AI活用推進検定</div>
+    <div class="t-item">2-1　検定制度の全体像</div>
+    <div class="t-item">2-2　美容AI活用推進検定3級 ― 設計概要</div>
+    <div class="t-item">2-3　出題範囲・試験形式・学習項目</div>
+    <div class="t-item">2-4　公式テキスト見本（第1章）</div>
+    <div class="t-item">2-5　模擬問題（全20問・解説付き）</div>
+
+    <div class="t-part">第3部　プラットフォームとリリースロードマップ</div>
+    <div class="t-item">3-1　学ぶ・診る・育てる・実装する・証明する・継続する</div>
+    <div class="t-item">3-2　2026年秋 リリースロードマップ</div>
+  </div>
+
+  <div class="page-foot"><span>美容業界AI活用ガイドライン 1.0 ／ 美容AI活用推進検定 設計書</span><span>02</span></div>
+</div>
+
+<!-- ============ はじめに ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">はじめに</span>
+    <span class="sec-org">デジラボビューティー</span>
+  </div>
+  <div class="headline">AIは「導入する」ものではなく、<br><em>現場に実装し、成果につなげる</em>もの。</div>
+  <div class="lead">
+    エステティック産業は、生成AIとデジタル技術の進化により大きな変革期を迎えている。しかし重要なのは、
+    AIやデジタルツールを単に導入することではない。サロンの集客・教育・求人・接客・業務効率化といった
+    日々の業務に、AIを安全かつ実務的に組み込み、現場で使い続けられる状態まで「実装」することである。
+  </div>
+
+  <div class="twocol">
+    <div class="col">
+      <h4>背景・現状課題</h4>
+      <ul>
+        <li>技術・接客ノウハウが個人に依存し、教育に時間とコストがかかる</li>
+        <li>広告や紹介だけに頼る集客が限界を迎えている</li>
+        <li>人材不足が深刻化し、求人票だけでは魅力が伝わらない</li>
+        <li>AIを導入しても業務フローに組み込まれず、成果につながらない</li>
+        <li>顧客情報の扱いや広告表現について、現場に共通の基準がない</li>
+      </ul>
+    </div>
+    <div class="col main">
+      <h4>デジラボビューティーの役割</h4>
+      <ul>
+        <li>サロンごとの課題を診断し、必要な活用領域を見極める</li>
+        <li>導入から運用・改善までを伴走する「診断・実装・定着・改善」</li>
+        <li>集客・教育・求人の3領域でAIを現場の仕組みとして定着させる</li>
+        <li>業界共通のガイドラインと検定制度で、安全な活用を標準化する</li>
+        <li>世界の潮流である「使えるツール」から「成果を生む実装」へ</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="effect-bar">
+    <div class="label">MISSION</div>
+    <div class="text">美容業界にAIを、安全かつ実務的に広げる。その共通基準を、業界の手でつくる。</div>
+  </div>
+  <div class="effect-note">
+    「集客」「教育」「求人」という3つの構造的課題に対し、生成AI・デジタルマーケティング・オンライン教育・
+    業務自動化を活用し、現場で使える仕組みとして導入・定着させる。この循環の起点として、ガイドラインと検定を整備する。
+  </div>
+
+  <div class="page-foot"><span>はじめに　美容テックの進化とデジラボビューティーの使命</span><span>03</span></div>
+</div>
+
+<!-- ============ 第1部 扉 + 1-1 ============ -->
+<div class="page pagebreak">
+  <div class="part-band">第1部 <span>／ 美容業界AI活用ガイドライン</span></div>
+  <div class="part-desc">サロンがAIを安全に活用するための、業界共通の基準。全5章で構成する。</div>
+
+  <div class="sec-tags">
+    <span class="sec-no">1-1</span>
+    <span class="sec-org">ガイドラインの位置づけ</span>
+  </div>
+  <div class="headline">3つの基本原則の上に、<br><em>美容業界の「信頼の設計」</em>を築く。</div>
+  <div class="lead">
+    本ガイドラインは、特定のツールの使い方を定めるものではなく、AIを扱う際の「考え方」と「守るべき線」を
+    示すものである。国の政策議論が掲げる「規制・技術・リテラシーの三位一体」「人間中心AI」「領域特化
+    （バーティカル）でのAX推進」を、美容業界の現場に置き換えた3原則を土台とする。
+  </div>
+
+  <h3 class="block">原則1　信頼の設計</h3>
+  <p class="body">AIの活用は、禁止か放任かの二択ではない。顧客・スタッフ・求職者からの信頼を損なわないよう、
+  情報の扱い・表現・運用ルールをあらかじめ設計しておく。本ガイドラインの第1章〜第5章は、この「信頼の設計」を具体化したものである。</p>
+
+  <h3 class="block">原則2　人間中心AI</h3>
+  <p class="body">AIは人の代わりではなく、補助役である。文章・画像・資料の作成をAIが支援しても、内容の確認と
+  最終判断、そしてその結果に対する責任は、つねに人間（サロン側）が負う。</p>
+
+  <h3 class="block">原則3　現場実装（バーティカルAX）</h3>
+  <p class="body">AIは「知る」だけでは成果につながらない。Instagram投稿、LINE配信、カウンセリング、求人、
+  スタッフ教育、顧客管理、広告表現チェックといった日常業務に無理なく組み込み、使い続けられる状態にして初めて価値が生まれる。</p>
+
+  <div class="note">
+    <strong>本ガイドラインの対象：</strong>エステサロン、ネイル、まつエク、美容師・理容師、美容鍼灸・整体・
+    リラクゼーションなど、美容に関わるすべてのサロン事業者およびそのスタッフ。
+  </div>
+
+  <div class="page-foot"><span>第1部　美容業界AI活用ガイドライン　1-1 位置づけと基本原則</span><span>04</span></div>
+</div>
+
+<!-- ============ 1-2 第1章 情報管理 ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">1-2</span>
+    <span class="sec-org">ガイドライン 第1章</span>
+  </div>
+  <div class="headline">顧客情報は、<em>AIに入力しない</em>。<br>これがすべての出発点。</div>
+  <div class="lead">
+    美容業界は、お客様の身体・肌・悩みに関わる情報を扱う。生成AIに入力した情報が
+    どう扱われるかを完全には把握できない以上、個人が特定される情報はAIに入力しないことを原則とする。
+  </div>
+
+  <div class="twocol">
+    <div class="col">
+      <h4>背景・現状課題</h4>
+      <ul>
+        <li>カウンセリング補助や文章作成のために、つい顧客情報を入力してしまう</li>
+        <li>施術記録・肌状態・健康状態など、機微な情報を扱う機会が多い</li>
+        <li>「どこまでが入力してよい情報か」の線引きが現場で曖昧</li>
+      </ul>
+    </div>
+    <div class="col main">
+      <h4>遵守事項</h4>
+      <ul>
+        <li>氏名・住所・電話番号・施術履歴など、個人が特定される情報を入力しない</li>
+        <li>施術記録・肌状態・健康状態をそのまま入力しない</li>
+        <li>入力する場合は、架空の事例や一般化した条件に置き換える</li>
+        <li>サロンとして「入力してよい情報／いけない情報」を明文化する</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4 class="sub">現場チェックリスト</h4>
+  <ol class="checks">
+    <li>その文章に、特定の顧客が分かる情報は含まれていないか</li>
+    <li>顧客の代わりに「30代・乾燥肌・初来店」のような一般化した条件にできないか</li>
+    <li>スタッフ全員が「入力してはいけない情報」を言えるか</li>
+  </ol>
+
+  <div class="effect-bar">
+    <div class="label">POINT</div>
+    <div class="text">迷ったら入力しない。AIに渡すのは「テーマ」や「条件」であり、「個人」ではない。</div>
+  </div>
+
+  <div class="page-foot"><span>第1部　第1章　情報管理</span><span>05</span></div>
+</div>
+
+<!-- ============ 1-3 第2章 法令配慮 ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">1-3</span>
+    <span class="sec-org">ガイドライン 第2章</span>
+  </div>
+  <div class="headline">AIが書いた文章にも、<br><em>薬機法・景品表示法</em>は等しく適用される。</div>
+  <div class="lead">
+    AIは「もっともらしい文章」を作るのが得意だが、その表現が法令に適合しているかは保証しない。
+    AIが生成した投稿文・広告文・説明文も、人が書いたものと同じ基準で確認する必要がある。
+  </div>
+
+  <div class="twocol">
+    <div class="col">
+      <h4>背景・現状課題</h4>
+      <ul>
+        <li>AIが効果を断定する表現や誇大な表現を生成することがある</li>
+        <li>条文を細かく理解していなくても、危ない表現には気づける必要がある</li>
+        <li>体験談・口コミ・ビフォーアフターの扱いに注意が必要</li>
+      </ul>
+    </div>
+    <div class="col main">
+      <h4>遵守事項</h4>
+      <ul>
+        <li>効果・効能を断定しない（治療や医療行為と誤認させない）</li>
+        <li>「必ず」「絶対」「治る」「消える」「永久に」「誰でも効果」を使わない</li>
+        <li>ビフォーアフター表現は、誤認を招かない条件で扱う</li>
+        <li>体験談・口コミは事実に基づき、効果保証として使わない</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>3級が求めるレベル：</strong>条文の暗記ではなく、「危ない表現に気づける」レベルで十分。
+    上記の禁止ワードに反応できることを基準とする。なお、本ガイドラインは法的助言ではなく、
+    実際の表現判断にあたっては薬機法・景品表示法に詳しい専門家の監修を推奨する。
+  </div>
+
+  <h4 class="sub">注意が必要な表現の例</h4>
+  <table class="tbl">
+    <tr><th style="width:50%">避けるべき表現</th><th>言い換えの方向</th></tr>
+    <tr><td>必ずシミが消えます</td><td>肌印象を整えるケアを行います</td></tr>
+    <tr><td>誰でも効果が出る痩身</td><td>一人ひとりの状態に合わせたケアを提案します</td></tr>
+    <tr><td>このコースで完治します</td><td>リラックスした時間と清潔感のある印象を目指します</td></tr>
+  </table>
+
+  <div class="page-foot"><span>第1部　第2章　法令配慮</span><span>06</span></div>
+</div>
+
+<!-- ============ 1-4 第3章 広告・表現ルール ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">1-4</span>
+    <span class="sec-org">ガイドライン 第3章</span>
+  </div>
+  <div class="headline">AIの出力は「下書き」。<br><em>公開前の表現チェック</em>を必ず通す。</div>
+  <div class="lead">
+    AIで作成したInstagram投稿文・LINE配信文・お客様向け説明文・求人文・チラシ案は、
+    そのまま公開せず、内容・表現・法令リスクを人が確認したうえで使用する。
+  </div>
+
+  <div class="twocol">
+    <div class="col">
+      <h4>背景・現状課題</h4>
+      <ul>
+        <li>AIの文章をそのまま投稿してしまい、表現リスクに気づけない</li>
+        <li>AI画像が、事実と異なる施術結果に見えてしまうことがある</li>
+        <li>求人文で、実際にない好待遇や曖昧な条件が記載されやすい</li>
+      </ul>
+    </div>
+    <div class="col main">
+      <h4>遵守事項</h4>
+      <ul>
+        <li>公開前に「内容・表現・法令リスク」の3点を確認する</li>
+        <li>AI画像を、事実と異なる施術結果やビフォーアフターとして見せない</li>
+        <li>実在の顧客写真を無断で使用・加工しない</li>
+        <li>求人文は実際の勤務条件と一致させ、曖昧な記載をしない</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4 class="sub">公開前チェックの3ステップ</h4>
+  <div class="flow">
+    <span class="step">① 内容は事実か</span>
+    <span class="arrow">→</span>
+    <span class="step">② 誇大・断定表現はないか</span>
+    <span class="arrow">→</span>
+    <span class="step">③ 個人情報・無断利用はないか</span>
+  </div>
+
+  <div class="effect-bar">
+    <div class="label">POINT</div>
+    <div class="text">AIは「速く」してくれる。「正しく」するのは人の確認工程である。</div>
+  </div>
+
+  <div class="page-foot"><span>第1部　第3章　広告・表現ルール</span><span>07</span></div>
+</div>
+
+<!-- ============ 1-5 第4章 人間中心の運用 ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">1-5</span>
+    <span class="sec-org">ガイドライン 第4章</span>
+  </div>
+  <div class="headline">AIは補助役。<br><em>最終判断と責任は、人</em>が持つ。</div>
+  <div class="lead">
+    AIを活用しても、接客判断・スタッフ評価・苦情対応といった「人にしかできない領域」を
+    AIに丸ごと委ねてはならない。AIは考えるきっかけと作業の補助であり、判断の主体ではない。
+  </div>
+
+  <div class="twocol">
+    <div class="col">
+      <h4>背景・現状課題</h4>
+      <ul>
+        <li>AIの回答には誤りや古い情報が含まれることがある</li>
+        <li>「AIが作ったから責任はAIにある」という誤解が生まれやすい</li>
+        <li>接客や評価までAIに任せると、顧客・スタッフの信頼を損なう</li>
+      </ul>
+    </div>
+    <div class="col main">
+      <h4>遵守事項</h4>
+      <ul>
+        <li>AIの出力は確認してから使う ― そのまま信じない</li>
+        <li>接客判断・スタッフ評価・苦情対応の最終判断は人が行う</li>
+        <li>医療診断・法的判断など、AIに任せてはいけない場面を明確にする</li>
+        <li>AIを使った業務でも、結果の責任はサロン側にあると理解する</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4 class="sub">AIに任せてよい業務／任せてはいけない業務</h4>
+  <table class="tbl">
+    <tr><th style="width:50%">補助役として活用できる</th><th>人が判断すべき・任せてはいけない</th></tr>
+    <tr><td>投稿文・配信文・説明文の下書き作成</td><td>お客様の病名の診断、健康状態の判断</td></tr>
+    <tr><td>ロープレ台本・FAQ・マニュアルの作成</td><td>スタッフ評価の決定、苦情対応の最終判断</td></tr>
+    <tr><td>要約・アイデア出し・資料作成</td><td>法的責任・契約に関わる判断の確定</td></tr>
+  </table>
+
+  <div class="page-foot"><span>第1部　第4章　人間中心の運用</span><span>08</span></div>
+</div>
+
+<!-- ============ 1-6 第5章 サロン内ルールの整備 ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">1-6</span>
+    <span class="sec-org">ガイドライン 第5章</span>
+  </div>
+  <div class="headline">個人の工夫で終わらせず、<br><em>サロンの仕組み</em>として続ける。</div>
+  <div class="lead">
+    AI活用を一部のスタッフの自己流に任せると、情報管理や表現のリスクが見えなくなる。
+    サロンとして共通ルールを定め、誰が使っても安全な状態を保つ。
+  </div>
+
+  <div class="twocol">
+    <div class="col">
+      <h4>背景・現状課題</h4>
+      <ul>
+        <li>AI活用がスタッフ個人に属人化し、品質とリスクにばらつきが出る</li>
+        <li>導入しても業務フローに組み込まれず、続かない</li>
+        <li>ルールがないため、入力可否や確認手順が人によって異なる</li>
+      </ul>
+    </div>
+    <div class="col main">
+      <h4>整備すべきサロン内ルール</h4>
+      <ul>
+        <li>入力してよい情報／いけない情報の一覧</li>
+        <li>公開前チェックの担当と手順</li>
+        <li>AIを使う業務／使わない業務の区分</li>
+        <li>新人にも伝わる、簡潔なAI活用ルール文書</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="effect-bar">
+    <div class="label">目指す状態</div>
+    <div class="text">スタッフが安心してAIを使え、品質とリスク管理がサロン全体で揃っている。</div>
+  </div>
+  <div class="effect-note">
+    ガイドラインの第1章〜第5章は、サロン内ルールのひな型としてそのまま活用できる。
+    デジラボビューティーは、各サロンの実情に合わせたルール整備と定着を伴走支援する。
+  </div>
+
+  <div class="note">
+    <strong>第1部 まとめ：</strong>美容業界AI活用ガイドラインが求める5つの力 ―
+    ①AI基礎理解　②実務活用　③情報管理　④表現配慮　⑤人間中心。
+    この5つを測る制度が、第2部の「美容AI活用推進検定」である。
+  </div>
+
+  <div class="page-foot"><span>第1部　第5章　サロン内ルールの整備</span><span>09</span></div>
+</div>
+
+<!-- ============ 第2部 扉 + 2-1 ============ -->
+<div class="page pagebreak">
+  <div class="part-band">第2部 <span>／ 美容AI活用推進検定</span></div>
+  <div class="part-desc">ガイドラインの理解度を測り、学習から実装までを循環させる検定制度。</div>
+
+  <div class="sec-tags">
+    <span class="sec-no">2-1</span>
+    <span class="sec-org">検定制度の全体像</span>
+  </div>
+  <div class="headline">検定は「資格」ではなく、<br><em>学習から実装への入口</em>である。</div>
+  <div class="lead">
+    美容AI活用推進検定は、合格して終わりの資格ではない。3級を入口に、サポーター講座・2級・
+    AX診断士候補・実装支援・認定制度へとつながり、学んだことが現場の実装に循環する設計とする。
+  </div>
+
+  <h4 class="sub">学習・実装の導線</h4>
+  <div class="flow">
+    <span class="step">3級 合格</span><span class="arrow">→</span>
+    <span class="step">美容AIサポーター講座</span><span class="arrow">→</span>
+    <span class="step">2級</span><span class="arrow">→</span>
+    <span class="step">美容AX診断士候補</span><span class="arrow">→</span>
+    <span class="step">AI実装支援・認定制度</span>
+  </div>
+
+  <h4 class="sub">プラットフォームを構成する6要素</h4>
+  <table class="tbl">
+    <tr><th style="width:22%">要素</th><th>内容</th></tr>
+    <tr><td>学ぶ</td><td>美容AI活用推進検定（3級／2級）</td></tr>
+    <tr><td>診る</td><td>無料AI活用診断・美容AX診断</td></tr>
+    <tr><td>育てる</td><td>美容AIサポーター・美容AX診断士候補</td></tr>
+    <tr><td>実装する</td><td>AI実装支援プログラム（診断・実装・定着・改善）</td></tr>
+    <tr><td>証明する</td><td>認定AI活用サロン制度</td></tr>
+    <tr><td>続ける</td><td>月額伴走・改善支援</td></tr>
+  </table>
+
+  <div class="note">
+    検定だけでは収益や成果につながりにくい。だからこそ「3級合格」を必ず次の学習・実装へつなぐ。
+    デジラボビューティーは「資格を売る場所」ではなく、美容業界のAI活用を学習から実装まで循環させる場である。
+  </div>
+
+  <div class="page-foot"><span>第2部　美容AI活用推進検定　2-1 全体像</span><span>10</span></div>
+</div>
+
+<!-- ============ 2-2 / 2-3 検定3級 設計 ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">2-2</span>
+    <span class="sec-org">美容AI活用推進検定3級</span>
+  </div>
+  <div class="headline">化粧品検定の次は、<br><em>AIを使える美容人</em>へ。</div>
+  <div class="lead">
+    美容AI活用推進検定3級は、AIをこれから学びたい美容従事者のための入門検定である。
+    生成AIを安全かつ実務的に活用するための基礎知識を身につけ、SNS発信・接客文・教育・
+    業務効率化に活かせる入口をつくることを目的とする。
+  </div>
+
+  <h4 class="sub">対象者</h4>
+  <ul class="plain">
+    <li>AIをこれから学びたい美容従事者（エステティシャン／ネイリスト／美容師・理容師／美容鍼灸・整体・リラクゼーション関係者）</li>
+    <li>サロンオーナー</li>
+    <li>美容資格を持つが、収益化・発信に課題がある人</li>
+    <li>化粧品検定や美容資格の次に、実務で使える資格を探している人</li>
+  </ul>
+
+  <div class="sec-tags" style="margin-top:18px;">
+    <span class="sec-no">2-3</span>
+    <span class="sec-org">出題範囲・試験形式・学習項目</span>
+  </div>
+
+  <h4 class="sub">出題範囲</h4>
+  <table class="tbl">
+    <tr><th style="width:26%">分野</th><th>内容</th></tr>
+    <tr><td>AI基礎</td><td>生成AIとは何か、できること・できないこと</td></tr>
+    <tr><td>ChatGPT活用</td><td>質問の仕方、プロンプト、出力確認</td></tr>
+    <tr><td>美容業務活用</td><td>SNS・LINE・カウンセリング・求人・教育への活用</td></tr>
+    <tr><td>情報管理</td><td>個人情報・顧客情報を入力しない考え方</td></tr>
+    <tr><td>法令配慮</td><td>薬機法・景品表示法・誇大表現の基本</td></tr>
+    <tr><td>人間中心AI</td><td>最終判断は人が行うという原則</td></tr>
+    <tr><td>実務リテラシー</td><td>AIを使った文章・画像・チェックリスト作成</td></tr>
+  </table>
+
+  <h4 class="sub">試験形式</h4>
+  <table class="tbl">
+    <tr><th style="width:26%">項目</th><th>内容</th></tr>
+    <tr><td>問題数</td><td>30問</td></tr>
+    <tr><td>出題形式</td><td>四択問題中心</td></tr>
+    <tr><td>試験時間</td><td>30分</td></tr>
+    <tr><td>合格基準</td><td>70%以上</td></tr>
+    <tr><td>実施方法</td><td>Web受験（LINE連携・Googleフォーム等）</td></tr>
+    <tr><td>合格後</td><td>美容AI活用推進検定3級 合格証を発行／美容AIサポーター講座へ案内</td></tr>
+  </table>
+
+  <div class="page-foot"><span>第2部　2-2 検定3級 設計概要　2-3 出題範囲・試験形式</span><span>11</span></div>
+</div>
+
+<!-- ============ 2-3 学習項目 ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">2-3</span>
+    <span class="sec-org">3級 学習項目</span>
+  </div>
+  <div class="headline">5章で学ぶ、<em>安全で実務的なAI活用</em>の基礎。</div>
+  <div class="lead">3級の学習項目は、第1部のガイドライン5原則に対応する形で構成する。</div>
+
+  <h3 class="block">第1章　生成AIの基礎</h3>
+  <ul class="plain">
+    <li>生成AIとは何か／ChatGPTとは何か</li>
+    <li>生成AIが得意なこと・苦手なこと</li>
+    <li>AIの回答が間違う可能性と、確認の重要性</li>
+  </ul>
+
+  <h3 class="block">第2章　美容業務でのAI活用</h3>
+  <ul class="plain">
+    <li>Instagram投稿文・LINE配信文・お客様向け説明文の作成</li>
+    <li>カウンセリング補助／スタッフ教育資料／求人文の作成</li>
+    <li>チラシ・サムネのアイデア出し</li>
+  </ul>
+
+  <h3 class="block">第3章　安全なAI活用</h3>
+  <ul class="plain">
+    <li>顧客情報を入力しない／施術記録の扱いに注意する</li>
+    <li>個人が特定される情報を避ける</li>
+    <li>AIの出力をそのまま使わず、人が最終確認する</li>
+  </ul>
+
+  <h3 class="block">第4章　美容広告と表現ルール</h3>
+  <ul class="plain">
+    <li>「必ず」「治る」「消える」などの表現に注意する</li>
+    <li>ビフォーアフター表現の注意／効果効能を断定しない</li>
+    <li>薬機法・景品表示法の基礎／体験談・口コミの扱い</li>
+  </ul>
+
+  <h3 class="block">第5章　AIを現場に活かす考え方</h3>
+  <ul class="plain">
+    <li>AIは人の代わりではなく補助役／AIで時短できる業務</li>
+    <li>AIを使ってはいけない場面／サロン内ルールの必要性</li>
+    <li>AI活用を継続する仕組み</li>
+  </ul>
+
+  <div class="page-foot"><span>第2部　2-3 学習項目</span><span>12</span></div>
+</div>
+
+<!-- ============ 2-4 公式テキスト見本 ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">2-4</span>
+    <span class="sec-org">公式テキスト見本</span>
+  </div>
+  <div class="headline">公式テキスト見本<br><em>第1章　生成AIとは何か</em></div>
+
+  <p class="body">
+    生成AIとは、文章・画像・音声・資料などを、人間の指示に応じて作成するAIのことです。
+    美容業界では、Instagram投稿文、LINE配信文、カウンセリング補助、求人文、スタッフ教育資料、
+    チラシ案など、さまざまな場面で活用できます。
+  </p>
+  <p class="body">
+    ただし、生成AIは万能ではありません。AIは、もっともらしい文章を作ることは得意ですが、
+    内容が常に正しいとは限りません。そのため、美容業界でAIを使うときは、AIの出力をそのまま信じるのではなく、
+    人が確認して使うことが重要です。
+  </p>
+  <p class="body">
+    特に、美容業界ではお客様の身体・肌・悩みに関わる情報を扱います。そのため、個人情報、施術記録、
+    肌状態、健康状態などをAIに安易に入力しないことが必要です。
+  </p>
+
+  <div class="note">
+    <strong>重要ポイント</strong><br>
+    AIは「考えるきっかけ」や「文章作成の補助」として使うものであり、最終判断は人間が行います。
+  </div>
+
+  <h4 class="sub">3級 LP用コピー（見本）</h4>
+  <table class="tbl">
+    <tr><th style="width:26%">項目</th><th>コピー</th></tr>
+    <tr><td>キャッチコピー</td><td>化粧品検定の次は、AIを使える美容人へ。</td></tr>
+    <tr><td>サブコピー</td><td>美容知識に、AI活用力をプラスする。美容AI活用推進検定3級は、AIを安全に使い始めたい美容従事者のための入門検定です。</td></tr>
+    <tr><td>訴求文</td><td>美容の知識を持っていても、AIを使いこなせなければ、発信・集客・教育・業務効率化に差がつく時代です。3級では、生成AIの基礎、ChatGPTの使い方、SNS・LINEへの活用、個人情報への配慮、薬機法・景品表示法の基本的な注意点を学びます。</td></tr>
+  </table>
+
+  <div class="page-foot"><span>第2部　2-4 公式テキスト見本</span><span>13</span></div>
+</div>
+
+<!-- ============ 2-5 模擬問題 (1-10) ============ -->
+<div class="page">
+  <div class="sec-tags">
+    <span class="sec-no">2-5</span>
+    <span class="sec-org">模擬問題（全20問・解説付き）</span>
+  </div>
+  <div class="headline">模擬問題 <em>1 〜 10</em></div>
+  <div class="lead">四択問題。実際の試験は30問・30分・70%以上で合格。以下は学習用サンプルである。</div>
+
+  <div class="q"><span class="qn">第1問</span>　生成AIの説明として、最も適切なものはどれですか。
+    <div class="opts">A. 人間の代わりにすべての判断を行う機械　／　B. 指示に応じて文章や画像などを作成するAI　／　C. 美容施術の効果を必ず高めるシステム　／　D. 法律の判断を自動で確定する仕組み</div>
+    <span class="ans">正解：B</span>　<span class="exp">生成AIは文章・画像・音声などを作成するAI。すべての判断を任せるものではない。</span></div>
+
+  <div class="q"><span class="qn">第2問</span>　美容サロンでChatGPTを使う場面として、比較的適切なものはどれですか。
+    <div class="opts">A. お客様の病名を診断する　／　B. 施術効果を保証する文章を作る　／　C. Instagram投稿文の下書きを作る　／　D. 顧客の住所や施術履歴をそのまま入力する</div>
+    <span class="ans">正解：C</span>　<span class="exp">投稿文の下書き作成はAI活用に向く。ただし内容確認や表現調整は人が行う。</span></div>
+
+  <div class="q"><span class="qn">第3問</span>　AIを美容業務で使うときの基本姿勢として、最も適切なものはどれですか。
+    <div class="opts">A. AIの回答は常に正しい　／　B. AIの文章は確認せずにそのまま使う　／　C. AIは補助として使い、最終確認は人が行う　／　D. AIにすべての接客判断を任せる</div>
+    <span class="ans">正解：C</span>　<span class="exp">AIは補助ツール。美容業務では人の確認と判断が必要。</span></div>
+
+  <div class="q"><span class="qn">第4問</span>　AIに入力する情報として、避けるべきものはどれですか。
+    <div class="opts">A. 架空のサロン投稿テーマ　／　B. 一般的な接客文の作成依頼　／　C. 個人が特定できる顧客情報　／　D. 季節キャンペーンのアイデア</div>
+    <span class="ans">正解：C</span>　<span class="exp">氏名・住所・電話番号・施術履歴など、個人が特定される情報は安易に入力しない。</span></div>
+
+  <div class="q"><span class="qn">第5問</span>　美容広告で注意が必要な表現はどれですか。
+    <div class="opts">A. リラックスした時間を目指します　／　B. 肌印象を整えるケアを行います　／　C. 清潔感のある印象へ導きます　／　D. 必ずシミが消えます</div>
+    <span class="ans">正解：D</span>　<span class="exp">「必ず」「消える」など、効果を断定する表現は注意が必要。</span></div>
+
+  <div class="q"><span class="qn">第6問</span>　AIで作成したInstagram投稿文を使う前に必要な対応はどれですか。
+    <div class="opts">A. そのまま投稿する　／　B. 内容・表現・法令リスクを確認する　／　C. お客様の個人情報を追加する　／　D. 効果効能を強める</div>
+    <span class="ans">正解：B</span>　<span class="exp">AIの文章は便利だが、事実確認や表現確認を行う必要がある。</span></div>
+
+  <div class="q"><span class="qn">第7問</span>　美容サロンでAIが得意な業務として、最も適切なものはどれですか。
+    <div class="opts">A. 医療診断　／　B. 投稿文の下書き作成　／　C. 法的責任の確定　／　D. 施術効果の保証</div>
+    <span class="ans">正解：B</span>　<span class="exp">AIは文章作成・要約・アイデア出し・資料作成などが得意。</span></div>
+
+  <div class="q"><span class="qn">第8問</span>　「プロンプト」とは何を指しますか。
+    <div class="opts">A. AIへの指示や質問文　／　B. 施術用の美容機器　／　C. サロンの予約表　／　D. 顧客カルテ</div>
+    <span class="ans">正解：A</span>　<span class="exp">プロンプトとは、AIに対して入力する指示文や質問文のこと。</span></div>
+
+  <div class="q"><span class="qn">第9問</span>　良いプロンプトの特徴として適切なものはどれですか。
+    <div class="opts">A. 目的や条件を明確に伝える　／　B. 何も説明せず一言だけ入力する　／　C. 個人情報を大量に入力する　／　D. AIに最終判断を任せる</div>
+    <span class="ans">正解：A</span>　<span class="exp">目的・対象者・トーン・文字数・条件などを具体的に伝えると、使いやすい出力が得られる。</span></div>
+
+  <div class="q"><span class="qn">第10問</span>　LINE配信文をAIで作る際に適切な指示はどれですか。
+    <div class="opts">A. 「誰に向けた配信か」「目的」「トーン」を伝える　／　B. 顧客名簿を全員分入力する　／　C. 効果を必ず保証する文にする　／　D. 法令表現を確認しない</div>
+    <span class="ans">正解：A</span>　<span class="exp">配信対象や目的を明確にすると、より実務で使いやすい文章になる。</span></div>
+
+  <div class="page-foot"><span>第2部　2-5 模擬問題 1〜10</span><span>14</span></div>
+</div>
+
+<!-- ============ 2-5 模擬問題 (11-20) ============ -->
+<div class="page">
+  <div class="headline">模擬問題 <em>11 〜 20</em></div>
+
+  <div class="q"><span class="qn">第11問</span>　美容AI活用において「人間中心」の考え方として適切なものはどれですか。
+    <div class="opts">A. AIにすべて任せる　／　B. AIは使わない方がよい　／　C. AIを補助役として使い、人が責任を持って判断する　／　D. AIが作った文章なら責任はAIにある</div>
+    <span class="ans">正解：C</span>　<span class="exp">AIを活用しても、最終責任は人間側にある。</span></div>
+
+  <div class="q"><span class="qn">第12問</span>　AI画像生成を使う場合の注意点として適切なものはどれですか。
+    <div class="opts">A. 事実と異なる施術結果として見せない　／　B. 実在のお客様の写真を無断で使う　／　C. 効果が必ず出たように見せる　／　D. 説明なしにビフォーアフター画像として使う</div>
+    <span class="ans">正解：A</span>　<span class="exp">AI画像は便利だが、誤認を招く使い方には注意が必要。</span></div>
+
+  <div class="q"><span class="qn">第13問</span>　求人文作成でAIを使う場合に適切な使い方はどれですか。
+    <div class="opts">A. サロンの魅力を整理して求人文の下書きを作る　／　B. 実際にない高待遇を記載する　／　C. 誤解を招く条件を書く　／　D. 勤務条件を曖昧にする</div>
+    <span class="ans">正解：A</span>　<span class="exp">AIは求人文の構成や表現整理に役立つ。ただし実際の条件と異なる内容は避ける。</span></div>
+
+  <div class="q"><span class="qn">第14問</span>　スタッフ教育にAIを使う例として適切なものはどれですか。
+    <div class="opts">A. 接客ロープレの台本を作る　／　B. スタッフ評価をすべてAIに決めさせる　／　C. 個人の悩みを無断でAIに入力する　／　D. 苦情対応を完全自動で終わらせる</div>
+    <span class="ans">正解：A</span>　<span class="exp">AIはロープレ台本・FAQ・マニュアル作成などに活用できる。</span></div>
+
+  <div class="q"><span class="qn">第15問</span>　AIの回答について正しい説明はどれですか。
+    <div class="opts">A. 常に最新で正確である　／　B. 間違いや古い情報が含まれることがある　／　C. 法律判断としてそのまま使える　／　D. 専門家確認は不要である</div>
+    <span class="ans">正解：B</span>　<span class="exp">AIの回答には誤りが含まれる可能性があるため、確認が必要。</span></div>
+
+  <div class="q"><span class="qn">第16問</span>　美容サロンでAI活用ルールを作る目的として適切なものはどれですか。
+    <div class="opts">A. スタッフが安全にAIを使えるようにするため　／　B. AIを完全に禁止するため　／　C. お客様情報を自由に入力するため　／　D. すべての判断をAIに任せるため</div>
+    <span class="ans">正解：A</span>　<span class="exp">AI活用ルールは、情報管理や表現リスクを防ぎ、安心して活用するために必要。</span></div>
+
+  <div class="q"><span class="qn">第17問</span>　「AIを導入したが成果が出ない」理由として考えられるものはどれですか。
+    <div class="opts">A. 業務フローに組み込まれていない　／　B. AIは文章を作れない　／　C. AIは一切使えない　／　D. サロン業務には必ず不向きである</div>
+    <span class="ans">正解：A</span>　<span class="exp">AIは導入するだけでは成果につながらない。業務に組み込む設計が必要。</span></div>
+
+  <div class="q"><span class="qn">第18問</span>　AIで作った文章をお客様向けに使う前に確認すべきことはどれですか。
+    <div class="opts">A. 誇大表現や断定表現になっていないか　／　B. できるだけ強い効果表現にする　／　C. 個人情報を含める　／　D. すぐ投稿する</div>
+    <span class="ans">正解：A</span>　<span class="exp">美容分野では、誇大表現や効果保証のような表現には注意が必要。</span></div>
+
+  <div class="q"><span class="qn">第19問</span>　美容AI活用推進検定3級の目的として最も近いものはどれですか。
+    <div class="opts">A. 美容医療の診断ができるようになること　／　B. AIを安全かつ実務的に使い始める基礎を学ぶこと　／　C. すべての業務をAIに任せること　／　D. 法律判断を自動化すること</div>
+    <span class="ans">正解：B</span>　<span class="exp">3級は、美容業界でAIを安全に使い始めるための基礎検定。</span></div>
+
+  <div class="q"><span class="qn">第20問</span>　次のうち、AI活用として最も適切な考え方はどれですか。
+    <div class="opts">A. AIは人の感性や接客を完全に置き換える　／　B. AIは人の仕事を支える補助役として使う　／　C. AIが作れば内容確認は不要　／　D. AIを使えば必ず売上が上がる</div>
+    <span class="ans">正解：B</span>　<span class="exp">AIは人の仕事を補助し、時間短縮や発想支援に役立つもの。</span></div>
+
+  <div class="note">
+    <strong>3級が測る5つの力：</strong>①AI基礎理解　②実務活用（SNS・LINE・教育・求人）
+    ③情報管理　④表現配慮（誇大・断定表現への注意）　⑤人間中心（最終判断は人）。
+  </div>
+
+  <div class="page-foot"><span>第2部　2-5 模擬問題 11〜20</span><span>15</span></div>
+</div>
+
+<!-- ============ 第3部 ============ -->
+<div class="page pagebreak">
+  <div class="part-band">第3部 <span>／ プラットフォームとリリースロードマップ</span></div>
+  <div class="part-desc">ガイドラインと検定を起点に、診断・実装・認定までを循環させる。</div>
+
+  <div class="sec-tags">
+    <span class="sec-no">3-1</span>
+    <span class="sec-org">プラットフォーム</span>
+  </div>
+  <div class="headline">学ぶ・診る・育てる・実装する・<br><em>証明する・続ける</em>の循環をつくる。</div>
+  <div class="lead">
+    美容AI活用推進検定とガイドラインは、単体の商品ではなく、美容業界のAI活用を学習から
+    実装まで循環させるプラットフォームの「入口」と「基準」である。
+  </div>
+
+  <div class="twocol">
+    <div class="col">
+      <h4>このプラットフォームが解くこと</h4>
+      <ul>
+        <li>AIを「知る」だけで止まり、現場に定着しない</li>
+        <li>安全な使い方の基準が業界に存在しない</li>
+        <li>個々のサロンが手探りで、リスクとばらつきが大きい</li>
+      </ul>
+    </div>
+    <div class="col main">
+      <h4>提供する循環</h4>
+      <ul>
+        <li>学ぶ：検定3級・2級でガイドライン準拠の基礎を習得</li>
+        <li>診る／育てる：AX診断とサポーター育成で活用度を可視化</li>
+        <li>実装する／証明する：伴走支援と認定サロン制度で定着</li>
+        <li>続ける：月額伴走・改善支援で成果を継続させる</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sec-tags" style="margin-top:24px;">
+    <span class="sec-no">3-2</span>
+    <span class="sec-org">2026年秋 リリースロードマップ</span>
+  </div>
+  <div class="headline" style="font-size:22px;"><em>2026年秋</em>、ガイドラインと検定3級を同時公表する。</div>
+
+  <table class="tbl">
+    <tr><th style="width:24%">時期</th><th>マイルストーン</th></tr>
+    <tr><td>2026年 春〜夏</td><td>ガイドライン1.0の確定（薬機法・景品表示法の専門家監修）／検定3級の出題30問の完成と校正／公式テキストの編集</td></tr>
+    <tr><td>2026年 夏</td><td>初期賛同サロン・パートナー企業・アドバイザリーの確定／共同声明の準備／Web受験システム（LINE連携）の構築</td></tr>
+    <tr><td>2026年 秋</td><td><strong>美容業界AI活用ガイドライン1.0 ／ 美容AI活用推進検定3級 同時リリース</strong>／合格証発行・サポーター講座への導線開始</td></tr>
+    <tr><td>2026年 冬以降</td><td>美容AX診断・認定AI活用サロン制度の運用開始／2級・診断士候補課程の設計</td></tr>
+  </table>
+
+  <div class="effect-bar">
+    <div class="label">なぜ「今」「秋」なのか</div>
+    <div class="text">業界にAIの基準を作る団体はまだ存在しない。早く公表することが、業界標準になる唯一の道である。</div>
+  </div>
+  <div class="effect-note">
+    先行者利益は「発表の速さ」と「初期パートナーの顔ぶれ」で決まる。リリースに向けては、専門家監修と
+    賛同パートナーの確保を最優先とし、ガイドラインは公開後も継続的に改訂するバージョン管理型で運用する。
+  </div>
+
+  <div class="page-foot"><span>第3部　プラットフォームとリリースロードマップ</span><span>16</span></div>
+</div>
+
+</body>
+</html>
