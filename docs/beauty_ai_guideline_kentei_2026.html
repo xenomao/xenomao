@@ -313,15 +313,24 @@
   .pagebreak { page-break-before: always; }
 
   @media print {
+    @page { size: A4; margin: 0; }
     body { background: #fff; padding: 0; }
     .page {
       box-shadow: none;
       margin: 0;
-      width: 100%;
-      min-height: auto;
-      padding: 0 20mm;
+      min-height: 0;
+      height: auto;
+      padding: 18mm 20mm;
+      page-break-after: always;
+      page-break-inside: avoid;
     }
-    .page-foot { position: fixed; }
+    .page:last-child { page-break-after: auto; }
+    .pagebreak { page-break-before: auto; }
+    .page-foot {
+      position: static;
+      margin-top: 16px;
+      left: auto; right: auto; bottom: auto;
+    }
   }
 </style>
 </head>
@@ -891,7 +900,7 @@
     <span class="sec-no">2-5</span>
     <span class="sec-org">模擬問題（全20問・解説付き）</span>
   </div>
-  <div class="headline">模擬問題 <em>1 〜 10</em></div>
+  <div class="headline">模擬問題 <em>1 〜 7</em></div>
   <div class="lead">四択問題。実際の試験は30問・30分・70%以上で合格。以下は学習用サンプルである。</div>
 
   <div class="q"><span class="qn">第1問</span>　生成AIの説明として、最も適切なものはどれですか。
@@ -922,6 +931,13 @@
     <div class="opts">A. 医療診断　／　B. 投稿文の下書き作成　／　C. 法的責任の確定　／　D. 施術効果の保証</div>
     <span class="ans">正解：B</span>　<span class="exp">AIは文章作成・要約・アイデア出し・資料作成などが得意。</span></div>
 
+  <div class="page-foot"><span>第2部　2-5 模擬問題 1〜7</span><span>14</span></div>
+</div>
+
+<!-- ============ 2-5 模擬問題 (8-14) ============ -->
+<div class="page">
+  <div class="headline">模擬問題 <em>8 〜 14</em></div>
+
   <div class="q"><span class="qn">第8問</span>　「プロンプト」とは何を指しますか。
     <div class="opts">A. AIへの指示や質問文　／　B. 施術用の美容機器　／　C. サロンの予約表　／　D. 顧客カルテ</div>
     <span class="ans">正解：A</span>　<span class="exp">プロンプトとは、AIに対して入力する指示文や質問文のこと。</span></div>
@@ -933,13 +949,6 @@
   <div class="q"><span class="qn">第10問</span>　LINE配信文をAIで作る際に適切な指示はどれですか。
     <div class="opts">A. 「誰に向けた配信か」「目的」「トーン」を伝える　／　B. 顧客名簿を全員分入力する　／　C. 効果を必ず保証する文にする　／　D. 法令表現を確認しない</div>
     <span class="ans">正解：A</span>　<span class="exp">配信対象や目的を明確にすると、より実務で使いやすい文章になる。</span></div>
-
-  <div class="page-foot"><span>第2部　2-5 模擬問題 1〜10</span><span>14</span></div>
-</div>
-
-<!-- ============ 2-5 模擬問題 (11-20) ============ -->
-<div class="page">
-  <div class="headline">模擬問題 <em>11 〜 20</em></div>
 
   <div class="q"><span class="qn">第11問</span>　美容AI活用において「人間中心」の考え方として適切なものはどれですか。
     <div class="opts">A. AIにすべて任せる　／　B. AIは使わない方がよい　／　C. AIを補助役として使い、人が責任を持って判断する　／　D. AIが作った文章なら責任はAIにある</div>
@@ -956,6 +965,13 @@
   <div class="q"><span class="qn">第14問</span>　スタッフ教育にAIを使う例として適切なものはどれですか。
     <div class="opts">A. 接客ロープレの台本を作る　／　B. スタッフ評価をすべてAIに決めさせる　／　C. 個人の悩みを無断でAIに入力する　／　D. 苦情対応を完全自動で終わらせる</div>
     <span class="ans">正解：A</span>　<span class="exp">AIはロープレ台本・FAQ・マニュアル作成などに活用できる。</span></div>
+
+  <div class="page-foot"><span>第2部　2-5 模擬問題 8〜14</span><span>15</span></div>
+</div>
+
+<!-- ============ 2-5 模擬問題 (15-20) ============ -->
+<div class="page">
+  <div class="headline">模擬問題 <em>15 〜 20</em></div>
 
   <div class="q"><span class="qn">第15問</span>　AIの回答について正しい説明はどれですか。
     <div class="opts">A. 常に最新で正確である　／　B. 間違いや古い情報が含まれることがある　／　C. 法律判断としてそのまま使える　／　D. 専門家確認は不要である</div>
@@ -986,7 +1002,7 @@
     ③情報管理　④表現配慮（誇大・断定表現への注意）　⑤人間中心（最終判断は人）。
   </div>
 
-  <div class="page-foot"><span>第2部　2-5 模擬問題 11〜20</span><span>15</span></div>
+  <div class="page-foot"><span>第2部　2-5 模擬問題 15〜20</span><span>16</span></div>
 </div>
 
 <!-- ============ 第3部 ============ -->
@@ -1047,7 +1063,7 @@
     賛同パートナーの確保を最優先とし、ガイドラインは公開後も継続的に改訂するバージョン管理型で運用する。
   </div>
 
-  <div class="page-foot"><span>第3部　プラットフォームとリリースロードマップ</span><span>16</span></div>
+  <div class="page-foot"><span>第3部　プラットフォームとリリースロードマップ</span><span>17</span></div>
 </div>
 
 </body>
