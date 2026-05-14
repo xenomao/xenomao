@@ -312,25 +312,59 @@
 
   .pagebreak { page-break-before: always; }
 
+  /* ===== ページ充填モディファイア ===== */
+  .airy .sec-tags { margin-bottom: 16px; }
+  .airy .headline { line-height: 1.5; margin-bottom: 16px; }
+  .airy .lead { line-height: 2.05; margin-bottom: 24px; }
+  .airy .part-desc { margin-bottom: 34px; }
+  .airy .twocol { margin-bottom: 22px; }
+  .airy .col li { line-height: 1.9; margin-bottom: 8px; }
+  .airy .effect-note { line-height: 1.9; margin-top: 14px; }
+  .airy p.body { line-height: 2.15; margin-bottom: 17px; }
+  .airy .note { line-height: 2.0; margin: 20px 0; }
+  .airy h3.block { margin: 26px 0 10px; }
+  .airy h4.sub { margin: 20px 0 9px; }
+  .airy ul.plain { margin: 10px 0 20px; }
+  .airy ul.plain li { line-height: 1.95; margin-bottom: 7px; }
+  .airy ol.checks li { line-height: 2.0; margin-bottom: 8px; }
+  .airy table.tbl { margin: 14px 0 22px; }
+  .airy table.tbl td { padding: 9px 11px; line-height: 1.8; }
+
+  .airy2 .sec-tags { margin-bottom: 24px; }
+  .airy2 .headline { font-size: 28px; line-height: 1.6; margin-bottom: 26px; }
+  .airy2 .lead { font-size: 12.5px; line-height: 2.3; margin-bottom: 36px; }
+  .airy2 .part-desc { margin-bottom: 44px; }
+  .airy2 .twocol { margin-bottom: 30px; }
+  .airy2 .col h4 { margin-bottom: 14px; }
+  .airy2 .col li { font-size: 12px; line-height: 2.2; margin-bottom: 13px; }
+  .airy2 .effect-bar { padding: 18px 20px; }
+  .airy2 .effect-note { line-height: 2.1; margin-top: 18px; }
+  .airy2 p.body { font-size: 12.5px; line-height: 2.4; margin-bottom: 24px; }
+  .airy2 .note { padding: 17px 20px; line-height: 2.2; margin: 28px 0; }
+  .airy2 h3.block { margin: 32px 0 13px; }
+  .airy2 h4.sub { font-size: 13px; margin: 28px 0 12px; }
+  .airy2 ul.plain { margin: 13px 0 26px; }
+  .airy2 ul.plain li { font-size: 12px; line-height: 2.2; margin-bottom: 12px; }
+  .airy2 ol.checks { margin: 13px 0 26px 22px; }
+  .airy2 ol.checks li { font-size: 12px; line-height: 2.25; margin-bottom: 13px; }
+  .airy2 .toc { font-size: 13px; line-height: 2.85; }
+  .airy2 .toc .t-part { margin-top: 16px; }
+  .airy2 table.tbl { margin: 18px 0 28px; }
+  .airy2 table.tbl td { padding: 11px 12px; line-height: 1.95; }
+
   @media print {
     @page { size: A4; margin: 0; }
     body { background: #fff; padding: 0; }
     .page {
       box-shadow: none;
       margin: 0;
-      min-height: 0;
-      height: auto;
+      min-height: 297mm;
       padding: 18mm 20mm;
       page-break-after: always;
       page-break-inside: avoid;
     }
     .page:last-child { page-break-after: auto; }
     .pagebreak { page-break-before: auto; }
-    .page-foot {
-      position: static;
-      margin-top: 16px;
-      left: auto; right: auto; bottom: auto;
-    }
   }
 </style>
 </head>
@@ -360,7 +394,7 @@
 </div>
 
 <!-- ============ 目次 ============ -->
-<div class="page">
+<div class="page airy2">
   <div class="doc-title">CONTENTS</div>
   <div class="part-band">目次 <span>／ 本書の構成</span></div>
   <div class="part-desc">本書は「ガイドライン本体」「検定設計」「プラットフォームとロードマップ」の3部で構成されます。</div>
@@ -392,7 +426,7 @@
 </div>
 
 <!-- ============ はじめに ============ -->
-<div class="page">
+<div class="page airy2">
   <div class="sec-tags">
     <span class="sec-no">はじめに</span>
     <span class="sec-org">デジラボビューティー</span>
@@ -440,7 +474,7 @@
 </div>
 
 <!-- ============ 第1部 扉 + 1-1 ============ -->
-<div class="page pagebreak">
+<div class="page pagebreak airy">
   <div class="part-band">第1部 <span>／ 美容業界AI活用ガイドライン</span></div>
   <div class="part-desc">サロンがAIを安全に活用するための、業界共通の基準。全5章で構成する。</div>
 
@@ -476,7 +510,7 @@
 </div>
 
 <!-- ============ 1-2 第1章 情報管理 ============ -->
-<div class="page">
+<div class="page airy2">
   <div class="sec-tags">
     <span class="sec-no">1-2</span>
     <span class="sec-org">ガイドライン 第1章</span>
@@ -523,7 +557,7 @@
 </div>
 
 <!-- ============ 1-3 第2章 法令配慮 ============ -->
-<div class="page">
+<div class="page airy2">
   <div class="sec-tags">
     <span class="sec-no">1-3</span>
     <span class="sec-org">ガイドライン 第2章</span>
@@ -572,7 +606,7 @@
 </div>
 
 <!-- ============ 1-4 第3章 広告・表現ルール ============ -->
-<div class="page">
+<div class="page airy">
   <div class="sec-tags">
     <span class="sec-no">1-4</span>
     <span class="sec-org">ガイドライン 第3章</span>
@@ -612,6 +646,15 @@
     <span class="step">③ 個人情報・無断利用はないか</span>
   </div>
 
+  <h4 class="sub">媒体別の表現チェック観点</h4>
+  <table class="tbl">
+    <tr><th style="width:30%">媒体</th><th>特に確認したい観点</th></tr>
+    <tr><td>Instagram投稿</td><td>効果の断定、ビフォーアフターの誤認、ハッシュタグの誇大表現</td></tr>
+    <tr><td>LINE配信</td><td>限定・保証表現、配信対象に合わない訴求、過度な煽り</td></tr>
+    <tr><td>お客様向け説明文</td><td>医療・治療と誤認させる表現、効果効能の言い切り</td></tr>
+    <tr><td>求人文</td><td>実際と異なる待遇・条件、曖昧な勤務条件の記載</td></tr>
+  </table>
+
   <div class="effect-bar">
     <div class="label">POINT</div>
     <div class="text">AIは「速く」してくれる。「正しく」するのは人の確認工程である。</div>
@@ -621,7 +664,7 @@
 </div>
 
 <!-- ============ 1-5 第4章 人間中心の運用 ============ -->
-<div class="page">
+<div class="page airy2">
   <div class="sec-tags">
     <span class="sec-no">1-5</span>
     <span class="sec-org">ガイドライン 第4章</span>
@@ -664,7 +707,7 @@
 </div>
 
 <!-- ============ 1-6 第5章 サロン内ルールの整備 ============ -->
-<div class="page">
+<div class="page airy2">
   <div class="sec-tags">
     <span class="sec-no">1-6</span>
     <span class="sec-org">ガイドライン 第5章</span>
@@ -757,7 +800,7 @@
 </div>
 
 <!-- ============ 2-2 / 2-3 検定3級 設計 ============ -->
-<div class="page">
+<div class="page airy2">
   <div class="sec-tags">
     <span class="sec-no">2-2</span>
     <span class="sec-org">美容AI活用推進検定3級</span>
@@ -777,9 +820,33 @@
     <li>化粧品検定や美容資格の次に、実務で使える資格を探している人</li>
   </ul>
 
-  <div class="sec-tags" style="margin-top:18px;">
+  <h4 class="sub">3級で身につく5つの力</h4>
+  <ul class="plain">
+    <li>AI基礎理解 ― 生成AIにできること・できないことを理解している</li>
+    <li>実務活用 ― SNS・LINE・教育・求人にAIを活用できる</li>
+    <li>情報管理 ― 顧客情報を安易にAIへ入力しない判断ができる</li>
+    <li>表現配慮 ― 誇大・断定表現に気づける</li>
+    <li>人間中心 ― 最終判断は人が行うという原則を理解している</li>
+  </ul>
+
+  <div class="note">
+    <strong>3級の位置づけ：</strong>本検定はガイドライン（第1部）の5原則に対応している。
+    合格は「ガイドラインを理解した美容従事者」であることの証明となり、美容AIサポーター講座・2級へと続く学習導線の入口となる。
+  </div>
+
+  <div class="page-foot"><span>第2部　2-2 美容AI活用推進検定3級 設計概要</span><span>11</span></div>
+</div>
+
+<!-- ============ 2-3 出題範囲・試験形式 ============ -->
+<div class="page airy">
+  <div class="sec-tags">
     <span class="sec-no">2-3</span>
-    <span class="sec-org">出題範囲・試験形式・学習項目</span>
+    <span class="sec-org">出題範囲・試験形式</span>
+  </div>
+  <div class="headline">現場で使う7分野から、<em>30問</em>を出題する。</div>
+  <div class="lead">
+    出題範囲は、AI基礎からChatGPT活用、美容業務での活用、情報管理、法令配慮、人間中心AI、
+    実務リテラシーまでの7分野。いずれも、サロンの日常業務に直結する内容で構成する。
   </div>
 
   <h4 class="sub">出題範囲</h4>
@@ -805,11 +872,11 @@
     <tr><td>合格後</td><td>美容AI活用推進検定3級 合格証を発行／美容AIサポーター講座へ案内</td></tr>
   </table>
 
-  <div class="page-foot"><span>第2部　2-2 検定3級 設計概要　2-3 出題範囲・試験形式</span><span>11</span></div>
+  <div class="page-foot"><span>第2部　2-3 出題範囲・試験形式</span><span>12</span></div>
 </div>
 
 <!-- ============ 2-3 学習項目 ============ -->
-<div class="page">
+<div class="page airy">
   <div class="sec-tags">
     <span class="sec-no">2-3</span>
     <span class="sec-org">3級 学習項目</span>
@@ -852,11 +919,11 @@
     <li>AI活用を継続する仕組み</li>
   </ul>
 
-  <div class="page-foot"><span>第2部　2-3 学習項目</span><span>12</span></div>
+  <div class="page-foot"><span>第2部　2-3 学習項目</span><span>13</span></div>
 </div>
 
 <!-- ============ 2-4 公式テキスト見本 ============ -->
-<div class="page">
+<div class="page airy2">
   <div class="sec-tags">
     <span class="sec-no">2-4</span>
     <span class="sec-org">公式テキスト見本</span>
@@ -891,7 +958,7 @@
     <tr><td>訴求文</td><td>美容の知識を持っていても、AIを使いこなせなければ、発信・集客・教育・業務効率化に差がつく時代です。3級では、生成AIの基礎、ChatGPTの使い方、SNS・LINEへの活用、個人情報への配慮、薬機法・景品表示法の基本的な注意点を学びます。</td></tr>
   </table>
 
-  <div class="page-foot"><span>第2部　2-4 公式テキスト見本</span><span>13</span></div>
+  <div class="page-foot"><span>第2部　2-4 公式テキスト見本</span><span>14</span></div>
 </div>
 
 <!-- ============ 2-5 模擬問題 (1-10) ============ -->
@@ -931,7 +998,7 @@
     <div class="opts">A. 医療診断　／　B. 投稿文の下書き作成　／　C. 法的責任の確定　／　D. 施術効果の保証</div>
     <span class="ans">正解：B</span>　<span class="exp">AIは文章作成・要約・アイデア出し・資料作成などが得意。</span></div>
 
-  <div class="page-foot"><span>第2部　2-5 模擬問題 1〜7</span><span>14</span></div>
+  <div class="page-foot"><span>第2部　2-5 模擬問題 1〜7</span><span>15</span></div>
 </div>
 
 <!-- ============ 2-5 模擬問題 (8-14) ============ -->
@@ -966,7 +1033,7 @@
     <div class="opts">A. 接客ロープレの台本を作る　／　B. スタッフ評価をすべてAIに決めさせる　／　C. 個人の悩みを無断でAIに入力する　／　D. 苦情対応を完全自動で終わらせる</div>
     <span class="ans">正解：A</span>　<span class="exp">AIはロープレ台本・FAQ・マニュアル作成などに活用できる。</span></div>
 
-  <div class="page-foot"><span>第2部　2-5 模擬問題 8〜14</span><span>15</span></div>
+  <div class="page-foot"><span>第2部　2-5 模擬問題 8〜14</span><span>16</span></div>
 </div>
 
 <!-- ============ 2-5 模擬問題 (15-20) ============ -->
@@ -1002,7 +1069,7 @@
     ③情報管理　④表現配慮（誇大・断定表現への注意）　⑤人間中心（最終判断は人）。
   </div>
 
-  <div class="page-foot"><span>第2部　2-5 模擬問題 15〜20</span><span>16</span></div>
+  <div class="page-foot"><span>第2部　2-5 模擬問題 15〜20</span><span>17</span></div>
 </div>
 
 <!-- ============ 第3部 ============ -->
@@ -1040,7 +1107,7 @@
     </div>
   </div>
 
-  <div class="sec-tags" style="margin-top:24px;">
+  <div class="sec-tags" style="margin-top:14px;">
     <span class="sec-no">3-2</span>
     <span class="sec-org">2026年秋 リリースロードマップ</span>
   </div>
@@ -1063,7 +1130,7 @@
     賛同パートナーの確保を最優先とし、ガイドラインは公開後も継続的に改訂するバージョン管理型で運用する。
   </div>
 
-  <div class="page-foot"><span>第3部　プラットフォームとリリースロードマップ</span><span>17</span></div>
+  <div class="page-foot"><span>第3部　プラットフォームとリリースロードマップ</span><span>18</span></div>
 </div>
 
 </body>
