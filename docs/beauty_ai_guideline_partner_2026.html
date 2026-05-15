@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>美容業界AI活用ガイドライン 2026年版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #1a3a5e;
+    --navy-dark: #112742;
+    --navy-mid: #2a4d72;
+    --gold: #b8924a;
+    --gold-light: #d4af6c;
+    --gold-pale: #e9d9b3;
+    --red: #8b3030;
+    --red-pale: #f4e0e0;
+    --green: #3d6b48;
+    --green-pale: #e2ede4;
+    --bg-card: #eef1f5;
+    --bg-card-soft: #f4f6f9;
+    --bg-cream: #fbf3dd;
+    --bg-blue-soft: #e3ecf3;
+    --line: #d4d8df;
+    --line-soft: #e8ebef;
+    --text: #1a1a1a;
+    --gray: #5a5a5a;
+    --gray-light: #8a8a8a;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    background: #d9dde3;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    margin: 18px auto;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    overflow: hidden;
+  }
+
+  /* ===== 共通：上部バー・下部フッター・左サイド ===== */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 12mm;
+    background: var(--navy);
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14mm;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  .top-bar .pgnum { color: var(--gold-light); font-weight: 500; }
+
+  .side-bar {
+    position: absolute;
+    top: 12mm; left: 0;
+    width: 7mm;
+    bottom: 14mm;
+    background: var(--navy);
+  }
+  .side-bar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    height: 26mm;
+    background: var(--gold);
+  }
+
+  .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 14mm;
+    background: var(--navy);
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14mm;
+    font-size: 9px;
+    letter-spacing: 0.4px;
+  }
+  .bottom-bar .conf { color: var(--gold-light); font-style: italic; }
+
+  /* ===== コンテンツエリア ===== */
+  .content {
+    padding: 20mm 14mm 22mm 18mm;
+    position: relative;
+    z-index: 1;
+  }
+  .content > .head {
+    margin: 6mm 0 8mm 10mm;
+    display: flex;
+    align-items: flex-end;
+    gap: 14mm;
+  }
+  .sec-num {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 60pt;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 0.9;
+    letter-spacing: -2px;
+  }
+  .sec-title-block { padding-bottom: 4mm; }
+  .sec-title {
+    font-size: 22pt;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 3mm;
+  }
+  .sec-eng {
+    font-size: 9pt;
+    color: var(--gold);
+    letter-spacing: 1.2px;
+    font-style: italic;
+    font-family: 'Noto Serif JP', serif;
+  }
+  .lead {
+    margin: 0 0 8mm 10mm;
+    font-size: 10.5pt;
+    line-height: 2.0;
+    color: var(--text);
+  }
+
+  /* ===== カード類 ===== */
+  .cards-grid { display: grid; gap: 4mm; margin: 0 10mm 0 10mm; }
+  .cards-2 { grid-template-columns: 1fr 1fr; }
+  .cards-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .cards-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .card {
+    background: var(--bg-card);
+    min-height: 28mm;
+    display: flex;
+    flex-direction: column;
+  }
+  .card .head {
+    padding: 6px 12px;
+    color: #fff;
+    font-size: 10.5pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .card .head.navy { background: var(--navy); }
+  .card .head.gold { background: var(--gold); }
+  .card .head.red  { background: var(--red); }
+  .card .head.green{ background: var(--green); }
+  .card .body {
+    padding: 11px 14px 12px;
+    font-size: 10pt;
+    line-height: 1.8;
+    flex: 1;
+  }
+
+  /* 原則カード（左バー＋番号丸） */
+  .princ {
+    display: grid;
+    grid-template-columns: 16mm 1fr;
+    background: var(--bg-card);
+    border-left: 5px solid var(--gold);
+    margin: 0 10mm 4mm 10mm;
+  }
+  .princ.alt { border-left-color: var(--navy); }
+  .princ .num {
+    background: var(--navy);
+    color: var(--gold-light);
+    font-size: 14pt;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .princ.alt .num { background: var(--gold); color: #fff; }
+  .princ .body { padding: 8mm 10mm; }
+  .princ h3 {
+    font-size: 13pt;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 2mm;
+  }
+  .princ .eng {
+    font-size: 8.5pt;
+    color: var(--gold);
+    font-style: italic;
+    font-family: 'Noto Serif JP', serif;
+    margin-bottom: 4mm;
+    letter-spacing: 1px;
+  }
+  .princ p { font-size: 10pt; line-height: 1.8; }
+
+  /* 5原則カード */
+  .std {
+    display: grid;
+    grid-template-columns: 14mm 1fr;
+    background: var(--bg-card);
+    border-left: 5px solid var(--navy);
+    margin: 0 10mm 3mm 10mm;
+    min-height: 14mm;
+  }
+  .std .num {
+    background: var(--navy);
+    color: var(--gold-light);
+    font-size: 13pt;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .std .body { padding: 5mm 8mm; }
+  .std h4 { font-size: 11.5pt; color: var(--navy); font-weight: 700; margin-bottom: 1mm; }
+  .std .eng { font-size: 8pt; color: var(--gold); font-style: italic; font-family: 'Noto Serif JP', serif; margin-bottom: 1.5mm; letter-spacing: 1px; }
+  .std p { font-size: 9.5pt; line-height: 1.7; color: var(--text); }
+
+  /* 表 */
+  table.tbl { width: calc(100% - 20mm); margin: 0 10mm; border-collapse: collapse; font-size: 9.5pt; }
+  table.tbl th, table.tbl td {
+    border: 1px solid var(--line);
+    padding: 7px 11px;
+    vertical-align: top;
+    line-height: 1.7;
+  }
+  table.tbl th {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    font-size: 10pt;
+  }
+  table.tbl td.cat { background: var(--bg-card); color: var(--navy); font-weight: 700; width: 22%; }
+
+  /* バナー */
+  .banner {
+    margin: 6mm 10mm 0;
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: center;
+    font-size: 10.5pt;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .banner.gold { background: var(--gold); }
+  .banner.outline {
+    background: #fff;
+    color: var(--navy);
+    border: 2px solid var(--navy);
+    border-left: 6px solid var(--gold);
+    text-align: left;
+    padding: 12px 18px;
+    font-weight: 600;
+  }
+
+  /* ラベル付き注記 */
+  .note {
+    display: grid;
+    grid-template-columns: 28mm 1fr;
+    margin: 5mm 10mm 0;
+    overflow: hidden;
+  }
+  .note .tag {
+    color: #fff;
+    background: var(--gold);
+    padding: 9px 8px;
+    font-size: 9.5pt;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .note .tag.navy { background: var(--navy); }
+  .note .txt {
+    background: var(--bg-cream);
+    padding: 9px 14px;
+    font-size: 9.5pt;
+    line-height: 1.75;
+  }
+  .note .txt.blue { background: var(--bg-blue-soft); }
+
+  /* 推奨/禁止リスト */
+  .listbox { background: var(--bg-card); padding: 14px 18px; font-size: 10pt; line-height: 2.05; }
+  .listbox.green { background: var(--green-pale); }
+  .listbox.red   { background: var(--red-pale); }
+  .listbox p { padding-left: 16px; position: relative; }
+  .listbox p::before { position: absolute; left: 0; top: 0; font-weight: 700; }
+  .listbox.green p::before { content: '●'; color: var(--green); }
+  .listbox.red   p::before { content: '×'; color: var(--red); }
+
+  /* タイムライン */
+  .timeline { margin: 0 10mm; }
+  .tl-row { display: grid; grid-template-columns: 10mm 1fr; gap: 4mm; padding: 3mm 0; position: relative; }
+  .tl-row::after {
+    content: '';
+    position: absolute;
+    left: 5mm; top: 9mm; bottom: -3mm;
+    width: 2px; background: var(--navy);
+  }
+  .tl-row:last-child::after { display: none; }
+  .tl-dot {
+    width: 10mm; height: 10mm; border-radius: 50%;
+    background: var(--navy); display: flex; align-items: center; justify-content: center;
+    z-index: 1; position: relative;
+  }
+  .tl-dot.gold { background: var(--gold); }
+  .tl-content .when {
+    font-size: 10pt; color: var(--navy); font-weight: 700; margin-bottom: 1mm;
+  }
+  .tl-content .what { font-size: 10pt; color: var(--text); line-height: 1.7; }
+
+  /* 目次 */
+  .toc-row {
+    display: grid; grid-template-columns: 14mm 1fr auto;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--line);
+    margin: 0 10mm;
+  }
+  .toc-row .num {
+    background: var(--navy);
+    color: var(--gold-light);
+    font-size: 9pt;
+    font-weight: 700;
+    padding: 3px 0;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  .toc-row .title { padding-left: 8mm; font-size: 11pt; color: var(--navy); font-weight: 600; }
+  .toc-row .meta { font-size: 9pt; color: var(--gray); padding-right: 4mm; }
+
+  /* ===== 表紙 ===== */
+  .cover { background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--navy-mid) 100%); color: #fff; }
+  .cover-inner {
+    position: absolute; inset: 0;
+    padding: 28mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover .pill {
+    align-self: flex-start;
+    background: var(--gold);
+    color: #fff;
+    padding: 6px 16px;
+    font-size: 10pt;
+    letter-spacing: 3px;
+    font-weight: 600;
+  }
+  .cover h1.kanji-sub {
+    font-size: 24pt;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 30mm;
+  }
+  .cover h1.kanji-main {
+    font-size: 38pt;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 8mm;
+    letter-spacing: 1px;
+  }
+  .cover .sub {
+    color: var(--gold-light);
+    font-size: 13pt;
+    margin-top: 5mm;
+    font-weight: 500;
+  }
+  .cover .rule { width: 78mm; height: 1px; background: var(--gold); margin-top: 7mm; }
+  .cover .desc {
+    color: rgba(255,255,255,0.92);
+    font-size: 11pt;
+    line-height: 2.0;
+    margin-top: 7mm;
+    max-width: 145mm;
+  }
+  .cover-bottom {
+    background: rgba(255,255,255,0.06);
+    border-left: 3px solid var(--gold);
+    padding: 7mm 9mm;
+    font-size: 10pt;
+    line-height: 2.05;
+    color: rgba(255,255,255,0.95);
+  }
+  .cover-bottom .row { display: grid; grid-template-columns: 18mm 1fr; gap: 6mm; }
+  .cover-bottom .row .k { color: var(--gold-light); font-weight: 500; letter-spacing: 1px; }
+
+  /* ===== 認証3ティア ===== */
+  .tier-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; margin: 0 10mm; }
+  .tier { background: var(--bg-card); }
+  .tier .top {
+    color: #fff; text-align: center; padding: 10px 6px;
+  }
+  .tier.bronze .top { background: linear-gradient(180deg, #b08458 0%, #8a663f 100%); }
+  .tier.silver .top { background: linear-gradient(180deg, #8a9aa8 0%, #6f7e8b 100%); }
+  .tier.gold   .top { background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%); }
+  .tier .en { font-size: 9pt; letter-spacing: 3px; opacity: 0.85; }
+  .tier .ja { font-size: 13pt; font-weight: 700; margin-top: 2mm; }
+  .tier .req { padding: 8mm 7mm; font-size: 9.5pt; line-height: 1.95; }
+  .tier .req p { padding-left: 10px; position: relative; }
+  .tier .req p::before {
+    content: '・'; color: var(--navy); position: absolute; left: 0; font-weight: 700;
+  }
+
+  /* 改定履歴表 */
+  table.rev { width: calc(100% - 20mm); margin: 4mm 10mm 0; border-collapse: collapse; font-size: 10pt; }
+  table.rev th { background: var(--navy); color: #fff; padding: 7px 10px; text-align: left; font-weight: 600; }
+  table.rev td { border-bottom: 1px solid var(--line); padding: 8px 10px; }
+  table.rev td.v { color: var(--gold); font-weight: 700; width: 18%; }
+  table.rev td.d { color: var(--navy); font-weight: 600; width: 22%; }
+
+  @media print {
+    body { background: #fff; }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      min-height: 297mm;
+      height: 297mm;
+      page-break-after: always;
+      page-break-inside: avoid;
+    }
+    .page:last-child { page-break-after: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 表紙 ============ -->
+<div class="page cover">
+  <div class="cover-inner">
+    <div>
+      <div class="pill">FOR BUSINESS PARTNERS 2026</div>
+      <h1 class="kanji-sub">美容業界</h1>
+      <h1 class="kanji-main">AI活用ガイドライン</h1>
+      <div class="sub">2026年版　美容業界パートナー企業向け</div>
+      <div class="rule"></div>
+      <div class="desc">
+        本ガイドラインは、美容業界におけるAI技術の適正・倫理的な活用基準を定めたものです。<br>
+        美容商社・化粧品メーカー・美容機器ディーラー・業界コンサルタントの皆様が、<br>
+        安心してAI導入・協業できる業界標準の確立を目指します。
+      </div>
+    </div>
+    <div class="cover-bottom">
+      <div class="row"><span class="k">制 定</span><span>一般社団法人 デジラボビューティー（設立準備中）</span></div>
+      <div class="row"><span class="k">対 象</span><span>美容商社 / 化粧品メーカー / 美容機器ディーラー / 業界コンサルタント</span></div>
+      <div class="row"><span class="k">版 数</span><span>2026年　第1版（年次改定予定）</span></div>
+      <div class="row"><span class="k">監 修</span><span>顧問弁護士（薬機法・景品表示法）※第1版リリース時確定</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 目次 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">2 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-title-block">
+        <div class="sec-title">目　次</div>
+        <div class="sec-eng">CONTENTS</div>
+      </div>
+    </div>
+    <div style="margin-top:6mm;">
+      <div class="toc-row"><span class="num">01</span><span class="title">制定背景と業界課題</span><span class="meta">P. 03</span></div>
+      <div class="toc-row"><span class="num">02</span><span class="title">基本理念・3原則</span><span class="meta">P. 04</span></div>
+      <div class="toc-row"><span class="num">03</span><span class="title">主体別 責務早見表</span><span class="meta">P. 05</span></div>
+      <div class="toc-row"><span class="num">04</span><span class="title">用語定義</span><span class="meta">P. 06</span></div>
+      <div class="toc-row"><span class="num">05</span><span class="title">適用範囲</span><span class="meta">P. 07</span></div>
+      <div class="toc-row"><span class="num">06</span><span class="title">AI活用の定義と分類</span><span class="meta">P. 08</span></div>
+      <div class="toc-row"><span class="num">07</span><span class="title">適正活用基準（5原則）</span><span class="meta">P. 09</span></div>
+      <div class="toc-row"><span class="num">08</span><span class="title">推奨活用例と禁止事項</span><span class="meta">P. 10</span></div>
+      <div class="toc-row"><span class="num">09</span><span class="title">リスク管理体制</span><span class="meta">P. 11</span></div>
+      <div class="toc-row"><span class="num">10</span><span class="title">通報・相談窓口</span><span class="meta">P. 12</span></div>
+      <div class="toc-row"><span class="num">11</span><span class="title">関連法令・参考基準</span><span class="meta">P. 13</span></div>
+      <div class="toc-row"><span class="num">12</span><span class="title">AI適正活用認証制度</span><span class="meta">P. 14</span></div>
+      <div class="toc-row"><span class="num">13</span><span class="title">将来ビジョン</span><span class="meta">P. 15</span></div>
+      <div class="toc-row"><span class="num">附</span><span class="title">附則　パートナー連携の枠組み</span><span class="meta">P. 16</span></div>
+      <div class="toc-row"><span class="num">免</span><span class="title">免責事項・改定履歴</span><span class="meta">P. 17</span></div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 01 制定背景 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">3 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">01</div>
+      <div class="sec-title-block">
+        <div class="sec-title">制定背景と業界課題</div>
+        <div class="sec-eng">WHY THIS GUIDELINE EXISTS</div>
+      </div>
+    </div>
+    <div class="lead">
+      生成AI・画像解析AIの急速な普及により、美容業界では新たな商機とリスクが同時に拡大しています。デジラボビューティーは業界団体として、商社・メーカー・ディーラー・コンサルタントが安心して製品・サービスを展開できる基準を先行策定します。
+    </div>
+    <div class="cards-grid cards-2">
+      <div class="card"><div class="head gold">課題①　症例画像の誤認誘導</div><div class="body">AI生成画像を実際の施術結果として掲載・流通させる事例が確認されており、消費者の誤認を招いている。</div></div>
+      <div class="card"><div class="head gold">課題②　薬機法リスクの拡大</div><div class="body">AI診断結果を医療効果として誤認させる表現が散見され、行政指導の対象となるリスクが高まっている。</div></div>
+      <div class="card"><div class="head gold">課題③　誇張広告の増加</div><div class="body">生成AIによる効果誇張表現が消費者トラブル・景品表示法違反・行政指導を引き起こす事例が報告されている。</div></div>
+      <div class="card"><div class="head gold">課題④　商社・メーカーのリスク</div><div class="body">本ガイドラインに反するAI活用を行うサロンへの製品提供が、提供企業のブランド毀損につながるリスク。</div></div>
+      <div class="card"><div class="head gold">課題⑤　個人情報・肖像権</div><div class="body">顧客の肌画像・カウンセリング情報がAI学習に流用される、AI生成画像が肖像権を侵害するなどのリスク。</div></div>
+      <div class="card"><div class="head gold">課題⑥　AI学習データの著作権</div><div class="body">AI生成コンテンツの学習元・商用利用条件が曖昧なまま販促資料・製品に組み込まれるリスク。</div></div>
+    </div>
+    <div class="banner">本ガイドラインへの賛同が、パートナー企業様のブランド保護と安心な市場展開につながります。</div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 02 基本理念・3原則 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">4 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">02</div>
+      <div class="sec-title-block">
+        <div class="sec-title">基本理念・3原則</div>
+        <div class="sec-eng">CORE PRINCIPLES</div>
+      </div>
+    </div>
+    <div class="lead">
+      デジラボビューティーおよびパートナー企業が共有すべき3つの原則です。3原則はガイドライン全体を貫く理念であり、第07章「適正活用基準（5原則）」はその実務的展開です。
+    </div>
+    <div class="princ">
+      <div class="num">1</div>
+      <div class="body">
+        <h3>① 信頼第一主義</h3>
+        <div class="eng">TRUST FIRST</div>
+        <p>消費者・施術者・提供企業の三者が信頼できる関係を構築することを最優先とする。短期的な訴求力よりも、長期的なブランド信頼を選ぶ。</p>
+      </div>
+    </div>
+    <div class="princ alt">
+      <div class="num">2</div>
+      <div class="body">
+        <h3>② 透明性の確保</h3>
+        <div class="eng">TRANSPARENCY</div>
+        <p>AIを使用した場合はその事実を明示する。AI使用の事実を利用者に開示しない活用、出典・学習データを説明できない活用は認めない。</p>
+      </div>
+    </div>
+    <div class="princ">
+      <div class="num">3</div>
+      <div class="body">
+        <h3>③ 人間主体の原則</h3>
+        <div class="eng">HUMAN-CENTERED</div>
+        <p>AIは補助ツールであり、最終判断は必ず人間が行う。判断の主体は専門家（施術者・薬機法担当者・広報責任者など各業務の責任者）とし、AIに責任を委ねない。</p>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 03 責務早見表 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">5 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">03</div>
+      <div class="sec-title-block">
+        <div class="sec-title">主体別 責務早見表</div>
+        <div class="sec-eng">RESPONSIBILITIES AT A GLANCE</div>
+      </div>
+    </div>
+    <div class="lead">
+      本ガイドラインの対象主体ごとに、特に重点を置くべき責務を整理します。共通責務に加え、自社事業の性質に応じた追加責務を担います。
+    </div>
+    <table class="tbl">
+      <tr><th style="width:24%">主体</th><th>主な責務</th></tr>
+      <tr><td class="cat">美容商社</td><td>取扱製品のAI機能の薬機法適合性確認／取引先サロンへの本ガイドライン周知／販売条件・契約条項への遵守義務の組み込み</td></tr>
+      <tr><td class="cat">化粧品メーカー</td><td>AI生成カタログ・EC表現の薬機法・景表法確認／AI肌診断連動サービスの透明性開示／製品パッケージのAI生成画像の誤認回避</td></tr>
+      <tr><td class="cat">美容機器ディーラー</td><td>販売機器のAI機能の正確な説明／導入先サロンへの運用研修／機器更新時のAIアップデート情報の共有</td></tr>
+      <tr><td class="cat">業界コンサルタント</td><td>顧客企業へのAI活用助言時の本ガイドライン準拠／第三者AIサービス選定の妥当性確認／助言記録の保存</td></tr>
+      <tr><td class="cat">共通責務</td><td>透明性開示／誇張禁止／データ保護／著作権遵守／人間最終判断／インシデント時の速やかな社内報告</td></tr>
+    </table>
+    <div class="note">
+      <div class="tag navy">運用ポイント</div>
+      <div class="txt blue">各主体は、自社の主な責務に加え、共通責務をすべて遵守します。事業領域が重なる場合は、関連する責務を併せて担うものとします。</div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 04 用語定義 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">6 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">04</div>
+      <div class="sec-title-block">
+        <div class="sec-title">用語定義</div>
+        <div class="sec-eng">DEFINITIONS</div>
+      </div>
+    </div>
+    <div class="lead">
+      本ガイドラインで使用する主な用語を以下のとおり定義します。本ガイドラインに別段の定めがある場合を除き、本章の定義に従います。
+    </div>
+    <table class="tbl">
+      <tr><th style="width:26%">用語</th><th>定義</th></tr>
+      <tr><td class="cat">AI</td><td>機械学習等を用いて、入力情報から自動的に出力（文章・画像・予測・分類等）を生成するシステムの総称。</td></tr>
+      <tr><td class="cat">生成AI</td><td>文章・画像・音声・動画等のコンテンツを生成するAI（例：ChatGPT、画像生成AI、音声合成AI）。</td></tr>
+      <tr><td class="cat">画像解析AI</td><td>顔・肌・体型等を画像から解析し、状態評価や分類を行うAI（例：肌診断、顔認識）。</td></tr>
+      <tr><td class="cat">施術者</td><td>エステティシャン・美容師・理容師・美容鍼灸師等、顧客に直接サービスを提供する者。</td></tr>
+      <tr><td class="cat">パートナー企業</td><td>本ガイドラインに賛同する美容商社・化粧品メーカー・美容機器ディーラー・業界コンサルタント。</td></tr>
+      <tr><td class="cat">認証サロン</td><td>本ガイドラインに基づきAI適正活用認証を取得したサロン事業者。</td></tr>
+      <tr><td class="cat">個人情報</td><td>個人情報の保護に関する法律（個人情報保護法）第2条に定める個人情報。氏名・連絡先のほか、肌画像等で特定の個人を識別できる情報を含む。</td></tr>
+      <tr><td class="cat">本ガイドライン</td><td>本書「美容業界AI活用ガイドライン 2026年版」をいう。年次改定により随時更新される。</td></tr>
+    </table>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 05 適用範囲 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">7 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">05</div>
+      <div class="sec-title-block">
+        <div class="sec-title">適用範囲</div>
+        <div class="sec-eng">SCOPE</div>
+      </div>
+    </div>
+    <div class="lead">
+      本ガイドラインは、パートナー企業が以下の業務でAIを利用または提供する場合に適用します。事業領域が複数にまたがる場合は、該当するすべての項目に適用されます。
+    </div>
+    <div class="cards-grid cards-2">
+      <div class="card"><div class="head navy">① 自社マーケティング</div><div class="body">広告・SNS投稿・カタログ・EC・LP等におけるAI生成コンテンツ（文章・画像・動画）。</div></div>
+      <div class="card"><div class="head navy">② 自社製品・サービス</div><div class="body">製品・サービスに組み込むAI機能（AI肌診断、AIカウンセリング補助、AIレコメンド等）。</div></div>
+      <div class="card"><div class="head navy">③ 取引先サロン向け</div><div class="body">取引先サロンへの販売・提案・研修・教育に用いるAI関連資料および推奨ツール。</div></div>
+      <div class="card"><div class="head navy">④ 社内業務</div><div class="body">議事録要約・翻訳・分析・契約書ドラフト等、業務効率化目的のAI利用。</div></div>
+    </div>
+    <div class="note">
+      <div class="tag">適用除外</div>
+      <div class="txt">純粋な研究開発目的でのAI実験・社外公開を伴わないプロトタイプ検証は、データ保護および倫理上の責務のみ適用します。</div>
+    </div>
+    <div class="note">
+      <div class="tag navy">重要</div>
+      <div class="txt blue">本ガイドラインは業界自主基準であり、法的助言ではありません。個別案件における法令適合判断は、薬機法・景品表示法等に詳しい専門家の確認を要します。</div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 06 AI活用の定義と分類 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">8 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">06</div>
+      <div class="sec-title-block">
+        <div class="sec-title">AI活用の定義と分類</div>
+        <div class="sec-eng">DEFINITION &amp; CLASSIFICATION</div>
+      </div>
+    </div>
+    <div class="lead">
+      本ガイドラインが対象とするAI技術の範囲を明確に定義します。今後の技術進化に応じて、分類は年次改定で随時追加します。
+    </div>
+    <table class="tbl">
+      <tr><th style="width:18%">分類</th><th style="width:30%">AIの種類</th><th>美容業界での主な用途</th></tr>
+      <tr><td class="cat">生成AI</td><td>文章・画像・動画生成</td><td>SNS投稿文・カウンセリング文・教材・広告素材作成</td></tr>
+      <tr><td class="cat">画像解析AI</td><td>肌診断・顔認識</td><td>スキンケア提案・施術前後の記録・肌状態の可視化</td></tr>
+      <tr><td class="cat">対話AI</td><td>チャットボット・自動返信</td><td>予約対応・FAQ・顧客フォローアップ</td></tr>
+      <tr><td class="cat">データAI</td><td>購買分析・予測</td><td>顧客単価向上・リピート率分析・商品レコメンド</td></tr>
+    </table>
+    <div class="note">
+      <div class="tag">NOTE</div>
+      <div class="txt">上記いずれかのAIを業務利用または製品・サービスに組み込む場合、本ガイドラインの対象となります。マルチモーダルAI・エージェントAI等の新技術は、最も近い分類に準じて運用します。</div>
+    </div>
+    <div class="note">
+      <div class="tag navy">化粧品メーカー特記</div>
+      <div class="txt blue">製品カタログ・ECサイトのAI生成コンテンツ、AI肌診断連動サービスも対象です。薬機法・景品表示法との整合性を必ず事前確認してください。</div>
+    </div>
+    <div class="note">
+      <div class="tag navy">美容商社・ディーラー特記</div>
+      <div class="txt blue">取引先サロンへ提供する販促資料・教育コンテンツ・推奨AIツールも対象です。販売条件・契約条項に本ガイドライン周知を組み込むことを推奨します。</div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 07 適正活用基準 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">9 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">07</div>
+      <div class="sec-title-block">
+        <div class="sec-title">適正活用基準（5原則）</div>
+        <div class="sec-eng">COMPLIANCE STANDARDS</div>
+      </div>
+    </div>
+    <div class="lead">第02章の3原則を実務に展開する、パートナー企業が守るべき5つの基準です。</div>
+    <div class="std"><div class="num">1</div><div class="body">
+      <h4>透明性</h4><div class="eng">TRANSPARENCY</div>
+      <p>AIを使用した文章・画像・診断結果には、必ずAI使用の事実を明示する。利用者に開示しない活用は認めない。</p>
+    </div></div>
+    <div class="std"><div class="num">2</div><div class="body">
+      <h4>誇張禁止</h4><div class="eng">NO EXAGGERATION</div>
+      <p>AI生成コンテンツによる効果誇張・実在しない症例掲載を禁止する。薬機法上の承認効能・効果以外の断定表現はAI生成であっても禁止。</p>
+    </div></div>
+    <div class="std"><div class="num">3</div><div class="body">
+      <h4>診断補助原則</h4><div class="eng">SUPPLEMENTAL ONLY</div>
+      <p>AI診断は補助ツールに留める。医療的判断と誤認させる表現を用いず、最終判断は施術者・専門家が行う。</p>
+    </div></div>
+    <div class="std"><div class="num">4</div><div class="body">
+      <h4>データ保護</h4><div class="eng">DATA PROTECTION</div>
+      <p>顧客情報をAIに入力する際は個人特定情報を除去し、個人情報保護法および利用AIサービスの利用規約を遵守する。</p>
+    </div></div>
+    <div class="std"><div class="num">5</div><div class="body">
+      <h4>著作権遵守</h4><div class="eng">IP COMPLIANCE</div>
+      <p>AI学習データの著作権および生成物の商用利用可否を事前確認し、第三者の権利を侵害しない。</p>
+    </div></div>
+    <div class="note">
+      <div class="tag">補足原則</div>
+      <div class="txt">公平性（肌色・年齢等に偏らないAI選定）／誤情報検証（AI出力の事実確認）も、本5原則の運用上の前提とします。</div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 08 推奨/禁止 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">10 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">08</div>
+      <div class="sec-title-block">
+        <div class="sec-title">推奨活用例と禁止事項</div>
+        <div class="sec-eng">RECOMMENDED USE &amp; PROHIBITIONS</div>
+      </div>
+    </div>
+    <div class="cards-grid cards-2">
+      <div class="card">
+        <div class="head green">推奨活用例</div>
+        <div class="body listbox green" style="background:var(--green-pale);padding:14px 18px;">
+          <p>カウンセリング文章の作成補助</p>
+          <p>SNS投稿の構成・文章生成</p>
+          <p>スタッフ向け教材・研修資料作成</p>
+          <p>予約返信・FAQ自動対応</p>
+          <p>売上・顧客データの分析</p>
+          <p>AI肌診断補助（補助明示を条件に）</p>
+          <p>商品紹介・成分解説コンテンツ作成</p>
+          <p>業務効率化（議事録要約・翻訳・契約書ドラフト）</p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="head red">禁止事項</div>
+        <div class="body listbox red" style="background:var(--red-pale);padding:14px 18px;">
+          <p>AI生成のビフォーアフター画像掲載</p>
+          <p>医療効果の断定・誇張表現</p>
+          <p>実在しない症例・口コミの生成</p>
+          <p>他社誹謗中傷コンテンツの生成</p>
+          <p>薬機法に抵触する効能表現</p>
+          <p>著作権未確認のAI生成物の商用利用</p>
+          <p>医療診断・処方の代替としてのAI利用</p>
+          <p>未成年者を対象とした独自AI判定の提供</p>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="tag">化粧品特記</div>
+      <div class="txt">薬機法上の承認効能・効果以外の断定表現は、AI生成であっても禁止です。表現の最終確認は薬機法担当者が行います。</div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 09 リスク管理体制 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">11 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">09</div>
+      <div class="sec-title-block">
+        <div class="sec-title">リスク管理体制</div>
+        <div class="sec-eng">RISK MANAGEMENT</div>
+      </div>
+    </div>
+    <div class="lead">AI活用に伴うリスクを最小化するため、以下の体制整備を推奨します。</div>
+    <div class="std"><div class="num">1</div><div class="body">
+      <h4>AI利用ログの保存</h4>
+      <p>いつ・どのAIを・何の業務に使用したかを記録する。トラブル発生時の事実確認と再発防止の証跡となる。</p>
+    </div></div>
+    <div class="std"><div class="num">2</div><div class="body">
+      <h4>スタッフ教育</h4>
+      <p>AI倫理・本ガイドラインの内容を、最低年1回、重要な変更・インシデント発生時は随時、社内研修で周知する。</p>
+    </div></div>
+    <div class="std"><div class="num">3</div><div class="body">
+      <h4>社内利用ルールの明文化</h4>
+      <p>どのAIツールを、どの用途に、誰が使用可能かを社内規程として文書化し、全従業員に周知する。</p>
+    </div></div>
+    <div class="std"><div class="num">4</div><div class="body">
+      <h4>インシデント対応</h4>
+      <p>AI起因のトラブルは、認識後72時間以内に社内責任者へ報告。影響範囲が大きい場合は所管官庁・取引先へ速やかに通知し、再発防止策を講じる。</p>
+    </div></div>
+    <div class="std"><div class="num">5</div><div class="body">
+      <h4>定期監査・報告窓口</h4>
+      <p>AI利用状況を年1回以上、社内監査または第三者点検により確認する。社内に報告窓口を設置し、通報者の保護を徹底する。</p>
+    </div></div>
+    <div class="note">
+      <div class="tag navy">商社・メーカー推奨</div>
+      <div class="txt blue">取引先サロンへの本ガイドライン周知を、販売条件・契約条項に組み込むことを推奨します。</div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 10 通報・相談窓口 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">12 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">10</div>
+      <div class="sec-title-block">
+        <div class="sec-title">通報・相談窓口</div>
+        <div class="sec-eng">REPORTING CHANNEL</div>
+      </div>
+    </div>
+    <div class="lead">
+      本ガイドライン違反の疑いがある事例、または AI活用に関する判断に迷う場合は、デジラボビューティー事務局へ通報・相談できます。通報者は不利益な取扱いから保護されます。
+    </div>
+    <div class="cards-grid cards-3">
+      <div class="card"><div class="head navy">窓口</div><div class="body">デジラボビューティー事務局／公式サイトの問合せフォーム<br>https://digilab-beauty.com/<br>※準備中はメール受付</div></div>
+      <div class="card"><div class="head navy">対応</div><div class="body">受付後10営業日以内に一次回答。重大事案は事務局で調査チームを編成し、関係者ヒアリングのうえ対応方針を通知。</div></div>
+      <div class="card"><div class="head navy">機密保持</div><div class="body">通報者および対象者の情報は、調査関係者以外に開示しません。通報を理由とする不利益な取扱いを禁じます。</div></div>
+    </div>
+    <div class="note">
+      <div class="tag">受付対象</div>
+      <div class="txt">本ガイドライン違反の疑い／AI活用の判断相談／パートナー企業・認証サロン制度に関する問合せ／本書の改善提案。</div>
+    </div>
+    <div class="note">
+      <div class="tag navy">受付対象外</div>
+      <div class="txt blue">個別の医療・法務相談、業界外の事案、本ガイドラインと無関係なクレーム、匿名性が確認できない営利目的の通報。</div>
+    </div>
+    <div class="banner outline">通報は「同業のため」ではなく「業界の信頼を守るため」に行うものとし、軽率な通報・誹謗中傷を目的とする通報は受付対象外とします。</div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 11 関連法令・参考基準 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">13 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">11</div>
+      <div class="sec-title-block">
+        <div class="sec-title">関連法令・参考基準</div>
+        <div class="sec-eng">RELATED LAWS &amp; REFERENCES</div>
+      </div>
+    </div>
+    <div class="lead">本ガイドラインを運用するにあたり、以下の法令・基準と整合させる必要があります。個別判断は専門家の確認を推奨します。</div>
+    <table class="tbl">
+      <tr><th style="width:38%">法令・基準</th><th>美容業界での主な関連点</th></tr>
+      <tr><td class="cat">医薬品医療機器等法（薬機法）</td><td>化粧品・美容機器の効能効果表示、医療類似表現の禁止、AI生成広告における承認範囲の遵守</td></tr>
+      <tr><td class="cat">不当景品類及び不当表示防止法（景表法）</td><td>優良誤認・有利誤認表示、AI生成ビフォーアフター表現、強調表示と打消し表示のバランス</td></tr>
+      <tr><td class="cat">個人情報の保護に関する法律</td><td>顧客情報・肌画像のAI入力、AI学習目的での提供、海外AIサービス利用時の越境移転</td></tr>
+      <tr><td class="cat">著作権法</td><td>AI学習データの著作権、AI生成物の利用権、第三者著作物の引用・改変</td></tr>
+      <tr><td class="cat">不正競争防止法</td><td>営業秘密・顧客情報のAI入力、AI生成物による誤認混同・類似表示</td></tr>
+      <tr><td class="cat">消費者契約法</td><td>AI診断結果に基づくサービス契約の説明義務、適合性の原則</td></tr>
+      <tr><td class="cat">政府・業界基準</td><td>AI事業者ガイドライン（経産省・総務省）、自民党AIホワイトペーパー、化粧品適正広告ガイドライン（日本化粧品工業会）</td></tr>
+    </table>
+    <div class="note">
+      <div class="tag navy">更新方針</div>
+      <div class="txt blue">関連法令・業界基準の改正・新設に合わせ、本一覧および本ガイドラインを年次改定で更新します。</div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 12 認証制度 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">14 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">12</div>
+      <div class="sec-title-block">
+        <div class="sec-title">AI適正活用認証制度</div>
+        <div class="sec-eng">CERTIFICATION SYSTEM</div>
+      </div>
+    </div>
+    <div class="lead">本ガイドラインに基づき適正なAI活用を実践するサロン・企業を認証します。認証は法人・事業所単位で行い、個人を対象とする検定・資格は設けません。</div>
+    <div class="tier-grid">
+      <div class="tier bronze">
+        <div class="top">
+          <div class="en">BRONZE</div>
+          <div class="ja">ブロンズ</div>
+        </div>
+        <div class="req">
+          <p>ガイドライン遵守宣誓書の提出</p>
+          <p>社内責任者（AI活用管理者）の任命</p>
+          <p>認証ロゴ使用権</p>
+        </div>
+      </div>
+      <div class="tier silver">
+        <div class="top">
+          <div class="en">SILVER</div>
+          <div class="ja">シルバー</div>
+        </div>
+        <div class="req">
+          <p>運用体制書類の提出</p>
+          <p>AI活用レポートの年次提出</p>
+          <p>年1回の社内研修実施報告</p>
+        </div>
+      </div>
+      <div class="tier gold">
+        <div class="top">
+          <div class="en">GOLD</div>
+          <div class="ja">ゴールド</div>
+        </div>
+        <div class="req">
+          <p>書面審査＋オンライン面談による実地相当審査</p>
+          <p>事例共有登壇</p>
+          <p>広報特集掲載</p>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <div class="tag">認証の考え方</div>
+      <div class="txt">認証は「制裁」ではなく「賛同表明」の枠組みです。違反疑いには是正勧告→認証一時停止→取消の段階的対応を行い、改善機会を確保します。</div>
+    </div>
+    <div class="note">
+      <div class="tag navy">本書からの除外</div>
+      <div class="txt blue">認証料・各制度の収支試算等の運用情報は、本書（規範文書）には掲載せず、別冊「認証制度運用要綱」「パートナー向け提案書」に記載します。</div>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 13 将来ビジョン ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">15 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num">13</div>
+      <div class="sec-title-block">
+        <div class="sec-title">将来ビジョン</div>
+        <div class="sec-eng">FUTURE VISION</div>
+      </div>
+    </div>
+    <div class="lead">デジラボビューティーは、美容業界のAI倫理基準を起点に以下のビジョンを実現します。</div>
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-dot gold"></div>
+        <div class="tl-content"><div class="when">2026年 上期</div><div class="what">第1版公表・共同声明パートナー募集開始</div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-dot"></div>
+        <div class="tl-content"><div class="when">2026年 下期</div><div class="what">AI適正活用認証制度（ブロンズ）先行スタート</div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-dot"></div>
+        <div class="tl-content"><div class="when">2027年</div><div class="what">シルバー・ゴールド認証展開／業界白書 第1号発行</div></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-dot"></div>
+        <div class="tl-content"><div class="when">2028年〜</div><div class="what">国際連携・アジア市場へのガイドライン展開</div></div>
+      </div>
+    </div>
+    <div class="cards-grid cards-4" style="margin-top:5mm;">
+      <div class="card"><div class="head navy">業界標準化</div><div class="body" style="font-size:9pt;">関連業界団体との連携による業界標準確立</div></div>
+      <div class="card"><div class="head navy">AI白書発行</div><div class="body" style="font-size:9pt;">美容業界初のAI活用白書を年次発行</div></div>
+      <div class="card"><div class="head navy">業界研修プログラム</div><div class="body" style="font-size:9pt;">AIリテラシー教育を業界研修プログラムとして提供</div></div>
+      <div class="card"><div class="head navy">国際連携</div><div class="body" style="font-size:9pt;">アジア市場へのガイドライン展開・共同声明</div></div>
+    </div>
+    <div class="banner outline" style="margin-top:6mm;">
+      <strong style="color:var(--navy);">「AIを使う団体」ではなく、「AIの基準を作る団体」へ。</strong><br>
+      <span style="color:var(--gray);font-size:9.5pt;">デジラボビューティーは美容業界のAI倫理の旗手となります。</span>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 附則 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">16 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num" style="font-size:42pt;">附則</div>
+      <div class="sec-title-block">
+        <div class="sec-title">パートナー連携の枠組み</div>
+        <div class="sec-eng">PARTNERSHIP FRAMEWORK</div>
+      </div>
+    </div>
+    <div class="lead">パートナー企業向けに、以下の連携の枠組みを設けます。具体的な参画条件・費用等は別冊「パートナー向け提案書」に記載します。</div>
+    <div class="cards-grid cards-2">
+      <div class="card"><div class="head navy">ガイドライン共同声明</div><div class="body">本ガイドラインへの賛同・連名により、業界のAI倫理リーダーとしてのブランドポジションを確立。</div></div>
+      <div class="card"><div class="head navy">認証サロン優先導入制度</div><div class="body">認証取得サロンへの製品・サービス提供を支援。認証制度がパートナー様の営業ツールとなります。</div></div>
+      <div class="card"><div class="head navy">共同セミナー・教育</div><div class="body">デジラボビューティーの会員ネットワークへ、パートナー様の製品・技術を紹介する共同セミナーを開催。</div></div>
+      <div class="card"><div class="head navy">スポンサーシップ</div><div class="body">認証制度・業界白書・セミナー等への協賛により、メディア露出と業界内信頼性を獲得。</div></div>
+    </div>
+    <div class="lead" style="margin-top:8mm;">美容機器ディーラー・コンサルタントの皆様向けには、以下の活用方法をご案内します。</div>
+    <div class="cards-grid cards-2">
+      <div class="card"><div class="head gold">認証を営業ツールに</div><div class="body">「AI適正活用認証」サロンへの導入提案で差別化。認証取得支援を付加価値として提供。</div></div>
+      <div class="card"><div class="head gold">会員ネットワーク</div><div class="body">デジラボビューティーの会員サロンへの新規アプローチ機会を獲得。</div></div>
+      <div class="card"><div class="head gold">ガイドライン研修</div><div class="body">取引先サロンへのAIリテラシー研修をサービス化し、顧問契約・継続収益を創出。</div></div>
+      <div class="card"><div class="head gold">白書・資料の活用</div><div class="body">業界初の公式ガイドラインを営業資料として活用し、専門性・信頼性を訴求。</div></div>
+    </div>
+    <div class="banner">参画・スポンサーのご相談は　デジラボビューティー事務局まで　https://digilab-beauty.com/</div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+<!-- ============ 免責事項・改定履歴 ============ -->
+<div class="page">
+  <div class="top-bar"><span>デジラボビューティー　美容業界AI活用ガイドライン 2026</span><span class="pgnum">17 / 17</span></div>
+  <div class="side-bar"></div>
+  <div class="content">
+    <div class="head">
+      <div class="sec-num" style="font-size:42pt;">免責</div>
+      <div class="sec-title-block">
+        <div class="sec-title">免責事項・改定履歴</div>
+        <div class="sec-eng">DISCLAIMER &amp; REVISION HISTORY</div>
+      </div>
+    </div>
+
+    <div style="margin: 0 10mm;">
+      <h3 style="color:var(--navy);font-size:13pt;font-weight:700;margin-bottom:4mm;border-left:5px solid var(--gold);padding-left:10px;">免責事項</h3>
+      <p style="font-size:10pt;line-height:2.0;color:var(--text);margin-bottom:4mm;">
+        本ガイドラインは、美容業界における自主基準であり、法的助言を構成するものではありません。個別案件における法令適合判断は、薬機法・景品表示法・個人情報保護法等に詳しい弁護士・行政書士等の確認を推奨します。
+      </p>
+      <p style="font-size:10pt;line-height:2.0;color:var(--text);margin-bottom:4mm;">
+        本ガイドラインの内容に従った行為により生じた損害について、デジラボビューティーは責任を負いません。最終的な判断と責任は、本ガイドラインを参照する各パートナー企業・サロン事業者に帰属します。
+      </p>
+      <p style="font-size:10pt;line-height:2.0;color:var(--text);">
+        本ガイドラインの著作権はデジラボビューティーに帰属します。引用・参照は出典明示のうえ可能ですが、無断転載・複製は禁じます。
+      </p>
+    </div>
+
+    <h3 style="color:var(--navy);font-size:13pt;font-weight:700;margin: 8mm 0 0 10mm;border-left:5px solid var(--gold);padding-left:10px;">改定履歴</h3>
+    <table class="rev">
+      <tr><th style="width:18%">版数</th><th style="width:22%">発行日</th><th>主な改定内容</th></tr>
+      <tr><td class="v">第1版</td><td class="d">2026年 月 日</td><td>初版発行</td></tr>
+      <tr><td class="v">―</td><td class="d">以降、年次改定予定</td><td>関連法令・業界基準の改正、新技術（マルチモーダルAI・エージェントAI等）への対応、運用上の知見の反映</td></tr>
+    </table>
+
+    <div class="note" style="margin-top:8mm;">
+      <div class="tag navy">本書について</div>
+      <div class="txt blue">本書は規範文書として最小限の構成に絞っています。認証制度の運用詳細・パートナー連携の参画条件等は、別冊資料に分離して提供します。</div>
+    </div>
+
+    <div class="banner" style="margin-top:6mm;">
+      <strong>一般社団法人 デジラボビューティー（設立準備中）</strong><br>
+      <span style="font-weight:400;font-size:9.5pt;opacity:0.9;">https://digilab-beauty.com/</span>
+    </div>
+  </div>
+  <div class="bottom-bar"><span>© 2026 デジラボビューティー　All Rights Reserved. 本資料の無断転載・複製を禁じます。</span><span class="conf">Confidential</span></div>
+</div>
+
+</body>
+</html>
