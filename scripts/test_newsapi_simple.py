@@ -4,20 +4,33 @@ NewsAPI 簡易テストスクリプト（標準ライブラリのみ使用）
 APIキーが正しく動作するかテストします
 """
 
+import os
 import urllib.request
 import urllib.parse
 import json
 
-# APIキー（.envから手動でコピー）
-NEWSAPI_KEY = "d28b5d379b234515b40cd8d2bbb64068"
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # python-dotenv が無くても環境変数があれば動く
+    pass
+
+# APIキーは .env から読み込む（コードに直書きしない）
+NEWSAPI_KEY = os.getenv("NEWSAPI_KEY", "")
 
 def test_newsapi_simple():
     """NewsAPI接続テスト（標準ライブラリのみ）"""
     print("=" * 70)
     print("NewsAPI 接続テスト（標準ライブラリ版）")
     print("=" * 70)
-    
+
     # APIキーの確認
+    if not NEWSAPI_KEY:
+        print("❌ NEWSAPI_KEY が未設定です。.env に NEWSAPI_KEY を設定してください。")
+        print("   （.env.example を参考にしてください）")
+        print("=" * 70)
+        return False
     print(f"✓ APIキー: {NEWSAPI_KEY[:8]}...{NEWSAPI_KEY[-4:]}")
     
     # テストリクエスト
