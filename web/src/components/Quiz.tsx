@@ -11,6 +11,7 @@ import {
   type QuizSet,
 } from "@/lib/quiz";
 import LineButton from "./LineButton";
+import RadarChart from "./RadarChart";
 
 /** 立場の選択（診断のスタート画面） */
 function RoleSelect({ onChoose }: { onChoose: (m: QuizMode) => void }) {
@@ -63,85 +64,6 @@ function Question({
   );
 }
 
-/** 6軸レーダーチャート（軽量SVGを自前描画・外部ライブラリ不要） */
-function RadarChart({ set, scores }: { set: QuizSet; scores: number[] }) {
-  const maxPer = maxPerAxis(set);
-  const cx = 150;
-  const cy = 140;
-  const R = 104;
-  const N = 6;
-  const pt = (ax: number, r: number) => {
-    const a = -Math.PI / 2 + (ax * 2 * Math.PI) / N;
-    return [cx + r * Math.cos(a), cy + r * Math.sin(a)] as const;
-  };
-
-  const grid = [0.25, 0.5, 0.75, 1].map((f, gi) => {
-    let p = "";
-    for (let i = 0; i < N; i++) {
-      const [x, y] = pt(i, R * f);
-      p += (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1);
-    }
-    return <path key={gi} d={`${p}Z`} fill="none" stroke="#E7DEF0" strokeWidth="1" />;
-  });
-
-  const axesL = [];
-  for (let i = 0; i < N; i++) {
-    const [x, y] = pt(i, R);
-    axesL.push(
-      <line
-        key={i}
-        x1={cx}
-        y1={cy}
-        x2={Number(x.toFixed(1))}
-        y2={Number(y.toFixed(1))}
-        stroke="#E7DEF0"
-        strokeWidth="1"
-      />,
-    );
-  }
-
-  let poly = "";
-  for (let i = 0; i < N; i++) {
-    const r = R * Math.min(1, scores[i] / (maxPer[i] || 1));
-    const [x, y] = pt(i, r);
-    poly += (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1);
-  }
-
-  const labels = [];
-  for (let i = 0; i < N; i++) {
-    const [x, y] = pt(i, R + 16);
-    labels.push(
-      <text
-        key={i}
-        x={Number(x.toFixed(1))}
-        y={Number(y.toFixed(1))}
-        fontSize="9"
-        fill="#6E6781"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fontFamily="Shippori Mincho"
-      >
-        {AXES[i]}
-      </text>,
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 300 290">
-      <defs>
-        <linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#5B8DF0" />
-          <stop offset="100%" stopColor="#F0467A" />
-        </linearGradient>
-      </defs>
-      {grid}
-      {axesL}
-      <path d={`${poly}Z`} fill="url(#rg)" fillOpacity="0.22" stroke="url(#rg)" strokeWidth="2" />
-      {labels}
-    </svg>
-  );
-}
-
 /** 診断結果（112点換算・ランク・最弱軸・連動セミナー） */
 function Result({
   mode,
@@ -174,7 +96,12 @@ function Result({
       <div className="score-cap">いまのあなたのスコア</div>
       <div className="rank-badge">{rank.name}</div>
       <div className="radar-wrap">
-        <RadarChart set={set} scores={scores} />
+        <RadarChart
+          labels={[...AXES]}
+          values={scores}
+          max={maxPerAxis(set)}
+          gradientId="rg-quiz"
+        />
       </div>
       <p className="msg">{rank.msg}</p>
 

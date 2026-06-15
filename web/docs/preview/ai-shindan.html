@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- ⚠ レビュー＆セミナー用の単一ファイル版（AI活用診断）。正本は web/src（Next.js: /ai-shindan）。
+     見た目・設問・ロジックは Next.js 実装と一致。LINEリンクは要差し替え（現状 #）。 -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI活用診断（β）｜DigiLab Beauty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   DigiLab Beauty — Design System
+   デモHTML（digilab-beauty-lp-demo.html）のスタイルを忠実に移植。
+   - 下地は必ず白（color-scheme: light only）
+   - グラデは「青→紫→ピンク」の波動。ブラック×ゴールドは使わない。
+   - フォントは Google Fonts（Cormorant Garamond / Shippori Mincho）を
+     layout.tsx の <head> で読み込み、ここでは名前で参照する。
+   ========================================================= */
+
+:root {
+  color-scheme: light only;
+  --cream: #FFFDFB;        /* 下地：明るい白 */
+  --cream2: #F6F1EA;       /* 薄いクリーム */
+  --ink: #241F38;          /* 本文の濃い藤墨 */
+  --ink-soft: #605973;     /* サブテキスト */
+  --blue: #5B8DF0;
+  --purple: #A855F7;
+  --pink: #F0467A;
+  --line: rgba(168, 85, 247, 0.18);
+  --line-green: #06C755;   /* LINE緑 */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: #FFFDFB; }
+body {
+  background: #FFFDFB;
+  color: var(--ink);
+  font-family: "Shippori Mincho", serif;
+  line-height: 1.85;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 560px; margin: 0 auto; position: relative; background: #FFFDFB; }
+
+/* ===== 波動レイヤー（白の上で淡く） ===== */
+.aurora { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; background: #FFFDFB; }
+.wave {
+  position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.16;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.w1 { width: 480px; height: 480px; background: radial-gradient(circle, var(--blue), transparent 65%); top: -120px; left: -160px; }
+.w2 { width: 520px; height: 520px; background: radial-gradient(circle, var(--purple), transparent 65%); top: 380px; right: -200px; animation-delay: -4s; }
+.w3 { width: 560px; height: 560px; background: radial-gradient(circle, var(--pink), transparent 65%); bottom: -160px; left: -120px; animation-delay: -8s; }
+@keyframes drift { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, -30px) scale(1.15); } }
+
+section { position: relative; z-index: 2; padding: 0 32px; }
+
+/* ===== HERO ===== */
+.hero { min-height: 96vh; display: flex; flex-direction: column; justify-content: center; padding-top: 70px; padding-bottom: 60px; }
+.eyebrow { font-family: "Cormorant Garamond", serif; letter-spacing: .42em; font-size: .78rem; color: var(--ink-soft); text-transform: uppercase; margin-bottom: 28px; opacity: 0; animation: rise .9s ease .2s forwards; }
+
+/* ===== 切替タブ ===== */
+.tabs { position: sticky; top: 0; z-index: 20; background: rgba(255, 253, 251, .86); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); display: flex; gap: 0; max-width: 560px; margin: 0 auto; }
+.tabs button { flex: 1; font-family: "Shippori Mincho"; font-weight: 600; font-size: .92rem; color: var(--ink-soft); background: none; border: none; padding: 16px 8px 14px; cursor: pointer; position: relative; transition: .25s; letter-spacing: .02em; }
+.tabs button .tb-sub { display: block; font-size: .66rem; color: var(--ink-soft); opacity: .7; margin-top: 2px; letter-spacing: .04em; }
+.tabs button.active { color: var(--purple); }
+.tabs button.active::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: -1px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--blue), var(--pink)); }
+.pane { display: none; }
+.pane.active { display: block; animation: fade .5s ease; }
+@keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* LINE導線ボタン */
+.line-btn { display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; font-family: "Shippori Mincho"; font-weight: 700; font-size: 1.05rem; color: #fff; background: #06C755; padding: 18px 24px; border-radius: 44px; box-shadow: 0 12px 30px rgba(6, 199, 85, .32); transition: .3s; max-width: 420px; margin: 0 auto; }
+.line-btn:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(6, 199, 85, .42); }
+.line-btn svg { width: 24px; height: 24px; fill: #fff; }
+.line-sub { font-size: .78rem; color: var(--ink-soft); margin-top: 12px; text-align: center; }
+.portrait {
+  width: 248px; height: 248px; margin: 0 auto 36px; border-radius: 50%;
+  position: relative; overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(168, 85, 247, .18);
+  opacity: 0; animation: rise 1.1s ease .35s forwards;
+}
+.portrait svg { width: 100%; height: 100%; display: block; }
+.portrait .ring {
+  position: absolute; inset: -2px; border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--blue), var(--purple), var(--pink), var(--blue));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  animation: spin 14s linear infinite; opacity: .9;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.hero h1 { font-weight: 800; font-size: 2.75rem; line-height: 1.32; letter-spacing: .01em; opacity: 0; animation: rise 1s ease .4s forwards; text-align: center; }
+.grad {
+  color: var(--purple);
+  background: linear-gradient(100deg, var(--blue), var(--purple) 48%, var(--pink));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero .sub { margin: 30px auto 0; font-size: 1.02rem; color: var(--ink-soft); max-width: 430px; opacity: 0; animation: rise 1s ease .65s forwards; text-align: center; }
+.brand { font-family: "Cormorant Garamond", serif; font-size: 1.25rem; letter-spacing: .28em; margin-top: 46px; opacity: 0; animation: rise 1s ease .9s forwards; text-align: center; }
+.brand small { display: block; font-family: "Shippori Mincho"; font-size: .72rem; letter-spacing: .34em; color: var(--ink-soft); margin-top: 6px; }
+
+.cta-row { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; justify-content: center; opacity: 0; animation: rise 1s ease 1.1s forwards; }
+.btn { font-family: "Shippori Mincho"; font-weight: 600; font-size: .92rem; letter-spacing: .06em; padding: 15px 26px; border-radius: 40px; text-decoration: none; display: inline-block; transition: .3s; }
+.btn-primary { background: linear-gradient(100deg, var(--blue), var(--purple) 50%, var(--pink)); color: #fff; box-shadow: 0 10px 30px rgba(168, 85, 247, .30); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(240, 70, 122, .35); }
+.btn-ghost { border: 1px solid var(--line); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--pink); color: var(--pink); }
+
+@keyframes rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+
+.divider { height: 1px; margin: 0 32px; background: linear-gradient(90deg, transparent, var(--line), transparent); position: relative; z-index: 2; }
+
+.label { font-family: "Cormorant Garamond", serif; letter-spacing: .4em; font-size: .72rem; color: var(--pink); text-transform: uppercase; margin-bottom: 18px; }
+.block { padding: 78px 32px; }
+.block h2 { font-weight: 700; font-size: 1.7rem; line-height: 1.5; margin-bottom: 22px; }
+.block p { color: var(--ink-soft); font-size: .98rem; }
+
+.pain { display: flex; flex-direction: column; gap: 16px; margin-top: 30px; }
+.pain-item { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; box-shadow: 0 8px 24px rgba(43, 37, 64, .04); }
+.pain-item b { color: var(--ink); font-size: 1.02rem; display: block; margin-bottom: 6px; }
+.pain-item span { color: var(--ink-soft); font-size: .9rem; }
+
+.dqs-hero { text-align: center; }
+.dqs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 34px; }
+.dqs-cell { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 16px; box-shadow: 0 8px 24px rgba(43, 37, 64, .04); }
+.dqs-cell .k { font-family: "Cormorant Garamond"; font-size: 1.4rem; color: var(--purple); }
+.dqs-cell .t { font-size: .86rem; color: var(--ink-soft); margin-top: 4px; }
+
+.tier { display: flex; flex-direction: column; gap: 18px; margin-top: 30px; }
+.tier-card { border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(91, 141, 240, .06), rgba(240, 70, 122, .06)), #fff; box-shadow: 0 10px 30px rgba(43, 37, 64, .05); }
+.tier-card .step { font-family: "Cormorant Garamond"; letter-spacing: .3em; font-size: .72rem; color: var(--pink); font-weight: 600; }
+.tier-card h3 { font-size: 1.3rem; margin: 8px 0 8px; font-weight: 700; font-family: "Cormorant Garamond"; letter-spacing: .02em; color: var(--ink); }
+.tier-card p { font-size: .88rem; color: var(--ink-soft); }
+.tier-card .bar { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(var(--blue), var(--pink)); }
+
+.vision { text-align: center; padding: 90px 32px; }
+.vision h2 { font-size: 1.9rem; line-height: 1.55; }
+.roadmap { display: flex; justify-content: space-between; margin-top: 40px; gap: 8px; }
+.ms { flex: 1; }
+.ms .yr { font-family: "Cormorant Garamond"; font-size: 1.5rem; color: var(--purple); }
+.ms .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--pink); margin: 10px auto; box-shadow: 0 0 12px rgba(240, 70, 122, .5); }
+.ms .txt { font-size: .78rem; color: var(--ink-soft); }
+.rail { height: 1px; background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink)); margin-top: -26px; }
+
+.final { text-align: center; padding: 100px 32px 70px; }
+.final h2 { font-size: 2.1rem; line-height: 1.5; margin-bottom: 18px; }
+.final .grad { font-weight: 800; }
+footer { text-align: center; padding: 40px 32px 60px; color: var(--ink-soft); font-size: .74rem; letter-spacing: .2em; position: relative; z-index: 2; }
+footer .legal { display: block; margin-top: 14px; opacity: .7; font-size: .66rem; line-height: 1.8; }
+
+/* ===== 診断（DQSミニ診断） ===== */
+.quiz { padding: 84px 28px; }
+.quiz-card { background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 36px 26px; box-shadow: 0 18px 50px rgba(43, 37, 64, .07); position: relative; overflow: hidden; }
+.quiz-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--blue), var(--purple), var(--pink)); }
+.quiz .label { text-align: center; }
+.quiz h2 { text-align: center; font-weight: 700; font-size: 1.5rem; line-height: 1.5; margin-bottom: 8px; }
+.quiz .lead { text-align: center; color: var(--ink-soft); font-size: .9rem; margin-bottom: 28px; }
+
+.progress { height: 5px; background: var(--cream2); border-radius: 10px; overflow: hidden; margin-bottom: 26px; }
+.progress > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--blue), var(--pink)); transition: width .4s ease; }
+
+.pick { display: flex; flex-direction: column; gap: 12px; }
+.pick button, .opt { font-family: "Shippori Mincho"; text-align: left; width: 100%; border: 1px solid var(--line); background: var(--cream); color: var(--ink); border-radius: 14px; padding: 16px 18px; font-size: .95rem; cursor: pointer; transition: .2s; line-height: 1.5; }
+.pick button:hover, .opt:hover { border-color: var(--purple); background: #fff; transform: translateX(3px); }
+.o-sub { display: block; font-size: .78rem; color: var(--ink-soft); margin-top: 3px; }
+
+.q-head { font-size: .78rem; color: var(--pink); font-family: "Cormorant Garamond"; letter-spacing: .25em; margin-bottom: 8px; }
+.q-text { font-size: 1.12rem; font-weight: 700; line-height: 1.6; margin-bottom: 20px; }
+
+.back { display: inline-block; margin-top: 18px; font-size: .8rem; color: var(--ink-soft); background: none; border: none; cursor: pointer; font-family: "Shippori Mincho"; }
+.back:hover { color: var(--purple); }
+
+/* 結果 */
+.result { text-align: center; }
+.score-big { font-family: "Cormorant Garamond"; font-size: 4.6rem; font-weight: 600; line-height: 1; background: linear-gradient(100deg, var(--blue), var(--purple), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.score-cap { font-size: .82rem; color: var(--ink-soft); letter-spacing: .1em; }
+.rank-badge { display: inline-block; margin: 18px 0 4px; padding: 8px 22px; border-radius: 30px; font-weight: 700; font-size: 1.05rem; background: linear-gradient(100deg, var(--blue), var(--pink)); color: #fff; }
+.radar-wrap { margin: 24px auto 6px; max-width: 300px; }
+.radar-wrap svg { width: 100%; height: auto; }
+.result .msg { color: var(--ink-soft); font-size: .92rem; margin: 18px 0 26px; line-height: 1.8; }
+.result .btn { margin: 6px; }
+.disc { font-size: .66rem; color: var(--ink-soft); opacity: .7; margin-top: 22px; line-height: 1.7; }
+
+/* ===== 会員登録フォーム ===== */
+.signup { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 30px 24px; box-shadow: 0 16px 44px rgba(43, 37, 64, .07); max-width: 440px; margin: 0 auto; text-align: left; }
+.signup .perk { font-size: .86rem; color: var(--ink-soft); margin: 0 0 18px; line-height: 1.8; }
+.signup .perk b { color: var(--ink); }
+.signup input[type=email] { width: 100%; font-family: "Shippori Mincho"; font-size: .95rem; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--cream); color: var(--ink); margin-bottom: 12px; }
+.signup input[type=email]:focus { outline: none; border-color: var(--purple); background: #fff; }
+.signup .consent { display: flex; gap: 8px; align-items: flex-start; font-size: .74rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 16px; }
+.signup .consent input { margin-top: 3px; accent-color: var(--purple); }
+.signup .full { width: 100%; text-align: center; border: none; cursor: pointer; }
+.signup .full:disabled { opacity: .45; cursor: not-allowed; transform: none; box-shadow: none; }
+.signup .note { font-size: .66rem; color: var(--ink-soft); opacity: .7; margin-top: 12px; line-height: 1.7; }
+.thanks { text-align: center; padding: 14px 0; }
+.thanks .chk { font-size: 2rem; }
+.thanks h4 { font-size: 1.15rem; margin: 8px 0 6px; }
+.thanks p { font-size: .86rem; color: var(--ink-soft); }
+
+/* ===== 会員プラン ===== */
+.plans { display: flex; flex-direction: column; gap: 14px; margin-top: 34px; max-width: 440px; margin-left: auto; margin-right: auto; text-align: left; }
+.plan { border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; background: var(--cream); display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.plan.feat { background: linear-gradient(135deg, rgba(91, 141, 240, .07), rgba(240, 70, 122, .07)); border-color: rgba(168, 85, 247, .35); }
+.plan .pname { font-weight: 700; font-size: 1rem; }
+.plan .pdesc { font-size: .76rem; color: var(--ink-soft); margin-top: 3px; }
+.plan .pprice { font-family: "Cormorant Garamond"; font-size: 1.2rem; color: var(--purple); white-space: nowrap; }
+.plan .pprice small { font-size: .62rem; color: var(--ink-soft); display: block; text-align: right; }
+
+/* 弱点ハイライト */
+.weak { margin: 26px 0 8px; padding: 20px 22px; border-radius: 16px; background: linear-gradient(135deg, rgba(91, 141, 240, .08), rgba(240, 70, 122, .08)); border: 1px solid var(--line); text-align: left; }
+.weak-tag { font-family: "Cormorant Garamond"; letter-spacing: .2em; font-size: .66rem; color: var(--pink); text-transform: uppercase; margin-bottom: 6px; }
+.weak-head { font-weight: 700; font-size: 1.05rem; line-height: 1.5; margin-bottom: 6px; }
+.weak-ben { font-size: .86rem; color: var(--ink-soft); line-height: 1.7; }
+
+/* セミナー会員オファー */
+.offer { margin-top: 22px; padding: 26px 22px; border-radius: 18px; background: #fff; border: 1px solid var(--line); box-shadow: 0 14px 40px rgba(43, 37, 64, .06); text-align: left; }
+.offer-ey { font-family: "Cormorant Garamond"; letter-spacing: .28em; font-size: .66rem; color: var(--ink-soft); text-transform: uppercase; margin-bottom: 8px; }
+.offer-h { font-weight: 700; font-size: 1.18rem; line-height: 1.5; margin-bottom: 10px; }
+.offer-p { font-size: .88rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 16px; }
+.offer-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 14px; }
+.offer-price b { font-family: "Cormorant Garamond"; font-size: 2.1rem; color: var(--purple); font-weight: 600; line-height: 1; }
+.offer-price .yen { font-family: "Shippori Mincho"; font-size: .95rem; color: var(--purple); font-weight: 600; margin-left: 1px; }
+.offer-price .per { font-size: .74rem; color: var(--ink-soft); }
+
+/* 次回セミナー予告 */
+.next { max-width: 440px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; box-shadow: 0 14px 40px rgba(43, 37, 64, .06); text-align: left; }
+.next .nx-tag { display: inline-block; font-family: "Cormorant Garamond"; letter-spacing: .2em; font-size: .66rem; color: #fff; background: linear-gradient(100deg, var(--blue), var(--pink)); padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-bottom: 14px; }
+.next .nx-title { font-weight: 700; font-size: 1.22rem; line-height: 1.55; margin-bottom: 12px; }
+.next .nx-meta { font-size: .84rem; color: var(--ink-soft); line-height: 1.9; margin-bottom: 16px; }
+.next .nx-meta b { color: var(--ink); }
+.nx-price { display: flex; align-items: baseline; gap: 6px; padding-top: 14px; border-top: 1px solid var(--line); }
+.nx-price b { font-family: "Cormorant Garamond"; font-size: 2rem; color: var(--purple); font-weight: 600; line-height: 1; }
+.nx-price .yen { font-family: "Shippori Mincho"; font-size: .95rem; color: var(--purple); font-weight: 600; }
+.nx-price .per { font-size: .74rem; color: var(--ink-soft); }
+
+.sns { display: flex; gap: 12px; margin-top: 22px; max-width: 440px; margin-left: auto; margin-right: auto; }
+.sns a { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; font-family: "Shippori Mincho"; font-weight: 600; font-size: .9rem; padding: 15px 12px; border-radius: 40px; transition: .3s; color: #fff; }
+.sns a:hover { transform: translateY(-3px); }
+.sns .line { background: #06C755; box-shadow: 0 8px 22px rgba(6, 199, 85, .3); }
+.sns .insta { background: linear-gradient(100deg, #5B8DF0, #A855F7, #F0467A); box-shadow: 0 8px 22px rgba(168, 85, 247, .3); }
+.sns svg { width: 18px; height: 18px; fill: #fff; }
+
+/* セミナー予告 3本リスト */
+.sem-list { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; text-align: left; }
+.sem-item { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; box-shadow: 0 10px 30px rgba(43, 37, 64, .05); position: relative; overflow: hidden; }
+.sem-item::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(var(--blue), var(--pink)); }
+.sem-when { font-family: "Cormorant Garamond"; letter-spacing: .1em; font-size: .72rem; color: var(--pink); margin-bottom: 6px; font-weight: 600; }
+.sem-ttl { font-weight: 700; font-size: 1.05rem; line-height: 1.55; color: var(--ink); margin-bottom: 6px; }
+.sem-desc { font-size: .82rem; color: var(--ink-soft); line-height: 1.7; }
+.sem-vol { display: inline-block; font-family: "Cormorant Garamond"; font-size: .66rem; letter-spacing: .15em; color: var(--ink-soft); border: 1px solid var(--line); border-radius: 20px; padding: 2px 10px; margin-bottom: 10px; }
+
+/* 画面に依存しない補助 */
+.center { text-align: center; }
+
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><div class="wave w1"></div><div class="wave w2"></div><div class="wave w3"></div></div>
+<div class="wrap">
+<section class="hero" style="min-height:auto;padding-top:76px;padding-bottom:8px;">
+<div class="eyebrow" style="text-align:center;">AI Readiness Check</div>
+<h1 style="font-size:2.1rem;">あなたのサロンは、<br><span class="grad">AIを“安全に”</span>使えていますか？</h1>
+<p class="sub">「使えているか」と「安全に使えているか」。両方の視点で、いまの“AI活用度”を6つの視点で可視化します。</p>
+</section>
+<section class="quiz"><div class="quiz-card" id="card"></div></section>
+<footer>© 2026 DigiLab Beauty / 一般社団法人デジラボビューティー<span class="legal">※本診断はデモ（β）です。「美容業界AI活用ガイドライン」は策定中。公開前に薬機法・景表法・個人情報保護法の最終確認が必要です。</span></footer>
+</div>
+<script>
+const AXES=["活用度", "法令理解", "透明性", "人の確認", "データ保護", "体制・教育"];
+const Q=[{"axis": 0, "q": "予約対応・お問い合わせに、AI（チャットや自動応答など）をどの程度使っていますか？", "opts": [{"t": "まったく使っていない", "v": 0}, {"t": "一部、試している", "v": 1}, {"t": "日常的に使う場面がある", "v": 2}, {"t": "仕組みとして定着している", "v": 3}]}, {"axis": 0, "q": "SNS投稿やブログ・お礼文などの文章作成に、AIを使っていますか？", "opts": [{"t": "使っていない", "v": 0}, {"t": "たまに使う", "v": 1}, {"t": "よく使う", "v": 2}, {"t": "手順化して継続的に使っている", "v": 3}]}, {"axis": 1, "q": "AIが作った広告・説明文を、薬機法・景品表示法の観点でチェックしていますか？", "opts": [{"t": "チェックするという発想がなかった", "v": 0}, {"t": "気にはするが、基準は曖昧", "v": 1}, {"t": "自分なりの基準で確認している", "v": 2}, {"t": "チェック手順が明文化されている", "v": 3}]}, {"axis": 1, "q": "「効果・効能」を断定する表現（医療類似など）のリスクを理解していますか？", "opts": [{"t": "知らなかった", "v": 0}, {"t": "聞いたことはある", "v": 1}, {"t": "概ね理解している", "v": 2}, {"t": "スタッフにも周知・運用している", "v": 3}]}, {"axis": 2, "q": "AIで作成した文章・画像であることを、必要に応じてお客様に明示していますか？", "opts": [{"t": "考えたことがない", "v": 0}, {"t": "ほぼ明示していない", "v": 1}, {"t": "場面によって明示する", "v": 2}, {"t": "方針として明示している", "v": 3}]}, {"axis": 2, "q": "カウンセリングで、AIの提案をそのまま伝えず、人の言葉で説明していますか？", "opts": [{"t": "AI任せになりがち", "v": 0}, {"t": "場合による", "v": 1}, {"t": "基本は人が説明する", "v": 2}, {"t": "必ず人が確認して説明する", "v": 3}]}, {"axis": 3, "q": "AIの出力を、お客様に出す前に人が確認する運用になっていますか？", "opts": [{"t": "確認せず使うことがある", "v": 0}, {"t": "気づいたときだけ確認", "v": 1}, {"t": "基本は確認している", "v": 2}, {"t": "必ず確認する手順がある", "v": 3}]}, {"axis": 3, "q": "「AIは間違えることがある」前提で、最終判断は人が持っていますか？", "opts": [{"t": "意識していない", "v": 0}, {"t": "なんとなく", "v": 1}, {"t": "概ねそうしている", "v": 2}, {"t": "明確にルール化している", "v": 3}]}, {"axis": 4, "q": "顧客情報をAIツールに入力する際、扱い（外部送信・保存）に配慮していますか？", "opts": [{"t": "気にせず入力している", "v": 0}, {"t": "少し気になっている", "v": 1}, {"t": "個人情報は入れないようにしている", "v": 2}, {"t": "取扱いルールが定まっている", "v": 3}]}, {"axis": 4, "q": "顧客データの利用について、同意を取得する仕組みがありますか？", "opts": [{"t": "特にない", "v": 0}, {"t": "口頭で何となく", "v": 1}, {"t": "一部は書面で取得", "v": 2}, {"t": "明確に取得・管理している", "v": 3}]}, {"axis": 5, "q": "スタッフがAIを学ぶ機会（研修・勉強会）はありますか？", "opts": [{"t": "ない", "v": 0}, {"t": "個人任せ", "v": 1}, {"t": "ときどき実施している", "v": 2}, {"t": "定期的に実施している", "v": 3}]}, {"axis": 5, "q": "ベテランの知識・手順を、共有・標準化できていますか？（属人化の解消）", "opts": [{"t": "属人化している", "v": 0}, {"t": "一部だけ共有", "v": 1}, {"t": "概ね共有できている", "v": 2}, {"t": "仕組みとして標準化している", "v": 3}]}];
+const LEVELS=[{"min": 85, "tier": "LEVEL 4", "name": "先進 — モデルサロン水準", "msg": "活用も、安全性も高い水準です。あとはその取り組みを“見える化”すれば、選ばれる理由として発信できます。"}, {"min": 65, "tier": "LEVEL 3", "name": "実践 — 仕組み化が進む", "msg": "AIが業務に根づきつつあります。弱い視点を1つ補えば、運用の質がもう一段上がります。"}, {"min": 40, "tier": "LEVEL 2", "name": "取り組み中 — 部分活用", "msg": "良いスタートです。ただ、安全に使う土台にいくつか“穴”が見えました。そこを埋めると安心して広げられます。"}, {"min": 0, "tier": "LEVEL 1", "name": "これから — 基礎づくり", "msg": "今がはじめどき。正しい順番で土台をつくれば、AIは“人を置き換える”のではなく“負担を減らす”味方になります。"}];
+const RECO=[{"axis": "活用度", "head": "まだAIの“使いどころ”が、見えていないかも", "step": "予約・発信・事務など、まず1つの業務から小さく試すと、効果を実感しやすくなります", "seminar": "はじめてのAI活用 — まず1業務から始めるサロンの第一歩"}, {"axis": "法令理解", "head": "AIの文章が、知らないうちに“危ない表現”になっているかも", "step": "薬機法・景表法を踏まえてAIの出力をチェックする型を持つと、安心して発信できます", "seminar": "薬機法・景表法に強くなる — AI表現チェックの作法"}, {"axis": "透明性", "head": "「AIで作った」ことを、正しく伝えられているか不安かも", "step": "AI生成物の明示と、人の言葉での説明をルール化すると、お客様の信頼が積み上がります", "seminar": "“AIだと正しく伝える” — 誠実な情報開示の作法"}, {"axis": "人の確認", "head": "AI任せになり、最終チェックが抜けているかも", "step": "お客様に出す前に人が確認する手順（Human-in-the-loop）を決めると、事故を防げます", "seminar": "AI任せにしない運用設計 — 人が最終判断を持つ仕組み"}, {"axis": "データ保護", "head": "顧客情報の扱いに、ヒヤリとする場面があるかも", "step": "AIに入れてよい情報の線引きと、同意取得の仕組みを整えると、守りが固まります", "seminar": "顧客データを守るAIの使い方 — 個人情報の基本"}, {"axis": "体制・教育", "head": "属人化したまま、スタッフ間に差が出ているかも", "step": "ベテランの知識をAIで共有・標準化し、学ぶ機会を定例化すると、店全体の底上げになります", "seminar": "属人化を解く — AIマニュアル化とスタッフ教育"}];
+
+let picks=[], started=false;
+const card=document.getElementById('card');
+const LINE_SVG='<svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.6 2 10.1c0 4 3.6 7.4 8.4 8 .3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 6-3.5 8.2-6C21.6 13.6 22 11.9 22 10.1 22 5.6 17.5 2 12 2z"/></svg>';
+function maxPerAxis(){const m=AXES.map(()=>0);Q.forEach(q=>m[q.axis]+=3);return m;}
+function axisScores(){const s=AXES.map(()=>0);picks.forEach((p,qi)=>{s[Q[qi].axis]+=Q[qi].opts[p].v;});return s;}
+function compute(){const s=axisScores(),max=maxPerAxis();const raw=s.reduce((a,b)=>a+b,0),total=max.reduce((a,b)=>a+b,0);const score=total?Math.round(raw/total*100):0;const level=LEVELS.find(l=>score>=l.min)||LEVELS[LEVELS.length-1];let wa=0,wr=2;s.forEach((v,a)=>{const r=v/(max[a]||1);if(r<wr){wr=r;wa=a;}});return{s,max,score,level,reco:RECO[wa]};}
+function radar(values,max){const N=6,cx=150,cy=140,R=104;const pt=(ax,r)=>{const a=-Math.PI/2+ax*2*Math.PI/N;return[cx+r*Math.cos(a),cy+r*Math.sin(a)];};let grid='';[0.25,0.5,0.75,1].forEach(f=>{let p='';for(let i=0;i<N;i++){const[x,y]=pt(i,R*f);p+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}grid+='<path d="'+p+'Z" fill="none" stroke="#E7DEF0" stroke-width="1"/>';});let ax='';for(let i=0;i<N;i++){const[x,y]=pt(i,R);ax+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="#E7DEF0" stroke-width="1"/>';}let poly='';for(let i=0;i<N;i++){const r=R*Math.min(1,values[i]/(max[i]||1));const[x,y]=pt(i,r);poly+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}let lb='';for(let i=0;i<N;i++){const[x,y]=pt(i,R+16);lb+='<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" font-size="9" fill="#6E6781" text-anchor="middle" dominant-baseline="middle" font-family="Shippori Mincho">'+AXES[i]+'</text>';}return '<svg viewBox="0 0 300 290"><defs><linearGradient id="rg-ai" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5B8DF0"/><stop offset="100%" stop-color="#F0467A"/></linearGradient></defs>'+grid+ax+'<path d="'+poly+'Z" fill="url(#rg-ai)" fill-opacity="0.22" stroke="url(#rg-ai)" stroke-width="2"/>'+lb+'</svg>';}
+function resultHTML(){const r=compute();return '<div class="result"><div class="score-big">'+r.score+'<span style="font-size:1.4rem;color:var(--ink-soft);-webkit-text-fill-color:var(--ink-soft);"> 点</span></div><div class="score-cap">100点満点・あなたのAI活用スコア</div><div class="rank-badge">'+r.level.tier+'　'+r.level.name+'</div><div class="radar-wrap">'+radar(r.s,r.max)+'</div><p class="msg">'+r.level.msg+'</p><div class="weak"><div class="weak-tag">いちばんの伸びしろ</div><div class="weak-head">'+r.reco.head+'</div><div class="weak-ben">'+r.reco.step+'。</div></div><div class="offer"><div class="offer-ey">Recommended Seminar</div><div class="offer-h">あなたに今おすすめの「<span class="grad">'+r.reco.axis+'</span>」の回</div><div class="next" style="box-shadow:none;margin-top:8px;padding:18px 18px;"><span class="nx-tag">Next Step</span><div class="nx-title" style="font-size:1.08rem;">'+r.reco.seminar+'</div><div class="nx-meta" style="margin-bottom:0;">月2回のオンラインセミナーで、現場ですぐ試せる形で解説します。</div></div><a class="line-btn" href="#" style="margin-top:14px;">'+LINE_SVG+'公式LINEで無料招待を受け取る</a><p class="line-sub">セミナーで詳しい解説と、次の一歩をご案内します。</p></div><button class="back" onclick="__reset()" style="display:block;margin:20px auto 0;">↺ もう一度診断する</button><p class="disc">※本診断は「美容業界AI活用ガイドライン（策定中・v0.1）」の考え方にもとづく簡易的な自己診断です。認証の合否や水準、特定の成果を保証・約束するものではありません。回答はこの場の表示のみに使用し、サーバーには送信・保存していません。</p></div>';}
+function render(){const idx=picks.length,finished=idx>=Q.length;let title,lead,body;if(!started){title='まずは、6つの視点で<br><span class="grad">セルフチェック</span>';lead='「使えているか」だけでなく「安全に使えているか」まで。約2分・12問・サーバー送信なし。';body='<div class="pick"><button onclick="__start()">診断をはじめる（約2分・12問）<span class="o-sub">サロン経営者・スタッフ どなたでも</span></button></div>';}else if(!finished){title='AI活用 <span class="grad">セルフチェック</span>';lead='いまのサロンに、いちばん近いものを選んでください。';const q=Q[idx];body='<div class="q-head">Q'+(idx+1)+' / '+Q.length+'</div><div style="font-size:.74rem;color:var(--ink-soft);margin-bottom:8px;">視点：'+AXES[q.axis]+'</div><div class="q-text">'+q.q+'</div><div class="pick">'+q.opts.map((op,i)=>'<button class="opt" onclick="__answer('+i+')">'+op.t+'</button>').join('')+'</div><button class="back" onclick="'+(idx>0?'__back()':'__reset()')+'">'+(idx>0?'← 前の質問へ':'← はじめに戻る')+'</button>';}else{title='<span class="grad">あなたのAI活用度</span>';lead='いまの自己診断の結果';body=resultHTML();}const prog=!started?0:finished?100:(idx/Q.length*100);card.innerHTML='<div class="label">AI Readiness Check</div><h2>'+title+'</h2><p class="lead">'+lead+'</p>'+(started?'<div class="progress"><i style="width:'+prog+'%"></i></div>':'')+'<div>'+body+'</div>';}
+window.__start=function(){started=true;render();};
+window.__answer=function(i){picks.push(i);render();};
+window.__back=function(){picks.pop();render();};
+window.__reset=function(){started=false;picks=[];render();};
+render();
+
+</script>
+</body>
+</html>
