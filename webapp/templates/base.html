@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}コスメブレイン｜有資格者の美容知識マーケット{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="{{ url_for('index') }}">💄 コスメ<span>ブレイン</span></a>
+    <form class="searchbar" action="{{ url_for('search') }}" method="get">
+      <input type="text" name="q" placeholder="知識を検索（例：毛穴ケア、成分表示）" value="{{ request.args.get('q','') }}">
+      <button type="submit">検索</button>
+    </form>
+    <nav class="nav-links">
+      {% if current_user %}
+        <a href="{{ url_for('content_new') }}" class="btn-mini">＋出品</a>
+        <a href="{{ url_for('dashboard') }}">マイページ</a>
+        {% if current_user.is_admin %}<a href="{{ url_for('admin') }}">運営</a>{% endif %}
+        <a href="{{ url_for('logout') }}">ログアウト</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">ログイン</a>
+        <a href="{{ url_for('register') }}" class="btn-mini">無料登録</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flashes">
+        {% for cat, msg in messages %}
+          <div class="flash flash-{{ cat }}">{{ msg }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div>💄 コスメブレイン — 化粧品検定・美肌検定 有資格者による美容知識マーケットプレイス</div>
+  <div class="muted">© {{ now_year }} CosmeBrain. 販売者はすべて資格審査済み。安心して学べます。</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}運営｜資格審査{% endblock %}
+{% block content %}
+<h1>運営：資格審査</h1>
+<p class="muted">提出された資格を確認し、承認すると本人が販売者になれます。</p>
+{% if pending %}
+<table>
+  <tr><th>申請者</th><th>メール</th><th>資格</th><th>認定番号</th><th>証明</th><th>申請日</th><th>審査</th></tr>
+  {% for p in pending %}
+  <tr>
+    <td>{{ p.display_name }}</td>
+    <td class="muted">{{ p.email }}</td>
+    <td>{{ p.cert_type }}</td>
+    <td>{{ p.cert_number or '—' }}</td>
+    <td>{% if p.evidence %}<a href="{{ url_for('download', fn=p.evidence) }}">確認</a>{% else %}—{% endif %}</td>
+    <td class="muted">{{ p.created_at[:10] }}</td>
+    <td>
+      <form method="post" action="{{ url_for('admin_cert', cert_id=p.id, action='approve') }}" style="display:inline">
+        <button class="btn-mini" style="background:var(--ok);border:none;color:#fff;cursor:pointer">承認</button>
+      </form>
+      <form method="post" action="{{ url_for('admin_cert', cert_id=p.id, action='reject') }}" style="display:inline">
+        <button class="btn-mini" style="background:var(--err);border:none;color:#fff;cursor:pointer">却下</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}<p class="muted">審査待ちの申請はありません。</p>{% endif %}
+{% endblock %}

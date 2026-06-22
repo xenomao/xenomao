@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ u.display_name }}｜コスメブレイン{% endblock %}
+{% block content %}
+<div class="panel">
+  <h1>{{ u.display_name }}</h1>
+  <div style="margin:8px 0">
+    {% for ce in certs %}<span class="badge badge-cert">🎓 {{ ce.cert_type }}</span>
+    {% else %}<span class="badge badge-mute">資格未承認</span>{% endfor %}
+  </div>
+  {% if u.bio %}<p>{{ u.bio }}</p>{% endif %}
+</div>
+
+<h2 class="section-title">📚 {{ u.display_name }}さんのコンテンツ</h2>
+<div class="grid">
+  {% for c in contents %}{% include "_card.html" %}{% else %}
+    <p class="muted">公開中のコンテンツはありません。</p>
+  {% endfor %}
+</div>
+{% endblock %}

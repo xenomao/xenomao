@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}{{ c.title }}｜コスメブレイン{% endblock %}
+{% block content %}
+<div class="detail">
+  <div>
+    <div class="panel">
+      <div class="card-cat">{{ c.category }}</div>
+      <h1 style="margin:6px 0 12px">{{ c.cover_emoji }} {{ c.title }}</h1>
+      <div class="muted">
+        販売者：<a href="{{ url_for('profile', uid=c.seller_id) }}">{{ c.display_name }}</a>
+        ・{{ c.sales_count }}件販売
+        {% if stats.review_count %}・<span class="stars">★</span>{{ stats.avg_rating }}（{{ stats.review_count }}件）{% endif %}
+      </div>
+      <div style="margin:12px 0">
+        {% for ce in seller_certs %}<span class="badge badge-cert">🎓 {{ ce.cert_type }}</span>{% endfor %}
+      </div>
+      <hr style="border:none;border-top:1px solid var(--line);margin:16px 0">
+      <h3>このコンテンツについて</h3>
+      <div class="body-content">{{ c.summary or '（紹介文はありません）' }}</div>
+
+      {% if purchased %}
+        <div style="margin-top:20px">
+          <a class="btn" href="{{ url_for('content_view', cid=c.id) }}">購入済み｜本文を読む →</a>
+        </div>
+      {% else %}
+        <div class="locked" style="margin-top:20px">
+          🔒 本文は購入後に読めます{% if c.file_name %}（添付ファイルのダウンロードも可能）{% endif %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="panel" style="margin-top:20px">
+      <h3>レビュー（{{ stats.review_count }}）</h3>
+      {% for r in reviews %}
+        <div class="review">
+          <div><span class="stars">{{ '★' * r.rating }}{{ '☆' * (5 - r.rating) }}</span>
+            <b>{{ r.display_name }}</b> <span class="muted">{{ r.created_at[:10] }}</span></div>
+          <div>{{ r.comment }}</div>
+        </div>
+      {% else %}
+        <p class="muted">まだレビューはありません。</p>
+      {% endfor %}
+
+      {% if purchased %}
+      <form method="post" action="{{ url_for('content_review', cid=c.id) }}" style="margin-top:16px">
+        <label>レビューを投稿</label>
+        <select name="rating">
+          <option value="5">★★★★★ とても良い</option>
+          <option value="4">★★★★☆ 良い</option>
+          <option value="3">★★★☆☆ ふつう</option>
+          <option value="2">★★☆☆☆ いまいち</option>
+          <option value="1">★☆☆☆☆ 残念</option>
+        </select>
+        <textarea name="comment" rows="2" placeholder="感想を書く"></textarea>
+        <div style="margin-top:10px"><button class="btn btn-ghost">投稿する</button></div>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+
+  <aside>
+    <div class="panel buybox">
+      <div class="price">{% if c.price == 0 %}無料{% else %}¥{{ "{:,}".format(c.price) }}{% endif %}</div>
+      {% if purchased %}
+        <a class="btn btn-block" href="{{ url_for('content_view', cid=c.id) }}" style="margin-top:14px">本文を読む</a>
+      {% elif current_user and current_user.id == c.seller_id %}
+        <p class="muted" style="margin-top:14px">これはあなたのコンテンツです。</p>
+      {% else %}
+        <form method="post" action="{{ url_for('content_buy', cid=c.id) }}" style="margin-top:14px">
+          {% if request.args.get('ref') %}<input type="hidden" name="ref" value="{{ request.args.get('ref') }}">{% endif %}
+          <button class="btn btn-gold btn-block">
+            {% if c.price == 0 %}無料で受け取る{% else %}購入する{% endif %}
+          </button>
+        </form>
+        {% if request.args.get('ref') %}
+          <p class="muted" style="margin-top:10px">🎁 紹介リンク経由のアクセスです。</p>
+        {% endif %}
+        {% if not current_user %}
+          <p class="muted" style="margin-top:10px">購入には<a href="{{ url_for('login') }}">ログイン</a>が必要です。</p>
+        {% endif %}
+      {% endif %}
+      <hr style="border:none;border-top:1px solid var(--line);margin:16px 0">
+      <p class="muted">✓ 販売者は資格審査済み<br>✓ 購入者はレビュー投稿可<br>✓ 購入後は紹介報酬{{ c.referral_rate }}%を獲得できます</p>
+    </div>
+  </aside>
+</div>
+{% endblock %}
