@@ -223,6 +223,21 @@
     .float-line span{display:none;} .float-line{padding:14px;}
     .hero .wrap{padding-top:54px;padding-bottom:54px;}
   }
+
+  /* Instagram 誘導 */
+  .insta{padding:88px 0;background:var(--cream);}
+  .insta-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:48px;display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;}
+  .insta-text h2{font-family:'Shippori Mincho',serif;font-size:clamp(22px,3.2vw,30px);line-height:1.5;margin:16px 0 14px;}
+  .insta-text p{color:var(--muted);font-size:14.5px;margin-bottom:18px;}
+  .insta-handle{font-family:'Shippori Mincho',serif;font-size:18px;color:var(--green);margin-bottom:22px;letter-spacing:.02em;}
+  .insta-btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:15px;color:#fff;background:var(--ink);padding:14px 28px;border-radius:999px;transition:background .2s,transform .2s;}
+  .insta-btn:hover{background:var(--green);transform:translateY(-2px);}
+  .insta-btn .ig{width:20px;height:20px;fill:#fff;}
+  .insta-qr{text-align:center;}
+  .qr-frame{display:inline-block;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;width:200px;max-width:100%;box-shadow:0 12px 30px rgba(28,43,39,.08);}
+  .qr-frame svg{width:100%;height:auto;display:block;}
+  .qr-cap{font-size:12.5px;color:var(--muted);margin-top:14px;letter-spacing:.04em;}
+  @media(max-width:760px){.insta-card{grid-template-columns:1fr;text-align:center;padding:36px 24px;}.insta-text .eyebrow{justify-content:center;}}
 </style>
 </head>
 <body>
@@ -231,6 +246,7 @@
   <symbol id="line" viewBox="0 0 24 24">
     <path d="M24 10.3C24 4.9 18.6.5 12 .5S0 4.9 0 10.3c0 4.8 4.3 8.9 10 9.7.4.1.9.3 1.1.6.1.3.1.7 0 1l-.2 1.1c-.1.3-.3 1.3 1.1.7 1.4-.6 7.5-4.4 10.2-7.5C23.1 14 24 12.3 24 10.3zM7.7 13.1H5.3c-.3 0-.6-.3-.6-.6V7.7c0-.3.3-.6.6-.6.4 0 .6.3.6.6v4.2h1.8c.4 0 .6.3.6.6s-.2.6-.6.6zm2.4-.6c0 .3-.3.6-.6.6s-.6-.3-.6-.6V7.7c0-.3.3-.6.6-.6s.6.3.6.6v4.8zm5.8 0c0 .3-.2.5-.5.6h-.2c-.2 0-.4-.1-.5-.2l-2.5-3.3v2.9c0 .3-.3.6-.6.6s-.6-.3-.6-.6V7.7c0-.3.2-.5.5-.6h.2c.2 0 .4.1.5.2l2.5 3.4V7.7c0-.3.3-.6.6-.6s.6.3.6.6v4.8zm3.9-3c.4 0 .6.3.6.6s-.2.6-.6.6h-1.8v1.2h1.8c.4 0 .6.3.6.6s-.2.6-.6.6h-2.4c-.3 0-.6-.3-.6-.6V7.7c0-.3.3-.6.6-.6h2.4c.4 0 .6.3.6.6s-.2.6-.6.6h-1.8v1.2h1.8z"/>
   </symbol>
+  <symbol id="ig" viewBox="0 0 24 24"><path d="M12 2c2.7 0 3 0 4.1.06 1 .05 1.7.2 2.3.44.6.24 1.1.55 1.6 1.05.5.5.8 1 .99 1.6.24.6.4 1.3.44 2.3.06 1.1.06 1.4.06 4.1s0 3-.06 4.1c-.05 1-.2 1.7-.44 2.3a4.3 4.3 0 0 1-1.05 1.6 4.3 4.3 0 0 1-1.6 1c-.6.24-1.3.4-2.3.44-1.1.06-1.4.06-4.1.06s-3 0-4.1-.06c-1-.05-1.7-.2-2.3-.44a4.3 4.3 0 0 1-1.6-1.05 4.3 4.3 0 0 1-1-1.6c-.24-.6-.4-1.3-.44-2.3C2 15 2 14.7 2 12s0-3 .06-4.1c.05-1 .2-1.7.44-2.3a4.3 4.3 0 0 1 1.05-1.6A4.3 4.3 0 0 1 5.15 2.5c.6-.24 1.3-.4 2.3-.44C8.55 2 8.85 2 12 2zm0 1.8c-2.66 0-2.98 0-4.03.05-.97.05-1.5.2-1.85.34-.46.18-.8.4-1.15.74-.34.35-.56.69-.74 1.15-.14.35-.3.88-.34 1.85C3.8 9 3.8 9.3 3.8 12s0 2.98.05 4.02c.05.97.2 1.5.34 1.85.18.46.4.8.74 1.15.35.34.69.56 1.15.74.35.14.88.3 1.85.34 1.05.05 1.37.05 4.03.05s2.98 0 4.02-.05c.97-.05 1.5-.2 1.85-.34.46-.18.8-.4 1.15-.74.34-.35.56-.69.74-1.15.14-.35.3-.88.34-1.85.05-1.04.05-1.36.05-4.02s0-2.98-.05-4.03c-.05-.97-.2-1.5-.34-1.85a3.1 3.1 0 0 0-.74-1.15 3.1 3.1 0 0 0-1.15-.74c-.35-.14-.88-.3-1.85-.34C15 3.8 14.66 3.8 12 3.8zm0 3.07A5.13 5.13 0 1 1 12 17.13 5.13 5.13 0 0 1 12 6.87zm0 1.8a3.33 3.33 0 1 0 0 6.66 3.33 3.33 0 0 0 0-6.66zm5.34-3.2a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></symbol>
 </svg>
 
 <!-- ヘッダー -->
@@ -260,7 +276,7 @@
     <h1>「安全で正しいAI活用」を、<br>美容業界の<em>スタンダード</em>に。</h1>
     <p class="sub">
       テクノロジーの進化と、法令遵守の両立を。<br>
-      薬機法・景表法・AI事業者ガイドラインに対応し、嘘のない施術と正しい説明を徹底。
+      薬機法・景表法・AI事業者ガイドラインに対応し、安全に基づく法令に沿った施術と正しい説明を徹底。
       サロンと消費者が安心できる、新しい美容業界の基準をつくります。
     </p>
     <p class="price-line">会員制サポートは 正会員 <b>月額1,000円</b>から ／ 賛助会員 <b>10万円〜</b>（要相談）</p>
@@ -308,7 +324,7 @@
     </p>
     <p class="desc">
       デジラボビューティ（代表：鎌田麻央）は、美容業界向けにAIの適正利用とコンプライアンス教育を推進するプロジェクトです。
-      美容サロン・メーカー・DXに関心のある事業者を対象に、「嘘のない施術」と「正しい説明」を徹底。
+      美容サロン・メーカー・DXに関心のある事業者を対象に、「安全に基づく法令に沿った施術」と「正しい説明」を徹底。
       消費者が安心してサービスを受けられる環境を守りながら、AIによって業界の生産性を最大化する
       <strong>「新たな美容業界のスタンダード」</strong>を構築します。
     </p>
@@ -567,6 +583,29 @@
       <summary>登録や支払いはどこで行いますか？</summary>
       <div class="ans">すべてLINE上で完結します。友だち追加後、案内に沿って会員登録・お支払い・各種お申し込みが可能です。</div>
     </details>
+  </div>
+</section>
+
+
+<!-- Instagram 誘導 -->
+<section class="insta" id="instagram">
+  <div class="wrap">
+    <div class="insta-card">
+      <div class="insta-text">
+        <span class="eyebrow">Instagram</span>
+        <h2>最新情報は、<br>Instagramで発信中。</h2>
+        <p>セミナーの開催情報や、AI活用の事例・お役立ち情報を日々更新しています。ぜひフォローして、最新の「安全で正しいAI活用」をチェックしてください。</p>
+        <div class="insta-handle">@digilab.beauty_official</div>
+        <a class="insta-btn" href="https://www.instagram.com/digilab.beauty_official/" target="_blank" rel="noopener">
+          <svg class="ig"><use href="#ig"></use></svg>Instagramでフォローする
+        </a>
+      </div>
+      <div class="insta-qr">
+        <div class="qr-frame"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges"><path fill="#ffffff" d="M0 0h35v35H0z"/><path stroke="#1c2b27" d="M1 1.5h7m2 0h5m2 0h4m3 0h1m2 0h7M1 2.5h1m5 0h1m2 0h9m2 0h2m4 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h3m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h1m2 0h1m2 0h3m2 0h2m1 0h3m1 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m4 0h1m2 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h1m3 0h1m2 0h3m2 0h1m1 0h1m1 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m2 0h1m2 0h2m2 0h1m2 0h1m1 0h1M1 9.5h1m1 0h5m2 0h7m1 0h1m4 0h1m1 0h1m1 0h5M2 10.5h3m1 0h1m1 0h3m1 0h2m3 0h1m1 0h6m2 0h2m1 0h2m1 0h1M1 11.5h1m2 0h4m1 0h1m1 0h1m4 0h2m1 0h1m1 0h1m3 0h2m2 0h1m1 0h1M1 12.5h1m1 0h1m2 0h1m2 0h4m2 0h2m5 0h3m4 0h3m1 0h1M4 13.5h1m2 0h2m4 0h1m5 0h1m3 0h4m2 0h2M1 14.5h1m2 0h1m3 0h1m1 0h1m4 0h3m3 0h2m1 0h1m1 0h2m2 0h1m1 0h2M4 15.5h1m2 0h1m1 0h1m1 0h2m5 0h3m4 0h3m4 0h1M1 16.5h2m8 0h3m1 0h1m1 0h1m2 0h5m1 0h2m2 0h2M2 17.5h1m1 0h1m2 0h4m4 0h1m2 0h1m1 0h1m2 0h1m1 0h2m1 0h2m3 0h1M1 18.5h1m3 0h1m2 0h1m1 0h1m1 0h1m1 0h2m1 0h5m1 0h6m1 0h2m1 0h1M2 19.5h1m1 0h1m1 0h3m1 0h2m3 0h2m1 0h1m3 0h1m4 0h3m1 0h2M2 20.5h1m2 0h2m1 0h2m3 0h1m2 0h5m1 0h3m1 0h1m1 0h5M1 21.5h1m1 0h1m1 0h3m1 0h1m1 0h3m1 0h3m5 0h1m1 0h2m2 0h2M1 22.5h2m1 0h1m1 0h1m1 0h3m1 0h5m1 0h2m2 0h1m1 0h1m1 0h1m4 0h1m1 0h1M1 23.5h1m2 0h1m2 0h1m4 0h1m3 0h3m2 0h3m2 0h1m5 0h1M1 24.5h1m2 0h1m1 0h1m2 0h1m1 0h3m2 0h1m3 0h3m1 0h1m1 0h3m1 0h2m1 0h1M1 25.5h1m1 0h2m2 0h1m1 0h1m1 0h2m1 0h3m1 0h1m1 0h2m1 0h7M9 26.5h1m2 0h2m1 0h1m1 0h1m1 0h4m1 0h2m3 0h1m1 0h1m1 0h1M1 27.5h7m2 0h2m4 0h2m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m1 0h2M1 28.5h1m5 0h1m1 0h1m2 0h1m1 0h2m1 0h1m2 0h6m3 0h3M1 29.5h1m1 0h3m1 0h1m1 0h4m1 0h1m4 0h1m3 0h1m1 0h6m1 0h2M1 30.5h1m1 0h3m1 0h1m1 0h3m1 0h1m2 0h3m1 0h1m1 0h1m1 0h1m1 0h1m2 0h5M1 31.5h1m1 0h3m1 0h1m1 0h4m9 0h1m1 0h5m1 0h2M1 32.5h1m5 0h1m3 0h3m1 0h1m1 0h1m3 0h3m2 0h2m1 0h3M1 33.5h7m1 0h1m2 0h1m1 0h2m2 0h3m2 0h6m3 0h1"/></svg>
+</div>
+        <p class="qr-cap">QRコードを読み取ってフォロー</p>
+      </div>
+    </div>
   </div>
 </section>
 
