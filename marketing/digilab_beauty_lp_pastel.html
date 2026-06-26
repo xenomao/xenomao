@@ -286,8 +286,8 @@
   .sem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
   .sem-card{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;transition:transform .2s,box-shadow .2s;}
   .sem-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(120,90,150,.14);}
-  .sem-img{aspect-ratio:3/4;overflow:hidden;background:var(--bg-soft);}
-  .sem-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+  .sem-img{position:relative;width:100%;padding-bottom:133%;overflow:hidden;background:var(--bg-soft);}
+  .sem-img img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
   .sem-meta{padding:15px 17px 19px;}
   .sem-date{font-family:'Quicksand',sans-serif;font-weight:700;font-size:12px;letter-spacing:.08em;color:var(--accent);}
   .sem-title{font-family:'Zen Maru Gothic',sans-serif;font-size:14.5px;font-weight:700;line-height:1.55;margin:6px 0 9px;}
