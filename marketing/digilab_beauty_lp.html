@@ -3,171 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DigiLab Beauty｜美容サロン経営を支える会員制サポート</title>
-<meta name="description" content="美容サロン経営者のための会員制サポート。月2回のAI活用セミナー、社労士・弁護士への無料相談、140万件以上の福利厚生、自分の分身AI「iProducer」まで。月額1,000円から。">
+<title>DigiLab Beauty（デジラボビューティー）｜美容業界の「安全で正しいAI活用」スタンダード</title>
+<meta name="description" content="美容業界向けにAIの適正利用とコンプライアンス教育を推進するプロジェクト「デジラボビューティー」。薬機法・景表法・AI事業者ガイドラインに対応し、安全で正しいAI活用の新たな業界スタンダードをつくります。会員制サポートは月額1,000円から。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   /* =========================================================
-     DigiLab Beauty LP
+     DigiLab Beauty / デジラボビューティー LP
      LINE友だち追加URL: https://lin.ee/ozeGfGq
      ※会員登録・有料会員(月1,000円)決済・情報収集・無料相談申込は
        すべてLINE上で完結する導線です。
      ========================================================= */
   :root{
-    --ink:#1c2b27;          /* 文字・濃色 */
-    --green:#1f4339;        /* メインの深緑 */
-    --green-2:#2c5a4c;
-    --gold:#a98b5d;         /* くすみゴールド */
-    --gold-2:#c2a878;
-    --paper:#fbfaf6;        /* 背景・温かみのある紙色 */
-    --cream:#f3eee3;        /* セクション地 */
-    --line:#e3ddcf;         /* ヘアライン罫 */
-    --muted:#6f6a60;        /* 補助テキスト */
-    --line-green:#06c755;
-    --line-green-d:#05a648;
+    --ink:#1c2b27; --green:#1f4339; --green-2:#2c5a4c;
+    --gold:#a98b5d; --gold-2:#c2a878;
+    --paper:#fbfaf6; --cream:#f3eee3; --line:#e3ddcf;
+    --muted:#6f6a60; --line-green:#06c755; --line-green-d:#05a648;
     --maxw:1080px;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;
-    color:var(--ink);
-    background:var(--paper);
-    line-height:1.85;
-    -webkit-font-smoothing:antialiased;
-    font-size:15px;
-  }
+  body{font-family:'Noto Sans JP','Hiragino Sans','Yu Gothic',sans-serif;color:var(--ink);background:var(--paper);line-height:1.85;-webkit-font-smoothing:antialiased;font-size:15px;}
   img{max-width:100%;display:block;}
   a{color:inherit;}
   .serif{font-family:'Shippori Mincho','Hiragino Mincho ProN',serif;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
 
-  /* eyebrow ラベル */
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:10px;
-    font-size:11px;letter-spacing:.28em;font-weight:700;
-    color:var(--gold);text-transform:uppercase;
-  }
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.28em;font-weight:700;color:var(--gold);text-transform:uppercase;}
   .eyebrow::before{content:"";width:28px;height:1px;background:var(--gold);}
+  .eyebrow.center{justify-content:center;}
   .eyebrow.center::after{content:"";width:28px;height:1px;background:var(--gold);}
 
   .section-head{margin-bottom:42px;}
   .section-head.center{text-align:center;}
-  .section-head.center .eyebrow{justify-content:center;}
-  .section-title{
-    font-family:'Shippori Mincho',serif;
-    font-weight:700;font-size:clamp(24px,3.6vw,34px);
-    line-height:1.5;margin-top:16px;letter-spacing:.02em;
-  }
+  .section-title{font-family:'Shippori Mincho',serif;font-weight:700;font-size:clamp(24px,3.6vw,34px);line-height:1.5;margin-top:16px;letter-spacing:.02em;}
   .section-lead{color:var(--muted);margin-top:14px;font-size:14.5px;}
 
-  /* ===== LINE ボタン ===== */
-  .line-btn{
-    display:inline-flex;align-items:center;justify-content:center;gap:11px;
-    background:var(--line-green);color:#fff;font-weight:700;
-    text-decoration:none;border-radius:999px;
-    padding:16px 34px;font-size:16px;letter-spacing:.04em;
-    transition:background .2s,transform .2s,box-shadow .2s;
-    box-shadow:0 10px 24px rgba(6,199,85,.22);
-  }
+  /* LINE ボタン */
+  .line-btn{display:inline-flex;align-items:center;justify-content:center;gap:11px;background:var(--line-green);color:#fff;font-weight:700;text-decoration:none;border-radius:999px;padding:16px 34px;font-size:16px;letter-spacing:.04em;transition:background .2s,transform .2s,box-shadow .2s;box-shadow:0 10px 24px rgba(6,199,85,.22);}
   .line-btn:hover{background:var(--line-green-d);transform:translateY(-2px);box-shadow:0 14px 28px rgba(6,199,85,.3);}
   .line-btn .ic{width:24px;height:24px;fill:#fff;flex:none;}
   .line-btn.sm{padding:10px 20px;font-size:13px;box-shadow:none;}
   .line-btn.sm .ic{width:18px;height:18px;}
 
-  .ghost-btn{
-    display:inline-flex;align-items:center;gap:8px;
-    text-decoration:none;font-weight:700;font-size:14px;
-    color:var(--green);border-bottom:1px solid var(--gold);
-    padding-bottom:3px;transition:color .2s;
-  }
-  .ghost-btn:hover{color:var(--gold);}
-
-  /* ===== ヘッダー ===== */
-  header.site{
-    position:sticky;top:0;z-index:50;
-    background:rgba(251,250,246,.9);backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
+  /* ヘッダー */
+  header.site{position:sticky;top:0;z-index:50;background:rgba(251,250,246,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
   header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;}
   .brand{display:flex;flex-direction:column;line-height:1.1;text-decoration:none;}
   .brand b{font-family:'Shippori Mincho',serif;font-size:19px;font-weight:700;letter-spacing:.04em;color:var(--ink);}
-  .brand small{font-size:9px;letter-spacing:.34em;color:var(--gold);font-weight:700;margin-top:3px;}
-  nav.main{display:flex;gap:26px;align-items:center;}
+  .brand small{font-size:9px;letter-spacing:.3em;color:var(--gold);font-weight:700;margin-top:3px;}
+  nav.main{display:flex;gap:24px;align-items:center;}
   nav.main a.link{text-decoration:none;font-size:13px;font-weight:500;color:var(--ink);opacity:.85;transition:opacity .2s;}
   nav.main a.link:hover{opacity:1;color:var(--green);}
 
-  /* ===== ヒーロー ===== */
+  /* ヒーロー */
   .hero{background:var(--green);color:#f3eee3;position:relative;overflow:hidden;}
-  .hero::after{ /* 細いゴールドの枠装飾 */
-    content:"";position:absolute;inset:20px;border:1px solid rgba(194,168,120,.28);
-    pointer-events:none;
-  }
-  .hero .wrap{padding-top:84px;padding-bottom:84px;position:relative;z-index:1;}
-  .hero .eyebrow{color:var(--gold-2);}
-  .hero .eyebrow::before{background:var(--gold-2);}
-  .hero h1{
-    font-family:'Shippori Mincho',serif;font-weight:700;
-    font-size:clamp(30px,5.4vw,52px);line-height:1.45;margin:22px 0 10px;
-    letter-spacing:.02em;color:#fff;
-  }
+  .hero::after{content:"";position:absolute;inset:20px;border:1px solid rgba(194,168,120,.28);pointer-events:none;}
+  .hero .wrap{padding-top:80px;padding-bottom:78px;position:relative;z-index:1;}
+  .hero .eyebrow{color:var(--gold-2);} .hero .eyebrow::before{background:var(--gold-2);}
+  .hero h1{font-family:'Shippori Mincho',serif;font-weight:700;font-size:clamp(28px,5vw,50px);line-height:1.46;margin:22px 0 10px;letter-spacing:.02em;color:#fff;}
   .hero h1 em{font-style:normal;color:var(--gold-2);}
-  .hero .sub{font-size:clamp(14px,2vw,16.5px);color:rgba(243,238,227,.82);max-width:600px;margin-bottom:18px;}
-  .hero .price-line{font-size:14px;color:rgba(243,238,227,.7);margin-bottom:32px;}
+  .hero .sub{font-size:clamp(14px,2vw,16.5px);color:rgba(243,238,227,.84);max-width:640px;margin-bottom:18px;}
+  .hero .price-line{font-size:14px;color:rgba(243,238,227,.7);margin-bottom:30px;}
   .hero .price-line b{color:var(--gold-2);font-size:17px;font-family:'Shippori Mincho',serif;}
   .hero-cta{display:flex;flex-wrap:wrap;gap:18px;align-items:center;}
   .hero-cta .note{font-size:12.5px;color:rgba(243,238,227,.6);}
-  .hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;}
-  .hero-tags span{
-    font-size:12px;border:1px solid rgba(194,168,120,.4);color:var(--gold-2);
-    padding:6px 14px;border-radius:999px;letter-spacing:.04em;
-  }
+  .hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px;}
+  .hero-tags span{font-size:12px;border:1px solid rgba(194,168,120,.4);color:var(--gold-2);padding:6px 14px;border-radius:999px;letter-spacing:.04em;}
 
-  /* ===== 課題 ===== */
+  /* 課題（背景） */
   .problems{background:var(--cream);padding:84px 0;}
   .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
-  .problem-grid .cell{
-    background:var(--paper);padding:30px 26px;
-    display:flex;flex-direction:column;gap:12px;
-  }
+  .problem-grid .cell{background:var(--paper);padding:30px 26px;display:flex;flex-direction:column;gap:12px;}
   .problem-grid .cell .no{font-family:'Shippori Mincho',serif;font-size:13px;color:var(--gold);letter-spacing:.1em;}
-  .problem-grid .cell p{font-size:14.5px;font-weight:500;line-height:1.7;}
+  .problem-grid .cell h4{font-size:15px;font-weight:700;}
+  .problem-grid .cell p{font-size:13.5px;color:var(--muted);line-height:1.75;}
   .problems .bridge{text-align:center;margin-top:46px;font-family:'Shippori Mincho',serif;font-size:clamp(18px,2.6vw,24px);line-height:1.7;}
   .problems .bridge b{color:var(--green);border-bottom:2px solid var(--gold-2);padding-bottom:2px;}
 
-  /* ===== サービス ===== */
-  .services{padding:88px 0;}
-  .svc-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
-  .svc{
-    display:grid;grid-template-columns:120px 1fr auto;gap:28px;align-items:center;
-    padding:34px 8px;border-bottom:1px solid var(--line);transition:background .2s;
-  }
-  .svc:hover{background:var(--cream);}
+  /* ミッション/positioning */
+  .mission{padding:90px 0;}
+  .mission .wrap{max-width:880px;text-align:center;}
+  .mission .big{font-family:'Shippori Mincho',serif;font-size:clamp(22px,3.4vw,32px);line-height:1.7;margin-top:18px;}
+  .mission .big b{color:var(--green);}
+  .mission .desc{color:var(--muted);font-size:15px;margin-top:22px;text-align:left;}
+  .quote{margin:48px auto 0;max-width:760px;border-left:3px solid var(--gold-2);padding:8px 0 8px 28px;text-align:left;}
+  .quote p{font-family:'Shippori Mincho',serif;font-size:17px;line-height:1.95;color:var(--ink);}
+  .quote .by{margin-top:16px;font-size:13px;color:var(--muted);letter-spacing:.04em;}
+  .quote .by b{color:var(--green);font-family:'Shippori Mincho',serif;font-size:15px;}
+
+  /* サービス */
+  .services{padding:88px 0;background:var(--cream);}
+  .svc-list{display:flex;flex-direction:column;border-top:1px solid var(--line);}
+  .svc{display:grid;grid-template-columns:120px 1fr auto;gap:28px;align-items:center;padding:34px 8px;border-bottom:1px solid var(--line);transition:background .2s;}
+  .svc:hover{background:var(--paper);}
   .svc .num{font-family:'Shippori Mincho',serif;font-size:40px;color:var(--gold-2);line-height:1;}
   .svc .body h3{font-family:'Shippori Mincho',serif;font-size:21px;font-weight:700;margin-bottom:8px;}
-  .svc .body h3 .tag{
-    font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;
-    color:var(--green);background:#e7efe9;border:1px solid #cfe0d5;border-radius:4px;
-    padding:2px 9px;margin-left:10px;vertical-align:middle;
-  }
+  .svc .body h3 .tag{font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--green);background:#e7efe9;border:1px solid #cfe0d5;border-radius:4px;padding:2px 9px;margin-left:10px;vertical-align:middle;}
   .svc .body p{font-size:14px;color:var(--muted);line-height:1.8;}
   .svc .body ul{margin:8px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;}
   .svc .body ul li{font-size:13px;position:relative;padding-left:16px;color:var(--ink);}
   .svc .body ul li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;background:var(--gold);border-radius:50%;}
   .svc .icon{width:54px;height:54px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;}
 
-  /* ===== iProducer 強調帯 ===== */
+  /* iProducer 帯 */
   .feature{background:var(--ink);color:#f3eee3;padding:74px 0;}
   .feature .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;}
   .feature .eyebrow{color:var(--gold-2);} .feature .eyebrow::before{background:var(--gold-2);}
   .feature h2{font-family:'Shippori Mincho',serif;font-size:clamp(24px,3.4vw,32px);line-height:1.5;margin:16px 0 14px;color:#fff;}
   .feature p{color:rgba(243,238,227,.78);font-size:15px;}
-  .feature .panel{
-    border:1px solid rgba(194,168,120,.35);border-radius:14px;padding:34px;background:rgba(255,255,255,.03);
-    text-align:center;
-  }
+  .feature .panel{border:1px solid rgba(194,168,120,.35);border-radius:14px;padding:34px;background:rgba(255,255,255,.03);text-align:center;}
   .feature .panel .big{font-family:'Shippori Mincho',serif;font-size:54px;color:var(--gold-2);line-height:1.1;}
   .feature .panel .cap{font-size:13px;letter-spacing:.1em;color:rgba(243,238,227,.7);margin-top:6px;}
   .feature .panel .div{height:1px;background:rgba(194,168,120,.25);margin:24px 0;}
@@ -175,7 +121,27 @@
   .feature .panel .rows div{display:flex;justify-content:space-between;font-size:13.5px;border-bottom:1px dashed rgba(243,238,227,.18);padding-bottom:10px;}
   .feature .panel .rows div b{color:var(--gold-2);}
 
-  /* ===== プラン ===== */
+  /* 4つの柱（今後の展開） */
+  .pillars{padding:90px 0;}
+  .pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .pillar{border:1px solid var(--line);border-radius:14px;padding:32px;background:var(--paper);position:relative;}
+  .pillar .pno{font-family:'Shippori Mincho',serif;font-size:13px;color:var(--gold);letter-spacing:.14em;}
+  .pillar h3{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:700;margin:8px 0 6px;}
+  .pillar h3 .roll{display:inline-block;font-family:'Noto Sans JP',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--gold);border:1px solid var(--gold-2);border-radius:999px;padding:2px 10px;margin-left:8px;vertical-align:middle;}
+  .pillar p{font-size:13.5px;color:var(--muted);line-height:1.8;}
+  .pillars .roadmap{margin-top:34px;border:1px dashed var(--gold-2);border-radius:14px;padding:24px 28px;background:var(--cream);text-align:center;}
+  .pillars .roadmap b{color:var(--green);font-weight:700;}
+  .pillars .roadmap .tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px;}
+  .pillars .roadmap .tags span{font-size:12.5px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 15px;}
+
+  /* 信頼・実績 */
+  .creds{background:var(--green);color:#f3eee3;padding:60px 0;}
+  .creds .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(243,238,227,.18);border:1px solid rgba(243,238,227,.18);}
+  .creds .item{background:var(--green);padding:30px 26px;text-align:center;}
+  .creds .item .k{font-family:'Shippori Mincho',serif;font-size:18px;color:#fff;line-height:1.5;}
+  .creds .item .v{font-size:12.5px;color:rgba(243,238,227,.7);margin-top:8px;letter-spacing:.04em;}
+
+  /* プラン */
   .plans{padding:88px 0;background:var(--cream);}
   .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
   .plan{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:40px 36px;position:relative;}
@@ -192,41 +158,36 @@
   .plan ul li::before{content:"✓";position:absolute;left:0;top:0;color:var(--gold);font-weight:700;}
   .plan .plan-cta{display:block;}
 
-  /* ===== 入会の流れ ===== */
+  /* 入会の流れ */
   .flow{padding:88px 0;}
-  .flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);}
-  .flow-grid .step{padding:30px 24px;border-right:1px solid var(--line);position:relative;}
+  .flow-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);}
+  .flow-grid .step{padding:30px 24px;border-right:1px solid var(--line);}
   .flow-grid .step:last-child{border-right:none;}
   .flow-grid .step .st{font-family:'Shippori Mincho',serif;font-size:13px;color:var(--gold);letter-spacing:.12em;}
   .flow-grid .step h4{font-size:16px;font-weight:700;margin:10px 0 8px;}
   .flow-grid .step p{font-size:13px;color:var(--muted);line-height:1.7;}
 
-  /* ===== 対象 ===== */
-  .target{padding:84px 0;background:var(--green);color:#f3eee3;}
-  .target .eyebrow{color:var(--gold-2);} .target .eyebrow::before{background:var(--gold-2);} .target .eyebrow.center::after{background:var(--gold-2);}
-  .target .section-title{color:#fff;}
+  /* 対象 */
+  .target{padding:84px 0;background:var(--cream);}
   .target-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:42px;}
-  .target-card{border:1px solid rgba(194,168,120,.35);border-radius:14px;padding:34px;}
-  .target-card h3{font-family:'Shippori Mincho',serif;font-size:20px;color:#fff;margin-bottom:6px;}
-  .target-card .lbl{font-size:11px;letter-spacing:.2em;color:var(--gold-2);font-weight:700;margin-bottom:16px;}
+  .target-card{border:1px solid var(--line);border-radius:14px;padding:34px;background:var(--paper);}
+  .target-card h3{font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:6px;}
+  .target-card .lbl{font-size:11px;letter-spacing:.2em;color:var(--gold);font-weight:700;margin-bottom:16px;}
   .target-card ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;}
-  .target-card ul li{font-size:13px;border:1px solid rgba(243,238,227,.25);padding:6px 13px;border-radius:999px;color:rgba(243,238,227,.9);}
+  .target-card ul li{font-size:13px;border:1px solid var(--line);padding:6px 13px;border-radius:999px;color:var(--ink);background:var(--cream);}
 
-  /* ===== FAQ ===== */
+  /* FAQ */
   .faq{padding:88px 0;}
   .faq details{border-bottom:1px solid var(--line);padding:6px 0;}
-  .faq summary{
-    list-style:none;cursor:pointer;padding:18px 40px 18px 34px;position:relative;
-    font-weight:700;font-size:15px;
-  }
+  .faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 34px;position:relative;font-weight:700;font-size:15px;}
   .faq summary::-webkit-details-marker{display:none;}
   .faq summary::before{content:"Q";position:absolute;left:0;top:18px;font-family:'Shippori Mincho',serif;color:var(--gold);font-size:17px;}
-  .faq summary::after{content:"+";position:absolute;right:8px;top:16px;color:var(--gold);font-size:22px;transition:transform .2s;}
+  .faq summary::after{content:"+";position:absolute;right:8px;top:16px;color:var(--gold);font-size:22px;}
   .faq details[open] summary::after{content:"–";}
   .faq .ans{padding:0 8px 22px 34px;color:var(--muted);font-size:14px;line-height:1.85;}
 
-  /* ===== 最終CTA ===== */
-  .final{background:var(--ink);color:#f3eee3;padding:88px 0;text-align:center;position:relative;}
+  /* 最終CTA */
+  .final{background:var(--ink);color:#f3eee3;padding:88px 0;text-align:center;}
   .final .eyebrow{color:var(--gold-2);justify-content:center;} .final .eyebrow::before{background:var(--gold-2);} .final .eyebrow.center::after{background:var(--gold-2);}
   .final h2{font-family:'Shippori Mincho',serif;font-size:clamp(26px,4vw,38px);color:#fff;margin:18px 0 12px;line-height:1.5;}
   .final p{color:rgba(243,238,227,.78);margin-bottom:14px;}
@@ -234,32 +195,24 @@
   .final .price-line b{color:var(--gold-2);font-family:'Shippori Mincho',serif;font-size:17px;}
   .final .micro{margin-top:18px;font-size:12.5px;color:rgba(243,238,227,.55);}
 
-  /* ===== フッター ===== */
+  /* フッター */
   footer.site{background:#141e1b;color:rgba(243,238,227,.7);padding:48px 0 36px;}
   footer.site .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;}
   footer .brand b{color:#fff;} footer .brand small{color:var(--gold-2);}
-  footer .f-right{text-align:right;font-size:13px;line-height:1.9;}
+  footer .f-right{text-align:right;font-size:13px;line-height:1.95;}
   footer .f-right a{color:var(--gold-2);text-decoration:none;}
   footer .copy{border-top:1px solid rgba(243,238,227,.12);margin-top:30px;padding-top:20px;font-size:12px;color:rgba(243,238,227,.45);text-align:center;}
 
-  /* ===== フローティングLINE ===== */
-  .float-line{
-    position:fixed;right:22px;bottom:22px;z-index:80;
-    display:inline-flex;align-items:center;gap:9px;
-    background:var(--line-green);color:#fff;font-weight:700;font-size:14px;
-    padding:13px 20px;border-radius:999px;text-decoration:none;
-    box-shadow:0 10px 26px rgba(6,199,85,.4);transition:background .2s,transform .2s;
-  }
+  /* フローティングLINE */
+  .float-line{position:fixed;right:22px;bottom:22px;z-index:80;display:inline-flex;align-items:center;gap:9px;background:var(--line-green);color:#fff;font-weight:700;font-size:14px;padding:13px 20px;border-radius:999px;text-decoration:none;box-shadow:0 10px 26px rgba(6,199,85,.4);transition:background .2s,transform .2s;}
   .float-line:hover{background:var(--line-green-d);transform:translateY(-2px);}
   .float-line .ic{width:22px;height:22px;fill:#fff;}
 
-  /* ===== レスポンシブ ===== */
   @media(max-width:860px){
-    .feature .wrap,.plan-grid,.target-grid{grid-template-columns:1fr;}
-    .problem-grid{grid-template-columns:1fr;}
+    .feature .wrap,.plan-grid,.target-grid,.pillar-grid{grid-template-columns:1fr;}
+    .problem-grid,.creds .wrap{grid-template-columns:1fr;}
     .flow-grid{grid-template-columns:1fr 1fr;}
-    .svc{grid-template-columns:64px 1fr;}
-    .svc .icon{display:none;}
+    .svc{grid-template-columns:64px 1fr;} .svc .icon{display:none;}
     nav.main .link{display:none;}
   }
   @media(max-width:520px){
@@ -268,13 +221,12 @@
     .flow-grid .step{border-right:none;border-bottom:1px solid var(--line);}
     .flow-grid .step:last-child{border-bottom:none;}
     .float-line span{display:none;} .float-line{padding:14px;}
-    .hero .wrap{padding-top:56px;padding-bottom:56px;}
+    .hero .wrap{padding-top:54px;padding-bottom:54px;}
   }
 </style>
 </head>
 <body>
 
-<!-- LINE アイコン定義 -->
 <svg style="display:none" aria-hidden="true">
   <symbol id="line" viewBox="0 0 24 24">
     <path d="M24 10.3C24 4.9 18.6.5 12 .5S0 4.9 0 10.3c0 4.8 4.3 8.9 10 9.7.4.1.9.3 1.1.6.1.3.1.7 0 1l-.2 1.1c-.1.3-.3 1.3 1.1.7 1.4-.6 7.5-4.4 10.2-7.5C23.1 14 24 12.3 24 10.3zM7.7 13.1H5.3c-.3 0-.6-.3-.6-.6V7.7c0-.3.3-.6.6-.6.4 0 .6.3.6.6v4.2h1.8c.4 0 .6.3.6.6s-.2.6-.6.6zm2.4-.6c0 .3-.3.6-.6.6s-.6-.3-.6-.6V7.7c0-.3.3-.6.6-.6s.6.3.6.6v4.8zm5.8 0c0 .3-.2.5-.5.6h-.2c-.2 0-.4-.1-.5-.2l-2.5-3.3v2.9c0 .3-.3.6-.6.6s-.6-.3-.6-.6V7.7c0-.3.2-.5.5-.6h.2c.2 0 .4.1.5.2l2.5 3.4V7.7c0-.3.3-.6.6-.6s.6.3.6.6v4.8zm3.9-3c.4 0 .6.3.6.6s-.2.6-.6.6h-1.8v1.2h1.8c.4 0 .6.3.6.6s-.2.6-.6.6h-2.4c-.3 0-.6-.3-.6-.6V7.7c0-.3.3-.6.6-.6h2.4c.4 0 .6.3.6.6s-.2.6-.6.6h-1.8v1.2h1.8z"/>
@@ -286,12 +238,13 @@
   <div class="wrap">
     <a class="brand" href="#top">
       <b>DigiLab Beauty</b>
-      <small>DIGITAL LABORATORY</small>
+      <small>デジラボビューティー</small>
     </a>
     <nav class="main">
+      <a class="link" href="#mission">理念</a>
       <a class="link" href="#services">サービス</a>
+      <a class="link" href="#standard">業界スタンダード</a>
       <a class="link" href="#plans">料金プラン</a>
-      <a class="link" href="#flow">入会の流れ</a>
       <a class="link" href="#faq">よくある質問</a>
       <a class="line-btn sm" href="https://lin.ee/ozeGfGq" target="_blank" rel="noopener">
         <svg class="ic"><use href="#line"></use></svg>LINEで相談
@@ -303,66 +256,86 @@
 <!-- ヒーロー -->
 <section class="hero" id="top">
   <div class="wrap">
-    <span class="eyebrow">Membership for Beauty Salons</span>
-    <h1>美容サロンの経営に、<br><em>頼れる味方</em>を。</h1>
+    <span class="eyebrow">Safe &amp; Compliant AI for Beauty</span>
+    <h1>「安全で正しいAI活用」を、<br>美容業界の<em>スタンダード</em>に。</h1>
     <p class="sub">
-      AIの使い方も、労務トラブルも、開業の不安も。<br>
-      美容業界に特化した会員制サポートが、サロン経営を一年中支えます。
+      テクノロジーの進化と、法令遵守の両立を。<br>
+      薬機法・景表法・AI事業者ガイドラインに対応し、嘘のない施術と正しい説明を徹底。
+      サロンと消費者が安心できる、新しい美容業界の基準をつくります。
     </p>
-    <p class="price-line">正会員 <b>月額1,000円</b>から ／ 賛助会員 <b>10万円〜</b>（要相談）</p>
+    <p class="price-line">会員制サポートは 正会員 <b>月額1,000円</b>から ／ 賛助会員 <b>10万円〜</b>（要相談）</p>
     <div class="hero-cta">
       <a class="line-btn" href="https://lin.ee/ozeGfGq" target="_blank" rel="noopener">
         <svg class="ic"><use href="#line"></use></svg>LINEで会員登録・無料相談
       </a>
-      <span class="note">友だち追加して、登録・相談・お申し込みまでLINEで完結</span>
+      <span class="note">登録・お支払い・お申し込みまでLINEで完結</span>
     </div>
     <div class="hero-tags">
-      <span>月2回のAIセミナー</span>
-      <span>社労士・弁護士に無料相談</span>
-      <span>140万件以上の福利厚生</span>
-      <span>分身AI「iProducer」</span>
+      <span>Beautyworld Japan 登壇</span>
+      <span>一般社団法人デジタルサロン協会 等と連携</span>
+      <span>コンプライアンス教育</span>
+      <span>検定・認定サロン制度</span>
     </div>
   </div>
 </section>
 
-<!-- 課題 -->
+<!-- 課題（背景） -->
 <section class="problems">
   <div class="wrap">
     <div class="section-head center">
-      <span class="eyebrow center">Your Concerns</span>
-      <h2 class="section-title">ひとりサロンの経営、<br>こんな不安はありませんか。</h2>
+      <span class="eyebrow center">Why Now</span>
+      <h2 class="section-title">なぜ今、美容業界に<br>「正しいAI」が必要なのか。</h2>
     </div>
     <div class="problem-grid">
-      <div class="cell"><span class="no">01</span><p>AIを使えば効率化できると聞くけれど、何から始めればいいか分からない。</p></div>
-      <div class="cell"><span class="no">02</span><p>スタッフやお客様とのトラブル。誰に相談すればいいのか分からず抱え込んでいる。</p></div>
-      <div class="cell"><span class="no">03</span><p>独立・開業を考えているが、手続きや資金、集客の不安が大きい。</p></div>
-      <div class="cell"><span class="no">04</span><p>労務や社会保険の手続きが煩雑で、本業に集中できない。</p></div>
-      <div class="cell"><span class="no">05</span><p>大手のような福利厚生を、小さなサロンでも用意してあげたい。</p></div>
-      <div class="cell"><span class="no">06</span><p>24時間、お客様の問い合わせに対応しきれず機会を逃している。</p></div>
+      <div class="cell"><span class="no">01</span><h4>深刻な人手不足</h4><p>慢性的な人材不足が、サロン経営の大きな負担になっています。</p></div>
+      <div class="cell"><span class="no">02</span><h4>技術・接客の属人化</h4><p>技術やカウンセリング力が個人に依存し、育成・継承が難しい。</p></div>
+      <div class="cell"><span class="no">03</span><h4>AI誤用のリスク</h4><p>薬機法・景表法・特定商取引法やAI事業者ガイドラインを理解せぬまま運用し、コンプライアンス違反のリスクが顕在化。</p></div>
+      <div class="cell"><span class="no">04</span><h4>「進化」と「遵守」の板挟み</h4><p>AIを取り入れたいが、法令遵守との両立に悩むサロンが増えています。</p></div>
+      <div class="cell"><span class="no">05</span><h4>労務・開業の不安</h4><p>労務手続きや独立・開業の悩みを、誰に相談すべきか分からない。</p></div>
+      <div class="cell"><span class="no">06</span><h4>消費者の不安</h4><p>「正しい情報か」分からないまま、施術や商品を選ばざるを得ない。</p></div>
     </div>
-    <p class="bridge">その悩み、<b>DigiLab Beauty</b>がまとめて支えます。</p>
+    <p class="bridge">その課題に、<b>デジラボビューティー</b>が「基準」で応えます。</p>
   </div>
 </section>
 
-<!-- サービス -->
+<!-- ミッション / positioning -->
+<section class="mission" id="mission">
+  <div class="wrap">
+    <span class="eyebrow center">Our Mission</span>
+    <p class="big">
+      コンプライアンスという<b>強固な土台</b>の上に、<br>
+      最先端のAIを掛け合わせる。
+    </p>
+    <p class="desc">
+      デジラボビューティー（代表：鎌田麻央）は、美容業界向けにAIの適正利用とコンプライアンス教育を推進するプロジェクトです。
+      美容サロン・メーカー・DXに関心のある事業者を対象に、「嘘のない施術」と「正しい説明」を徹底。
+      消費者が安心してサービスを受けられる環境を守りながら、AIによって業界の生産性を最大化する
+      <strong>「新たな美容業界のスタンダード」</strong>を構築します。
+    </p>
+    <div class="quote">
+      <p>「美容業界は、人の手による温かみや技術が最も尊重される素晴らしい産業です。だからこそAIは、人を置き換えるためではなく、スタッフの負担を減らし、お客様に『嘘のない正しい情報』を届けるために使われるべきだと確信しています。」</p>
+      <div class="by">デジラボビューティー 代表 — <b>鎌田 麻央</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 会員サービス -->
 <section class="services" id="services">
   <div class="wrap">
     <div class="section-head center">
-      <span class="eyebrow center">What We Offer</span>
+      <span class="eyebrow center">Member Benefits</span>
       <h2 class="section-title">会員になると、受けられること。</h2>
       <p class="section-lead">経営・労務・集客・テクノロジー。サロンに必要なサポートを、ひとつの会員制で。</p>
     </div>
     <div class="svc-list">
-
       <div class="svc">
         <div class="num">01</div>
         <div class="body">
           <h3>AI活用セミナー<span class="tag">毎月2回開催</span></h3>
-          <p>「AIを使えるようになる」ための実践セミナーを月2回開催。集客・予約対応・コンテンツ作成など、サロン経営にすぐ活かせる内容を、初心者にも分かりやすくお届けします。</p>
+          <p>薬機法・景表法を踏まえた「安全で正しいAIの使い方」を、月2回の実践セミナーで習得。集客・予約対応・コンテンツ作成など、サロン経営にすぐ活かせる内容を初心者にも分かりやすく。</p>
         </div>
         <div class="icon">🎓</div>
       </div>
-
       <div class="svc">
         <div class="num">02</div>
         <div class="body">
@@ -376,7 +349,6 @@
         </div>
         <div class="icon">⚖️</div>
       </div>
-
       <div class="svc">
         <div class="num">03</div>
         <div class="body">
@@ -385,27 +357,25 @@
         </div>
         <div class="icon">🎁</div>
       </div>
-
       <div class="svc">
         <div class="num">04</div>
         <div class="body">
           <h3>分身AI「iProducer」<span class="tag">24時間対応</span></h3>
-          <p>あなたの顔を再現したAIチャットボットを、スマホ上に生成。24時間いつでもお客様の質問に答え、予約や問い合わせの取りこぼしを防ぎます。あなたの“もう一人の自分”が接客を支えます。</p>
+          <p>あなたの顔を再現したAIチャットボットをスマホ上に生成。24時間いつでもお客様の質問に答え、予約や問い合わせの取りこぼしを防ぎます。あなたの“もう一人の自分”が接客を支えます。</p>
         </div>
         <div class="icon">🤖</div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- iProducer 強調 -->
+<!-- iProducer -->
 <section class="feature">
   <div class="wrap">
     <div class="text">
       <span class="eyebrow">iProducer</span>
       <h2>あなたの分身が、<br>24時間サロンを支える。</h2>
-      <p>自分の顔を入れたAIチャットボットを、個人のスマホに生成。お客様からの「何でも」に、昼も夜も即レスポンス。施術中も、休日も、機会を逃しません。デジタルの力で“もう一人の自分”を持てる時代へ。</p>
+      <p>自分の顔を入れたAIチャットボットを、個人のスマホに生成。お客様からの「何でも」に、昼も夜も即レスポンス。施術中も休日も、機会を逃しません。デジタルの力で“もう一人の自分”を持てる時代へ。</p>
     </div>
     <div class="panel">
       <div class="big">24<span style="font-size:24px">h</span></div>
@@ -420,6 +390,57 @@
   </div>
 </section>
 
+<!-- 業界スタンダード（4つの柱・今後の展開） -->
+<section class="pillars" id="standard">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow center">Vision · 今後の展開</span>
+      <h2 class="section-title">4つの柱で、<br>業界の「基準」をつくる。</h2>
+      <p class="section-lead">私たちが目指す姿です。業界全体の底上げと安全なAI運用の普及へ、以下のソリューションを<strong>順次展開予定（現在準備中）</strong>です。</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pno">PILLAR 01</div>
+        <h3>AI活用診断<span class="roll">展開予定</span></h3>
+        <p>各サロンのデジタル化レベルやコンプライアンス体制を可視化し、最適なAI導入ステップを個別にフィードバックする診断サービス。</p>
+      </div>
+      <div class="pillar">
+        <div class="pno">PILLAR 02</div>
+        <h3>デジラボビューティー講座<span class="roll">展開予定</span></h3>
+        <p>薬機法・景表法を遵守したプロンプト作成、ベテランの知識を学習させた「AIクローン」の構築など、美容現場に即した実践スキルを学ぶカリキュラム。</p>
+      </div>
+      <div class="pillar">
+        <div class="pno">PILLAR 03</div>
+        <h3>デジラボビューティー検定<span class="roll">展開予定</span></h3>
+        <p>AIの基礎知識と美容業界におけるコンプライアンス知識を網羅した検定制度。スタッフのスキルアップと、顧客への信頼性の証明に。</p>
+      </div>
+      <div class="pillar">
+        <div class="pno">PILLAR 04</div>
+        <h3>認定サロン制度<span class="roll">展開予定</span></h3>
+        <p>正しいAI活用と厳格なコンプライアンス基準をクリアした店舗を「デジラボビューティー認定サロン」として公式認定。消費者が安心して選べる目印に。</p>
+      </div>
+    </div>
+    <div class="roadmap">
+      さらに、業界標準として <b>AI活用ガイドライン</b> や <b>代替用語集</b> なども順次整備し、美容業界の「あたりまえ」をアップデートしていきます。
+      <div class="tags">
+        <span>AI活用ガイドライン</span>
+        <span>代替用語集</span>
+        <span>コンプライアンス基準</span>
+        <span>認定制度の拡充</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 信頼・実績 -->
+<section class="creds">
+  <div class="wrap">
+    <div class="item"><div class="k">Beautyworld Japan</div><div class="v">日本最大級の国際総合ビューティ見本市にて登壇</div></div>
+    <div class="item"><div class="k">一般社団法人<br>デジタルサロン協会 等</div><div class="v">主要な美容業界団体との強固な連携</div></div>
+    <div class="item"><div class="k">メーカー・DX事業者</div><div class="v">先駆的な事業者の間で急速に認知が拡大</div></div>
+  </div>
+</section>
+
 <!-- プラン -->
 <section class="plans" id="plans">
   <div class="wrap">
@@ -429,7 +450,6 @@
       <p class="section-lead">登録・お支払い・お申し込みはすべてLINE上で完結します。</p>
     </div>
     <div class="plan-grid">
-
       <div class="plan primary">
         <span class="ribbon">サロン経営者向け</span>
         <div class="kind">Regular Member</div>
@@ -447,7 +467,6 @@
           <svg class="ic"><use href="#line"></use></svg>LINEで会員登録する
         </a>
       </div>
-
       <div class="plan">
         <div class="kind">Supporting Member</div>
         <h3>賛助会員</h3>
@@ -457,14 +476,13 @@
           <li>美容サロンネットワークへのアプローチ</li>
           <li>セミナー・イベントでの協業機会</li>
           <li>会員サロンへの情報発信</li>
-          <li>業界連携・共同企画のご提案</li>
+          <li>業界標準づくりへの参画</li>
           <li>条件は内容に応じて個別にご相談</li>
         </ul>
         <a class="line-btn plan-cta" href="https://lin.ee/ozeGfGq" target="_blank" rel="noopener">
           <svg class="ic"><use href="#line"></use></svg>LINEで相談する
         </a>
       </div>
-
     </div>
   </div>
 </section>
@@ -478,7 +496,7 @@
       <p class="section-lead">すべてLINEで完結。最短その日から相談・お申し込みいただけます。</p>
     </div>
     <div class="flow-grid">
-      <div class="step"><div class="st">STEP 01</div><h4>友だち追加</h4><p>LINEでDigiLab Beautyを友だち追加します。</p></div>
+      <div class="step"><div class="st">STEP 01</div><h4>友だち追加</h4><p>LINEでデジラボビューティーを友だち追加します。</p></div>
       <div class="step"><div class="st">STEP 02</div><h4>会員登録</h4><p>LINE上の案内に沿って、かんたんに会員情報を登録。</p></div>
       <div class="step"><div class="st">STEP 03</div><h4>お支払い</h4><p>正会員（月額1,000円）の決済までLINEで完結します。</p></div>
       <div class="step"><div class="st">STEP 04</div><h4>利用開始</h4><p>セミナー・相談・福利厚生・iProducerをご利用いただけます。</p></div>
@@ -530,6 +548,10 @@
       <div class="ans">はい。月2回のセミナーは初心者の方を前提に、サロン経営にすぐ使える内容を分かりやすくお伝えします。「何から始めればいいか分からない」方こそ歓迎です。</div>
     </details>
     <details>
+      <summary>「コンプライアンス対応」とは具体的に何をしてくれますか？</summary>
+      <div class="ans">薬機法・景品表示法・特定商取引法や、省庁が策定するAI事業者ガイドライン等を踏まえ、違反リスクを避けた「安全で正しいAI活用」を教育・サポートします。今後は検定や認定サロン制度を通じて、客観的な基準づくりも進めます。</div>
+    </details>
+    <details>
       <summary>相談は本当に無料ですか？</summary>
       <div class="ans">社労士への相談、弁護士の30分相談は会員特典として無料でご利用いただけます。内容によっては別途専門サービスをご案内する場合があります。</div>
     </details>
@@ -552,7 +574,7 @@
 <section class="final">
   <div class="wrap">
     <span class="eyebrow center">Get Started</span>
-    <h2>まずはLINEで、<br>気軽にはじめましょう。</h2>
+    <h2>安全で正しいAI活用を、<br>あなたのサロンから。</h2>
     <p>会員登録・お支払い・無料相談のお申し込みまで、すべてLINEで完結します。</p>
     <p class="price-line">正会員 <b>月額1,000円</b> ／ 賛助会員 <b>10万円〜</b>（要相談）</p>
     <a class="line-btn" href="https://lin.ee/ozeGfGq" target="_blank" rel="noopener">
@@ -567,17 +589,17 @@
   <div class="wrap">
     <a class="brand" href="#top">
       <b>DigiLab Beauty</b>
-      <small>DIGITAL LABORATORY FOR BEAUTY</small>
+      <small>デジラボビューティー</small>
     </a>
     <div class="f-right">
-      美容サロン経営を支える会員制サポート<br>
+      代表：鎌田 麻央<br>
+      事業内容：美容業界向けAI活用コンサルティング／コンプライアンス教育／検定・認定事業<br>
       お問い合わせ：<a href="https://lin.ee/ozeGfGq" target="_blank" rel="noopener">LINE公式アカウント</a>
     </div>
   </div>
-  <div class="copy">© 2026 DigiLab Beauty. All rights reserved.</div>
+  <div class="copy">© 2026 デジラボビューティー（DigiLab Beauty）. All rights reserved.</div>
 </footer>
 
-<!-- フローティングLINE -->
 <a class="float-line" href="https://lin.ee/ozeGfGq" target="_blank" rel="noopener" aria-label="LINEで相談する">
   <svg class="ic"><use href="#line"></use></svg>
   <span>LINEで相談</span>
