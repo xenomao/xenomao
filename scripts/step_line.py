@@ -95,38 +95,64 @@ DORMANT_REVIVAL = {
 }
 
 
-def seed_sample_scenario():
-    """サンプルシナリオ（休眠顧客復活フロー）を投入"""
-    conn = _connect()
-    cur = conn.cursor()
+# 新規友だち歓迎フロー（友だち追加直後のオンボーディング → Webhookの follow で自動開始）
+WELCOME_FLOW = {
+    "name": "新規友だち歓迎フロー",
+    "description": "友だち追加直後のオンボーディング。初回特典の案内から予約までを段階的に促す。",
+    "trigger_type": "on_friend_add",
+    "steps": [
+        {
+            "delay_days": 0,
+            "text": "{name}さん、友だち追加ありがとうございます！はじめまして、DigiLab Beautyです。初回限定クーポンをお送りしますので、ぜひご利用ください。",
+            "note": "即時: 歓迎＋初回クーポン",
+        },
+        {
+            "delay_days": 3,
+            "text": "{name}さんへ。私たちのサロンのこだわりと、人気メニューをご紹介します。気になる施術があればお気軽にメッセージください。",
+            "note": "3日後: 価値提供（こだわり紹介）",
+        },
+        {
+            "delay_days": 7,
+            "text": "{name}さん、そろそろ初回のご予約はいかがですか？ご希望の日時をこのトークで送っていただければ、空き状況をご案内します。",
+            "note": "7日後: 予約への背中押し",
+        },
+    ],
+}
 
+SAMPLE_SCENARIOS = [DORMANT_REVIVAL, WELCOME_FLOW]
+
+
+def _seed_one(conn, scenario):
+    cur = conn.cursor()
     existing = cur.execute(
-        "SELECT scenario_id FROM step_scenarios WHERE name = ?",
-        (DORMANT_REVIVAL["name"],),
+        "SELECT scenario_id FROM step_scenarios WHERE name = ?", (scenario["name"],)
     ).fetchone()
     if existing:
-        print(f"⚠ 既に存在します: {DORMANT_REVIVAL['name']} (scenario_id={existing['scenario_id']})")
-        conn.close()
+        print(f"⚠ 既に存在します: {scenario['name']} (scenario_id={existing['scenario_id']})")
         return existing["scenario_id"]
 
     cur.execute(
-        """INSERT INTO step_scenarios (name, description, trigger_type)
-           VALUES (?, ?, ?)""",
-        (DORMANT_REVIVAL["name"], DORMANT_REVIVAL["description"], DORMANT_REVIVAL["trigger_type"]),
+        "INSERT INTO step_scenarios (name, description, trigger_type) VALUES (?, ?, ?)",
+        (scenario["name"], scenario["description"], scenario["trigger_type"]),
     )
     scenario_id = cur.lastrowid
-
-    for i, step in enumerate(DORMANT_REVIVAL["steps"], 1):
+    for i, step in enumerate(scenario["steps"], 1):
         cur.execute(
             """INSERT INTO step_messages (scenario_id, step_order, delay_days, message_text, note)
                VALUES (?, ?, ?, ?, ?)""",
             (scenario_id, i, step["delay_days"], step["text"], step["note"]),
         )
+    print(f"✓ シナリオ投入完了: {scenario['name']} ({len(scenario['steps'])}ステップ)")
+    return scenario_id
 
+
+def seed_sample_scenario():
+    """サンプルシナリオ（休眠顧客復活フロー / 新規友だち歓迎フロー）を投入"""
+    conn = _connect()
+    ids = [_seed_one(conn, sc) for sc in SAMPLE_SCENARIOS]
     conn.commit()
     conn.close()
-    print(f"✓ シナリオ投入完了: {DORMANT_REVIVAL['name']} ({len(DORMANT_REVIVAL['steps'])}ステップ)")
-    return scenario_id
+    return ids[0]
 
 
 # ======================================================================
@@ -192,6 +218,44 @@ def enroll(subscriber_id, scenario_id, start_date=None):
         print(f"⚠ 既に登録済み: enrollment_id={enrollment_id}")
     conn.close()
     return enrollment_id
+
+
+def enroll_by_trigger(subscriber_id, trigger_type, start_date=None):
+    """指定トリガー種別の有効シナリオすべてに購読者を登録する。
+
+    例: 友だち追加時に trigger_type='on_friend_add' の全シナリオへ自動エンロール。
+    登録した enrollment_id のリストを返す。
+    """
+    conn = _connect()
+    scenarios = conn.execute(
+        "SELECT scenario_id FROM step_scenarios WHERE trigger_type = ? AND status = '有効' ORDER BY scenario_id",
+        (trigger_type,),
+    ).fetchall()
+    conn.close()
+
+    enrollment_ids = []
+    for s in scenarios:
+        enrollment_ids.append(enroll(subscriber_id, s["scenario_id"], start_date=start_date))
+    if not scenarios:
+        print(f"  （trigger_type='{trigger_type}' の有効シナリオなし、エンロールなし）")
+    return enrollment_ids
+
+
+def set_subscriber_status(line_user_id, status):
+    """購読者ステータスを更新（'有効' / 'ブロック' / '退会'）。
+
+    ブロック/退会にすると run 実行時に自動スキップされる。
+    """
+    conn = _connect()
+    cur = conn.cursor()
+    cur.execute(
+        "UPDATE line_subscribers SET status = ? WHERE line_user_id = ?",
+        (status, line_user_id),
+    )
+    updated = cur.rowcount
+    conn.commit()
+    conn.close()
+    return updated
 
 
 # ======================================================================

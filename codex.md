@@ -15,6 +15,7 @@ This is the DigiLab Beauty AI organization system, managing 18 esthetic industry
 - `scripts/daily_news_collection.py` - Daily news collection from NewsAPI
 - `scripts/line_harness.py` - LINE Messaging API harness (push/multicast/profile)
 - `scripts/step_line.py` - LINE step-delivery (ステップライン) engine: init/seed/enroll/run/status
+- `scripts/line_webhook.py` - LINE Webhook receiver (Flask): follow→auto-enroll, unfollow→block (signature verified)
 - `db/digilab_beauty.db` - SQLite database with 13 tables
 - `db/digilab_beauty_db_schema.sql` - Base schema (8 tables)
 - `db/line_step_schema.sql` - LINE step-line schema (5 tables, additive)

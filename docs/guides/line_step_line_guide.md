@@ -8,6 +8,12 @@ LINE公式アカウントの**ステップ配信（ステップライン）**を
 ## 🧩 アーキテクチャ
 
 ```
+line_webhook.py（受信 / Flask）
+  ├─ follow   友だち追加  → 購読者登録 → on_friend_add シナリオへ自動エンロール
+  ├─ unfollow ブロック    → 購読者ステータスを「ブロック」に
+  └─ message  受信        → ログ（拡張用）
+        │  X-Line-Signature 検証（HMAC-SHA256）
+        ▼
 step_line.py（エンジン）
   ├─ シナリオ定義     : step_scenarios / step_messages
   ├─ 購読者管理       : line_subscribers
@@ -39,11 +45,14 @@ pip install requests python-dotenv
 ```ini
 DB_PATH=/path/to/digilab_beauty.db          # 未設定なら repo内 db/digilab_beauty.db
 LINE_CHANNEL_ACCESS_TOKEN=（長期チャネルアクセストークン）
+LINE_CHANNEL_SECRET=（チャネルシークレット / Webhook署名検証用）
 LINE_DRY_RUN=1                              # 1=ドライラン（既定/誤送信防止）, 0=本送信
+PORT=8000                                   # Webhook受け口のポート
 ```
 
-トークンは [LINE Developers](https://developers.line.biz/) コンソールの
-対象チャネル →「Messaging API設定」→「チャネルアクセストークン（長期）」から取得します。
+- **チャネルアクセストークン**: [LINE Developers](https://developers.line.biz/) コンソールの
+  対象チャネル →「Messaging API設定」→「チャネルアクセストークン（長期）」
+- **チャネルシークレット**: 同チャネル →「チャネル基本設定」→「チャネルシークレット」
 
 > ⚠️ 既定は **ドライラン**（`LINE_DRY_RUN=1`）です。実際にLINEへ送るまでは
 > APIを叩かず、送信内容のプレビューとログ記録のみ行います。
@@ -130,6 +139,48 @@ VALUES
 ```
 
 `delay_days` は **前ステップ（ステップ1は登録日）からの待機日数**です。
+
+---
+
+## 🔗 Webhook：友だち追加→自動でステップライン開始
+
+`scripts/line_webhook.py`（Flask）がLINEからのイベントを受信し、ステップラインと連携します。
+
+| イベント | 処理 |
+|---------|------|
+| `follow`（友だち追加） | プロフィール取得 → 購読者登録 → `on_friend_add` の有効シナリオへ自動エンロール |
+| `unfollow`（ブロック） | 購読者ステータスを「ブロック」に更新（以後の配信は自動スキップ） |
+| `message`（受信） | 受信ログ（応答処理は拡張用に余地あり） |
+
+すべての受信は `X-Line-Signature` を `LINE_CHANNEL_SECRET` で **HMAC-SHA256 検証**し、
+不正なリクエストは `400` で拒否します。
+
+### 起動
+
+```bash
+pip install flask requests python-dotenv
+cd scripts
+python line_webhook.py        # http://0.0.0.0:8000/callback で待受
+```
+
+### 公開とLINE側の設定
+
+LINEはHTTPSの公開URLにしかWebhookを送れません。ローカル検証では ngrok 等でトンネルします。
+
+```bash
+ngrok http 8000               # → https://xxxx.ngrok.io が払い出される
+```
+
+1. LINE Developers → 対象チャネル →「Messaging API設定」
+2. **Webhook URL** に `https://xxxx.ngrok.io/callback` を設定 → 「検証」
+3. **Webhookの利用** を ON
+4. 「応答メッセージ」「あいさつメッセージ」は運用方針に応じてOFF（ステップラインと重複しないよう）
+
+### 動作確認
+
+- `GET /health` → `{"status":"ok","dry_run":true/false}` を返す
+- 実機で友だち追加 → `line_subscribers` に登録され、`新規友だち歓迎フロー` にエンロールされる
+- 翌日以降、`python step_line.py run-live` を毎日実行すると各ステップが順次配信される
 
 ---
 
