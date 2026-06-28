@@ -196,6 +196,83 @@
   .summary b { color: var(--accent-2); }
   .summary .h { display: block; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
 
+  /* ===== 会員獲得（リード）導線 ===== */
+  .offer {
+    margin-top: 28px; padding: 30px 26px 26px; text-align: center;
+    background: linear-gradient(180deg, #ffffff 0%, #faf8ff 100%);
+    border: 1.5px solid #e7e1fb; border-radius: 18px;
+    box-shadow: 0 18px 44px -26px rgba(106,48,224,.4);
+  }
+  .offer__eyebrow {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600;
+    font-size: 15px; letter-spacing: .22em; color: var(--accent-2); margin-bottom: 8px;
+  }
+  .offer__title { font-size: 22px; line-height: 1.5; font-weight: 900; color: var(--ink); }
+  .offer__lead {
+    margin: 14px auto 0; max-width: 480px; text-align: left;
+    font-size: 14px; color: var(--ink-soft);
+  }
+  .offer__lead b { color: var(--accent-2); font-weight: 700; }
+  .offer__list {
+    list-style: none; margin: 18px auto 0; max-width: 480px; text-align: left;
+    display: grid; gap: 10px;
+  }
+  .offer__list li {
+    position: relative; padding-left: 30px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6;
+  }
+  .offer__list li::before {
+    content: ''; position: absolute; left: 0; top: 3px; width: 19px; height: 19px;
+    border-radius: 50%;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat,
+      linear-gradient(135deg, var(--cta-from), var(--cta-to));
+  }
+  .offer__list b { color: var(--ink); }
+
+  .lead { margin-top: 22px; }
+  .lead__input {
+    width: 100%; padding: 15px 16px; font-family: inherit; font-size: 15px; color: var(--ink);
+    background: #fff; border: 1.5px solid var(--line); border-radius: 12px; outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .lead__input::placeholder { color: #a9adc4; }
+  .lead__input:focus { border-color: var(--accent-2); box-shadow: 0 0 0 3px rgba(106,48,224,.12); }
+  .lead .cta { margin-top: 12px; }
+  .lead__error { margin-top: 8px; font-size: 12.5px; color: #d6336c; text-align: left; }
+
+  .lead-or {
+    position: relative; margin: 18px 0; font-size: 12px; color: var(--ink-mute);
+  }
+  .lead-or::before, .lead-or::after {
+    content: ''; position: absolute; top: 50%; width: 38%; height: 1px; background: var(--line);
+  }
+  .lead-or::before { left: 0; } .lead-or::after { right: 0; }
+  .line-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 14px 20px; text-decoration: none;
+    background: #06c755; color: #fff; font-size: 15px; font-weight: 700;
+    border-radius: 12px; transition: filter .15s ease;
+  }
+  .line-btn:hover { filter: brightness(1.05); }
+
+  .lead-done {
+    margin-top: 6px; padding: 22px; text-align: center;
+    background: #f1ecfe; border: 1px solid #e0d6fb; border-radius: 14px;
+  }
+  .lead-done__icon {
+    width: 44px; height: 44px; margin: 0 auto 10px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 22px; font-weight: 700;
+    background: linear-gradient(135deg, var(--cta-from), var(--cta-to));
+  }
+  .lead-done__title { font-size: 16px; font-weight: 700; color: var(--ink); }
+  .lead-done__text { margin-top: 6px; font-size: 13.5px; color: var(--ink-soft); }
+  .lead-done__text b { color: var(--accent-2); }
+
+  .ghost-btn--center {
+    display: block; margin: 18px auto 0; font-size: 13.5px;
+  }
+
   @media (max-width: 560px) {
     .card { padding: 32px 20px 28px; }
     h1 { font-size: 25px; }
@@ -270,10 +347,46 @@
         <div class="radar-wrap"><canvas id="radar" width="420" height="360"></canvas></div>
         <div class="scores" id="score-list"></div>
         <div class="summary" id="summary"></div>
-        <button class="cta" id="btn-restart" type="button" style="margin-top:24px;">
-          もう一度チェックする
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-        </button>
+
+        <!-- 会員獲得（リード）導線 -->
+        <div class="offer">
+          <p class="offer__eyebrow">NEXT STEP</p>
+          <h3 class="offer__title">現在地がわかったら、<br>次は「伸ばし方」を。</h3>
+          <p class="offer__lead">
+            あなたのいちばんの伸びしろ <b id="offer-axis">時間・運営</b> をはじめ、
+            6軸それぞれの<b>具体的な改善プラン</b>は、デジラボビューティの<b>無料会員</b>に公開しています。
+          </p>
+          <ul class="offer__list">
+            <li>軸ごとの「次の一歩」と優先順位がわかる<b>診断レポート（PDF）</b></li>
+            <li>サロン専門家への<b>無料オンライン相談</b>（30分）</li>
+            <li>成功事例・すぐ使える<b>テンプレート集</b></li>
+          </ul>
+
+          <form class="lead" id="lead-form" novalidate>
+            <input class="lead__input" type="email" id="lead-email" name="email"
+                   placeholder="メールアドレスを入力" autocomplete="email" required>
+            <button class="cta" type="submit">
+              無料で会員登録して詳細を受け取る
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p class="lead__error" id="lead-error" hidden>メールアドレスの形式をご確認ください。</p>
+          </form>
+
+          <div class="lead-or">または</div>
+          <a class="line-btn" id="line-btn" href="#line" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.58 7.39 8.42 8.02.33.07.78.22.89.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.1-.46 5.9-3.48 8.05-5.96C21.4 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
+            LINEで受け取る
+          </a>
+          <p class="reassure">登録は無料・いつでも配信停止できます。</p>
+
+          <div class="lead-done" id="lead-done" hidden>
+            <div class="lead-done__icon">✓</div>
+            <p class="lead-done__title">ご登録ありがとうございます</p>
+            <p class="lead-done__text"><b id="done-email"></b> 宛に、あなたの診断レポートと改善プランをお送りします。</p>
+          </div>
+        </div>
+
+        <button class="ghost-btn ghost-btn--center" id="btn-restart" type="button">↻ もう一度チェックする</button>
         <p class="disclaimer">この診断は自己評価を整理するものです。結果は成果や効果を保証・予測するものではありません。</p>
       </section>
     </main>
@@ -410,6 +523,9 @@
       'いま伸びしろが大きいのは <b>' + AXES[minI] + '</b> です。' +
       'まずは「' + AXES[minI] + '」から、できそうな一歩を一つ選んでみましょう。';
 
+    // 会員導線に、伸びしろの軸名を差し込む
+    document.getElementById("offer-axis").textContent = AXES[minI];
+
     show("result");
   }
 
@@ -481,6 +597,29 @@
   document.getElementById("btn-restart").addEventListener("click", function () {
     current = 0; answers.fill(null);
     show("intro");
+  });
+
+  // ===== リード獲得フォーム =====
+  // 本番では action 先（フォームAPI / CRM / メール配信）に email と axisScores() を送信してください。
+  var leadForm = document.getElementById("lead-form");
+  leadForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var input = document.getElementById("lead-email");
+    var err = document.getElementById("lead-error");
+    var email = input.value.trim();
+    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!valid) {
+      err.hidden = false;
+      input.focus();
+      return;
+    }
+    err.hidden = true;
+    // TODO: ここでサーバー/フォームサービスへ送信（例: fetch('/api/lead', {...})）
+    document.getElementById("done-email").textContent = email;
+    leadForm.hidden = true;
+    document.getElementById("line-btn").hidden = true;
+    document.querySelector(".lead-or").hidden = true;
+    document.getElementById("lead-done").hidden = false;
   });
 })();
 </script>
