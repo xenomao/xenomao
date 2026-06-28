@@ -1,0 +1,6 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/marketing/digilab_beauty_self_check.html" }
+  ]
+}
