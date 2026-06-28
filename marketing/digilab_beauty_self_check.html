@@ -251,9 +251,15 @@
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     width: 100%; padding: 14px 20px; text-decoration: none;
     background: #06c755; color: #fff; font-size: 15px; font-weight: 700;
-    border-radius: 12px; transition: filter .15s ease;
+    border-radius: 12px; transition: filter .15s ease, transform .15s ease;
   }
   .line-btn:hover { filter: brightness(1.05); }
+  .line-btn--cta {
+    margin-top: 22px; padding: 18px 22px; font-size: 16.5px; letter-spacing: .02em;
+    box-shadow: 0 16px 30px -10px rgba(6,199,85,.55);
+  }
+  .line-btn--cta:hover { transform: translateY(-2px); box-shadow: 0 22px 38px -10px rgba(6,199,85,.6); }
+  .line-btn--cta:active { transform: translateY(0); }
 
   .lead-done {
     margin-top: 6px; padding: 22px; text-align: center;
@@ -362,28 +368,11 @@
             <li>成功事例・すぐ使える<b>テンプレート集</b></li>
           </ul>
 
-          <form class="lead" id="lead-form" novalidate>
-            <input class="lead__input" type="email" id="lead-email" name="email"
-                   placeholder="メールアドレスを入力" autocomplete="email" required>
-            <button class="cta" type="submit">
-              無料で会員登録して詳細を受け取る
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-            <p class="lead__error" id="lead-error" hidden>メールアドレスの形式をご確認ください。</p>
-          </form>
-
-          <div class="lead-or">または</div>
-          <a class="line-btn" id="line-btn" href="https://line.me/R/ti/p/@803ytjuz" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.58 7.39 8.42 8.02.33.07.78.22.89.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.1-.46 5.9-3.48 8.05-5.96C21.4 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
-            LINEで受け取る
+          <a class="line-btn line-btn--cta" id="line-btn" href="https://line.me/R/ti/p/@803ytjuz" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.58 7.39 8.42 8.02.33.07.78.22.89.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.1-.46 5.9-3.48 8.05-5.96C21.4 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
+            LINEで無料の改善プランを受け取る
           </a>
-          <p class="reassure">登録は無料・いつでも配信停止できます。</p>
-
-          <div class="lead-done" id="lead-done" hidden>
-            <div class="lead-done__icon">✓</div>
-            <p class="lead-done__title">ご登録ありがとうございます</p>
-            <p class="lead-done__text"><b id="done-email"></b> 宛に、あなたの診断レポートと改善プランをお送りします。</p>
-          </div>
+          <p class="reassure">友だち追加は無料。診断レポートをLINEでお届けします。いつでもブロックできます。</p>
         </div>
 
         <button class="ghost-btn ghost-btn--center" id="btn-restart" type="button">↻ もう一度チェックする</button>
@@ -599,28 +588,6 @@
     show("intro");
   });
 
-  // ===== リード獲得フォーム =====
-  // 本番では action 先（フォームAPI / CRM / メール配信）に email と axisScores() を送信してください。
-  var leadForm = document.getElementById("lead-form");
-  leadForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var input = document.getElementById("lead-email");
-    var err = document.getElementById("lead-error");
-    var email = input.value.trim();
-    var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!valid) {
-      err.hidden = false;
-      input.focus();
-      return;
-    }
-    err.hidden = true;
-    // TODO: ここでサーバー/フォームサービスへ送信（例: fetch('/api/lead', {...})）
-    document.getElementById("done-email").textContent = email;
-    leadForm.hidden = true;
-    document.getElementById("line-btn").hidden = true;
-    document.querySelector(".lead-or").hidden = true;
-    document.getElementById("lead-done").hidden = false;
-  });
 })();
 </script>
 </body>
