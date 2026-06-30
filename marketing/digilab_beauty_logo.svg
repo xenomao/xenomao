@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- メインのグラデーション（ブランドカラーに合わせた紫→ピンク） -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3d1a6e"/>
+      <stop offset="50%" stop-color="#8b2fc9"/>
+      <stop offset="100%" stop-color="#d946a8"/>
+    </linearGradient>
+    <!-- シャイン用グラデーション -->
+    <linearGradient id="shineGrad" x1="0%" y1="0%" x2="60%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <!-- 花びら用グラデーション -->
+    <linearGradient id="petalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff9de2"/>
+      <stop offset="100%" stop-color="#ffcef7"/>
+    </linearGradient>
+    <!-- 丸角の定義 -->
+    <clipPath id="roundRect">
+      <rect width="200" height="200" rx="44" ry="44"/>
+    </clipPath>
+  </defs>
+
+  <!-- 背景：角丸正方形 -->
+  <rect width="200" height="200" rx="44" ry="44" fill="url(#bgGrad)"/>
+  <!-- 光沢 -->
+  <rect width="200" height="200" rx="44" ry="44" fill="url(#shineGrad)"/>
+
+  <!-- ===== 花（桜／美容シンボル）===== -->
+  <!-- 5枚の花びら（中心から放射状） -->
+  <g transform="translate(100,95)" clip-path="url(#roundRect)">
+    <!-- 花びら 1 (上) -->
+    <ellipse cx="0" cy="-30" rx="13" ry="22" fill="url(#petalGrad)" opacity="0.95" transform="rotate(0)"/>
+    <!-- 花びら 2 -->
+    <ellipse cx="0" cy="-30" rx="13" ry="22" fill="url(#petalGrad)" opacity="0.95" transform="rotate(72)"/>
+    <!-- 花びら 3 -->
+    <ellipse cx="0" cy="-30" rx="13" ry="22" fill="url(#petalGrad)" opacity="0.95" transform="rotate(144)"/>
+    <!-- 花びら 4 -->
+    <ellipse cx="0" cy="-30" rx="13" ry="22" fill="url(#petalGrad)" opacity="0.95" transform="rotate(216)"/>
+    <!-- 花びら 5 -->
+    <ellipse cx="0" cy="-30" rx="13" ry="22" fill="url(#petalGrad)" opacity="0.95" transform="rotate(288)"/>
+    <!-- 花の中心 -->
+    <circle cx="0" cy="0" r="10" fill="#ffffff" opacity="0.95"/>
+    <!-- 中心の光点 -->
+    <circle cx="0" cy="0" r="5" fill="#ffd6f0"/>
+  </g>
+
+  <!-- ===== "D" マーク（デジタル感のあるピクセル風） ===== -->
+  <!-- 左上のデジタルアクセント：小さなドット群 -->
+  <g opacity="0.5">
+    <circle cx="32" cy="35" r="3" fill="#ffcef7"/>
+    <circle cx="42" cy="35" r="3" fill="#ffcef7"/>
+    <circle cx="32" cy="45" r="3" fill="#ffcef7"/>
+  </g>
+  <g opacity="0.3">
+    <circle cx="162" cy="152" r="3" fill="#ffcef7"/>
+    <circle cx="172" cy="152" r="3" fill="#ffcef7"/>
+    <circle cx="172" cy="162" r="3" fill="#ffcef7"/>
+  </g>
+
+  <!-- ===== テキスト ===== -->
+  <!-- "DigiLab" -->
+  <text x="100" y="152" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="18" font-weight="800" letter-spacing="1"
+        fill="#ffffff" text-anchor="middle" opacity="0.97">DigiLab</text>
+  <!-- "Beauty" -->
+  <text x="100" y="171" font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="13" font-weight="400" letter-spacing="3"
+        fill="#f9b8e8" text-anchor="middle" opacity="0.9">BEAUTY</text>
+</svg>
