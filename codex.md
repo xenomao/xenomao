@@ -13,8 +13,7 @@ This is the DigiLab Beauty AI organization system, managing 18 esthetic industry
 ## Key Files
 - `scripts/main.py` - Main setup script (DB init, company import, news collection)
 - `scripts/daily_news_collection.py` - Daily news collection from NewsAPI
-- `db/digilab_beauty.db` - SQLite database with 8 tables
-- `db/esthetic_industry_dd_19companies.csv` - Source data for 18 companies
+- `db/` - moved to private repo `xenomao/digilab-beauty-data` (SQLite DB, schema, 19社CSV)
 - `marketing/digilab_beauty_flyer.html` - A4 printable flyer
 
 ## Database Schema
