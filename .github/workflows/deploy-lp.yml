@@ -3,7 +3,7 @@ name: Deploy LP to GitHub Pages
 on:
   workflow_dispatch:
   push:
-    branches: [claude/digilab-beauty-lp-7sh648]
+    branches: [main]
     paths: [public/**]
 
 permissions:
