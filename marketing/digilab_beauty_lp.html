@@ -1007,6 +1007,15 @@
   }
   .f-contact a:hover { color: #e0cdee; }
   @media (max-width: 640px) { .f-contact { text-align: left; } }
+  .f-links { display: flex; gap: 22px; margin-top: 4px; }
+  .f-links a {
+    font-size: 12px;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    transition: color .3s;
+  }
+  .f-links a:hover { color: #e0cdee; }
   .f-bottom {
     border-top: 1px solid rgba(255,255,255,.12);
     padding-top: 24px;
@@ -1434,6 +1443,7 @@
       <div>
         <span class="wordmark"><span class="l1">Digilab</span><span class="l2">beauty</span></span>
         <p class="org">一般社団法人デジラボビューティー</p>
+        <div class="f-links"><a href="privacy.html">プライバシーポリシー</a></div>
       </div>
       <div class="f-contact">
         <p class="lbl">CONTACT</p>
