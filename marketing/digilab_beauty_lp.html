@@ -562,18 +562,20 @@
   /* ===== organization ===== */
   .organization { background: var(--wash); }
   .org-board {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 18px;
     margin-bottom: 64px;
   }
-  @media (max-width: 960px) { .org-board { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 520px) { .org-board { grid-template-columns: 1fr; } }
   .org-card {
+    flex: 1 1 168px;
+    min-width: 168px;
+    max-width: 260px;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 18px;
-    padding: 30px 22px 26px;
+    padding: 30px 16px 26px;
     text-align: center;
     transition: transform .4s, box-shadow .4s;
   }
@@ -788,57 +790,66 @@
 
   /* ===== sponsor plans ===== */
   .sponsor { background: var(--wash2); }
-  .plan-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-  @media (max-width: 960px) { .plan-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 520px) { .plan-grid { grid-template-columns: 1fr; } }
-  .plan-card {
+  .plan-banner {
+    max-width: 640px;
+    margin: 0 auto;
     background: #fff;
-    border-radius: 18px;
     border: 1px solid var(--line);
-    padding: 32px 24px 28px;
+    border-radius: 24px;
+    padding: 52px 36px 46px;
     text-align: center;
     position: relative;
-    transition: transform .4s, box-shadow .4s;
+    overflow: hidden;
+    box-shadow: 0 10px 36px rgba(120,90,150,.1);
   }
-  .plan-card:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(120,90,150,.14); }
-  .plan-card.reco { border: 2px solid #d8bfe8; }
-  .plan-name {
-    font-family: var(--en);
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: .3em;
-    margin-bottom: 16px;
+  .plan-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--rule);
   }
-  .plan-card:nth-child(1) .plan-name { color: #8f9aae; }
-  .plan-card:nth-child(2) .plan-name { color: var(--lav-deep); }
-  .plan-card:nth-child(3) .plan-name { color: #c08a5e; }
-  .plan-card:nth-child(4) .plan-name { color: #5c5470; }
-  .plan-price {
+  .pb-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .24em;
+    color: var(--lav-deep);
+    background: #f3eaf8;
+    border-radius: 20px;
+    padding: 5px 20px;
+    margin-bottom: 20px;
+  }
+  .pb-price { line-height: 1.2; margin-bottom: 26px; }
+  .pb-price .from {
     font-family: var(--en);
     font-weight: 600;
-    font-size: 26px;
+    font-size: clamp(38px, 5vw, 50px);
     color: var(--ink-strong);
-    line-height: 1.3;
   }
-  .plan-price small { font-size: 12px; font-weight: 400; color: var(--muted); }
-  .plan-desc { margin-top: 14px; font-size: 11.5px; color: var(--muted); line-height: 1.9; }
-  .plan-badge {
-    position: absolute;
-    top: -12px; left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(120deg, #9b7fc0, #cd8fb0);
-    color: #fff;
-    font-size: 10px;
+  .pb-price .tilde {
+    font-family: var(--head);
     font-weight: 700;
-    letter-spacing: .14em;
-    border-radius: 20px;
-    padding: 4px 16px;
-    white-space: nowrap;
+    font-size: 30px;
+    color: var(--lav-deep);
+    margin-left: 4px;
   }
+  .pb-price .unit { font-size: 13px; color: var(--muted); margin-left: 10px; }
+  .pb-chips { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+  .pb-chip {
+    font-family: var(--en);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: .22em;
+    border-radius: 20px;
+    padding: 6px 18px;
+    border: 1px solid;
+  }
+  .c-bronze { color: #8f9aae; border-color: #ccd3de; background: #f6f8fa; }
+  .c-silver { color: var(--lav-deep); border-color: #d8c4e8; background: #f7f1fa; }
+  .c-gold   { color: #b0803f; border-color: #e3cfa8; background: #fbf6ec; }
+  .c-plat   { color: #5c5470; border-color: #c9c3d4; background: #f5f4f8; }
+  .pb-desc { font-size: 13px; color: #6f6578; margin-bottom: 30px; }
   .plan-note { text-align: center; margin-top: 30px; font-size: 11.5px; color: var(--muted); line-height: 2; }
 
   /* ===== SNS ===== */
@@ -1239,6 +1250,11 @@
         <p class="org-name">栗原 啓太</p>
         <p class="org-duty">契約・規約・法令確認<br>リスク管理</p>
       </div>
+      <div class="org-card rv d3">
+        <span class="org-role">顧問</span>
+        <p class="org-name">森越 道大</p>
+        <p class="org-duty">美容業界のDX・AI活用支援<br>テクノロジー領域の知見提供</p>
+      </div>
     </div>
 
     <div class="org-divider rv">
@@ -1341,30 +1357,19 @@
       <p class="sec-lead">協会活動への「賛助(支援)」に対する特典として、共同企画・イベント立案・報告会など、目的に合わせた4つのプランをご用意しています。</p>
     </div>
 
-    <div class="plan-grid">
-      <div class="plan-card rv">
-        <p class="plan-name">BRONZE</p>
-        <p class="plan-price">&yen;100,000<br><small>/ 年(税抜)</small></p>
-        <p class="plan-desc">まず協会とつながる、基本プラン。有料アカウント利用・協会ロゴの使用・年次報告書の提出・DX相談など。</p>
+    <div class="plan-banner rv">
+      <p class="pb-label">年会費</p>
+      <p class="pb-price"><span class="from">&yen;100,000</span><span class="tilde">〜</span><span class="unit">/ 年(税抜)</span></p>
+      <div class="pb-chips">
+        <span class="pb-chip c-bronze">BRONZE</span>
+        <span class="pb-chip c-silver">SILVER</span>
+        <span class="pb-chip c-gold">GOLD</span>
+        <span class="pb-chip c-plat">PLATINUM</span>
       </div>
-      <div class="plan-card reco rv d1">
-        <span class="plan-badge">標準的な出発点</span>
-        <p class="plan-name">SILVER</p>
-        <p class="plan-price">&yen;500,000<br><small>/ 年(税抜)</small></p>
-        <p class="plan-desc">共同企画・法人利用まで広げる中核プラン。アンバサダープロジェクトの利用、イベント立案(年1回)など。</p>
-      </div>
-      <div class="plan-card rv d2">
-        <p class="plan-name">GOLD</p>
-        <p class="plan-price">&yen;1,000,000<br><small>/ 年(税抜)</small></p>
-        <p class="plan-desc">関与と発信を拡大する上位プラン。イベント立案 年2回・政策関与(拡大)・対面報告会の実施(年1回)。</p>
-      </div>
-      <div class="plan-card rv d3">
-        <p class="plan-name">PLATINUM</p>
-        <p class="plan-price" style="font-size:22px;line-height:1.8;">要相談<br><small>完全カスタム</small></p>
-        <p class="plan-desc">ヒアリングに基づく個別設計。専任担当によるサポート・共同企画・意見交換会の優先設計・共同研究/共同発信の設計。</p>
-      </div>
+      <p class="pb-desc">ご支援の規模や目的に合わせた4つのプランをご用意しています。<br>各プランの内容・料金の詳細は、お気軽にお問い合わせください。</p>
+      <a class="btn btn-grad" href="mailto:digilabbeauty@gmail.com">賛助会員について問い合わせる<span class="arr">&rarr;</span></a>
     </div>
-    <p class="plan-note">※ 契約期間1年・銀行振込・表示価格は税抜です。<br>※ 本プランは協会活動への「賛助(支援)」に対する特典であり、入会審査・DQS認証の審査基準・スコア・可否に一切影響しません。</p>
+    <p class="plan-note">※ 契約期間1年・銀行振込。<br>※ 本プランは協会活動への「賛助(支援)」に対する特典であり、入会審査・DQS認証の審査基準・スコア・可否に一切影響しません。</p>
   </div>
 </section>
 
