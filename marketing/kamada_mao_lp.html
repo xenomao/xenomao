@@ -430,10 +430,13 @@
   .rec-grid {
     margin-top: 56px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  @media (max-width: 860px) { .rec-grid { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; } }
+  @media (max-width: 860px) { .rec-grid { grid-template-columns: 1fr; max-width: 440px; } }
   .rec-item {
     text-align: center;
     padding: 28px 18px;
@@ -663,8 +666,8 @@
         <span class="jp">鎌田 麻央</span>
         <span class="en">Mao&nbsp;Kamada</span>
       </div>
-      <p class="hero-role rv d2">株式会社ピュアライン代表取締役 / 一般社団法人日本エステティック協会 理事・広報委員長</p>
-      <p class="hero-desc rv d2">エステサロンの現場経営で培った実践知と、業界団体理事としての知見・ネットワークを活かし、サロン経営者・美容機器/化粧品メーカー・スクールの「次の一手」を伴走支援します。</p>
+      <p class="hero-role rv d2">株式会社ピュアライン代表取締役 / 一般社団法人デジラボビューティー 代表理事</p>
+      <p class="hero-desc rv d2">エステサロンの現場経営で培った実践知と、業界で築いた知見・ネットワークを活かし、サロン経営者・美容機器/化粧品メーカー・スクールの「次の一手」を伴走支援します。</p>
       <div class="hero-actions rv d3">
         <a class="btn btn-grad" href="#contact">お問い合わせはこちら <span class="arr">→</span></a>
         <a class="btn btn-white" href="#services">提供サービスを見る <span class="arr">→</span></a>
@@ -687,16 +690,12 @@
         <h2 class="sec-title">現場に立つ経営者として。<br>業界を動かす理事として。</h2>
         <div class="sec-rule"></div>
       </div>
-      <p class="tx rv">シェービング＆エステティックサロン「XENOMABEAUTY」を経営するかたわら、一般社団法人日本エステティック協会の理事・広報委員長として業界の発展に携わる。現場のリアルと業界の最前線、その両方を知る立場から、サロン・メーカー・スクールへの指導と支援を行っている。</p>
+      <p class="tx rv">長年にわたりエステティックサロンの現場に立ち、経営者として歩んできた。その経験を礎に、美容業界の健全な発展と地位向上に力を注いでいる。技術・接客・経営のリアルと業界の最前線、その両方を知る立場から、サロン・メーカー・スクールそれぞれの現場に寄り添った指導と支援を行っている。</p>
       <ul class="prf-list rv">
         <li>株式会社ピュアライン 代表取締役</li>
-        <li>シェービング＆エステティック XENOMABEAUTY 経営(一般社団法人日本エステティック協会登録サロン)</li>
-        <li>一般社団法人日本エステティック協会 理事・広報委員長</li>
-        <li>一般社団法人デジラボビューティー 理事長</li>
-        <li>愛媛県立松山東高等学校 関係者評価委員 委嘱</li>
-        <li>愛媛県河原専門学校 教育課程編成委員</li>
+        <li>シェービング＆エステティック XENOMABEAUTY 経営</li>
+        <li>一般社団法人デジラボビューティー 代表理事</li>
         <li>理容生活衛生同業組合員</li>
-        <li>愛媛県立松山東高等学校卒業 / 慶應義塾大学中退</li>
       </ul>
       <div class="rv">
         <div class="prf-sub">保有資格</div>
@@ -730,12 +729,12 @@
       <div class="str-card rv d1">
         <div class="str-num">02</div>
         <h3>AI×美容の実践知</h3>
-        <p>美容業界のAI・DX支援団体「デジラボビューティー」理事長として、集客・発信・業務効率化へのAI活用をいち早く実践。美容の現場に落とし込める形で研修します。</p>
+        <p>美容業界のAI・DX支援団体「デジラボビューティー」代表理事として、集客・発信・業務効率化へのAI活用をいち早く実践。美容の現場に落とし込める形で研修します。</p>
       </div>
       <div class="str-card rv d2">
         <div class="str-num">03</div>
         <h3>業界トップとのパイプ</h3>
-        <p>日本エステティック協会 理事・広報委員長として、業界団体・メーカー・教育機関と幅広いネットワークを構築。業界の動向を踏まえた確かな提案につなげます。</p>
+        <p>業界団体・メーカー・教育機関と長年にわたり築いてきた幅広いネットワーク。業界の動向を踏まえ、健全な発展を見据えた確かな提案につなげます。</p>
       </div>
     </div>
     <div class="rec-head rv">LECTURE&nbsp;RECORD</div>
@@ -748,10 +747,6 @@
       <div class="rec-item rv d1">
         <div class="t">紙パルプ工業会(四国中央市)</div>
         <div class="s">企業・団体向け講演</div>
-      </div>
-      <div class="rec-item rv d2">
-        <div class="t">倫理法人会(松山市)</div>
-        <div class="s">経営者向け講演</div>
       </div>
     </div>
   </div>
@@ -888,7 +883,7 @@
       <span class="l1">MAO&nbsp;KAMADA</span>
       <span class="l2">BEAUTY&nbsp;CONSULTANT</span>
     </span>
-    <p class="f-role">株式会社ピュアライン代表取締役 / 一般社団法人日本エステティック協会 理事・広報委員長 / 一般社団法人デジラボビューティー 理事長</p>
+    <p class="f-role">株式会社ピュアライン代表取締役 / 一般社団法人デジラボビューティー 代表理事</p>
     <p class="f-copy">&copy; MAO KAMADA. ALL RIGHTS RESERVED.</p>
   </div>
 </footer>
