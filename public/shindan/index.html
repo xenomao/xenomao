@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サロンAI活用度診断|全10問・約2分|デジラボビューティー</title>
+<meta name="description" content="全10問・約2分で、あなたのサロンのAI活用レベルを診断。集客・予約・カウンセリング・リピート・業務効率の5分野別に強みと弱みを見える化し、明日からできるAI活用アクションをお届けします。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="サロンAI活用度診断|あなたのサロンの“AIのびしろ”が2分でわかる">
+<meta property="og:description" content="全10問・約2分。5分野別の強み・弱みチャートと、あなたのサロン専用のAI活用アクションが無料で手に入ります。一般社団法人デジラボビューティー提供。">
+<meta property="og:url" content="https://digilabbeauty.com/shindan/">
+<meta property="og:site_name" content="Digilab beauty">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@350;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #37303e;
+    --ink-strong: #2a2331;
+    --muted: #8b8093;
+    --lav: #b79ad1;
+    --lav-deep: #8e6bb0;
+    --pink: #e39cbd;
+    --wash: #faf7fb;
+    --wash2: #f5eef7;
+    --line: #ece3f1;
+    --grad: linear-gradient(120deg, #f7d9e3 0%, #ddc7ef 52%, #c9d9f2 100%);
+    --rule: linear-gradient(90deg, #f0a8c4, #9b7fc0, #35406b);
+    --btn-grad: linear-gradient(120deg, #9b7fc0, #cd8fb0);
+    --head: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+    --body: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+    --en: 'Poppins', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--wash);
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== wordmark ===== */
+  .wordmark { line-height: 1.15; text-decoration: none; display: inline-block; }
+  .wordmark .l1 {
+    font-family: var(--en);
+    font-weight: 500;
+    font-size: 17px;
+    letter-spacing: .42em;
+    color: #6d6076;
+  }
+  .wordmark .l2 {
+    font-family: var(--en);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: .58em;
+    color: #b9a8c6;
+    display: block;
+  }
+
+  .site-header {
+    padding: 20px 5vw 14px;
+    text-align: center;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .stage {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 32px 5vw 80px;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: clamp(28px, 5vw, 44px);
+    box-shadow: 0 10px 36px rgba(142,107,176,.09);
+  }
+
+  /* ===== intro ===== */
+  .badge-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 22px; }
+  .badge {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: var(--lav-deep);
+    background: var(--wash2);
+    border: 1px solid var(--line);
+    border-radius: 50px;
+    padding: 5px 16px;
+  }
+
+  .intro h1 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(26px, 6vw, 34px);
+    line-height: 1.5;
+    letter-spacing: .06em;
+    color: var(--ink-strong);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .intro h1 .mark { background: linear-gradient(transparent 62%, #e9d0f0 62%); padding: 0 2px; }
+
+  .intro-en {
+    font-family: var(--en);
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: .5em;
+    color: var(--lav);
+    text-align: center;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .intro-lead {
+    font-size: 14px;
+    color: #6f6578;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .gains {
+    background: var(--wash);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 30px;
+  }
+  .gains-title {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .14em;
+    color: var(--lav-deep);
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .gains ul { list-style: none; }
+  .gains li {
+    font-size: 13.5px;
+    line-height: 1.8;
+    padding: 7px 0 7px 30px;
+    position: relative;
+    border-bottom: 1px dashed var(--line);
+  }
+  .gains li:last-child { border-bottom: none; }
+  .gains li::before {
+    content: '✓';
+    position: absolute;
+    left: 2px;
+    top: 7px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--grad);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gains li strong { color: var(--ink-strong); }
+
+  /* ===== buttons ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: var(--body);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-decoration: none;
+    border: none;
+    border-radius: 50px;
+    padding: 17px 44px;
+    cursor: pointer;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .btn .arr { font-family: var(--en); font-weight: 400; transition: transform .3s; }
+  .btn:hover .arr { transform: translateX(5px); }
+  .btn-grad {
+    background: var(--btn-grad);
+    color: #fff;
+    box-shadow: 0 8px 26px rgba(155,127,192,.4);
+  }
+  .btn-grad:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(155,127,192,.5); }
+  .btn-ghost {
+    background: #fff;
+    color: var(--lav-deep);
+    border: 1px solid var(--line);
+    font-size: 13px;
+    padding: 13px 30px;
+  }
+  .btn-ghost:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(142,107,176,.15); }
+  .btn-wrap { text-align: center; }
+  .btn-note { font-size: 11.5px; color: var(--muted); text-align: center; margin-top: 12px; letter-spacing: .06em; }
+
+  /* ===== quiz ===== */
+  .progress-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+  }
+  .q-count { font-family: var(--en); font-weight: 500; font-size: 13px; letter-spacing: .18em; color: var(--lav-deep); }
+  .q-count .total { color: var(--muted); font-weight: 300; }
+  .q-cat {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: var(--lav-deep);
+    background: var(--wash2);
+    border-radius: 50px;
+    padding: 3px 14px;
+  }
+  .progress-track {
+    height: 6px;
+    background: var(--wash2);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0;
+    background: var(--btn-grad);
+    border-radius: 6px;
+    transition: width .35s ease;
+  }
+
+  .q-text {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: clamp(17px, 4vw, 20px);
+    line-height: 1.7;
+    letter-spacing: .04em;
+    color: var(--ink-strong);
+    margin-bottom: 26px;
+    min-height: 3.4em;
+  }
+
+  .opts { display: grid; gap: 12px; }
+  .opt {
+    font-family: var(--body);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.7;
+    text-align: left;
+    color: var(--ink);
+    background: var(--wash);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 20px 16px 52px;
+    cursor: pointer;
+    position: relative;
+    transition: border-color .2s, background .2s, transform .2s;
+  }
+  .opt::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid #d8c9e4;
+    background: #fff;
+    transition: border-color .2s, background .2s;
+  }
+  .opt:hover {
+    border-color: var(--lav);
+    background: #fff;
+    transform: translateY(-2px);
+  }
+  .opt:hover::before { border-color: var(--lav-deep); }
+  .opt:focus-visible { outline: 3px solid var(--lav); outline-offset: 2px; }
+
+  .quiz-foot { margin-top: 26px; display: flex; justify-content: flex-start; }
+  .back-link {
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px 2px;
+    font-family: var(--body);
+  }
+  .back-link:hover { color: var(--lav-deep); }
+
+  /* ===== result ===== */
+  .result-label {
+    font-family: var(--en);
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: .5em;
+    color: var(--lav);
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .score-ring {
+    width: 168px; height: 168px;
+    margin: 0 auto 8px;
+    position: relative;
+  }
+  .score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .score-ring .track { fill: none; stroke: var(--wash2); stroke-width: 11; }
+  .score-ring .val {
+    fill: none;
+    stroke: url(#ringGrad);
+    stroke-width: 11;
+    stroke-linecap: round;
+    stroke-dasharray: 452;
+    stroke-dashoffset: 452;
+    transition: stroke-dashoffset 1.1s cubic-bezier(.22,.7,.3,1);
+  }
+  .score-num {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .score-num .n { font-family: var(--en); font-weight: 600; font-size: 44px; line-height: 1; color: var(--ink-strong); }
+  .score-num .d { font-family: var(--en); font-weight: 300; font-size: 13px; color: var(--muted); letter-spacing: .1em; }
+
+  .type-name {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(22px, 5.4vw, 28px);
+    letter-spacing: .06em;
+    text-align: center;
+    color: var(--ink-strong);
+    margin-bottom: 6px;
+  }
+  .type-name .mark { background: linear-gradient(transparent 62%, #e9d0f0 62%); padding: 0 2px; }
+  .type-tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: var(--lav-deep);
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  .type-desc {
+    font-size: 13.5px;
+    color: #5f5568;
+    margin-bottom: 32px;
+  }
+
+  .sec-title {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: .14em;
+    color: var(--ink-strong);
+    margin-bottom: 16px;
+    padding-left: 14px;
+    position: relative;
+  }
+  .sec-title::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 4px; height: 18px;
+    border-radius: 4px;
+    background: var(--rule);
+  }
+
+  .chart { display: grid; gap: 13px; margin-bottom: 34px; }
+  .chart-row { display: grid; grid-template-columns: 7.5em 1fr 2.6em; align-items: center; gap: 12px; }
+  .chart-cat { font-size: 12px; font-weight: 700; letter-spacing: .04em; color: #5f5568; }
+  .chart-track { height: 10px; background: var(--wash2); border-radius: 10px; overflow: hidden; }
+  .chart-fill {
+    height: 100%;
+    width: 0;
+    background: var(--btn-grad);
+    border-radius: 10px;
+    transition: width .9s cubic-bezier(.22,.7,.3,1);
+  }
+  .chart-fill.low { background: linear-gradient(120deg, #f0b6cd, #e39cbd); }
+  .chart-num { font-family: var(--en); font-size: 12px; font-weight: 500; color: var(--muted); text-align: right; }
+
+  .advice { display: grid; gap: 14px; margin-bottom: 36px; }
+  .advice-card {
+    background: var(--wash);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--lav);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+  .advice-card h3 {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 13.5px;
+    letter-spacing: .08em;
+    color: var(--lav-deep);
+    margin-bottom: 6px;
+  }
+  .advice-card p { font-size: 13px; line-height: 1.85; color: #5f5568; }
+
+  .cta-box {
+    background: var(--grad);
+    border-radius: 18px;
+    padding: 30px 26px;
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .cta-box h2 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(17px, 4.4vw, 20px);
+    letter-spacing: .08em;
+    color: var(--ink-strong);
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  .cta-box p {
+    font-size: 13px;
+    color: #55495e;
+    margin-bottom: 20px;
+    line-height: 1.9;
+    text-align: left;
+  }
+  .cta-box .btn { white-space: nowrap; font-size: 14px; padding: 16px 30px; }
+  .cta-box .btn-grad { background: #fff; color: var(--lav-deep); box-shadow: 0 8px 26px rgba(142,107,176,.28); }
+  .cta-box .btn-note { color: #6f6578; }
+
+  .result-foot { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+
+  /* ===== footer ===== */
+  .site-footer {
+    text-align: center;
+    padding: 36px 5vw 44px;
+    border-top: 1px solid var(--line);
+    background: #fff;
+  }
+  .site-footer .org { font-size: 12px; color: var(--muted); letter-spacing: .08em; margin-top: 10px; }
+  .site-footer a { color: var(--lav-deep); text-decoration: none; font-weight: 500; }
+  .site-footer .links { font-size: 12px; margin-top: 6px; display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+
+  .hidden { display: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="https://digilabbeauty.com/" target="_blank" rel="noopener" aria-label="Digilab beauty 公式サイト">
+    <span class="l1">DIGILAB</span>
+    <span class="l2">BEAUTY</span>
+  </a>
+</header>
+
+<main class="stage">
+
+  <!-- ===== INTRO ===== -->
+  <section class="card intro" id="screen-intro" aria-label="診断のご案内">
+    <div class="badge-row">
+      <span class="badge">無料</span>
+      <span class="badge">全10問</span>
+      <span class="badge">約2分</span>
+      <span class="badge">登録不要</span>
+    </div>
+    <h1>サロン<span class="mark">AI活用度</span>診断</h1>
+    <p class="intro-en">Salon AI Check</p>
+    <p class="intro-lead">
+      集客・予約・カウンセリング・リピート・業務効率。<br>
+      あなたのサロンの<strong>“AIのびしろ”</strong>が2分でわかります。
+    </p>
+
+    <div class="gains">
+      <p class="gains-title">この診断でわかること</p>
+      <ul>
+        <li><strong>AI活用度スコア(20点満点)</strong>と、あなたのサロンのタイプ判定</li>
+        <li><strong>5分野別の強み・弱みチャート</strong>(集客/予約・顧客管理/カウンセリング/リピート育成/業務効率)</li>
+        <li>弱み分野に合わせた<strong>「明日からできるAI活用アクション」</strong></li>
+        <li>公式LINEで<strong>専門家の無料個別アドバイス</strong>(診断結果をお送りいただいた方)</li>
+      </ul>
+    </div>
+
+    <div class="btn-wrap">
+      <button class="btn btn-grad" id="startBtn" type="button">診断をはじめる<span class="arr">&rarr;</span></button>
+      <p class="btn-note">※ 個人情報の入力は不要です。その場で結果が表示されます。</p>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section class="card hidden" id="screen-quiz" aria-live="polite">
+    <div class="progress-head">
+      <span class="q-count">Q<span id="qNum">1</span><span class="total"> / 10</span></span>
+      <span class="q-cat" id="qCat"></span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <h2 class="q-text" id="qText"></h2>
+    <div class="opts" id="opts"></div>
+    <div class="quiz-foot">
+      <button class="back-link" id="backBtn" type="button">&larr; ひとつ前の質問に戻る</button>
+    </div>
+  </section>
+
+  <!-- ===== RESULT ===== -->
+  <section class="card hidden" id="screen-result" aria-label="診断結果">
+    <p class="result-label">Your Result</p>
+
+    <div class="score-ring" role="img" aria-label="AI活用度スコア">
+      <svg viewBox="0 0 160 160">
+        <defs>
+          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#9b7fc0"/>
+            <stop offset="100%" stop-color="#cd8fb0"/>
+          </linearGradient>
+        </defs>
+        <circle class="track" cx="80" cy="80" r="72"/>
+        <circle class="val" id="ringVal" cx="80" cy="80" r="72"/>
+      </svg>
+      <div class="score-num">
+        <span class="n" id="scoreNum">0</span>
+        <span class="d">/ 20 点</span>
+      </div>
+    </div>
+
+    <h2 class="type-name">あなたは<span class="mark" id="typeName"></span></h2>
+    <p class="type-tag" id="typeTag"></p>
+    <p class="type-desc" id="typeDesc"></p>
+
+    <h3 class="sec-title">5分野別チャート</h3>
+    <div class="chart" id="chart"></div>
+
+    <h3 class="sec-title">明日からできるAI活用アクション</h3>
+    <div class="advice" id="advice"></div>
+
+    <div class="cta-box">
+      <h2>診断結果をもとに、<br>無料で個別アドバイスがもらえます</h2>
+      <p>
+        公式LINEに友だち追加のうえ、<strong>この結果画面のスクリーンショット</strong>をお送りください。デジラボビューティーの専門家が、あなたのサロンに合わせたAI活用の最初の一歩を無料でアドバイスします。セミナー・勉強会の最新情報もLINEでお届けしています。
+      </p>
+      <a class="btn btn-grad" href="https://lin.ee/O8g2Egp" target="_blank" rel="noopener">LINEで無料アドバイスを受ける<span class="arr">&rarr;</span></a>
+      <p class="btn-note">一般社団法人デジラボビューティー公式LINE</p>
+    </div>
+
+    <div class="result-foot">
+      <button class="btn btn-ghost" id="retryBtn" type="button">もう一度診断する</button>
+      <a class="btn btn-ghost" href="https://digilabbeauty.com/" target="_blank" rel="noopener">協会について見る</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a class="wordmark" href="https://digilabbeauty.com/" target="_blank" rel="noopener">
+    <span class="l1">DIGILAB</span>
+    <span class="l2">BEAUTY</span>
+  </a>
+  <p class="org">一般社団法人デジラボビューティー</p>
+  <div class="links">
+    <a href="https://www.instagram.com/digilab.beauty_official/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://lin.ee/O8g2Egp" target="_blank" rel="noopener">公式LINE</a>
+    <a href="mailto:digilabbeauty@gmail.com">お問い合わせ</a>
+    <a href="https://digilabbeauty.com/privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var CATEGORIES = [
+    { id: 'attract', label: '集客・SNS' },
+    { id: 'booking', label: '予約・顧客管理' },
+    { id: 'counsel', label: 'カウンセリング・提案' },
+    { id: 'repeat',  label: 'リピート・LINE活用' },
+    { id: 'ops',     label: '業務効率・スタッフ教育' }
+  ];
+
+  var QUESTIONS = [
+    {
+      cat: 'attract',
+      text: 'InstagramやTikTokなどのSNS投稿に、ChatGPTなどのAIを活用していますか?',
+      opts: [
+        { t: '文章づくりや画像づくりまでAIで効率化している', p: 2 },
+        { t: 'たまにAIを使うことがある', p: 1 },
+        { t: 'すべて手作業/そもそもあまり投稿できていない', p: 0 }
+      ]
+    },
+    {
+      cat: 'attract',
+      text: 'ホットペッパーやGoogleマップ(MEO)の掲載内容を、定期的に見直していますか?',
+      opts: [
+        { t: '毎月見直し、口コミへの返信も欠かさない', p: 2 },
+        { t: '気が向いたときに更新している', p: 1 },
+        { t: '掲載したまま、ほぼ手つかず', p: 0 }
+      ]
+    },
+    {
+      cat: 'booking',
+      text: 'お客様は、24時間いつでもネットやLINEから予約できますか?',
+      opts: [
+        { t: '24時間オンライン予約+自動リマインドまで対応', p: 2 },
+        { t: 'ネット予約はあるが、電話やDMでの対応も多い', p: 1 },
+        { t: '予約はほぼ電話・DMで手動対応', p: 0 }
+      ]
+    },
+    {
+      cat: 'booking',
+      text: '顧客情報(来店履歴・施術内容・お好み)はデジタルで管理され、すぐに見返せますか?',
+      opts: [
+        { t: 'ツールで一元管理し、売上分析などにも使っている', p: 2 },
+        { t: 'デジタル化はしているが、入力や管理がバラバラ', p: 1 },
+        { t: '紙のカルテや記憶に頼っている', p: 0 }
+      ]
+    },
+    {
+      cat: 'counsel',
+      text: 'カウンセリングやメニュー提案の準備に、AIを活用していますか?',
+      opts: [
+        { t: '提案文やトークの台本をAIでつくり、成約率も意識している', p: 2 },
+        { t: '試したことはあるが、定着していない', p: 1 },
+        { t: '使ったことがない', p: 0 }
+      ]
+    },
+    {
+      cat: 'counsel',
+      text: 'お客様への説明資料やホームケアのご提案を、お客様ごとに用意していますか?',
+      opts: [
+        { t: 'AIなどを使って一人ひとりに合わせて作成している', p: 2 },
+        { t: '共通の資料を使い回している', p: 1 },
+        { t: '口頭のみで、資料は特にない', p: 0 }
+      ]
+    },
+    {
+      cat: 'repeat',
+      text: '公式LINEでお客様とつながり、定期的に配信していますか?',
+      opts: [
+        { t: 'リッチメニューや客層別の配信まで活用している', p: 2 },
+        { t: 'アカウントはあるが、たまに一斉配信する程度', p: 1 },
+        { t: '公式LINEを使っていない', p: 0 }
+      ]
+    },
+    {
+      cat: 'repeat',
+      text: 'しばらく来店のないお客様(休眠客)へのフォローは、仕組みになっていますか?',
+      opts: [
+        { t: '来店周期に合わせて自動でフォローが届く', p: 2 },
+        { t: '思い出したときに手動で連絡している', p: 1 },
+        { t: '特に何もしていない', p: 0 }
+      ]
+    },
+    {
+      cat: 'ops',
+      text: 'メニュー説明文・お知らせ・マニュアルなどの文章づくりに、ChatGPTなどを使っていますか?',
+      opts: [
+        { t: '日常業務にしっかり組み込んでいる', p: 2 },
+        { t: 'ときどき使っている', p: 1 },
+        { t: 'ほとんど使ったことがない', p: 0 }
+      ]
+    },
+    {
+      cat: 'ops',
+      text: 'スタッフがAIツールを学ぶ機会(勉強会・マニュアルなど)はありますか?',
+      opts: [
+        { t: '定期的な勉強会や手順書がある', p: 2 },
+        { t: '個人任せ(学んでいる人もいる)', p: 1 },
+        { t: '特にない', p: 0 }
+      ]
+    }
+  ];
+
+  var TYPES = [
+    {
+      min: 16,
+      name: 'AI先進サロン',
+      tag: 'AI ADVANCED SALON',
+      desc: '素晴らしい実践力です。AI活用は業界トップクラス。ここから先は、最新事例のキャッチアップと「スタッフ全員が同じレベルで使いこなせる」体制づくりが次のテーマです。デジラボビューティーのセミナーでは、先進サロン向けの一歩進んだ活用事例もご紹介しています。'
+    },
+    {
+      min: 11,
+      name: 'AI活用サロン',
+      tag: 'AI PRACTICE SALON',
+      desc: 'AI活用は業界平均より進んでいます。次のステップは、点在している取り組みを「集客→予約→カウンセリング→リピート」のひとつの導線としてAIでつなぐこと。ここがつながると、売上への効きかたが大きく変わります。'
+    },
+    {
+      min: 6,
+      name: 'AIチャレンジサロン',
+      tag: 'AI CHALLENGE SALON',
+      desc: 'デジタル化への一歩をすでに踏み出せています。いまは取り組みが「点」の状態。まずは下のアクションから1つ選んで、2週間続けてみてください。「点」が「仕組み」に変わると、時間と売上の両方に余裕が生まれます。'
+    },
+    {
+      min: 0,
+      name: 'AIのびしろサロン',
+      tag: 'AI POTENTIAL SALON',
+      desc: 'いまはまだAIを使えていない分、実は最も伸びしろが大きい状態です。AI活用は「少し導入しただけで効果を実感しやすい」のがこの段階の特徴。難しいことは必要ありません。まずは下のアクションのうち1つ、10分だけ試すところから始めましょう。'
+    }
+  ];
+
+  var ADVICE = {
+    attract: {
+      title: '集客・SNS:まずはChatGPTで「1週間分の投稿」づくりから',
+      body: 'ChatGPTにサロンの強み・客層・メニューを伝えて、Instagramのキャプション1週間分をまとめて作ってみましょう。10〜15分で完成します。あわせて口コミへの返信文もAIに下書きさせると、MEO(Googleマップ)対策にも直結します。'
+    },
+    booking: {
+      title: '予約・顧客管理:24時間予約の「受け皿」づくりが最優先',
+      body: '営業時間外の予約の取りこぼしは、月に数万円の機会損失になっていることも。公式LINE+予約ツールの組み合わせで、24時間予約と自動リマインドの受け皿をつくりましょう。顧客情報のデジタル化はその次でOKです。'
+    },
+    counsel: {
+      title: 'カウンセリング・提案:客層別トークをAIで「台本化」',
+      body: 'よくある客層(悩み・年代)ごとの提案トークをChatGPTで台本にしておくだけで、高単価メニューの成約率が変わります。新人スタッフの提案力の底上げにも効果的。まずは一番人気のメニュー1つ分から作ってみましょう。'
+    },
+    repeat: {
+      title: 'リピート・LINE活用:休眠客フォローは最も費用対効果の高いAI活用',
+      body: '新規集客より、before客・休眠客の掘り起こしのほうが低コストで売上につながります。「来店から◯日後に自動でメッセージが届く」仕組みをまずひとつ。配信文はChatGPTに書かせれば、その日のうちに始められます。'
+    },
+    ops: {
+      title: '業務効率・スタッフ教育:月1回30分の「AIミニ勉強会」から',
+      body: 'いきなり全部やろうとせず、月1回30分、スタッフとメニュー説明文やPOPをChatGPTで作ってみる時間をつくりましょう。「業務で1回使ってみる」が定着への近道。デジラボビューティーのセミナーもぜひ活用してください。'
+    }
+  };
+
+  var catLabel = {};
+  CATEGORIES.forEach(function (c) { catLabel[c.id] = c.label; });
+
+  var screens = {
+    intro: document.getElementById('screen-intro'),
+    quiz: document.getElementById('screen-quiz'),
+    result: document.getElementById('screen-result')
+  };
+
+  var current = 0;
+  var answers = new Array(QUESTIONS.length).fill(null);
+
+  function show(name) {
+    Object.keys(screens).forEach(function (k) {
+      screens[k].classList.toggle('hidden', k !== name);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderQuestion() {
+    var q = QUESTIONS[current];
+    document.getElementById('qNum').textContent = current + 1;
+    document.getElementById('qCat').textContent = catLabel[q.cat];
+    document.getElementById('qText').textContent = q.text;
+    document.getElementById('progressFill').style.width = (current / QUESTIONS.length * 100) + '%';
+    document.getElementById('backBtn').style.visibility = current === 0 ? 'hidden' : 'visible';
+
+    var box = document.getElementById('opts');
+    box.innerHTML = '';
+    q.opts.forEach(function (o, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'opt';
+      b.textContent = o.t;
+      b.addEventListener('click', function () { answer(i); });
+      box.appendChild(b);
+    });
+  }
+
+  function answer(i) {
+    answers[current] = i;
+    if (current < QUESTIONS.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      renderResult();
+    }
+  }
+
+  function renderResult() {
+    var total = 0;
+    var catScore = {};
+    CATEGORIES.forEach(function (c) { catScore[c.id] = 0; });
+    QUESTIONS.forEach(function (q, idx) {
+      var p = q.opts[answers[idx]].p;
+      total += p;
+      catScore[q.cat] += p;
+    });
+
+    var type = TYPES.filter(function (t) { return total >= t.min; })[0];
+    document.getElementById('typeName').textContent = '「' + type.name + '」';
+    document.getElementById('typeTag').textContent = type.tag;
+    document.getElementById('typeDesc').textContent = type.desc;
+
+    // chart (max 4 pts per category)
+    var chart = document.getElementById('chart');
+    chart.innerHTML = '';
+    var fills = [];
+    CATEGORIES.forEach(function (c) {
+      var row = document.createElement('div');
+      row.className = 'chart-row';
+      var pct = Math.max(catScore[c.id] / 4 * 100, 4);
+      row.innerHTML =
+        '<span class="chart-cat">' + c.label + '</span>' +
+        '<div class="chart-track"><div class="chart-fill' + (catScore[c.id] <= 1 ? ' low' : '') + '" data-w="' + pct + '"></div></div>' +
+        '<span class="chart-num">' + catScore[c.id] + '/4</span>';
+      chart.appendChild(row);
+      fills.push(row.querySelector('.chart-fill'));
+    });
+
+    // advice: weakest 2 categories (ties -> earlier category order)
+    var sorted = CATEGORIES.slice().sort(function (a, b) { return catScore[a.id] - catScore[b.id]; });
+    var picks = sorted.slice(0, 2);
+    var adv = document.getElementById('advice');
+    adv.innerHTML = '';
+    picks.forEach(function (c) {
+      var a = ADVICE[c.id];
+      var card = document.createElement('div');
+      card.className = 'advice-card';
+      var h = document.createElement('h3');
+      h.textContent = a.title;
+      var p = document.createElement('p');
+      p.textContent = a.body;
+      card.appendChild(h);
+      card.appendChild(p);
+      adv.appendChild(card);
+    });
+
+    show('result');
+
+    // animate after paint
+    var C = 2 * Math.PI * 72; // ring circumference
+    var ring = document.getElementById('ringVal');
+    ring.style.strokeDasharray = C;
+    ring.style.strokeDashoffset = C;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        ring.style.strokeDashoffset = C * (1 - total / 20);
+        fills.forEach(function (f) { f.style.width = f.getAttribute('data-w') + '%'; });
+      });
+    });
+
+    // count-up
+    var numEl = document.getElementById('scoreNum');
+    var start = null;
+    function tick(ts) {
+      if (start === null) start = ts;
+      var r = Math.min((ts - start) / 900, 1);
+      numEl.textContent = Math.round(total * (1 - Math.pow(1 - r, 3)));
+      if (r < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  document.getElementById('startBtn').addEventListener('click', function () {
+    current = 0;
+    answers = new Array(QUESTIONS.length).fill(null);
+    renderQuestion();
+    show('quiz');
+  });
+
+  document.getElementById('backBtn').addEventListener('click', function () {
+    if (current > 0) {
+      current--;
+      renderQuestion();
+    }
+  });
+
+  document.getElementById('retryBtn').addEventListener('click', function () {
+    current = 0;
+    answers = new Array(QUESTIONS.length).fill(null);
+    renderQuestion();
+    show('quiz');
+  });
+})();
+</script>
+
+</body>
+</html>

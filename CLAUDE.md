@@ -23,6 +23,13 @@
 - 素材(写真・QRコードSVG): `marketing/assets/`
 - QRコード: Instagram(@digilab.beauty_official)と公式LINE(https://lin.ee/O8g2Egp)。生成時は読み取り検証を行うこと
 
+## サロンAI活用度診断
+
+- 本体: `marketing/salon_ai_shindan.html`(単一HTML・設問/配点/タイプ文言はファイル内の `QUESTIONS` / `TYPES` / `ADVICE` に定義)
+- 配信用コピー: `public/shindan/index.html`(内容は同一。更新時は両方を同期すること)
+- 公開URL: https://digilabbeauty.com/shindan/(mainマージ後にLPと同じワークフローで自動デプロイ)
+- リリース記事・告知文・運用手順: `marketing/shindan_release_kit.md`
+
 ## ブランド
 
 - デザイン: 白基調 × パステルラベンダー(概要資料PDF準拠)。ダークパープルの旧配色は使わない
