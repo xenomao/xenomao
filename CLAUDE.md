@@ -23,6 +23,13 @@
 - 素材(写真・QRコードSVG): `marketing/assets/`
 - QRコード: Instagram(@digilab.beauty_official)と公式LINE(https://lin.ee/O8g2Egp)。生成時は読み取り検証を行うこと
 
+### 検定LP(美容AIセキュリティ基礎検定 3級)
+
+- 本体: `marketing/kentei_lp.html` / 配信用コピー: `public/kentei/index.html`(内容は同一。更新時は両方を同期すること)
+- 公開URL: https://xenomao.github.io/xenomao/kentei/
+- LP本体(`digilab_beauty_lp.html` / `public/index.html`)のグローバルナビ「検定」からリンク
+- デザインはメインLPと同一のスタイルシートを共有(白基調×パステルラベンダー)
+
 ## ブランド
 
 - デザイン: 白基調 × パステルラベンダー(概要資料PDF準拠)。ダークパープルの旧配色は使わない
