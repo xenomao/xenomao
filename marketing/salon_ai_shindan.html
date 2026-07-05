@@ -414,6 +414,72 @@
   }
   .advice-card p { font-size: 13px; line-height: 1.85; color: #5f5568; }
 
+  /* ===== seminar recommend ===== */
+  .sem-lead { font-size: 13px; color: #5f5568; margin: -4px 0 16px; }
+  .sem-list { display: grid; gap: 14px; margin-bottom: 36px; }
+  .sem-mini {
+    display: block;
+    text-decoration: none;
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+  }
+  .sem-mini:hover {
+    border-color: var(--lav);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(142,107,176,.14);
+  }
+  .sem-mini .top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .sem-mini .date {
+    font-family: var(--en);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: .06em;
+    color: var(--lav-deep);
+  }
+  .sem-mini .tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--lav-deep);
+    background: var(--wash2);
+    border-radius: 50px;
+    padding: 2px 12px;
+  }
+  .sem-mini .tag.free { color: #b25e86; background: #fbe9f1; }
+  .sem-mini .reco {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: #fff;
+    background: var(--btn-grad);
+    border-radius: 50px;
+    padding: 2px 12px;
+  }
+  .sem-mini h4 {
+    font-family: var(--head);
+    font-weight: 700;
+    font-size: 14.5px;
+    line-height: 1.6;
+    letter-spacing: .04em;
+    color: var(--ink-strong);
+    margin-bottom: 6px;
+  }
+  .sem-mini .meta { font-size: 12px; color: var(--muted); line-height: 1.8; }
+  .sem-mini .go {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--lav-deep);
+  }
+
+  /* ===== share ===== */
+  .share-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+
   .cta-box {
     background: var(--grad);
     border-radius: 18px;
@@ -548,6 +614,10 @@
     <h3 class="sec-title">明日からできるAI活用アクション</h3>
     <div class="advice" id="advice"></div>
 
+    <h3 class="sec-title">あなたのタイプにおすすめのセミナー</h3>
+    <p class="sem-lead" id="semLead"></p>
+    <div class="sem-list" id="semList"></div>
+
     <div class="cta-box">
       <h2>診断結果をもとに、<br>無料で個別アドバイスがもらえます</h2>
       <p>
@@ -555,6 +625,12 @@
       </p>
       <a class="btn btn-grad" href="https://lin.ee/O8g2Egp" target="_blank" rel="noopener">LINEで無料アドバイスを受ける<span class="arr">&rarr;</span></a>
       <p class="btn-note">一般社団法人デジラボビューティー公式LINE</p>
+    </div>
+
+    <h3 class="sec-title">仲間のサロンにもシェアする</h3>
+    <div class="share-row">
+      <a class="btn btn-ghost" id="shareLine" href="#" target="_blank" rel="noopener">LINEで送る</a>
+      <a class="btn btn-ghost" id="shareX" href="#" target="_blank" rel="noopener">Xでシェアする</a>
     </div>
 
     <div class="result-foot">
@@ -689,27 +765,52 @@
       min: 16,
       name: 'AI先進サロン',
       tag: 'AI ADVANCED SALON',
-      desc: '素晴らしい実践力です。AI活用は業界トップクラス。ここから先は、最新事例のキャッチアップと「スタッフ全員が同じレベルで使いこなせる」体制づくりが次のテーマです。デジラボビューティーのセミナーでは、先進サロン向けの一歩進んだ活用事例もご紹介しています。'
+      desc: '素晴らしい実践力です。AI活用は業界トップクラス。ここから先は、最新事例のキャッチアップと「スタッフ全員が同じレベルで使いこなせる」体制づくりが次のテーマです。デジラボビューティーのセミナーでは、先進サロン向けの一歩進んだ活用事例もご紹介しています。',
+      semLead: '先進サロンにこそ、AI検索時代の集客戦略と実践ノウハウの最新アップデートを。同じレベルで取り組むサロンとのつながりも得られます。',
+      semOrder: [0, 1]
     },
     {
       min: 11,
       name: 'AI活用サロン',
       tag: 'AI PRACTICE SALON',
-      desc: 'AI活用は業界平均より進んでいます。次のステップは、点在している取り組みを「集客→予約→カウンセリング→リピート」のひとつの導線としてAIでつなぐこと。ここがつながると、売上への効きかたが大きく変わります。'
+      desc: 'AI活用は業界平均より進んでいます。次のステップは、点在している取り組みを「集客→予約→カウンセリング→リピート」のひとつの導線としてAIでつなぐこと。ここがつながると、売上への効きかたが大きく変わります。',
+      semLead: '実践レベルをもう一段引き上げる、実務直結の回がおすすめです。発信業務の自走化は、導線づくりの土台になります。',
+      semOrder: [0, 1]
     },
     {
       min: 6,
       name: 'AIチャレンジサロン',
       tag: 'AI CHALLENGE SALON',
-      desc: 'デジタル化への一歩をすでに踏み出せています。いまは取り組みが「点」の状態。まずは下のアクションから1つ選んで、2週間続けてみてください。「点」が「仕組み」に変わると、時間と売上の両方に余裕が生まれます。'
+      desc: 'デジタル化への一歩をすでに踏み出せています。いまは取り組みが「点」の状態。まずは下のアクションから1つ選んで、2週間続けてみてください。「点」が「仕組み」に変わると、時間と売上の両方に余裕が生まれます。',
+      semLead: '「点」の取り組みを仕組みに変えるヒントが手に入ります。まずは参加無料の回から気軽にどうぞ。',
+      semOrder: [1, 0]
     },
     {
       min: 0,
       name: 'AIのびしろサロン',
       tag: 'AI POTENTIAL SALON',
-      desc: 'いまはまだAIを使えていない分、実は最も伸びしろが大きい状態です。AI活用は「少し導入しただけで効果を実感しやすい」のがこの段階の特徴。難しいことは必要ありません。まずは下のアクションのうち1つ、10分だけ試すところから始めましょう。'
+      desc: 'いまはまだAIを使えていない分、実は最も伸びしろが大きい状態です。AI活用は「少し導入しただけで効果を実感しやすい」のがこの段階の特徴。難しいことは必要ありません。まずは下のアクションのうち1つ、10分だけ試すところから始めましょう。',
+      semLead: '最初の一歩は、参加無料のセミナーで「AIで何ができるか」を体感するのがおすすめです。スマホからZoomで参加できます。',
+      semOrder: [1, 0]
     }
   ];
+
+  var SEMINARS = [
+    {
+      date: '7/15 WED 18:00〜',
+      tags: ['オンライン(Zoom)'],
+      title: '90分で、発信業務を自走化する AI活用実践セミナー',
+      meta: '講師: 鈴木 啓生(株式会社GIVE-FORWARD 代表取締役CEO)/ 画像作成・ブログ作成・発信の型を実践で学ぶ'
+    },
+    {
+      date: '7/30 THU 21:00〜22:10',
+      tags: ['オンライン(Zoom)', '参加無料'],
+      title: 'AIを使うサロンから、AIに選ばれるサロンへ',
+      meta: '講師: 田中 裕美(デジラボビューティー理事・AI教育事業部部長)/ AI検索時代の集客戦略'
+    }
+  ];
+
+  var SHINDAN_URL = 'https://digilabbeauty.com/shindan/';
 
   var ADVICE = {
     attract: {
@@ -813,6 +914,58 @@
       chart.appendChild(row);
       fills.push(row.querySelector('.chart-fill'));
     });
+
+    // seminar recommendation by type
+    document.getElementById('semLead').textContent = type.semLead;
+    var semList = document.getElementById('semList');
+    semList.innerHTML = '';
+    type.semOrder.forEach(function (idx, rank) {
+      var s = SEMINARS[idx];
+      var a = document.createElement('a');
+      a.className = 'sem-mini';
+      a.href = 'https://lin.ee/O8g2Egp';
+      a.target = '_blank';
+      a.rel = 'noopener';
+      var top = document.createElement('div');
+      top.className = 'top';
+      var d = document.createElement('span');
+      d.className = 'date';
+      d.textContent = s.date;
+      top.appendChild(d);
+      if (rank === 0) {
+        var r = document.createElement('span');
+        r.className = 'reco';
+        r.textContent = 'あなたへのおすすめ';
+        top.appendChild(r);
+      }
+      s.tags.forEach(function (t) {
+        var tg = document.createElement('span');
+        tg.className = 'tag' + (t === '参加無料' ? ' free' : '');
+        tg.textContent = t;
+        top.appendChild(tg);
+      });
+      var h = document.createElement('h4');
+      h.textContent = s.title;
+      var m = document.createElement('p');
+      m.className = 'meta';
+      m.textContent = s.meta;
+      var go = document.createElement('span');
+      go.className = 'go';
+      go.textContent = '公式LINEから申し込む →';
+      a.appendChild(top);
+      a.appendChild(h);
+      a.appendChild(m);
+      a.appendChild(go);
+      semList.appendChild(a);
+    });
+
+    // share links with score/type
+    var shareText = 'サロンAI活用度診断をやってみたら「' + type.name + '」(' + total + '/20点)でした。あなたのサロンのAI活用度は?';
+    document.getElementById('shareX').href =
+      'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText + ' #サロンAI診断') +
+      '&url=' + encodeURIComponent(SHINDAN_URL);
+    document.getElementById('shareLine').href =
+      'https://line.me/R/share?text=' + encodeURIComponent(shareText + ' ' + SHINDAN_URL);
 
     // advice: weakest 2 categories (ties -> earlier category order)
     var sorted = CATEGORIES.slice().sort(function (a, b) { return catScore[a.id] - catScore[b.id]; });

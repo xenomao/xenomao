@@ -433,6 +433,47 @@
   }
   .value-card p { font-size: 13px; color: #6f6578; line-height: 2; }
 
+  /* ===== shindan banner ===== */
+  .shindan-banner { padding: 8px 0 56px; background: #fff; }
+  .shindan-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+    background: var(--grad);
+    border-radius: 22px;
+    padding: 34px 40px;
+    text-decoration: none;
+    box-shadow: 0 12px 32px rgba(155,127,192,.18);
+    transition: transform .3s, box-shadow .3s;
+  }
+  .shindan-card:hover { transform: translateY(-3px); box-shadow: 0 18px 42px rgba(155,127,192,.28); }
+  .shindan-en {
+    font-family: var(--en);
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: .5em;
+    color: var(--lav-deep);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .shindan-card h2 {
+    font-family: var(--head);
+    font-weight: 900;
+    font-size: clamp(19px, 2.6vw, 25px);
+    letter-spacing: .05em;
+    line-height: 1.6;
+    color: var(--ink-strong);
+    margin-bottom: 10px;
+  }
+  .shindan-card h2 .mark { background: linear-gradient(transparent 62%, #fff 62%); padding: 0 2px; }
+  .shindan-desc { font-size: 13px; color: #55495e; max-width: 560px; line-height: 2; }
+  .shindan-card .btn { flex-shrink: 0; background: #fff; color: var(--lav-deep); box-shadow: 0 8px 24px rgba(142,107,176,.25); }
+  @media (max-width: 720px) {
+    .shindan-card { padding: 28px 24px; }
+  }
+
   /* ===== seminar ===== */
   .seminar {
     background:
@@ -1039,6 +1080,7 @@
   </a>
   <nav class="gnav">
     <a href="#philosophy">私たちについて</a>
+    <a href="#shindan">AI診断</a>
     <a href="#seminar">7月セミナー</a>
     <a href="#organization">組織体制</a>
     <a href="#membership">会員・料金</a>
@@ -1157,6 +1199,20 @@
         <p>明日から現場で使えるテンプレートやノウハウ、さまざまな便利サービスを通じて、ビジネスを加速させる実践的なサポートを提供します。</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ shindan banner ============ -->
+<section class="shindan-banner" id="shindan">
+  <div class="wrap">
+    <a class="shindan-card rv" href="shindan/">
+      <div class="shindan-copy">
+        <p class="shindan-en">Salon AI Check</p>
+        <h2>あなたのサロンの<span class="mark">AI活用度</span>、いま何点?</h2>
+        <p class="shindan-desc">全10問・約2分・登録不要。集客からリピートまで5分野の強み・弱みと、明日からできるAI活用アクションがその場でわかります。診断結果を公式LINEに送ると、専門家の無料個別アドバイス付き。</p>
+      </div>
+      <span class="btn btn-grad">無料で診断する<span class="arr">&rarr;</span></span>
+    </a>
   </div>
 </section>
 
