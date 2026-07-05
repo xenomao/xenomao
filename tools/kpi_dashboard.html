@@ -6,14 +6,14 @@
 <title>DigiLab Beauty 事業KPIダッシュボード</title>
 <style>
 :root{
-  --page:#f7f4fa; --surface:#fdfbfd; --surface-2:#f3edf9;
-  --ink:#2b2333; --ink-2:#5f5568; --muted:#8b8494;
-  --hairline:#eae3f2; --border:rgba(43,35,51,.10);
-  --accent:#7a4fae; --accent-ink:#61399a; --series-2:#a8577f;
-  --ramp-1:#b492d8; --ramp-2:#9873c4; --ramp-3:#7c55ab; --ramp-4:#613f90;
-  --track:#e7dcf4; --grid:#ece5f4; --axis:#cfc6dc;
+  --page:#ffffff; --surface:#ffffff; --surface-2:#f6f3fb;
+  --ink:#17121f; --ink-2:#4b4356; --muted:#7c7488;
+  --hairline:#e8e4f0; --border:rgba(23,18,31,.12);
+  --accent:#6d28cf; --accent-ink:#6d28cf; --series-2:#d6247a;
+  --ramp-1:#b57bf2; --ramp-2:#9a4fe8; --ramp-3:#7c2fd1; --ramp-4:#5e21a8;
+  --track:#eadffb; --grid:#efecf5; --axis:#d6d0de;
   --good:#0ca30c; --good-text:#006300; --warn:#b97c00; --crit:#d03b3b;
-  --spark:#b9b1c4;
+  --spark:#c0b8cc;
 }
 @media (prefers-color-scheme: dark){
   :root{
@@ -38,14 +38,14 @@
   --spark:#5d5468;
 }
 :root[data-theme="light"]{
-  --page:#f7f4fa; --surface:#fdfbfd; --surface-2:#f3edf9;
-  --ink:#2b2333; --ink-2:#5f5568; --muted:#8b8494;
-  --hairline:#eae3f2; --border:rgba(43,35,51,.10);
-  --accent:#7a4fae; --accent-ink:#61399a; --series-2:#a8577f;
-  --ramp-1:#b492d8; --ramp-2:#9873c4; --ramp-3:#7c55ab; --ramp-4:#613f90;
-  --track:#e7dcf4; --grid:#ece5f4; --axis:#cfc6dc;
+  --page:#ffffff; --surface:#ffffff; --surface-2:#f6f3fb;
+  --ink:#17121f; --ink-2:#4b4356; --muted:#7c7488;
+  --hairline:#e8e4f0; --border:rgba(23,18,31,.12);
+  --accent:#6d28cf; --accent-ink:#6d28cf; --series-2:#d6247a;
+  --ramp-1:#b57bf2; --ramp-2:#9a4fe8; --ramp-3:#7c2fd1; --ramp-4:#5e21a8;
+  --track:#eadffb; --grid:#efecf5; --axis:#d6d0de;
   --good:#0ca30c; --good-text:#006300; --warn:#b97c00; --crit:#d03b3b;
-  --spark:#b9b1c4;
+  --spark:#c0b8cc;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -78,34 +78,34 @@ button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-v
 .notice .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
 /* ---- hero (total impact) ---- */
 .hero{
-  border:1px solid var(--hairline);border-radius:16px;padding:22px 24px 20px;margin-bottom:16px;
-  background:linear-gradient(135deg,var(--hero-1),var(--hero-2));
+  border:1px solid rgba(23,18,31,.18);border-radius:16px;padding:22px 24px 20px;margin-bottom:16px;
+  background:linear-gradient(135deg,#231447 0%,#3d1a6e 55%,#5b1d86 100%);
+  --hero-ink:#ffffff; --hero-ink2:rgba(255,255,255,.82); --hero-mut:rgba(255,255,255,.56);
+  --hero-card:rgba(255,255,255,.09); --hero-card-b:rgba(255,255,255,.17);
+  --hero-track:rgba(255,255,255,.20); --hero-good:#7ce69a; --hero-remain:#ff8ac2; --hero-eyebrow:#c9aaf6;
+  color:var(--hero-ink2);
 }
-:root{--hero-1:#f0e4f8;--hero-2:#f9e7f1}
-@media (prefers-color-scheme: dark){:root{--hero-1:#2a2140;--hero-2:#3b2347}}
-:root[data-theme="dark"]{--hero-1:#2a2140;--hero-2:#3b2347}
-:root[data-theme="light"]{--hero-1:#f0e4f8;--hero-2:#f9e7f1}
 .hero-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
-.eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-ink)}
-.hero-date{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.08em}
-.hero-head{margin:6px 0 10px;font-size:24px;font-weight:750;letter-spacing:.005em;text-wrap:balance}
-.coach{margin:0 0 18px;font-size:13px;color:var(--ink-2);max-width:66em;line-height:1.75}
-.coach .coach-meta{display:block;margin-top:3px;font-size:10.5px;letter-spacing:.12em;color:var(--muted)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--hero-eyebrow)}
+.hero-date{font-size:11.5px;color:var(--hero-mut);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.hero-head{margin:6px 0 10px;font-size:24px;font-weight:750;letter-spacing:.005em;text-wrap:balance;color:var(--hero-ink)}
+.coach{margin:0 0 18px;font-size:13px;color:var(--hero-ink2);max-width:66em;line-height:1.75}
+.coach .coach-meta{display:block;margin-top:3px;font-size:10.5px;letter-spacing:.12em;color:var(--hero-mut)}
 .hero-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:18px}
-.hero-tile{background:color-mix(in srgb,var(--surface) 62%,transparent);border:1px solid var(--border);border-radius:12px;padding:12px 14px;min-width:0}
-.hero-tile .label{font-size:11.5px;color:var(--ink-2)}
-.hero-tile .value{font-size:30px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
-.hero-tile .value small{font-size:13px;font-weight:500;color:var(--ink-2);margin-left:2px}
-.hero-tile .sub{margin-top:2px;font-size:11.5px;color:var(--muted)}
-.hero-tile .sub .up{color:var(--good-text);font-weight:600}
-.miles-label{font-size:10.5px;font-weight:700;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+.hero-tile{background:var(--hero-card);border:1px solid var(--hero-card-b);border-radius:12px;padding:12px 14px;min-width:0}
+.hero-tile .label{font-size:11.5px;color:var(--hero-ink2)}
+.hero-tile .value{font-size:30px;font-weight:700;line-height:1.2;letter-spacing:-.01em;color:var(--hero-ink)}
+.hero-tile .value small{font-size:13px;font-weight:500;color:var(--hero-ink2);margin-left:2px}
+.hero-tile .sub{margin-top:2px;font-size:11.5px;color:var(--hero-mut)}
+.hero-tile .sub .up{color:var(--hero-good);font-weight:600}
+.miles-label{font-size:10.5px;font-weight:700;letter-spacing:.22em;color:var(--hero-mut);text-transform:uppercase}
 .miles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:8px}
 .mile .mhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:12.5px}
-.mile .mname{font-weight:650}
-.mile .remain{font-size:12px;font-weight:700;color:var(--series-2);white-space:nowrap}
-.mile .track{height:7px;border-radius:4px;background:color-mix(in srgb,var(--surface) 55%,transparent);overflow:hidden;margin:6px 0 4px}
-.mile .fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--series-2))}
-.mile .msub{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mile .mname{font-weight:650;color:var(--hero-ink)}
+.mile .remain{font-size:12px;font-weight:700;color:var(--hero-remain);white-space:nowrap}
+.mile .track{height:7px;border-radius:4px;background:var(--hero-track);overflow:hidden;margin:6px 0 4px}
+.mile .fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#a06bff,#ff5fa8)}
+.mile .msub{font-size:11px;color:var(--hero-mut);font-variant-numeric:tabular-nums}
 /* ---- good news ---- */
 .section-h{display:flex;align-items:baseline;gap:8px;margin:20px 0 10px}
 .section-h h2{margin:0;font-size:14.5px;font-weight:650}
@@ -130,7 +130,7 @@ body.privacy svg.chart{filter:blur(7px)}
 body.privacy #tt{display:none!important}
 /* ---- KPI tiles ---- */
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:12px}
-.tile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;min-width:0;box-shadow:0 1px 2px rgba(23,18,31,.04)}
 .tile .label{font-size:12px;color:var(--ink-2)}
 .tile .value{font-size:26px;font-weight:650;line-height:1.15;letter-spacing:-.01em}
 .tile .value small{font-size:13px;font-weight:500;color:var(--ink-2);margin-left:2px}
@@ -142,7 +142,7 @@ body.privacy #tt{display:none!important}
 /* ---- cards & grid ---- */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 @media(max-width:760px){.grid2{grid-template-columns:1fr}}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px 14px;min-width:0}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px 14px;min-width:0;box-shadow:0 1px 2px rgba(23,18,31,.04)}
 .card h2{margin:0 0 2px;font-size:14.5px;font-weight:650}
 .card .desc{font-size:12px;color:var(--muted);margin:0 0 12px}
 .card .chart-scroll{overflow-x:auto}
