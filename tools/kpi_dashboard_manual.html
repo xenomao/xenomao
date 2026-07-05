@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KPIダッシュボード 使い方マニュアル</title>
+<style>
+:root{
+  --ink:#17121f; --ink-2:#4b4356; --muted:#7c7488;
+  --accent:#6d28cf; --accent-soft:#f3ebfd; --hairline:#e8e4f0;
+  --warn-bg:#fdf3e2; --warn-ink:#8a5a00;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:#fff;color:var(--ink);
+  font-family:system-ui,-apple-system,"Segoe UI","Hiragino Sans","Yu Gothic UI","Noto Sans JP",sans-serif;
+  font-size:14.5px;line-height:1.9;
+}
+.wrap{max-width:760px;margin:0 auto;padding:36px 24px 72px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:24px;margin:4px 0 4px;line-height:1.4}
+.lede{color:var(--ink-2);margin:0 0 8px}
+.meta{font-size:12px;color:var(--muted);margin-bottom:28px}
+h2{font-size:17.5px;margin:40px 0 10px;padding-top:16px;border-top:1px solid var(--hairline)}
+h2 .num{color:var(--accent);margin-right:8px;font-variant-numeric:tabular-nums}
+h3{font-size:14.5px;margin:20px 0 6px}
+p{margin:8px 0}
+ol,ul{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+b,strong{font-weight:700}
+kbd,.btn-name{
+  display:inline-block;border:1px solid var(--hairline);border-bottom-width:2px;border-radius:6px;
+  padding:0 8px;font-size:13px;background:#faf8fd;white-space:nowrap;
+}
+.note{background:var(--accent-soft);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:13.5px}
+.warn{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:12px 16px;margin:14px 0;font-size:13.5px}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:12px 0}
+th,td{border-bottom:1px solid var(--hairline);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-size:12px;color:var(--ink-2);background:#faf8fd;white-space:nowrap}
+td:first-child{white-space:nowrap;font-weight:600}
+.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:middle}
+.tag.month{background:#e8f6ec;color:#116329}
+.tag.cum{background:var(--accent-soft);color:var(--accent)}
+.qa dt{font-weight:700;margin-top:14px}
+.qa dd{margin:2px 0 0 0;color:var(--ink-2)}
+.toc{background:#faf8fd;border:1px solid var(--hairline);border-radius:12px;padding:14px 20px;font-size:13.5px}
+.toc ol{margin:4px 0;columns:2;column-gap:32px}
+footer{margin-top:48px;font-size:12px;color:var(--muted);border-top:1px solid var(--hairline);padding-top:14px}
+@media(max-width:560px){.toc ol{columns:1}}
+@media print{
+  body{font-size:12px}
+  .wrap{max-width:none;padding:0}
+  h2{break-after:avoid}
+  table,.note,.warn{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<span class="eyebrow">Digilab beauty</span>
+<h1>事業KPIダッシュボード 使い方マニュアル</h1>
+<p class="lede">毎月の実績数字を入力してくださる方向けのマニュアルです。特別なソフトは不要で、ブラウザだけで使えます。</p>
+<p class="meta">対象ファイル: digilab_kpi_dashboard.html ・ 2026年7月版</p>
+
+<div class="toc">
+<b>目次</b>
+<ol>
+<li>このツールについて</li>
+<li>開き方(初回)</li>
+<li>画面の見方</li>
+<li>毎月の入力手順</li>
+<li>賛助会員の登録・変更</li>
+<li>目標値・お客様の声</li>
+<li>初回だけ: サンプル値の置き換え</li>
+<li>バックアップと共有</li>
+<li>プライバシーモード</li>
+<li>よくある質問</li>
+<li>付録: 入力項目の定義</li>
+</ol>
+</div>
+
+<h2><span class="num">1</span>このツールについて</h2>
+<p>デジラボビューティーの営業・会員・発信のKPI(実績数字)を1画面で見るためのダッシュボードです。数字を入力すると、グラフ・達成率・ハイライトが自動で更新されます。</p>
+<div class="warn">
+<b>いちばん大事な注意</b><br>
+入力した数字は<b>「このパソコンの・このブラウザの中」だけ</b>に保存されます。インターネット上には送信されません。安全な反面、<b>別のPCやスマホには自動で反映されません</b>。他の人と共有するときは「8. バックアップと共有」の手順を使ってください。
+</div>
+
+<h2><span class="num">2</span>開き方(初回)</h2>
+<ol>
+<li>受け取った <b>digilab_kpi_dashboard.html</b> を、デスクトップなど分かりやすい場所に保存します(ダウンロードフォルダに置いたままにしない)。</li>
+<li>ファイルを<b>ダブルクリック</b>すると、ブラウザ(Chrome / Edge / Safari)で開きます。</li>
+<li>今後も同じファイルから開くので、<b>ブラウザのブックマーク登録</b>をおすすめします。</li>
+</ol>
+<div class="warn">シークレット(プライベート)ウィンドウでは開かないでください。閉じると入力データが消えます。また、<b>ファイルを別の場所に移動すると保存済みデータが見えなくなる</b>ことがあるので、置き場所を決めたら動かさないでください。</div>
+
+<h2><span class="num">3</span>画面の見方</h2>
+<table>
+<tr><th>セクション</th><th>内容</th></tr>
+<tr><td>TOTAL IMPACT(紫のカード)</td><td>これまでの積み上げ(事例・お客様の声、セミナー参加者、記事、SNSフォロワー)と、次の節目までの進捗。すべて自動計算です。</td></tr>
+<tr><td>今月のグッドニュース</td><td>記録更新や目標達成などの明るい話題を、入力値から自動で選んで表示します。</td></tr>
+<tr><td>今月の動き</td><td>会員数・収入見込・アプローチなど、直近月の主要数字と前月比。</td></tr>
+<tr><td>営業ファネル / 今月の目標達成</td><td>アプローチ→アポ→商談→成約の流れと、目標(20社/月など)に対する達成率。</td></tr>
+<tr><td>推移グラフ(3枚)</td><td>営業活動・賛助会員数・SNSフォロワーの月ごとの推移。上の「期間」ボタンで表示範囲を切り替えられます。グラフに触れると各月の数値が出ます。</td></tr>
+<tr><td>賛助会員(会社別)</td><td>どの会社が・いくらの年会費で入会しているかの一覧。<b>会員数と収入見込はこの一覧から自動計算</b>されます。</td></tr>
+<tr><td>月次データ</td><td>すべてのグラフの元になる表。<b>入力作業はここが中心</b>です。</td></tr>
+</table>
+
+<h2><span class="num">4</span>毎月の入力手順</h2>
+<p>月に1回、5分程度の作業です。</p>
+<ol>
+<li>右上の <span class="btn-name">データを編集</span> を押します(ボタンが「編集を終了」に変わります)。</li>
+<li>ページ下部の「月次データ」で <span class="btn-name">翌月の行を追加</span> を押し、新しい月の行を作ります(累計の列は前月の値が自動で入ります)。</li>
+<li>新しい行の各マスに実数を入力します。<b>入力した瞬間に自動保存</b>され、画面下に「保存しました」と表示されます。保存ボタンはありません。</li>
+<li>新しい会員が入会した月は「5. 賛助会員の登録・変更」も行います。</li>
+<li>終わったら右上の <span class="btn-name">編集を終了</span> を押します。</li>
+<li>最後に <span class="btn-name">エクスポート</span> でバックアップを取り、決めた場所に保存します(→ 8章)。</li>
+</ol>
+<div class="note">過去の月の数字を直したいときも同じです。<span class="btn-name">データを編集</span> を押して、該当のマスを書き換えるだけで、グラフも自動で直ります。</div>
+
+<h2><span class="num">5</span>賛助会員の登録・変更</h2>
+<p>「賛助会員(会社別)」カードで管理します。<span class="btn-name">データを編集</span> 中は表が入力欄に変わります。</p>
+<ul>
+<li><b>新しい会員が入ったら</b>: <span class="btn-name">会員を追加</span> を押し、会社名・年会費(円)・入会月を入力します。</li>
+<li><b>金額やプランが変わったら</b>: その会社の年会費のマスを書き換えます。</li>
+<li><b>退会したら</b>: 行の <span class="btn-name">削除</span> を押します(確認が出ます)。</li>
+</ul>
+<div class="note">ここに登録すると、「賛助会員数」「年会費収入(見込)」「賛助会員数の推移」グラフ、グッドニュースがすべて自動で更新されます。会員数を別の場所に入力する必要はありません。</div>
+
+<h2><span class="num">6</span>目標値・お客様の声</h2>
+<p>「月次データ」カードの中の <span class="btn-name">目標値・お客様の声の設定</span> を開くと編集できます。</p>
+<ul>
+<li><b>目標値</b>: 月間アプローチ(初期値20社)、リード獲得(10件)、アポ獲得率(15%)、成約率(30%)。組織の方針が変わったときだけ変更してください。</li>
+<li><b>お客様の声</b>: セミナーアンケートなどから良かった声を登録すると、「参加者・お客様の声」カードに表示されます(新しい順に4件)。NPS欄は0〜10の点数で、空欄でも構いません。</li>
+</ul>
+
+<h2><span class="num">7</span>初回だけ: サンプル値の置き換え</h2>
+<p>最初に開いたときは、動きが分かるように<b>サンプルの数字</b>(2026年2月〜7月)が入っています。画面上部に「現在サンプル値を表示しています」というお知らせが出ているのが目印です。</p>
+<ol>
+<li><span class="btn-name">データを編集</span> を押します。</li>
+<li>「月次データ」の各マスを、<b>実際の数字に上書き</b>していきます(実績が分からない月は0で構いません)。</li>
+<li>「賛助会員(会社別)」の<b>サンプル5社をすべて削除</b>し、実際の会員を登録し直します。</li>
+<li>「お客様の声」のサンプル3件も、実際の声に書き換えるか削除します。</li>
+</ol>
+<div class="note">どこか1箇所でも編集すると、サンプルのお知らせは自動で消えます。</div>
+
+<h2><span class="num">8</span>バックアップと共有</h2>
+<p>データはこのPCの中だけにあるため、<b>月1回の入力が終わったら必ずバックアップ</b>を取ってください。</p>
+<h3>バックアップ(エクスポート)</h3>
+<ol>
+<li>右上の <span class="btn-name">エクスポート</span> を押すと、<b>digilab_beauty_kpi_日付.json</b> というファイルがダウンロードされます。</li>
+<li>このファイルを、決められた共有場所(Google Drive など)に保存し、必要に応じて理事長に共有してください。</li>
+</ol>
+<h3>復元・別のPCへの引き継ぎ(インポート)</h3>
+<ol>
+<li>ダッシュボードを開き、<span class="btn-name">インポート</span> を押します。</li>
+<li>保存しておいたJSONファイルを選ぶと、その時点の状態がそのまま再現されます。</li>
+</ol>
+<div class="warn">インポートすると、いま画面に入っているデータは選んだファイルの内容で<b>丸ごと置き換わります</b>。2人以上で入力する場合は、「入力する人を1人に決めて、他の人はJSONを受け取って見る」運用にすると混乱しません。</div>
+
+<h2><span class="num">9</span>プライバシーモード</h2>
+<p>会議での画面共有やスクリーンショットの際、右上の <span class="btn-name">プライバシー OFF</span> を押すと <b>ON</b> になり、会社名・金額などの数字が<b>ぼかし表示</b>になります(レイアウトは見えたまま)。もう一度押すと戻ります。この設定は次回開いたときも保持されます。</p>
+
+<h2><span class="num">10</span>よくある質問</h2>
+<dl class="qa">
+<dt>Q. 入力したはずの数字が消えています。</dt>
+<dd>A. 別のブラウザ(例: いつもChromeなのにEdge)や別のPCで開いていないか、ファイルの置き場所を移動していないか確認してください。データは「開いたブラウザ+ファイルの場所」ごとに保存されています。見つからない場合は、最新のバックアップJSONをインポートすれば復元できます。</dd>
+<dt>Q. 間違えて消してしまいました。</dt>
+<dd>A. 最新のバックアップJSONを <span class="btn-name">インポート</span> してください。バックアップが無い場合、元に戻す方法はありません(だからこそ毎月のエクスポートが大切です)。</dd>
+<dt>Q. 「サンプルに戻す」を押すとどうなりますか?</dt>
+<dd>A. 入力済みデータが<b>すべて消えて</b>最初のサンプル状態に戻ります。通常の運用で使うことはありません。押す前に必ずエクスポートしてください。</dd>
+<dt>Q. グラフの会員数が実際と合いません。</dt>
+<dd>A. 会員数は「賛助会員(会社別)」一覧の<b>入会月</b>から自動計算しています。各会員の入会月が正しく入っているか確認してください。</dd>
+<dt>Q. 新しいバージョンのHTMLファイルをもらいました。データは消えますか?</dt>
+<dd>A. <b>同じ場所に同じファイル名で上書き保存</b>すれば、入力済みデータはそのまま引き継がれます。念のため、上書き前にエクスポートしておくと安心です。</dd>
+<dt>Q. スマホでも使えますか?</dt>
+<dd>A. 閲覧はできますが、データはスマホ側に別途保存されるため、入力作業はいつものPCで行うことをおすすめします。</dd>
+</dl>
+
+<h2><span class="num">11</span>付録: 入力項目の定義</h2>
+<p><span class="tag month">単月</span> はその月の件数、<span class="tag cum">累計</span> はその時点の合計を入力します。</p>
+<table>
+<tr><th>項目</th><th>種類</th><th>入れる数字</th></tr>
+<tr><td>アプローチ数</td><td><span class="tag month">単月</span></td><td>その月に新規に営業連絡した会社の数(目標: 20社/月)</td></tr>
+<tr><td>アポイント数</td><td><span class="tag month">単月</span></td><td>その月に獲得した商談アポの件数</td></tr>
+<tr><td>商談数</td><td><span class="tag month">単月</span></td><td>その月に実施した商談の件数</td></tr>
+<tr><td>成約数</td><td><span class="tag month">単月</span></td><td>その月に成約(入会・契約)した件数</td></tr>
+<tr><td>リード獲得数</td><td><span class="tag month">単月</span></td><td>問い合わせ・資料請求など見込み客の獲得件数(目標: 10件/月)</td></tr>
+<tr><td>セミナー開催</td><td><span class="tag month">単月</span></td><td>その月に開催したセミナー・勉強会の回数</td></tr>
+<tr><td>セミナー参加者</td><td><span class="tag month">単月</span></td><td>その月のセミナー参加者の合計人数</td></tr>
+<tr><td>事例・声(累計)</td><td><span class="tag cum">累計</span></td><td>公開できる導入事例・お客様の声の合計件数</td></tr>
+<tr><td>記事数(累計)</td><td><span class="tag cum">累計</span></td><td>公開済みブログ記事の合計本数</td></tr>
+<tr><td>IGフォロワー(累計)</td><td><span class="tag cum">累計</span></td><td>Instagram(@digilab.beauty_official)のフォロワー数(月末時点)</td></tr>
+<tr><td>LINE友だち(累計)</td><td><span class="tag cum">累計</span></td><td>公式LINEの友だち数(月末時点)</td></tr>
+<tr><td>賛助会員(会社別)</td><td>一覧</td><td>会社名・年会費(円)・入会月。会員数と収入はここから自動計算</td></tr>
+</table>
+<div class="note"><b>アポ獲得率</b>=アポイント数÷アプローチ数(目標15%)、<b>成約率</b>=成約数÷商談数(目標30%)。これらは自動計算なので入力不要です。</div>
+
+<footer>
+一般社団法人デジラボビューティー ・ 事業KPIダッシュボード 使い方マニュアル ・ 不明点は理事長まで(digilabbeauty@gmail.com)
+</footer>
+
+</div>
+</body>
+</html>
