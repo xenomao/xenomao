@@ -76,6 +76,58 @@ button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-v
   border-radius:10px;padding:8px 14px;font-size:12.5px;color:var(--ink-2);margin-bottom:20px;
 }
 .notice .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+/* ---- hero (total impact) ---- */
+.hero{
+  border:1px solid var(--hairline);border-radius:16px;padding:22px 24px 20px;margin-bottom:16px;
+  background:linear-gradient(135deg,var(--hero-1),var(--hero-2));
+}
+:root{--hero-1:#f0e4f8;--hero-2:#f9e7f1}
+@media (prefers-color-scheme: dark){:root{--hero-1:#2a2140;--hero-2:#3b2347}}
+:root[data-theme="dark"]{--hero-1:#2a2140;--hero-2:#3b2347}
+:root[data-theme="light"]{--hero-1:#f0e4f8;--hero-2:#f9e7f1}
+.hero-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-ink)}
+.hero-date{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.hero-head{margin:6px 0 10px;font-size:24px;font-weight:750;letter-spacing:.005em;text-wrap:balance}
+.coach{margin:0 0 18px;font-size:13px;color:var(--ink-2);max-width:66em;line-height:1.75}
+.coach .coach-meta{display:block;margin-top:3px;font-size:10.5px;letter-spacing:.12em;color:var(--muted)}
+.hero-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:18px}
+.hero-tile{background:color-mix(in srgb,var(--surface) 62%,transparent);border:1px solid var(--border);border-radius:12px;padding:12px 14px;min-width:0}
+.hero-tile .label{font-size:11.5px;color:var(--ink-2)}
+.hero-tile .value{font-size:30px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+.hero-tile .value small{font-size:13px;font-weight:500;color:var(--ink-2);margin-left:2px}
+.hero-tile .sub{margin-top:2px;font-size:11.5px;color:var(--muted)}
+.hero-tile .sub .up{color:var(--good-text);font-weight:600}
+.miles-label{font-size:10.5px;font-weight:700;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+.miles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:8px}
+.mile .mhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:12.5px}
+.mile .mname{font-weight:650}
+.mile .remain{font-size:12px;font-weight:700;color:var(--series-2);white-space:nowrap}
+.mile .track{height:7px;border-radius:4px;background:color-mix(in srgb,var(--surface) 55%,transparent);overflow:hidden;margin:6px 0 4px}
+.mile .fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--series-2))}
+.mile .msub{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* ---- good news ---- */
+.section-h{display:flex;align-items:baseline;gap:8px;margin:20px 0 10px}
+.section-h h2{margin:0;font-size:14.5px;font-weight:650}
+.section-h .note{font-size:11.5px;color:var(--muted)}
+.gn{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:4px}
+.gn-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 15px}
+.gn-card .gn-title{font-size:13.5px;font-weight:650;margin:6px 0 2px;line-height:1.5}
+.gn-card .gn-sub{font-size:11.5px;color:var(--muted)}
+.chip.info{color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+/* ---- voices ---- */
+.voices{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.voice{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 15px;display:flex;flex-direction:column;gap:6px}
+.voice .vtext{font-size:12.5px;color:var(--ink-2);line-height:1.7}
+.voice-empty{font-size:12px;color:var(--muted)}
+.voice-editor{display:flex;flex-direction:column;gap:8px;margin:10px 0 4px}
+.voice-editor .vrow{display:flex;gap:8px;align-items:flex-start}
+.voice-editor textarea{flex:1;min-height:44px;padding:6px 8px;border:1px solid var(--hairline);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit;font-size:12.5px;resize:vertical}
+.voice-editor input[type="number"]{width:70px;padding:6px 8px;border:1px solid var(--hairline);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}
+/* ---- privacy mode ---- */
+body.privacy .blur{filter:blur(7px)}
+body.privacy svg.chart{filter:blur(7px)}
+body.privacy #tt{display:none!important}
 /* ---- KPI tiles ---- */
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:12px}
 .tile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px 12px;display:flex;flex-direction:column;gap:4px;min-width:0}
@@ -187,6 +239,7 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;line-height:1.7}
       <span class="subtitle">一般社団法人デジラボビューティー ・ 自分専用(データはこのブラウザ内にのみ保存)</span>
     </div>
     <div class="actions">
+      <button id="btn-privacy" type="button" aria-pressed="false">プライバシー OFF</button>
       <button id="btn-export" type="button">エクスポート</button>
       <button id="btn-import" type="button">インポート</button>
       <input id="file-import" type="file" accept="application/json" class="visually-hidden" aria-hidden="true" tabindex="-1">
@@ -199,7 +252,27 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;line-height:1.7}
     <span>現在サンプル値を表示しています。「データを編集」から実績を入力すると自動保存されます(目標値は組織ドキュメント準拠)。</span>
   </div>
 
+  <!-- hero: total impact -->
+  <section class="hero" aria-label="これまでの積み上げ">
+    <div class="hero-top">
+      <span class="eyebrow">Total Impact ・ これまでの積み上げ</span>
+      <span class="hero-date" id="hero-date"></span>
+    </div>
+    <h2 class="hero-head">積み上げは、今月も増えている。</h2>
+    <p class="coach"><span id="coach-text"></span><span class="coach-meta">AUTO COACH ・ 入力データから自動生成 ・ 編集すると更新</span></p>
+    <div class="hero-tiles" id="hero-tiles"></div>
+    <div>
+      <span class="miles-label">Next Milestone</span>
+      <div class="miles" id="milestones"></div>
+    </div>
+  </section>
+
+  <!-- good news -->
+  <div class="section-h"><h2>今月のグッドニュース</h2><span class="note">全指標から自動選出</span></div>
+  <section class="gn" id="goodnews" aria-label="今月のグッドニュース"></section>
+
   <!-- KPI tiles -->
+  <div class="section-h"><h2>今月の動き</h2><span class="note" id="tiles-month"></span></div>
   <section class="tiles" id="tiles" aria-label="主要KPI"></section>
 
   <div class="grid2">
@@ -230,12 +303,26 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;line-height:1.7}
       <h2>営業活動の推移</h2>
       <p class="desc">月間アプローチ数とリード獲得数</p>
       <div class="legend" id="trend-legend"></div>
-      <div class="chart-scroll"><svg id="trend-chart" width="100%" viewBox="0 0 560 260" role="img" aria-label="アプローチ数とリード獲得数の月次推移"></svg></div>
+      <div class="chart-scroll"><svg id="trend-chart" class="chart" width="100%" viewBox="0 0 560 260" role="img" aria-label="アプローチ数とリード獲得数の月次推移"></svg></div>
     </div>
     <div class="card">
       <h2>賛助会員数の推移</h2>
       <p class="desc">累計会員数(年会費 ¥100,000/社)</p>
-      <div class="chart-scroll"><svg id="member-chart" width="100%" viewBox="0 0 560 260" role="img" aria-label="賛助会員数の月次推移"></svg></div>
+      <div class="chart-scroll"><svg id="member-chart" class="chart" width="100%" viewBox="0 0 560 260" role="img" aria-label="賛助会員数の月次推移"></svg></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>SNSフォロワーの推移</h2>
+      <p class="desc">Instagram(@digilab.beauty_official)と公式LINE友だち</p>
+      <div class="legend" id="sns-legend"></div>
+      <div class="chart-scroll"><svg id="sns-chart" class="chart" width="100%" viewBox="0 0 560 260" role="img" aria-label="InstagramフォロワーとLINE友だちの月次推移"></svg></div>
+    </div>
+    <div class="card">
+      <h2>参加者・お客様の声</h2>
+      <p class="desc">セミナー後アンケートなどから(「データを編集」で追加)</p>
+      <div class="voices" id="voices"></div>
     </div>
   </div>
 
@@ -250,9 +337,10 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;line-height:1.7}
     <h2>月次データ</h2>
     <p class="desc">全チャートの元データ。<span id="edit-hint">「データを編集」を押すと直接入力できます。</span></p>
     <details class="editor" id="target-editor">
-      <summary>目標値・フェーズ進捗の設定</summary>
+      <summary>目標値・フェーズ進捗・お客様の声の設定</summary>
       <div class="targets" id="target-inputs"></div>
       <div class="phase-edit" id="phase-inputs"></div>
+      <div class="voice-editor" id="voice-editor"></div>
     </details>
     <div class="chart-scroll"><table id="data-table"></table></div>
     <div class="editbar" id="editbar" hidden>
@@ -277,14 +365,18 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;line-height:1.7}
 "use strict";
 var LS_KEY = "dlb_kpi_data_v1";
 var METRICS = [
-  {key:"approach", label:"アプローチ数"},
-  {key:"appo",     label:"アポイント数"},
-  {key:"nego",     label:"商談数"},
-  {key:"deal",     label:"成約数"},
-  {key:"lead",     label:"リード獲得数"},
-  {key:"seminar",  label:"セミナー開催"},
-  {key:"member",   label:"賛助会員数(累計)"},
-  {key:"blog",     label:"公開記事数(累計)"}
+  {key:"approach",  label:"アプローチ数",        unit:"社", cum:false},
+  {key:"appo",      label:"アポイント数",        unit:"件", cum:false},
+  {key:"nego",      label:"商談数",              unit:"件", cum:false},
+  {key:"deal",      label:"成約数",              unit:"件", cum:false},
+  {key:"lead",      label:"リード獲得数",        unit:"件", cum:false},
+  {key:"seminar",   label:"セミナー開催",        unit:"回", cum:false},
+  {key:"attendee",  label:"セミナー参加者",      unit:"名", cum:false},
+  {key:"voice",     label:"事例・声(累計)",     unit:"件", cum:true},
+  {key:"member",    label:"会員数(累計)",       unit:"社", cum:true},
+  {key:"blog",      label:"記事数(累計)",       unit:"本", cum:true},
+  {key:"instagram", label:"IGフォロワー(累計)", unit:"人", cum:true},
+  {key:"line",      label:"LINE友だち(累計)",   unit:"人", cum:true}
 ];
 var PHASE_NAMES = ["Phase 1 基盤構築","Phase 2 AI担当・Opal連携","Phase 3 AI営業システム","Phase 4 AIマーケティング","Phase 5 AI事務局・統合","Phase 6 AI執行役員"];
 var FEE = 100000; // 年会費/社
@@ -294,15 +386,30 @@ function seedData(){
     isSample: true,
     targets: { approach:20, lead:10, appoRate:15, dealRate:30 },
     phases: [95,0,0,0,0,0],
+    voices: [
+      {text:"「AIエージェントに丸投げすればいい」ではなく、サロン業務のどこに効くかが具体的で分かりやすかった。", score:10},
+      {text:"無料でできるツールから、まずは触れてみるところまで伴走してもらえたのが良かった。", score:9},
+      {text:"予約管理のAI化、翌日からすぐ試せる内容だった。スタッフにも共有したい。", score:9}
+    ],
     months: [
-      {ym:"2026-02", approach:8,  appo:1, nego:0, deal:0, lead:3, seminar:0, member:0, blog:10},
-      {ym:"2026-03", approach:12, appo:2, nego:1, deal:0, lead:5, seminar:1, member:1, blog:20},
-      {ym:"2026-04", approach:15, appo:2, nego:1, deal:1, lead:6, seminar:1, member:2, blog:30},
-      {ym:"2026-05", approach:18, appo:3, nego:2, deal:1, lead:8, seminar:1, member:3, blog:38},
-      {ym:"2026-06", approach:20, appo:3, nego:2, deal:1, lead:9, seminar:2, member:4, blog:44},
-      {ym:"2026-07", approach:14, appo:2, nego:1, deal:1, lead:7, seminar:1, member:5, blog:48}
+      {ym:"2026-02", approach:8,  appo:1, nego:0, deal:0, lead:3, seminar:0, attendee:0,  voice:0,  member:0, blog:10, instagram:120, line:30},
+      {ym:"2026-03", approach:12, appo:2, nego:1, deal:0, lead:5, seminar:1, attendee:12, voice:2,  member:1, blog:20, instagram:180, line:60},
+      {ym:"2026-04", approach:15, appo:2, nego:1, deal:1, lead:6, seminar:1, attendee:15, voice:4,  member:2, blog:30, instagram:240, line:95},
+      {ym:"2026-05", approach:18, appo:3, nego:2, deal:1, lead:8, seminar:1, attendee:18, voice:7,  member:3, blog:38, instagram:310, line:140},
+      {ym:"2026-06", approach:20, appo:3, nego:2, deal:1, lead:9, seminar:2, attendee:25, voice:10, member:4, blog:44, instagram:390, line:180},
+      {ym:"2026-07", approach:14, appo:2, nego:1, deal:1, lead:7, seminar:1, attendee:20, voice:12, member:5, blog:48, instagram:450, line:210}
     ]
   };
+}
+function normalize(d){
+  if(!Array.isArray(d.phases)) d.phases = [95,0,0,0,0,0];
+  if(!Array.isArray(d.voices)) d.voices = [];
+  d.months.forEach(function(row){
+    METRICS.forEach(function(mt){
+      if(typeof row[mt.key] !== "number") row[mt.key] = Number(row[mt.key]) || 0;
+    });
+  });
+  return d;
 }
 function load(){
   try{
@@ -310,8 +417,7 @@ function load(){
     if(!raw) return seedData();
     var d = JSON.parse(raw);
     if(!d || !Array.isArray(d.months) || !d.targets) return seedData();
-    if(!Array.isArray(d.phases)) d.phases = [95,0,0,0,0,0];
-    return d;
+    return normalize(d);
   }catch(e){ return seedData(); }
 }
 var saveTimer = null;
@@ -417,12 +523,12 @@ function renderTiles(){
   tiles.forEach(function(t){
     var d = el("div", {"class":"tile"}, box);
     el("div", {"class":"label", text:t.label}, d);
-    var v = el("div", {"class":"value"}, d);
+    var v = el("div", {"class":"value blur"}, d);
     v.textContent = t.value;
     if(t.unit){ var sm = el("small", null, v); sm.textContent = t.unit; }
     var meta = el("div", {"class":"meta"}, d);
     if(t.delta){
-      var dl = el("span", {"class":"delta " + t.delta.cls}, meta);
+      var dl = el("span", {"class":"delta blur " + t.delta.cls}, meta);
       dl.textContent = t.delta.text;
     } else { el("span", null, meta); }
     if(t.spark) meta.appendChild(sparkline(t.spark, 92, 26));
@@ -436,6 +542,246 @@ function diff(cur, prev, unit, fmtFn){
   if(d > 0) return {cls:"up", text:"▲ " + f(d) + " 前月比"};
   if(d < 0) return {cls:"down", text:"▼ " + f(-d) + " 前月比"};
   return {cls:"flat", text:"± 0 前月比"};
+}
+
+/* ---------- hero: total impact ---------- */
+var FULL_LABEL = {
+  approach:"アプローチ", appo:"アポイント", nego:"商談", deal:"成約", lead:"リード獲得",
+  seminar:"セミナー開催", attendee:"セミナー参加者", voice:"事例・お客様の声",
+  member:"賛助会員", blog:"公開ブログ記事", instagram:"Instagramフォロワー", line:"LINE友だち"
+};
+function unitOf(key){
+  for(var i=0;i<METRICS.length;i++) if(METRICS[i].key===key) return METRICS[i].unit;
+  return "";
+}
+function nextMilestone(v){
+  var bases = [5,7,10,15,20,30,50,70];
+  for(var k=1; k<=10000000; k*=10){
+    for(var i=0;i<bases.length;i++){
+      var m = bases[i]*k;
+      if(m > v) return m;
+    }
+  }
+  return v*2;
+}
+function heroFacts(){
+  var m = data.months;
+  var cur = m[m.length-1] || {}, prev = m[m.length-2] || {};
+  var attendeeTotal = m.reduce(function(s,r){ return s + (Number(r.attendee)||0); }, 0);
+  var snsTotal = (Number(cur.instagram)||0) + (Number(cur.line)||0);
+  var snsPrev = (Number(prev.instagram)||0) + (Number(prev.line)||0);
+  return {cur:cur, prev:prev, attendeeTotal:attendeeTotal,
+          attendeePrev: attendeeTotal - (Number(cur.attendee)||0),
+          snsTotal:snsTotal, snsPrev:snsPrev};
+}
+function milestoneItems(){
+  var f = heroFacts();
+  var cands = [
+    {name:"賛助会員",         cur:Number(f.cur.member)||0, unit:"社"},
+    {name:"事例・お客様の声", cur:Number(f.cur.voice)||0,  unit:"件"},
+    {name:"公開ブログ記事",   cur:Number(f.cur.blog)||0,   unit:"本"},
+    {name:"セミナー参加者累計", cur:f.attendeeTotal,        unit:"名"},
+    {name:"SNSフォロワー合計", cur:f.snsTotal,             unit:"人"}
+  ].filter(function(c){ return c.cur > 0; });
+  cands.forEach(function(c){
+    c.target = nextMilestone(c.cur);
+    c.pct = c.cur / c.target * 100;
+    c.remain = c.target - c.cur;
+  });
+  cands.sort(function(a,b){ return b.pct - a.pct; });
+  return cands.slice(0,3);
+}
+function renderHero(){
+  var f = heroFacts();
+  // date
+  var now = new Date();
+  var days = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+  document.getElementById("hero-date").textContent =
+    now.getFullYear() + "-" + String(now.getMonth()+1).padStart(2,"0") + "-" + String(now.getDate()).padStart(2,"0") + " " + days[now.getDay()];
+  // tiles
+  var box = document.getElementById("hero-tiles");
+  box.textContent = "";
+  var tiles = [
+    {label:"事例・お客様の声", value:fmt(f.cur.voice), unit:"件", d:(Number(f.cur.voice)||0)-(Number(f.prev.voice)||0)},
+    {label:"セミナー参加者(累計)", value:fmt(f.attendeeTotal), unit:"名", d:Number(f.cur.attendee)||0},
+    {label:"公開ブログ記事", value:fmt(f.cur.blog), unit:"本", d:(Number(f.cur.blog)||0)-(Number(f.prev.blog)||0)},
+    {label:"SNSフォロワー合計", value:fmt(f.snsTotal), unit:"人", d:f.snsTotal-f.snsPrev, note:"Instagram+LINE"}
+  ];
+  tiles.forEach(function(t){
+    var d = el("div", {"class":"hero-tile"}, box);
+    el("div", {"class":"label", text:t.label}, d);
+    var v = el("div", {"class":"value blur"}, d);
+    v.textContent = t.value;
+    var sm = el("small", null, v); sm.textContent = t.unit;
+    var sub = el("div", {"class":"sub blur"}, d);
+    if(t.d > 0){
+      var up = el("span", {"class":"up"}, sub); up.textContent = "+" + fmt(t.d) + t.unit;
+      sub.appendChild(document.createTextNode(" 今月" + (t.note ? " ・ " + t.note : "")));
+    } else {
+      sub.textContent = "今月 ±0" + (t.note ? " ・ " + t.note : "");
+    }
+  });
+  // milestones
+  var mbox = document.getElementById("milestones");
+  mbox.textContent = "";
+  var items = milestoneItems();
+  if(!items.length){
+    var p = el("div", {"class":"msub", text:"データを入力するとマイルストーンが表示されます。"}, mbox);
+  }
+  items.forEach(function(it){
+    var d = el("div", {"class":"mile"}, mbox);
+    var head = el("div", {"class":"mhead"}, d);
+    var nm = el("span", {"class":"mname"}, head);
+    nm.textContent = it.name + " " + fmt(it.target) + it.unit;
+    var rm = el("span", {"class":"remain blur"}, head);
+    rm.textContent = "あと " + fmt(it.remain) + it.unit;
+    var track = el("div", {"class":"track", role:"img", "aria-label": it.name + " " + it.pct.toFixed(1) + "%"}, d);
+    var fill = el("div", {"class":"fill"}, track);
+    fill.style.width = Math.min(100, it.pct) + "%";
+    var sub = el("div", {"class":"msub blur"}, d);
+    sub.textContent = fmt(it.cur) + " / " + fmt(it.target) + " ・ " + it.pct.toFixed(1) + "%";
+  });
+  // coach message
+  var coach = document.getElementById("coach-text");
+  coach.classList.add("blur");
+  var h = now.getHours();
+  var hello = h < 11 ? "おはようございます。" : h < 18 ? "こんにちは。" : "こんばんは。";
+  var parts = [hello];
+  var mm = data.months;
+  if(mm.length >= 2){
+    var latest = mm[mm.length-1];
+    var recKeys = ["approach","lead","attendee","seminar"];
+    var rec = null;
+    recKeys.forEach(function(k){
+      var v = Number(latest[k])||0;
+      var prevMax = Math.max.apply(null, mm.slice(0,-1).map(function(r){ return Number(r[k])||0; }));
+      if(v > 0 && v > prevMax && !rec) rec = {k:k, v:v};
+    });
+    if(rec){
+      parts.push("今月は" + FULL_LABEL[rec.k] + "が" + fmt(rec.v) + unitOf(rec.k) + "と過去最高ペースです。");
+    } else {
+      var best = null;
+      ["voice","member","blog","instagram","line"].forEach(function(k){
+        var d0 = (Number(latest[k])||0) - (Number(mm[mm.length-2][k])||0);
+        if(d0 > 0 && (!best || d0 > best.d)) best = {k:k, d:d0};
+      });
+      if(best) parts.push("今月は" + FULL_LABEL[best.k] + "が +" + fmt(best.d) + unitOf(best.k) + " 増えました。");
+    }
+    var top = milestoneItems()[0];
+    if(top){
+      var soon = top.pct >= 80 ? "あとわずか " : "あと ";
+      parts.push(top.name + " " + fmt(top.target) + top.unit + "まで" + soon + fmt(top.remain) + top.unit + " — この調子です。");
+    }
+  } else {
+    parts.push("データを入力すると、ここにハイライトが表示されます。");
+  }
+  coach.textContent = parts.join("");
+}
+
+/* ---------- good news (auto-picked) ---------- */
+function renderGoodNews(){
+  var box = document.getElementById("goodnews");
+  box.textContent = "";
+  var mm = data.months;
+  var news = [];
+  if(mm.length >= 2){
+    var latest = mm[mm.length-1], prev = mm[mm.length-2];
+    // 記録更新
+    ["approach","lead","attendee","seminar"].forEach(function(k){
+      var v = Number(latest[k])||0;
+      var prevMax = Math.max.apply(null, mm.slice(0,-1).map(function(r){ return Number(r[k])||0; }));
+      if(v > 0 && v > prevMax){
+        news.push({chip:"記録更新", cls:"ok",
+          title: FULL_LABEL[k] + "が過去最高を更新 — " + monthFull(latest.ym) + "は" + fmt(v) + unitOf(k),
+          sub: "これまでの最高 " + fmt(prevMax) + unitOf(k)});
+      }
+    });
+    // 目標達成
+    if((Number(latest.approach)||0) >= data.targets.approach){
+      news.push({chip:"目標達成", cls:"ok",
+        title:"月間アプローチ目標を達成 — " + fmt(latest.approach) + "社",
+        sub:"目標 " + data.targets.approach + "社/月"});
+    }
+    if((Number(latest.lead)||0) >= data.targets.lead){
+      news.push({chip:"目標達成", cls:"ok",
+        title:"月間リード獲得目標を達成 — " + fmt(latest.lead) + "件",
+        sub:"目標 " + data.targets.lead + "件/月"});
+    }
+    // 今月の動き(累計の純増)
+    ["member","voice","instagram","line","blog"].forEach(function(k){
+      var d0 = (Number(latest[k])||0) - (Number(prev[k])||0);
+      if(d0 > 0){
+        news.push({chip:"今月の動き", cls:"info",
+          title: FULL_LABEL[k] + " +" + fmt(d0) + unitOf(k) + "(今月)",
+          sub:"累計 " + fmt(latest[k]) + unitOf(k)});
+      }
+    });
+  }
+  if(!news.length){
+    news.push({chip:"準備中", cls:"info", title:"今月分のデータを入力すると自動選出されます", sub:"記録更新・目標達成・純増から抽出"});
+  }
+  news.slice(0,3).forEach(function(n){
+    var c = el("div", {"class":"gn-card"}, box);
+    var chip = el("span", {"class":"chip " + n.cls}, c);
+    chip.textContent = n.chip;
+    var t = el("div", {"class":"gn-title blur"}, c); t.textContent = n.title;
+    var s = el("div", {"class":"gn-sub blur"}, c); s.textContent = n.sub;
+  });
+}
+
+/* ---------- voices ---------- */
+function renderVoices(){
+  var box = document.getElementById("voices");
+  box.textContent = "";
+  var vs = data.voices || [];
+  if(!vs.length){
+    el("div", {"class":"voice-empty", text:"まだ登録がありません。「データを編集」→「お客様の声の設定」から追加できます。"}, box);
+    return;
+  }
+  vs.slice(0,4).forEach(function(v){
+    var c = el("div", {"class":"voice"}, box);
+    if(v.score != null && v.score !== ""){
+      var chip = el("span", {"class":"chip ok"}, c);
+      chip.textContent = "NPS " + v.score + " / 10";
+      chip.style.alignSelf = "flex-start";
+    }
+    var t = el("div", {"class":"vtext blur"}, c);
+    t.textContent = v.text || "";
+  });
+}
+function renderVoiceEditor(){
+  var box = document.getElementById("voice-editor");
+  box.textContent = "";
+  var lbl = el("div", null, box);
+  lbl.style.cssText = "font-size:11.5px;color:var(--ink-2);font-weight:600";
+  lbl.textContent = "参加者・お客様の声(上位4件を表示)";
+  (data.voices || []).forEach(function(v, i){
+    var row = el("div", {"class":"vrow"}, box);
+    var ta = el("textarea", {"aria-label":"声 " + (i+1)}, row);
+    ta.value = v.text || "";
+    ta.addEventListener("input", function(){
+      data.voices[i].text = ta.value; data.isSample = false; save(); renderVoices();
+    });
+    var sc = el("input", {type:"number", min:"0", max:"10", step:"1", "aria-label":"NPSスコア " + (i+1)}, row);
+    sc.value = v.score == null ? "" : v.score;
+    sc.addEventListener("input", function(){
+      data.voices[i].score = sc.value === "" ? null : Number(sc.value);
+      data.isSample = false; save(); renderVoices();
+    });
+    var del = el("button", {type:"button", text:"削除"}, row);
+    del.addEventListener("click", function(){
+      data.voices.splice(i,1); data.isSample = false; save();
+      renderVoices(); renderVoiceEditor();
+    });
+  });
+  var add = el("button", {type:"button", text:"声を追加"}, box);
+  add.style.alignSelf = "flex-start";
+  add.addEventListener("click", function(){
+    data.voices = data.voices || [];
+    data.voices.unshift({text:"", score:null});
+    data.isSample = false; save();
+    renderVoices(); renderVoiceEditor();
+  });
 }
 
 /* ---------- funnel ---------- */
@@ -464,7 +810,7 @@ function renderFunnel(){
     var bar = el("div", {"class":"fbar"}, wrapb);
     bar.style.background = s.color;
     bar.style.width = Math.max(1, s.val / max * 100 * 0.82) + "%";
-    el("span", {"class":"fval", text:fmt(s.val)}, wrapb);
+    el("span", {"class":"fval blur", text:fmt(s.val)}, wrapb);
     function show(ev){
       var r = row.getBoundingClientRect();
       var x = ev && ev.clientX ? ev.clientX : r.left + r.width/2;
@@ -481,7 +827,7 @@ function renderFunnel(){
       var rate = c.den > 0 ? c.num / c.den * 100 : null;
       var wrapc = el("div", {"class":"fconv"}, box);
       var cell = el("div", {"class":"c"}, wrapc);
-      var b = el("b", null, cell);
+      var b = el("b", {"class":"blur"}, cell);
       b.textContent = c.name + " " + (rate == null ? "–" : rate.toFixed(1) + "%");
       cell.appendChild(document.createTextNode("(目標 " + c.target + "%)"));
       if(rate != null){
@@ -510,7 +856,7 @@ function renderMeters(){
     var d = el("div", {"class":"meter"}, box);
     var head = el("div", {"class":"mhead"}, d);
     var nm = el("span", {"class":"mname"}, head); nm.textContent = it.name;
-    var mv = el("span", {"class":"mval"}, head);
+    var mv = el("span", {"class":"mval blur"}, head);
     mv.textContent = it.cur;
     var tg = el("span", {"class":"tgt"}, mv); tg.textContent = it.tgt;
     if(it.pct >= 100){
@@ -673,6 +1019,84 @@ function renderMemberChart(){
   });
 }
 
+/* ---------- SNS followers chart (2 series) ---------- */
+function niceStep(max){
+  var pow = Math.pow(10, Math.floor(Math.log10(Math.max(1, max))));
+  var frac = max / pow;
+  return (frac <= 1 ? 0.2 : frac <= 2 ? 0.5 : frac <= 5 ? 1 : 2) * pow;
+}
+function renderSns(){
+  var svg = document.getElementById("sns-chart");
+  svg.textContent = "";
+  var months = visibleMonths();
+  var series = [
+    {key:"instagram", label:"Instagram", color:css("--accent")},
+    {key:"line",      label:"LINE友だち", color:css("--series-2")}
+  ];
+  var legend = document.getElementById("sns-legend");
+  legend.textContent = "";
+  series.forEach(function(s){
+    var k = el("span", {"class":"key"}, legend);
+    var ln = el("span", {"class":"line"}, k); ln.style.borderTopColor = s.color;
+    k.appendChild(document.createTextNode(s.label));
+  });
+  if(months.length < 2) return;
+  var W = 560, H = 260, L = 46, R = 92, T = 14, B = 30;
+  var pw = W - L - R, ph = H - T - B;
+  var allVals = [];
+  months.forEach(function(r){ series.forEach(function(s){ allVals.push(Number(r[s.key])||0); }); });
+  var rawMax = Math.max.apply(null, allVals.concat([1]));
+  var step = niceStep(rawMax);
+  var yMax = Math.max(step, Math.ceil(rawMax / step) * step);
+  function X(i){ return L + i * pw / (months.length - 1); }
+  function Y(v){ return T + ph - (v / yMax) * ph; }
+  for(var v = 0; v <= yMax; v += step){
+    el("line", {x1:L, x2:W-R, y1:Y(v), y2:Y(v), stroke: v===0 ? css("--axis") : css("--grid"), "stroke-width":"1"}, svg);
+    el("text", {x:L-8, y:Y(v)+4, "text-anchor":"end", "font-size":"10.5", fill:css("--muted"),
+      style:"font-variant-numeric:tabular-nums", text:fmt(v)}, svg);
+  }
+  var thin = Math.ceil(months.length / 8);
+  months.forEach(function(r, i){
+    if(i % thin !== 0 && i !== months.length-1) return;
+    el("text", {x:X(i), y:H-10, "text-anchor":"middle", "font-size":"10.5", fill:css("--muted"), text:monthLabel(r.ym)}, svg);
+  });
+  series.forEach(function(s){
+    var pts = months.map(function(r,i){ return [X(i), Y(Number(r[s.key])||0)]; });
+    el("polyline", {points: pts.map(function(p){return p[0]+","+p[1];}).join(" "),
+      fill:"none", stroke:s.color, "stroke-width":"2", "stroke-linecap":"round", "stroke-linejoin":"round"}, svg);
+    var last = pts[pts.length-1];
+    el("circle", {cx:last[0], cy:last[1], r:"4.5", fill:s.color, stroke:css("--surface"), "stroke-width":"2"}, svg);
+    el("text", {x:last[0]+10, y:last[1]+4, "font-size":"11.5", "font-weight":"650", fill:css("--ink"),
+      style:"font-variant-numeric:tabular-nums", text:fmt(Number(months[months.length-1][s.key])||0)}, svg);
+  });
+  var cross = el("line", {y1:T, y2:T+ph, stroke:css("--axis"), "stroke-width":"1", visibility:"hidden"}, svg);
+  var hoverDots = series.map(function(s){
+    return el("circle", {r:"4.5", fill:s.color, stroke:css("--surface"), "stroke-width":"2", visibility:"hidden"}, svg);
+  });
+  var hit = el("rect", {x:L, y:T, width:pw, height:ph, fill:"transparent"}, svg);
+  hit.addEventListener("pointermove", function(ev){
+    var rect = svg.getBoundingClientRect();
+    var sx = (ev.clientX - rect.left) * (W / rect.width);
+    var i = Math.min(months.length-1, Math.max(0, Math.round((sx - L) / (pw / (months.length - 1)))));
+    var x = X(i);
+    cross.setAttribute("x1", x); cross.setAttribute("x2", x);
+    cross.setAttribute("visibility","visible");
+    series.forEach(function(s, si){
+      hoverDots[si].setAttribute("cx", x);
+      hoverDots[si].setAttribute("cy", Y(Number(months[i][s.key])||0));
+      hoverDots[si].setAttribute("visibility","visible");
+    });
+    ttShow(ev.clientX, ev.clientY, monthFull(months[i].ym), series.map(function(s){
+      return {color:s.color, value:fmt(Number(months[i][s.key])||0) + "人", name:s.label};
+    }));
+  });
+  hit.addEventListener("pointerleave", function(){
+    cross.setAttribute("visibility","hidden");
+    hoverDots.forEach(function(d){ d.setAttribute("visibility","hidden"); });
+    ttHide();
+  });
+}
+
 /* ---------- phases ---------- */
 function renderPhases(){
   var box = document.getElementById("phases");
@@ -696,7 +1120,7 @@ function renderTable(){
   var hr = el("tr", null, thead);
   el("th", {text:"月"}, hr);
   METRICS.forEach(function(mt){ el("th", {text:mt.label}, hr); });
-  var tbody = el("tbody", null, table);
+  var tbody = el("tbody", {"class":"blur"}, table);
   data.months.forEach(function(row, ri){
     var tr = el("tr", null, tbody);
     el("td", {text:monthFull(row.ym)}, tr);
@@ -755,17 +1179,24 @@ function renderTargetInputs(){
 /* ---------- render orchestration ---------- */
 function renderAllButTable(){
   document.getElementById("sample-notice").hidden = !data.isSample;
+  var cur = data.months[data.months.length-1];
+  document.getElementById("tiles-month").textContent = cur ? monthFull(cur.ym) + " 時点" : "";
+  renderHero();
+  renderGoodNews();
   renderTiles();
   renderFunnel();
   renderMeters();
   renderTrend();
   renderMemberChart();
+  renderSns();
+  renderVoices();
   renderPhases();
 }
 function renderAll(){
   renderAllButTable();
   renderTable();
   renderTargetInputs();
+  renderVoiceEditor();
 }
 
 /* ---------- controls ---------- */
@@ -776,6 +1207,7 @@ document.getElementById("range-seg").addEventListener("click", function(ev){
   this.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); });
   renderTrend();
   renderMemberChart();
+  renderSns();
 });
 document.getElementById("btn-edit").addEventListener("click", function(){
   editing = !editing;
@@ -797,7 +1229,7 @@ document.getElementById("btn-addmonth").addEventListener("click", function(){
   var row = {ym: y + "-" + String(mo).padStart(2,"0")};
   METRICS.forEach(function(mt){
     // 累計系は前月値を引き継ぐ
-    row[mt.key] = (mt.key === "member" || mt.key === "blog") ? (last ? Number(last[mt.key])||0 : 0) : 0;
+    row[mt.key] = mt.cum ? (last ? Number(last[mt.key])||0 : 0) : 0;
   });
   data.months.push(row);
   data.isSample = false;
@@ -832,8 +1264,7 @@ document.getElementById("file-import").addEventListener("change", function(){
     try{
       var d = JSON.parse(String(reader.result));
       if(!d || !Array.isArray(d.months) || !d.targets) throw new Error("bad shape");
-      data = d;
-      if(!Array.isArray(data.phases)) data.phases = [95,0,0,0,0,0];
+      data = normalize(d);
       save(true);
       renderAll();
       toast("インポートしました");
@@ -853,8 +1284,25 @@ new MutationObserver(function(muts){
   }
 }).observe(document.documentElement, {attributes:true});
 window.addEventListener("resize", (function(){
-  var h; return function(){ clearTimeout(h); h = setTimeout(function(){ renderTrend(); renderMemberChart(); }, 150); };
+  var h; return function(){ clearTimeout(h); h = setTimeout(function(){ renderTrend(); renderMemberChart(); renderSns(); }, 150); };
 })());
+
+/* ---------- privacy mode ---------- */
+var privacy = false;
+try{ privacy = localStorage.getItem("dlb_kpi_privacy") === "1"; }catch(e){}
+function applyPrivacy(){
+  document.body.classList.toggle("privacy", privacy);
+  var b = document.getElementById("btn-privacy");
+  b.textContent = privacy ? "プライバシー ON" : "プライバシー OFF";
+  b.setAttribute("aria-pressed", String(privacy));
+}
+document.getElementById("btn-privacy").addEventListener("click", function(){
+  privacy = !privacy;
+  try{ localStorage.setItem("dlb_kpi_privacy", privacy ? "1" : "0"); }catch(e){}
+  applyPrivacy();
+  toast(privacy ? "プライバシーモード: 数値をぼかしています" : "プライバシーモードを解除しました");
+});
+applyPrivacy();
 
 renderAll();
 })();
