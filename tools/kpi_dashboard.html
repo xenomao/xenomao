@@ -181,13 +181,12 @@ body.privacy #tt{display:none!important}
 .meter .track{height:8px;border-radius:4px;background:var(--track);overflow:hidden}
 .meter .fill{height:100%;border-radius:4px 0 0 4px;background:var(--accent)}
 .meter .fill.full{border-radius:4px}
-/* phases */
-.phase-list{display:flex;flex-direction:column;gap:9px}
-.phase{display:grid;grid-template-columns:150px 1fr 44px;align-items:center;gap:10px}
-.phase .pname{font-size:12px;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.phase .track{height:14px;border-radius:0 4px 4px 0;background:var(--track)}
-.phase .fill{height:100%;border-radius:0 4px 4px 0;background:var(--accent);min-width:0}
-.phase .pval{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;text-align:right;color:var(--ink-2)}
+/* member roster */
+#member-table td input[type="text"]{width:220px;text-align:left}
+#member-table td input[type="number"]{width:110px}
+#member-table td input[type="month"]{width:130px;padding:3px 6px;border:1px solid var(--hairline);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}
+#member-table tfoot td{font-weight:700;border-top:2px solid var(--hairline);border-bottom:0}
+.fee-bar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:middle;margin-right:8px}
 /* table / edit */
 .tablecard{margin-bottom:12px}
 table{border-collapse:collapse;width:100%;font-size:12.5px}
@@ -205,7 +204,6 @@ details.editor>summary{cursor:pointer;font-size:13px;font-weight:600;color:var(-
 .targets{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:10px 0 4px}
 .targets label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--ink-2)}
 .targets input{padding:5px 8px;border:1px solid var(--hairline);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}
-.phase-edit{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:6px 0 4px}
 /* tooltip */
 #tt{
   position:fixed;z-index:50;pointer-events:none;display:none;
@@ -327,9 +325,13 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;line-height:1.7}
   </div>
 
   <div class="card" style="margin-bottom:12px">
-    <h2>AI組織構築フェーズ進捗</h2>
-    <p class="desc">Phase 1〜6(基盤構築 → AI執行役員)</p>
-    <div class="phase-list" id="phases"></div>
+    <h2>賛助会員(会社別)</h2>
+    <p class="desc">どの会社が・いくらの年会費で入会しているか。会員数・収入見込・推移チャートはこの一覧から自動計算されます</p>
+    <div class="chart-scroll"><table id="member-table"></table></div>
+    <div class="editbar" id="member-editbar" hidden>
+      <button id="btn-addmember" type="button">会員を追加</button>
+      <span class="hint">会社名・年会費・入会月を入力すると自動保存されます</span>
+    </div>
   </div>
 
   <!-- editor + table view -->
@@ -337,9 +339,8 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;line-height:1.7}
     <h2>月次データ</h2>
     <p class="desc">全チャートの元データ。<span id="edit-hint">「データを編集」を押すと直接入力できます。</span></p>
     <details class="editor" id="target-editor">
-      <summary>目標値・フェーズ進捗・お客様の声の設定</summary>
+      <summary>目標値・お客様の声の設定</summary>
       <div class="targets" id="target-inputs"></div>
-      <div class="phase-edit" id="phase-inputs"></div>
       <div class="voice-editor" id="voice-editor"></div>
     </details>
     <div class="chart-scroll"><table id="data-table"></table></div>
@@ -351,9 +352,8 @@ footer{margin-top:28px;color:var(--muted);font-size:11.5px;line-height:1.7}
   </div>
 
   <footer>
-    目標値の出典: docs/guides/ai_agent_accounts_setup.md(月間アプローチ20社・アポ獲得率15%・成約率30%・リード10件/月)/
-    フェーズ定義: docs/reports/phase1_completion_report.md。
-    データはブラウザのlocalStorageのみに保存され、リポジトリやサーバーには送信されません。
+    目標値の出典: docs/guides/ai_agent_accounts_setup.md(月間アプローチ20社・アポ獲得率15%・成約率30%・リード10件/月)。
+    データ(会員の会社名・金額を含む)はブラウザのlocalStorageのみに保存され、リポジトリやサーバーには送信されません。
   </footer>
 </div>
 
@@ -373,37 +373,49 @@ var METRICS = [
   {key:"seminar",   label:"セミナー開催",        unit:"回", cum:false},
   {key:"attendee",  label:"セミナー参加者",      unit:"名", cum:false},
   {key:"voice",     label:"事例・声(累計)",     unit:"件", cum:true},
-  {key:"member",    label:"会員数(累計)",       unit:"社", cum:true},
   {key:"blog",      label:"記事数(累計)",       unit:"本", cum:true},
   {key:"instagram", label:"IGフォロワー(累計)", unit:"人", cum:true},
   {key:"line",      label:"LINE友だち(累計)",   unit:"人", cum:true}
 ];
-var PHASE_NAMES = ["Phase 1 基盤構築","Phase 2 AI担当・Opal連携","Phase 3 AI営業システム","Phase 4 AIマーケティング","Phase 5 AI事務局・統合","Phase 6 AI執行役員"];
-var FEE = 100000; // 年会費/社
 
 function seedData(){
   return {
     isSample: true,
     targets: { approach:20, lead:10, appoRate:15, dealRate:30 },
-    phases: [95,0,0,0,0,0],
+    members: [
+      {name:"サンプル株式会社A(エステサロン運営)", fee:300000, since:"2026-03"},
+      {name:"サンプルビューティー株式会社B",        fee:100000, since:"2026-04"},
+      {name:"サンプル株式会社C(美容機器)",        fee:200000, since:"2026-05"},
+      {name:"サンプルサロンD",                      fee:100000, since:"2026-06"},
+      {name:"サンプル株式会社E(化粧品OEM)",       fee:100000, since:"2026-07"}
+    ],
     voices: [
       {text:"「AIエージェントに丸投げすればいい」ではなく、サロン業務のどこに効くかが具体的で分かりやすかった。", score:10},
       {text:"無料でできるツールから、まずは触れてみるところまで伴走してもらえたのが良かった。", score:9},
       {text:"予約管理のAI化、翌日からすぐ試せる内容だった。スタッフにも共有したい。", score:9}
     ],
     months: [
-      {ym:"2026-02", approach:8,  appo:1, nego:0, deal:0, lead:3, seminar:0, attendee:0,  voice:0,  member:0, blog:10, instagram:120, line:30},
-      {ym:"2026-03", approach:12, appo:2, nego:1, deal:0, lead:5, seminar:1, attendee:12, voice:2,  member:1, blog:20, instagram:180, line:60},
-      {ym:"2026-04", approach:15, appo:2, nego:1, deal:1, lead:6, seminar:1, attendee:15, voice:4,  member:2, blog:30, instagram:240, line:95},
-      {ym:"2026-05", approach:18, appo:3, nego:2, deal:1, lead:8, seminar:1, attendee:18, voice:7,  member:3, blog:38, instagram:310, line:140},
-      {ym:"2026-06", approach:20, appo:3, nego:2, deal:1, lead:9, seminar:2, attendee:25, voice:10, member:4, blog:44, instagram:390, line:180},
-      {ym:"2026-07", approach:14, appo:2, nego:1, deal:1, lead:7, seminar:1, attendee:20, voice:12, member:5, blog:48, instagram:450, line:210}
+      {ym:"2026-02", approach:8,  appo:1, nego:0, deal:0, lead:3, seminar:0, attendee:0,  voice:0,  blog:10, instagram:120, line:30},
+      {ym:"2026-03", approach:12, appo:2, nego:1, deal:0, lead:5, seminar:1, attendee:12, voice:2,  blog:20, instagram:180, line:60},
+      {ym:"2026-04", approach:15, appo:2, nego:1, deal:1, lead:6, seminar:1, attendee:15, voice:4,  blog:30, instagram:240, line:95},
+      {ym:"2026-05", approach:18, appo:3, nego:2, deal:1, lead:8, seminar:1, attendee:18, voice:7,  blog:38, instagram:310, line:140},
+      {ym:"2026-06", approach:20, appo:3, nego:2, deal:1, lead:9, seminar:2, attendee:25, voice:10, blog:44, instagram:390, line:180},
+      {ym:"2026-07", approach:14, appo:2, nego:1, deal:1, lead:7, seminar:1, attendee:20, voice:12, blog:48, instagram:450, line:210}
     ]
   };
 }
 function normalize(d){
-  if(!Array.isArray(d.phases)) d.phases = [95,0,0,0,0,0];
   if(!Array.isArray(d.voices)) d.voices = [];
+  if(!Array.isArray(d.members)){
+    // 旧形式(月次のmember列)からの移行: 会社名は不明なので仮の行を起こす
+    d.members = [];
+    var prevC = 0;
+    d.months.forEach(function(row){
+      var c = Number(row.member)||0;
+      for(var i=0;i<c-prevC;i++) d.members.push({name:"(会社名を入力)", fee:100000, since:row.ym});
+      if(c > prevC) prevC = c;
+    });
+  }
   d.months.forEach(function(row){
     METRICS.forEach(function(mt){
       if(typeof row[mt.key] !== "number") row[mt.key] = Number(row[mt.key]) || 0;
@@ -487,6 +499,19 @@ function ttShow(x, y, title, rows){
 }
 function ttHide(){ tt.style.display = "none"; }
 
+/* ---------- member roster helpers ---------- */
+function memberCountAt(ym){
+  return (data.members||[]).filter(function(m){ return !m.since || m.since <= ym; }).length;
+}
+function memberFeesAt(ym){
+  return (data.members||[]).reduce(function(sum,m){
+    return sum + ((!m.since || m.since <= ym) ? (Number(m.fee)||0) : 0);
+  }, 0);
+}
+function memberJoins(ym){
+  return (data.members||[]).filter(function(m){ return m.since === ym; });
+}
+
 /* ---------- KPI tiles ---------- */
 function sparkline(values, w, h){
   var svg = el("svg", {width:w, height:h, viewBox:"0 0 "+w+" "+h, "aria-hidden":"true"});
@@ -512,9 +537,17 @@ function renderTiles(){
   var m = data.months;
   var cur = m[m.length-1] || {}, prev = m[m.length-2] || {};
   var seminarsTotal = m.reduce(function(s,r){ return s + (Number(r.seminar)||0); }, 0);
+  var memberN = (data.members||[]).length;
+  var fees = memberFeesAt("9999-12");
+  var joins = cur.ym ? memberJoins(cur.ym) : [];
+  var joinFees = joins.reduce(function(x,j){ return x + (Number(j.fee)||0); }, 0);
   var tiles = [
-    {label:"賛助会員数", value:fmt(cur.member), unit:"社", delta:diff(cur.member, prev.member, "社"), spark:m.map(function(r){return Number(r.member)||0;})},
-    {label:"年会費収入(見込)", value:fmtMan((Number(cur.member)||0) * FEE), unit:"", delta:diff((Number(cur.member)||0)*FEE, (Number(prev.member)||0)*FEE, "", fmtMan), sub:"会員数 × ¥100,000"},
+    {label:"賛助会員数", value:fmt(memberN), unit:"社",
+     delta: joins.length ? {cls:"up", text:"▲ " + joins.length + "社 今月入会"} : {cls:"flat", text:"今月の入会 0"},
+     spark:m.map(function(r){return memberCountAt(r.ym);})},
+    {label:"年会費収入(見込)", value:fmtMan(fees), unit:"",
+     delta: joinFees > 0 ? {cls:"up", text:"▲ " + fmtMan(joinFees) + " 今月"} : {cls:"flat", text:"今月 ±0"},
+     sub:"会員" + fmt(memberN) + "社の年会費合計"},
     {label:"今月のアプローチ", value:fmt(cur.approach), unit:"社", delta:diff(cur.approach, prev.approach, "社"), sub:"目標 " + data.targets.approach + "社/月", spark:m.map(function(r){return Number(r.approach)||0;})},
     {label:"今月のリード獲得", value:fmt(cur.lead), unit:"件", delta:diff(cur.lead, prev.lead, "件"), sub:"目標 " + data.targets.lead + "件/月", spark:m.map(function(r){return Number(r.lead)||0;})},
     {label:"セミナー開催(累計)", value:fmt(seminarsTotal), unit:"回", delta:(Number(cur.seminar)||0) > 0 ? {cls:"up", text:"今月 +" + fmt(cur.seminar)} : {cls:"flat", text:"今月 0"}, spark:m.map(function(r){return Number(r.seminar)||0;})},
@@ -577,7 +610,7 @@ function heroFacts(){
 function milestoneItems(){
   var f = heroFacts();
   var cands = [
-    {name:"賛助会員",         cur:Number(f.cur.member)||0, unit:"社"},
+    {name:"賛助会員",         cur:(data.members||[]).length, unit:"社"},
     {name:"事例・お客様の声", cur:Number(f.cur.voice)||0,  unit:"件"},
     {name:"公開ブログ記事",   cur:Number(f.cur.blog)||0,   unit:"本"},
     {name:"セミナー参加者累計", cur:f.attendeeTotal,        unit:"名"},
@@ -660,12 +693,13 @@ function renderHero(){
     if(rec){
       parts.push("今月は" + FULL_LABEL[rec.k] + "が" + fmt(rec.v) + unitOf(rec.k) + "と過去最高ペースです。");
     } else {
-      var best = null;
-      ["voice","member","blog","instagram","line"].forEach(function(k){
+      var joins2 = memberJoins(latest.ym).length;
+      var best = joins2 > 0 ? {k:"member", d:joins2, u:"社"} : null;
+      ["voice","blog","instagram","line"].forEach(function(k){
         var d0 = (Number(latest[k])||0) - (Number(mm[mm.length-2][k])||0);
-        if(d0 > 0 && (!best || d0 > best.d)) best = {k:k, d:d0};
+        if(d0 > 0 && (!best || d0 > best.d)) best = {k:k, d:d0, u:unitOf(k)};
       });
-      if(best) parts.push("今月は" + FULL_LABEL[best.k] + "が +" + fmt(best.d) + unitOf(best.k) + " 増えました。");
+      if(best) parts.push("今月は" + FULL_LABEL[best.k] + "が +" + fmt(best.d) + best.u + " 増えました。");
     }
     var top = milestoneItems()[0];
     if(top){
@@ -708,7 +742,13 @@ function renderGoodNews(){
         sub:"目標 " + data.targets.lead + "件/月"});
     }
     // 今月の動き(累計の純増)
-    ["member","voice","instagram","line","blog"].forEach(function(k){
+    var joinsGN = memberJoins(latest.ym);
+    if(joinsGN.length){
+      news.push({chip:"今月の動き", cls:"info",
+        title:"賛助会員 +" + joinsGN.length + "社(今月)",
+        sub:"累計 " + (data.members||[]).length + "社 ・ 年会費合計 " + fmtMan(memberFeesAt("9999-12"))});
+    }
+    ["voice","instagram","line","blog"].forEach(function(k){
       var d0 = (Number(latest[k])||0) - (Number(prev[k])||0);
       if(d0 > 0){
         news.push({chip:"今月の動き", cls:"info",
@@ -969,7 +1009,7 @@ function renderMemberChart(){
   var color = css("--accent");
   var W = 560, H = 260, L = 38, R = 92, T = 14, B = 30;
   var pw = W - L - R, ph = H - T - B;
-  var vals = months.map(function(r){ return Number(r.member)||0; });
+  var vals = months.map(function(r){ return memberCountAt(r.ym); });
   var rawMax = Math.max.apply(null, vals.concat([1]));
   var step = rawMax <= 5 ? 1 : rawMax <= 10 ? 2 : rawMax <= 25 ? 5 : 10;
   var yMax = Math.max(step, Math.ceil(rawMax / step) * step);
@@ -1009,7 +1049,7 @@ function renderMemberChart(){
     dot.setAttribute("visibility","visible");
     ttShow(ev.clientX, ev.clientY, monthFull(months[i].ym), [
       {color:color, value:fmt(vals[i]) + "社", name:"賛助会員数"},
-      {color:"transparent", value:fmtMan(vals[i]*FEE), name:"年会費収入見込"}
+      {color:"transparent", value:fmtMan(memberFeesAt(months[i].ym)), name:"年会費収入見込"}
     ]);
   });
   hit.addEventListener("pointerleave", function(){
@@ -1097,19 +1137,75 @@ function renderSns(){
   });
 }
 
-/* ---------- phases ---------- */
-function renderPhases(){
-  var box = document.getElementById("phases");
-  box.textContent = "";
-  PHASE_NAMES.forEach(function(name, i){
-    var pct = Math.min(100, Math.max(0, Number(data.phases[i])||0));
-    var row = el("div", {"class":"phase"}, box);
-    var nm = el("span", {"class":"pname"}, row); nm.textContent = name;
-    var track = el("div", {"class":"track", role:"img", "aria-label":name + " " + pct + "%"}, row);
-    var fill = el("div", {"class":"fill"}, track);
-    fill.style.width = pct + "%";
-    var pv = el("span", {"class":"pval"}, row); pv.textContent = pct + "%";
+/* ---------- member roster (company / fee) ---------- */
+function renderMembers(){
+  var table = document.getElementById("member-table");
+  table.textContent = "";
+  var members = (data.members||[]).slice();
+  var order = members.map(function(m,i){ return i; });
+  order.sort(function(a,b){
+    var sa = members[a].since||"", sb = members[b].since||"";
+    return sa < sb ? -1 : sa > sb ? 1 : 0;
   });
+  var maxFee = Math.max.apply(null, members.map(function(m){ return Number(m.fee)||0; }).concat([1]));
+  var thead = el("thead", null, table);
+  var hr = el("tr", null, thead);
+  el("th", {text:"会社名"}, hr);
+  el("th", {text:"年会費"}, hr);
+  el("th", {text:"入会月"}, hr);
+  if(editing) el("th", {text:""}, hr);
+  var tbody = el("tbody", {"class":"blur"}, table);
+  if(!members.length){
+    var tr0 = el("tr", null, tbody);
+    var td0 = el("td", null, tr0);
+    td0.setAttribute("colspan", editing ? "4" : "3");
+    td0.style.textAlign = "left"; td0.style.color = "var(--muted)";
+    td0.textContent = "まだ会員がいません。「データを編集」→「会員を追加」から登録できます。";
+  }
+  order.forEach(function(idx){
+    var mrow = data.members[idx];
+    var tr = el("tr", null, tbody);
+    var tdName = el("td", null, tr);
+    tdName.style.textAlign = "left";
+    var tdFee = el("td", null, tr);
+    var tdSince = el("td", null, tr);
+    if(editing){
+      var nameIn = el("input", {type:"text", value:mrow.name||"", placeholder:"会社名", "aria-label":"会社名"}, tdName);
+      nameIn.addEventListener("input", function(){
+        data.members[idx].name = nameIn.value; data.isSample = false; save(); renderAllButMembers();
+      });
+      var feeIn = el("input", {type:"number", min:"0", step:"10000", value:String(Number(mrow.fee)||0), "aria-label":"年会費(円)"}, tdFee);
+      feeIn.addEventListener("input", function(){
+        data.members[idx].fee = feeIn.value === "" ? 0 : Number(feeIn.value);
+        data.isSample = false; save(); renderAllButMembers();
+      });
+      var sinceIn = el("input", {type:"month", value:mrow.since||"", "aria-label":"入会月"}, tdSince);
+      sinceIn.addEventListener("input", function(){
+        data.members[idx].since = sinceIn.value; data.isSample = false; save(); renderAllButMembers();
+      });
+      var tdOp = el("td", null, tr);
+      var del = el("button", {type:"button", text:"削除"}, tdOp);
+      del.addEventListener("click", function(){
+        if(!confirm("「" + (mrow.name||"(名称未設定)") + "」を一覧から削除します。よろしいですか?")) return;
+        data.members.splice(idx,1); data.isSample = false; save();
+        renderMembers(); renderAllButMembers();
+      });
+    } else {
+      tdName.textContent = mrow.name || "(名称未設定)";
+      var barW = Math.max(4, (Number(mrow.fee)||0) / maxFee * 90);
+      var bar = el("span", {"class":"fee-bar", "aria-hidden":"true"}, tdFee);
+      bar.style.width = barW + "px";
+      tdFee.appendChild(document.createTextNode("¥" + fmt(mrow.fee)));
+      tdSince.textContent = mrow.since ? monthFull(mrow.since) : "–";
+    }
+  });
+  var tfoot = el("tfoot", {"class":"blur"}, table);
+  var fr = el("tr", null, tfoot);
+  var f1 = el("td", {text:"合計 " + members.length + "社"}, fr);
+  f1.style.textAlign = "left";
+  el("td", {text:"¥" + fmt(members.reduce(function(x,m){ return x + (Number(m.fee)||0); }, 0)) + " / 年"}, fr);
+  el("td", {text:""}, fr);
+  if(editing) el("td", {text:""}, fr);
 }
 
 /* ---------- data table (view + edit) ---------- */
@@ -1161,19 +1257,6 @@ function renderTargetInputs(){
       renderAllButTable();
     });
   });
-  var pbox = document.getElementById("phase-inputs");
-  pbox.textContent = "";
-  PHASE_NAMES.forEach(function(name, i){
-    var lb = el("label", null, pbox);
-    lb.appendChild(document.createTextNode(name + " 進捗(%)"));
-    var inp = el("input", {type:"number", min:"0", max:"100", step:"5", value:String(Number(data.phases[i])||0)}, lb);
-    inp.addEventListener("input", function(){
-      data.phases[i] = inp.value === "" ? 0 : Number(inp.value);
-      data.isSample = false;
-      save();
-      renderPhases();
-    });
-  });
 }
 
 /* ---------- render orchestration ---------- */
@@ -1190,10 +1273,13 @@ function renderAllButTable(){
   renderMemberChart();
   renderSns();
   renderVoices();
-  renderPhases();
+}
+function renderAllButMembers(){
+  renderAllButTable();
 }
 function renderAll(){
   renderAllButTable();
+  renderMembers();
   renderTable();
   renderTargetInputs();
   renderVoiceEditor();
@@ -1213,9 +1299,20 @@ document.getElementById("btn-edit").addEventListener("click", function(){
   editing = !editing;
   this.textContent = editing ? "編集を終了" : "データを編集";
   document.getElementById("editbar").hidden = !editing;
+  document.getElementById("member-editbar").hidden = !editing;
   document.getElementById("edit-hint").hidden = editing;
   if(editing) document.getElementById("target-editor").open = true;
   renderTable();
+  renderMembers();
+});
+document.getElementById("btn-addmember").addEventListener("click", function(){
+  data.members = data.members || [];
+  var last = data.months[data.months.length-1];
+  data.members.push({name:"", fee:100000, since: last ? last.ym : ""});
+  data.isSample = false;
+  save();
+  renderMembers();
+  renderAllButMembers();
 });
 document.getElementById("btn-addmonth").addEventListener("click", function(){
   var last = data.months[data.months.length-1];
