@@ -1,0 +1,18 @@
+{# 商品カード（c が渡される前提）#}
+{% set st = content_stats(c.id) %}
+<div class="card">
+  <a href="{{ url_for('content_detail', cid=c.id) }}" class="card-cover">{{ c.cover_emoji }}</a>
+  <div class="card-body">
+    <div class="card-cat">{{ c.category }}</div>
+    <a href="{{ url_for('content_detail', cid=c.id) }}" class="card-title">{{ c.title }}</a>
+    <div class="muted">by {{ c.display_name }}
+      {% if st.review_count %}・<span class="stars">★</span>{{ st.avg_rating }}({{ st.review_count }}){% endif %}
+    </div>
+    <div class="card-meta">
+      <span class="price">
+        {% if c.price == 0 %}無料{% else %}¥{{ "{:,}".format(c.price) }}{% endif %}
+      </span>
+      <span class="muted">{{ c.sales_count }}件販売</span>
+    </div>
+  </div>
+</div>

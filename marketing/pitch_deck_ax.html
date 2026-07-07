@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiLab Beauty | AIで動くサロン経営 ピッチデック 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --purple:#8b2fc9;--pink:#d946a8;--gold:#ffd700;
+  --dark:#1a0533;--mid:#3d1a6e;--light:#f5eeff;
+  --white:#ffffff;--gray:#666;--lgray:#f0f0f0;
+}
+body{font-family:'Noto Sans JP','Hiragino Sans',sans-serif;background:#111;}
+
+/* ===== SLIDE BASE ===== */
+.slide{
+  width:100%;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+  page-break-after:always;
+}
+.slide-inner{
+  max-width:1100px;width:100%;
+  margin:0 auto;padding:60px 60px;
+}
+
+/* ===== LABELS ===== */
+.slide-label{
+  font-size:10px;font-weight:700;letter-spacing:4px;
+  text-transform:uppercase;margin-bottom:12px;opacity:.6;
+}
+.slide-num{
+  position:absolute;bottom:30px;right:40px;
+  font-size:11px;letter-spacing:2px;opacity:.35;
+  color:#fff;font-weight:500;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.display{font-size:clamp(32px,4.5vw,56px);font-weight:900;line-height:1.2;}
+.h1{font-size:clamp(26px,3.5vw,44px);font-weight:900;line-height:1.25;}
+.h2{font-size:clamp(20px,2.5vw,32px);font-weight:700;line-height:1.3;}
+.h3{font-size:clamp(15px,1.8vw,20px);font-weight:700;line-height:1.4;}
+.body{font-size:clamp(13px,1.4vw,16px);line-height:1.7;}
+.small{font-size:11px;line-height:1.6;opacity:.65;}
+.gold{color:var(--gold);}
+.pink{color:var(--pink);}
+.purple{color:var(--purple);}
+.white{color:#fff;}
+
+/* ===== GRADIENT UTILS ===== */
+.grad-text{
+  background:linear-gradient(90deg,var(--purple),var(--pink));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.grad-text-gold{
+  background:linear-gradient(90deg,#ffd700,#ffaa00);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+/* ===== SLIDE 01: COVER ===== */
+.s01{background:linear-gradient(135deg,#0d0120 0%,#1a0533 35%,#3d1a6e 65%,#6b1fa0 100%);}
+.s01::before{
+  content:'';position:absolute;top:-20%;right:-10%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,70,168,.25) 0%,transparent 70%);
+}
+.s01::after{
+  content:'';position:absolute;bottom:-30%;left:-15%;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,47,201,.2) 0%,transparent 70%);
+}
+.cover-badge{
+  display:inline-block;
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff;font-size:10px;font-weight:700;letter-spacing:3px;
+  padding:7px 20px;border-radius:20px;
+  background:rgba(255,255,255,.08);backdrop-filter:blur(10px);
+  margin-bottom:28px;
+}
+.cover-title{color:#fff;margin-bottom:16px;}
+.cover-sub{color:rgba(255,255,255,.7);font-size:clamp(14px,1.6vw,18px);line-height:1.7;max-width:640px;margin-bottom:40px;}
+.cover-tags{display:flex;gap:12px;flex-wrap:wrap;}
+.cover-tag{
+  background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);
+  font-size:11px;font-weight:500;padding:6px 16px;
+  border-radius:20px;letter-spacing:1px;
+}
+.cover-logo{
+  position:absolute;top:36px;right:48px;text-align:right;
+}
+.cover-logo .lg{color:#fff;font-size:18px;font-weight:900;letter-spacing:1px;}
+.cover-logo .ls{color:rgba(255,255,255,.5);font-size:8px;letter-spacing:3px;}
+.cover-year{
+  position:absolute;bottom:40px;left:60px;
+  color:rgba(255,255,255,.35);font-size:11px;letter-spacing:3px;
+}
+/* AX badge */
+.ax-pill{
+  display:inline-block;margin-top:32px;
+  background:linear-gradient(90deg,var(--purple),var(--pink));
+  color:#fff;font-size:12px;font-weight:700;letter-spacing:2px;
+  padding:10px 28px;border-radius:30px;
+}
+
+/* ===== SLIDE 02: INDUSTRY NOW ===== */
+.s02{background:#fff;}
+.s02 .slide-label{color:var(--purple);}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.stat-card{
+  border-radius:16px;padding:32px 24px;
+  position:relative;overflow:hidden;
+}
+.stat-card.c1{background:linear-gradient(135deg,#1a0533,#3d1a6e);}
+.stat-card.c2{background:linear-gradient(135deg,#5b1a8e,#8b2fc9);}
+.stat-card.c3{background:linear-gradient(135deg,#8b2fc9,#d946a8);}
+.stat-card .big{
+  font-size:clamp(40px,5vw,60px);font-weight:900;
+  color:#fff;line-height:1;margin-bottom:6px;
+}
+.stat-card .unit{font-size:20px;}
+.stat-card .lbl{color:rgba(255,255,255,.7);font-size:12px;font-weight:500;letter-spacing:1px;}
+.stat-card .sub{color:rgba(255,255,255,.5);font-size:11px;margin-top:8px;line-height:1.5;}
+.market-bar-wrap{margin-top:48px;}
+.market-bar-wrap h3{color:var(--dark);margin-bottom:20px;}
+.bar-row{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.bar-label{font-size:12px;color:var(--gray);width:60px;text-align:right;flex-shrink:0;}
+.bar-track{flex:1;height:36px;background:#f0e6ff;border-radius:8px;overflow:hidden;position:relative;}
+.bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;padding-left:12px;}
+.bar-fill.f25{width:35%;background:linear-gradient(90deg,var(--purple),var(--pink));}
+.bar-fill.f30{width:60%;background:linear-gradient(90deg,var(--purple),var(--pink));}
+.bar-fill.f30b{width:100%;background:linear-gradient(90deg,var(--gold),#ff9500);}
+.bar-val{color:#fff;font-size:12px;font-weight:700;}
+
+/* ===== SLIDE 03: 3 CRISES ===== */
+.s03{background:var(--dark);}
+.crisis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
+.crisis-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:28px 24px;
+}
+.crisis-icon{
+  width:52px;height:52px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;margin-bottom:16px;
+}
+.crisis-card:nth-child(1) .crisis-icon{background:rgba(139,47,201,.3);}
+.crisis-card:nth-child(2) .crisis-icon{background:rgba(217,70,168,.3);}
+.crisis-card:nth-child(3) .crisis-icon{background:rgba(255,215,0,.2);}
+.crisis-num{
+  font-size:48px;font-weight:900;line-height:1;margin-bottom:4px;
+}
+.crisis-card:nth-child(1) .crisis-num{color:var(--purple);}
+.crisis-card:nth-child(2) .crisis-num{color:var(--pink);}
+.crisis-card:nth-child(3) .crisis-num{color:var(--gold);}
+.crisis-title{color:#fff;font-size:16px;font-weight:700;margin-bottom:8px;}
+.crisis-body{color:rgba(255,255,255,.55);font-size:12px;line-height:1.6;}
+.crisis-source{color:rgba(255,255,255,.25);font-size:10px;margin-top:12px;}
+.crisis-alert{
+  margin-top:32px;padding:18px 24px;
+  background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);
+  border-radius:12px;display:flex;align-items:center;gap:16px;
+}
+.crisis-alert-icon{font-size:24px;}
+.crisis-alert-text{color:rgba(255,255,255,.8);font-size:13px;line-height:1.6;}
+.crisis-alert-text strong{color:var(--gold);}
+
+/* ===== SLIDE 04: COMPETITIVE SHIFT ===== */
+.s04{background:var(--light);}
+.split-compare{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:36px;border-radius:16px;overflow:hidden;}
+.compare-col{padding:36px 32px;}
+.compare-col.left{background:#e8e8e8;}
+.compare-col.right{background:linear-gradient(135deg,var(--dark),var(--mid));}
+.compare-head{font-size:14px;font-weight:700;margin-bottom:24px;letter-spacing:1px;}
+.compare-col.left .compare-head{color:#999;}
+.compare-col.right .compare-head{color:var(--gold);}
+.compare-item{
+  display:flex;align-items:flex-start;gap:10px;
+  margin-bottom:14px;
+}
+.ci-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.compare-col.left .ci-dot{background:#bbb;}
+.compare-col.right .ci-dot{background:var(--pink);}
+.ci-text{font-size:13px;line-height:1.5;}
+.compare-col.left .ci-text{color:#888;}
+.compare-col.right .ci-text{color:rgba(255,255,255,.85);}
+.compare-result{margin-top:24px;padding:14px 16px;border-radius:10px;font-size:13px;font-weight:700;}
+.compare-col.left .compare-result{background:#d5d5d5;color:#999;}
+.compare-col.right .compare-result{background:rgba(255,215,0,.15);color:var(--gold);}
+.gap-warning{
+  margin-top:24px;text-align:center;
+  background:linear-gradient(90deg,var(--purple),var(--pink));
+  border-radius:12px;padding:16px 24px;color:#fff;font-weight:700;font-size:14px;
+}
+
+/* ===== SLIDE 05: POLICY ===== */
+.s05{background:#fff;}
+.policy-quote{
+  border-left:4px solid var(--purple);
+  padding:20px 28px;margin:28px 0;
+  background:var(--light);border-radius:0 12px 12px 0;
+}
+.policy-quote .q-text{font-size:22px;font-weight:900;color:var(--dark);line-height:1.4;}
+.policy-quote .q-source{font-size:11px;color:var(--gray);margin-top:8px;letter-spacing:1px;}
+.shift-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;}
+.shift-card{
+  border-radius:12px;padding:20px;
+  border:1px solid #e0d0f5;background:#fff;
+}
+.shift-from{font-size:11px;color:#aaa;font-weight:500;margin-bottom:4px;}
+.shift-old{font-size:13px;color:#bbb;text-decoration:line-through;margin-bottom:8px;}
+.shift-arrow{font-size:18px;color:var(--pink);margin-bottom:8px;}
+.shift-to{font-size:14px;font-weight:700;color:var(--dark);}
+.shift-beauty{
+  margin-top:28px;padding:20px 24px;
+  background:linear-gradient(135deg,var(--dark),var(--mid));
+  border-radius:12px;
+}
+.shift-beauty .sb-label{font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:8px;}
+.shift-beauty .sb-text{color:#fff;font-size:16px;font-weight:700;line-height:1.5;}
+
+/* ===== SLIDE 06: AGENTIC AI ===== */
+.s06{background:var(--dark);}
+.ai-compare{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px;}
+.ai-box{border-radius:16px;padding:28px;}
+.ai-box.old{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);}
+.ai-box.new{background:linear-gradient(135deg,rgba(139,47,201,.3),rgba(217,70,168,.2));border:1px solid rgba(217,70,168,.3);}
+.ai-box-head{font-size:13px;font-weight:700;letter-spacing:2px;margin-bottom:6px;}
+.ai-box.old .ai-box-head{color:rgba(255,255,255,.4);}
+.ai-box.new .ai-box-head{color:var(--gold);}
+.ai-box-title{font-size:22px;font-weight:900;margin-bottom:20px;}
+.ai-box.old .ai-box-title{color:rgba(255,255,255,.5);}
+.ai-box.new .ai-box-title{color:#fff;}
+.ai-feat{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;}
+.af-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+.ai-box.old .af-dot{background:rgba(255,255,255,.3);}
+.ai-box.new .af-dot{background:var(--pink);}
+.af-text{font-size:13px;line-height:1.5;}
+.ai-box.old .af-text{color:rgba(255,255,255,.4);}
+.ai-box.new .af-text{color:rgba(255,255,255,.85);}
+.ai-example{
+  margin-top:28px;padding:18px 24px;
+  background:rgba(255,255,255,.04);border-radius:12px;
+}
+.ai-example-title{color:var(--gold);font-size:11px;letter-spacing:2px;margin-bottom:14px;}
+.ai-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.af-step{
+  background:rgba(255,255,255,.08);border-radius:8px;
+  padding:8px 14px;font-size:12px;color:rgba(255,255,255,.8);
+}
+.af-arrow{color:var(--pink);font-size:16px;font-weight:700;}
+
+/* ===== SLIDE 07: AX TALENT ===== */
+.s07{background:#fff;}
+.ax-def{
+  background:linear-gradient(135deg,var(--dark),var(--mid));
+  border-radius:16px;padding:28px 32px;margin:24px 0;
+  display:flex;align-items:center;gap:32px;
+}
+.ax-def-badge{
+  flex-shrink:0;width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;font-weight:900;color:#fff;
+}
+.ax-def-text{}
+.ax-def-label{color:var(--gold);font-size:10px;letter-spacing:3px;margin-bottom:6px;}
+.ax-def-title{color:#fff;font-size:20px;font-weight:900;margin-bottom:6px;}
+.ax-def-body{color:rgba(255,255,255,.65);font-size:13px;line-height:1.6;}
+.ax-compare{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px;}
+.ax-era{border-radius:12px;padding:20px;text-align:center;}
+.ax-era.e1{background:#f5f5f5;}
+.ax-era.e2{background:#f0e6ff;}
+.ax-era.e3{background:linear-gradient(135deg,var(--dark),var(--mid));}
+.ax-era-period{font-size:10px;letter-spacing:2px;margin-bottom:8px;}
+.ax-era.e1 .ax-era-period{color:#999;}
+.ax-era.e2 .ax-era-period{color:var(--purple);}
+.ax-era.e3 .ax-era-period{color:var(--gold);}
+.ax-era-title{font-size:16px;font-weight:900;margin-bottom:10px;}
+.ax-era.e1 .ax-era-title{color:#bbb;}
+.ax-era.e2 .ax-era-title{color:var(--purple);}
+.ax-era.e3 .ax-era-title{color:#fff;}
+.ax-era-body{font-size:12px;line-height:1.5;}
+.ax-era.e1 .ax-era-body{color:#bbb;}
+.ax-era.e2 .ax-era-body{color:var(--gray);}
+.ax-era.e3 .ax-era-body{color:rgba(255,255,255,.65);}
+.ax-skill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+.ax-skill{
+  font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;
+}
+.ax-skill.human{background:#fff0fa;color:var(--pink);}
+.ax-skill.ai{background:#f0e6ff;color:var(--purple);}
+
+/* ===== SLIDE 08: A DAY IN AI SALON ===== */
+.s08{background:var(--dark);}
+.day-timeline{margin-top:32px;}
+.day-item{
+  display:flex;gap:20px;align-items:flex-start;
+  padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.day-time{
+  flex-shrink:0;width:64px;font-size:13px;font-weight:700;
+  color:var(--gold);text-align:right;padding-top:2px;
+}
+.day-dot-col{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:0;}
+.day-dot{
+  width:12px;height:12px;border-radius:50%;flex-shrink:0;
+}
+.day-dot.ai{background:var(--pink);}
+.day-dot.human{background:var(--gold);}
+.day-dot.both{background:linear-gradient(135deg,var(--purple),var(--pink));}
+.day-line{width:2px;flex:1;min-height:30px;background:rgba(255,255,255,.08);}
+.day-content{}
+.day-who{font-size:9px;font-weight:700;letter-spacing:2px;margin-bottom:3px;}
+.day-dot.ai ~ .day-content .day-who,.ai-tag{color:var(--pink);}
+.day-dot.human ~ .day-content .day-who,.human-tag{color:var(--gold);}
+.day-dot.both ~ .day-content .day-who,.both-tag{color:rgba(255,255,255,.5);}
+.day-action{color:#fff;font-size:14px;font-weight:700;margin-bottom:3px;}
+.day-detail{color:rgba(255,255,255,.5);font-size:12px;line-height:1.5;}
+.day-legend{
+  display:flex;gap:20px;margin-top:20px;
+  padding:12px 20px;background:rgba(255,255,255,.04);border-radius:10px;
+}
+.dl-item{display:flex;align-items:center;gap:8px;font-size:12px;}
+.dl-dot{width:10px;height:10px;border-radius:50%;}
+.dl-dot.ai{background:var(--pink);}
+.dl-dot.human{background:var(--gold);}
+.dl-dot.both{background:linear-gradient(135deg,var(--purple),var(--pink));}
+.dl-text{color:rgba(255,255,255,.6);}
+
+/* ===== SLIDE 09: 2030 VISION ===== */
+.s09{background:linear-gradient(135deg,#0d0120,#1a0533,#2d0d54);}
+.vision-year{
+  font-size:120px;font-weight:900;line-height:1;
+  position:absolute;right:60px;top:50%;transform:translateY(-50%);
+  color:rgba(255,255,255,.04);letter-spacing:-5px;pointer-events:none;
+}
+.vision-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+.vision-card{
+  border-radius:14px;padding:24px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.vision-card::before{
+  content:'';position:absolute;top:-30px;right:-30px;
+  width:80px;height:80px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,47,201,.2) 0%,transparent 70%);
+}
+.vc-icon{font-size:32px;margin-bottom:12px;}
+.vc-pct{font-size:36px;font-weight:900;line-height:1;margin-bottom:4px;}
+.vision-card:nth-child(1) .vc-pct{color:var(--pink);}
+.vision-card:nth-child(2) .vc-pct{color:var(--gold);}
+.vision-card:nth-child(3) .vc-pct{color:var(--purple);}
+.vision-card:nth-child(4) .vc-pct{color:#00d4aa;}
+.vc-title{color:#fff;font-size:14px;font-weight:700;margin-bottom:6px;}
+.vc-body{color:rgba(255,255,255,.5);font-size:12px;line-height:1.5;}
+.vision-warn{
+  margin-top:24px;padding:16px 24px;
+  border:1px solid rgba(255,215,0,.3);
+  background:rgba(255,215,0,.06);border-radius:12px;
+  text-align:center;
+}
+.vision-warn-text{color:rgba(255,255,255,.8);font-size:14px;font-weight:700;line-height:1.5;}
+.vision-warn-text span{color:var(--gold);}
+
+/* ===== SLIDE 10: SOLUTIONS ===== */
+.s10{background:#fff;}
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px;}
+.sol-card{border-radius:16px;padding:28px 22px;position:relative;overflow:hidden;}
+.sol-card:nth-child(1){background:var(--light);border:2px solid #e0d0f5;}
+.sol-card:nth-child(2){background:linear-gradient(135deg,var(--dark),var(--mid));border:2px solid var(--purple);}
+.sol-card:nth-child(3){background:linear-gradient(135deg,#0d2040,#1a3060);border:2px solid #4060c0;}
+.sol-tier{font-size:10px;font-weight:700;letter-spacing:3px;margin-bottom:12px;}
+.sol-card:nth-child(1) .sol-tier{color:var(--purple);}
+.sol-card:nth-child(2) .sol-tier{color:var(--gold);}
+.sol-card:nth-child(3) .sol-tier{color:#60a0ff;}
+.sol-price{font-size:30px;font-weight:900;line-height:1;margin-bottom:4px;}
+.sol-card:nth-child(1) .sol-price{color:var(--dark);}
+.sol-card:nth-child(2) .sol-price{color:#fff;}
+.sol-card:nth-child(3) .sol-price{color:#fff;}
+.sol-unit{font-size:12px;font-weight:400;margin-bottom:16px;}
+.sol-card:nth-child(1) .sol-unit{color:var(--gray);}
+.sol-card:nth-child(2) .sol-unit{color:rgba(255,255,255,.6);}
+.sol-card:nth-child(3) .sol-unit{color:rgba(255,255,255,.6);}
+.sol-name{font-size:16px;font-weight:900;margin-bottom:14px;}
+.sol-card:nth-child(1) .sol-name{color:var(--dark);}
+.sol-card:nth-child(2) .sol-name{color:#fff;}
+.sol-card:nth-child(3) .sol-name{color:#fff;}
+.sol-feat{font-size:12px;margin-bottom:7px;display:flex;align-items:flex-start;gap:7px;}
+.sf-check{flex-shrink:0;font-size:13px;}
+.sol-card:nth-child(1) .sf-check{color:var(--purple);}
+.sol-card:nth-child(2) .sf-check{color:var(--gold);}
+.sol-card:nth-child(3) .sf-check{color:#60a0ff;}
+.sf-text{}
+.sol-card:nth-child(1) .sf-text{color:var(--gray);}
+.sol-card:nth-child(2) .sf-text{color:rgba(255,255,255,.75);}
+.sol-card:nth-child(3) .sf-text{color:rgba(255,255,255,.75);}
+.sol-rec{
+  position:absolute;top:16px;right:16px;
+  background:var(--gold);color:var(--dark);
+  font-size:9px;font-weight:700;padding:3px 10px;border-radius:10px;letter-spacing:1px;
+}
+.sol-sub{
+  margin-top:20px;padding:16px 20px;
+  background:var(--light);border-radius:12px;
+  font-size:12px;color:var(--gray);line-height:1.6;
+}
+.sol-sub strong{color:var(--purple);}
+
+/* ===== SLIDE 11: NUMBERS ===== */
+.s11{background:var(--dark);}
+.effect-row{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+.effect-card{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;padding:24px;
+}
+.ec-metric{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:2px;margin-bottom:16px;}
+.ec-bars{display:flex;gap:24px;align-items:flex-end;margin-bottom:12px;}
+.ec-bar-set{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.ec-bar{width:48px;border-radius:6px 6px 0 0;}
+.ec-bar.before{background:rgba(255,255,255,.15);}
+.ec-bar.after{background:linear-gradient(180deg,var(--pink),var(--purple));}
+.ec-bar-label{font-size:10px;color:rgba(255,255,255,.4);}
+.ec-result{
+  display:inline-block;
+  background:rgba(255,215,0,.15);border-radius:8px;
+  padding:6px 14px;margin-top:6px;
+}
+.ec-result-text{color:var(--gold);font-size:14px;font-weight:700;}
+.ec-body{color:rgba(255,255,255,.55);font-size:12px;line-height:1.5;margin-top:10px;}
+/* bar heights */
+.bar-h1{height:40px;}.bar-h2{height:72px;}
+.bar-h3{height:30px;}.bar-h4{height:60px;}
+.bar-h5{height:50px;}.bar-h6{height:80px;}
+.bar-h7{height:35px;}.bar-h8{height:56px;}
+
+/* ===== SLIDE 12: ROADMAP ===== */
+.s12{background:#fff;}
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;position:relative;}
+.roadmap::before{
+  content:'';position:absolute;top:36px;left:calc(50%/3 + 16px);right:calc(50%/3 + 16px);
+  height:2px;background:linear-gradient(90deg,var(--purple),var(--pink));
+  pointer-events:none;
+}
+.rm-phase{padding:0 12px;text-align:center;}
+.rm-dot{
+  width:24px;height:24px;border-radius:50%;
+  margin:24px auto 16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:#fff;
+}
+.rm-phase:nth-child(1) .rm-dot{background:var(--purple);}
+.rm-phase:nth-child(2) .rm-dot{background:var(--pink);}
+.rm-phase:nth-child(3) .rm-dot{background:var(--gold);color:var(--dark);}
+.rm-month{font-size:11px;color:var(--gray);margin-bottom:6px;letter-spacing:1px;}
+.rm-title{font-size:16px;font-weight:900;color:var(--dark);margin-bottom:16px;}
+.rm-item{
+  text-align:left;font-size:12px;margin-bottom:8px;
+  display:flex;gap:8px;align-items:flex-start;
+}
+.rm-item-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:5px;
+}
+.rm-phase:nth-child(1) .rm-item-dot{background:var(--purple);}
+.rm-phase:nth-child(2) .rm-item-dot{background:var(--pink);}
+.rm-phase:nth-child(3) .rm-item-dot{background:var(--gold);}
+.rm-item-text{color:var(--gray);line-height:1.5;}
+.rm-result{
+  margin-top:16px;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:700;
+}
+.rm-phase:nth-child(1) .rm-result{background:#f0e6ff;color:var(--purple);}
+.rm-phase:nth-child(2) .rm-result{background:#fce4f0;color:var(--pink);}
+.rm-phase:nth-child(3) .rm-result{background:rgba(255,215,0,.15);color:#8a6000;}
+.rm-promise{
+  margin-top:28px;padding:16px 24px;
+  background:linear-gradient(135deg,var(--dark),var(--mid));
+  border-radius:12px;text-align:center;
+  color:#fff;font-size:14px;font-weight:700;
+}
+.rm-promise span{color:var(--gold);}
+
+/* ===== SLIDE 13: ROI ===== */
+.s13{background:var(--dark);}
+.roi-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;}
+.roi-invest{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:28px;
+}
+.roi-invest-label{font-size:10px;color:rgba(255,255,255,.4);letter-spacing:3px;margin-bottom:16px;}
+.roi-invest-price{
+  font-size:48px;font-weight:900;color:#fff;line-height:1;margin-bottom:4px;
+}
+.roi-invest-unit{font-size:14px;color:rgba(255,255,255,.4);}
+.roi-invest-detail{font-size:12px;color:rgba(255,255,255,.4);margin-top:16px;line-height:1.6;}
+.roi-returns{
+  background:linear-gradient(135deg,rgba(139,47,201,.2),rgba(217,70,168,.15));
+  border:1px solid rgba(217,70,168,.25);
+  border-radius:16px;padding:28px;
+}
+.roi-returns-label{font-size:10px;color:var(--gold);letter-spacing:3px;margin-bottom:16px;}
+.roi-item{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);
+}
+.roi-item:last-child{border-bottom:none;}
+.roi-item-name{font-size:13px;color:rgba(255,255,255,.65);}
+.roi-item-val{font-size:15px;font-weight:700;color:var(--pink);}
+.roi-total-row{
+  margin-top:16px;padding:16px;
+  background:rgba(255,215,0,.1);border-radius:10px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.roi-total-label{font-size:13px;font-weight:700;color:var(--gold);}
+.roi-total-val{font-size:24px;font-weight:900;color:var(--gold);}
+.roi-ratio{
+  margin-top:24px;text-align:center;padding:20px;
+  background:rgba(255,255,255,.03);border-radius:12px;
+  grid-column:span 2;
+}
+.roi-ratio-num{font-size:64px;font-weight:900;line-height:1;}
+.roi-ratio-label{color:rgba(255,255,255,.5);font-size:13px;margin-top:6px;}
+.roi-ratio-sub{color:rgba(255,255,255,.3);font-size:11px;margin-top:4px;}
+
+/* ===== SLIDE 14: WHY NOW ===== */
+.s14{background:#fff;}
+.why-timeline{margin-top:32px;position:relative;}
+.why-timeline::before{
+  content:'';position:absolute;top:0;bottom:0;left:90px;width:2px;
+  background:linear-gradient(180deg,var(--purple),var(--pink),var(--gold));
+}
+.why-item{display:flex;gap:28px;align-items:flex-start;margin-bottom:24px;position:relative;}
+.why-year{
+  flex-shrink:0;width:72px;text-align:right;
+  font-size:14px;font-weight:900;line-height:1;padding-top:4px;
+}
+.why-dot{
+  flex-shrink:0;width:18px;height:18px;border-radius:50%;
+  border:3px solid #fff;position:relative;z-index:1;margin-top:2px;
+}
+.why-item:nth-child(1) .why-year{color:var(--gray);}
+.why-item:nth-child(1) .why-dot{background:var(--gray);}
+.why-item:nth-child(2) .why-year{color:var(--purple);}
+.why-item:nth-child(2) .why-dot{background:var(--purple);}
+.why-item:nth-child(3) .why-year{color:var(--pink);font-size:18px;}
+.why-item:nth-child(3) .why-dot{background:var(--pink);width:22px;height:22px;border-width:3px;margin-top:0;}
+.why-item:nth-child(4) .why-year{color:#c0a000;}
+.why-item:nth-child(4) .why-dot{background:var(--gold);}
+.why-item:nth-child(5) .why-year{color:var(--gold);}
+.why-item:nth-child(5) .why-dot{background:var(--gold);}
+.why-content{padding-top:0;}
+.why-title{font-size:16px;font-weight:700;margin-bottom:4px;}
+.why-body{font-size:13px;color:var(--gray);line-height:1.5;}
+.why-now-badge{
+  background:linear-gradient(90deg,var(--purple),var(--pink));
+  color:#fff;font-size:10px;font-weight:700;letter-spacing:2px;
+  padding:3px 12px;border-radius:10px;display:inline-block;margin-bottom:6px;
+}
+.why-cta{
+  margin-top:24px;padding:18px 24px;
+  background:linear-gradient(135deg,var(--dark),var(--mid));
+  border-radius:12px;text-align:center;
+  color:#fff;font-size:15px;font-weight:700;line-height:1.6;
+}
+.why-cta span{color:var(--gold);}
+
+/* ===== SLIDE 15: CTA ===== */
+.s15{background:linear-gradient(135deg,#0d0120,var(--dark),#2d0d54);}
+.s15::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(circle at 20% 50%,rgba(139,47,201,.2) 0%,transparent 50%),
+    radial-gradient(circle at 80% 20%,rgba(217,70,168,.15) 0%,transparent 40%);
+}
+.cta-main{text-align:center;position:relative;z-index:1;}
+.cta-badge{
+  display:inline-block;border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.7);font-size:10px;letter-spacing:4px;
+  padding:7px 22px;border-radius:20px;margin-bottom:28px;
+}
+.cta-title{color:#fff;margin-bottom:20px;}
+.cta-sub{color:rgba(255,255,255,.6);font-size:16px;margin-bottom:40px;line-height:1.7;}
+.cta-steps{display:flex;justify-content:center;gap:16px;margin-bottom:40px;}
+.cta-step{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:20px 24px;text-align:center;min-width:160px;
+}
+.cta-step-num{
+  width:32px;height:32px;border-radius:50%;margin:0 auto 10px;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:#fff;
+}
+.cta-step-title{color:#fff;font-size:13px;font-weight:700;margin-bottom:4px;}
+.cta-step-body{color:rgba(255,255,255,.45);font-size:11px;line-height:1.5;}
+.cta-button{
+  display:inline-block;
+  background:linear-gradient(90deg,var(--purple),var(--pink));
+  color:#fff;font-size:16px;font-weight:700;letter-spacing:1px;
+  padding:16px 48px;border-radius:40px;text-decoration:none;
+  box-shadow:0 8px 32px rgba(139,47,201,.4);margin-bottom:20px;
+}
+.cta-contact{color:rgba(255,255,255,.4);font-size:12px;}
+.cta-contact a{color:var(--gold);}
+
+/* ===== DIVIDER ===== */
+.divider{width:60px;height:3px;border-radius:2px;margin:16px 0;
+  background:linear-gradient(90deg,var(--purple),var(--pink));}
+.divider.gold{background:linear-gradient(90deg,var(--gold),#ff9500);}
+
+/* ===== PRINT ===== */
+@media print{
+  body{background:#fff;}
+  .slide{min-height:auto;height:100vh;page-break-after:always;}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== SLIDE 01: COVER ========== -->
+<div class="slide s01">
+  <div class="cover-logo">
+    <div class="lg">DigiLab Beauty</div>
+    <div class="ls">DIGITAL LABORATORY FOR BEAUTY</div>
+  </div>
+  <div class="slide-inner">
+    <div class="cover-badge">FOR BEAUTY EXECUTIVES 2026</div>
+    <h1 class="display cover-title white">
+      美容業界の<br>次の10年は、<br><span class="grad-text-gold">AIで動く。</span>
+    </h1>
+    <p class="cover-sub">
+      エージェントAI × AX人材 で実現する<br>
+      新しいサロン経営のカタチ
+    </p>
+    <div class="cover-tags">
+      <span class="cover-tag">Agentic AI</span>
+      <span class="cover-tag">AX人材</span>
+      <span class="cover-tag">自民党AIホワイトペーパー2.0準拠</span>
+      <span class="cover-tag">2026〜2030ロードマップ</span>
+    </div>
+    <div class="ax-pill">AX = Agentic Transformation</div>
+  </div>
+  <div class="cover-year">DigiLab Beauty ── 2026</div>
+  <div class="slide-num">01 / 15</div>
+</div>
+
+<!-- ========== SLIDE 02: INDUSTRY DATA ========== -->
+<div class="slide s02">
+  <div class="slide-inner">
+    <p class="slide-label">INDUSTRY OVERVIEW</p>
+    <h2 class="h1" style="color:var(--dark)">日本の美容業界、<span class="grad-text">今この瞬間</span>の数字</h2>
+    <div class="divider"></div>
+    <div class="stats-row">
+      <div class="stat-card c1">
+        <div class="big">6,800<span class="unit">億円</span></div>
+        <div class="lbl">エステ業界市場規模（2025年）</div>
+        <div class="sub">美容業界全体では約2.5兆円。<br>しかし市場は飽和に近づいている。</div>
+      </div>
+      <div class="stat-card c2">
+        <div class="big">3.3<span class="unit">万</span></div>
+        <div class="lbl">エステ専門サロン数（全国）</div>
+        <div class="sub">10年前の2倍以上に増加。<br>競争は激化、淘汰が加速している。</div>
+      </div>
+      <div class="stat-card c3">
+        <div class="big">38<span class="unit">%</span></div>
+        <div class="lbl">業界平均リピート率</div>
+        <div class="sub">新規顧客の62%が<br>3ヶ月以内に離脱する現実。</div>
+      </div>
+    </div>
+    <div class="market-bar-wrap">
+      <h3 style="color:var(--dark)">📈 グローバル ビューティーテック市場の急成長</h3>
+      <div class="bar-row">
+        <div class="bar-label">2025年</div>
+        <div class="bar-track">
+          <div class="bar-fill f25">
+            <span class="bar-val">$14.7B</span>
+          </div>
+        </div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">2030年</div>
+        <div class="bar-track">
+          <div class="bar-fill f30b">
+            <span class="bar-val" style="color:var(--dark)">$42.5B（予測）＋188%</span>
+          </div>
+        </div>
+      </div>
+      <p class="small" style="margin-top:8px">出典: Grand View Research / Statista 2025 ｜ ビューティーテック市場には AI診断・バーチャル試着・パーソナライズケアが含まれる</p>
+    </div>
+  </div>
+  <div class="slide-num" style="color:var(--gray)">02 / 15</div>
+</div>
+
+<!-- ========== SLIDE 03: 3 CRISES ========== -->
+<div class="slide s03">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--pink)">STRUCTURAL CRISIS</p>
+    <h2 class="h1 white">業界を蝕む<span class="grad-text-gold">3つの構造的危機</span></h2>
+    <div class="divider gold"></div>
+    <div class="crisis-grid">
+      <div class="crisis-card">
+        <div class="crisis-icon">👥</div>
+        <div class="crisis-num">3.5<span style="font-size:24px">倍</span></div>
+        <div class="crisis-title">人材不足の深刻化</div>
+        <div class="crisis-body">
+          美容業界の有効求人倍率は全産業平均（1.2倍）の約3倍。
+          年間離職率35〜40%。採用・育成コストが膨らみ続ける。
+          1名採用・定着までのコストは平均<strong style="color:#fff">80〜120万円</strong>。
+        </div>
+        <div class="crisis-source">出典: 厚生労働省 職業安定業務統計 2025</div>
+      </div>
+      <div class="crisis-card">
+        <div class="crisis-icon">🚶</div>
+        <div class="crisis-num">70<span style="font-size:24px">%</span></div>
+        <div class="crisis-title">新規顧客の3ヶ月離脱</div>
+        <div class="crisis-body">
+          新規来店顧客の約70%が3ヶ月以内にリピートしない。
+          新規集客コストは1人あたり平均<strong style="color:#fff">15,000円</strong>。
+          「集めては逃げられる」の負のサイクルから抜け出せない。
+        </div>
+        <div class="crisis-source">出典: 美容業界 CRM調査データ 2025</div>
+      </div>
+      <div class="crisis-card">
+        <div class="crisis-icon">📉</div>
+        <div class="crisis-num">+3<span style="font-size:24px">%</span></div>
+        <div class="crisis-title">10年間の客単価の停滞</div>
+        <div class="crisis-body">
+          過去10年間の平均客単価上昇率はわずか3%。
+          一方でコスト（人件費・家賃・原材料）は15〜25%上昇。
+          収益構造が<strong style="color:#fff">静かに崩壊</strong>している。
+        </div>
+        <div class="crisis-source">出典: 矢野経済研究所 エステティック市場調査 2025</div>
+      </div>
+    </div>
+    <div class="crisis-alert">
+      <div class="crisis-alert-icon">⚡</div>
+      <div class="crisis-alert-text">
+        これらの課題に対し、<strong>「もっと頑張る」「もっと採用する」では解決できない</strong>。
+        必要なのは経営の構造そのものを変えること。それがAXである。
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">03 / 15</div>
+</div>
+
+<!-- ========== SLIDE 04: COMPETITIVE SHIFT ========== -->
+<div class="slide s04">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--purple)">COMPETITIVE LANDSCAPE</p>
+    <h2 class="h1" style="color:var(--dark)">2年後、<span class="grad-text">明暗が分かれる</span></h2>
+    <div class="divider"></div>
+    <div class="split-compare">
+      <div class="compare-col left">
+        <div class="compare-head">⬛ 従来型サロン（現状維持）</div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">スタッフがデータ入力・分析・レポート作成を手作業で行う</div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">休眠顧客へのフォローは「忘れた頃に」一斉メール</div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">新人研修は先輩スタッフが付きっきりで数ヶ月</div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">カウンセリングの質は担当者のスキルに依存</div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">物販は「なんとなく」すすめる属人的アプローチ</div>
+        </div>
+        <div class="compare-result">結果: コスト増・品質ばらつき・疲弊</div>
+      </div>
+      <div class="compare-col right">
+        <div class="compare-head">✦ AIで動くサロン（2年後の標準）</div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">AIが毎月自動で分析・レポート生成。スタッフは施術に集中</div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">休眠顧客をAIが自動検知、最適なタイミングでパーソナライズ接触</div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">新人はAI学習プログラムで1ヶ月で独立。先輩負担ゼロ</div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">AI事前カウンセリングで顧客課題を把握。質が均質化</div>
+        </div>
+        <div class="compare-item">
+          <div class="ci-dot"></div>
+          <div class="ci-text">顧客データから最適商品をAIが提案。物販転換率が上がる</div>
+        </div>
+        <div class="compare-result">結果: 少人数・高品質・高収益</div>
+      </div>
+    </div>
+    <div class="gap-warning">
+      ⚠️ この差は2026年下半期から表面化し始める。早く動いた企業が「業界標準」を作る。
+    </div>
+  </div>
+  <div class="slide-num" style="color:var(--gray)">04 / 15</div>
+</div>
+
+<!-- ========== SLIDE 05: POLICY TAILWIND ========== -->
+<div class="slide s05">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--purple)">POLICY CONTEXT</p>
+    <h2 class="h1" style="color:var(--dark)">国家戦略が<span class="grad-text">美容業界を後押し</span>する</h2>
+    <div class="divider"></div>
+    <div class="policy-quote">
+      <div class="q-text">「AIを使う国」から「AIで動く国」へ。</div>
+      <div class="q-source">自民党AI・web3小委員会「AIホワイトペーパー2.0」(2026年4月23日) ── 40ページ・104項目の提言</div>
+    </div>
+    <div class="shift-cards">
+      <div class="shift-card">
+        <div class="shift-from">SHIFT 1</div>
+        <div class="shift-old">ソブリンAI（国産AIを持つこと）</div>
+        <div class="shift-arrow">↓</div>
+        <div class="shift-to">AI主権<br>（AIを動かし続ける力）</div>
+      </div>
+      <div class="shift-card">
+        <div class="shift-from">SHIFT 2</div>
+        <div class="shift-old">AIが何に使えるか</div>
+        <div class="shift-arrow">↓</div>
+        <div class="shift-to">人間にしかできない<br>ことは何か</div>
+      </div>
+      <div class="shift-card">
+        <div class="shift-from">SHIFT 3</div>
+        <div class="shift-old">規制の強弱</div>
+        <div class="shift-arrow">↓</div>
+        <div class="shift-to">信頼の設計<br>（法制度＋技術＋リテラシー）</div>
+      </div>
+    </div>
+    <div class="shift-beauty">
+      <div class="sb-label">BEAUTY INDUSTRY TRANSLATION</div>
+      <div class="sb-text">
+        「AIを使うサロン」から → <strong style="color:var(--gold)">「AIで動くサロン」</strong>へ。<br>
+        政策の追い風がある今が、業界再設計の最大のタイミング。
+      </div>
+    </div>
+  </div>
+  <div class="slide-num" style="color:var(--gray)">05 / 15</div>
+</div>
+
+<!-- ========== SLIDE 06: AGENTIC AI ========== -->
+<div class="slide s06">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--pink)">AGENTIC AI</p>
+    <h2 class="h1 white">「答えるAI」から<br><span class="grad-text-gold">「目的を遂行するAI」</span>へ</h2>
+    <div class="divider gold"></div>
+    <div class="ai-compare">
+      <div class="ai-box old">
+        <div class="ai-box-head">CONVENTIONAL AI</div>
+        <div class="ai-box-title">今までのAI</div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text">質問に答えるだけ（受動的）</div></div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text">1つのタスクを1回実行</div></div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text">人間が指示するたびに動く</div></div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text">結果の検証・修正は人間が行う</div></div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text">使いこなせる人だけが価値を得る</div></div>
+      </div>
+      <div class="ai-box new">
+        <div class="ai-box-head">AGENTIC AI ✦ 次世代</div>
+        <div class="ai-box-title">エージェントAI</div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text"><strong style="color:#fff">目標を自律的に遂行</strong>（能動的）</div></div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text">複数ステップを自ら計画・実行</div></div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text">24時間・無人で継続稼働</div></div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text">結果を検証し自ら改善する</div></div>
+        <div class="ai-feat"><div class="af-dot"></div><div class="af-text">組織全体が恩恵を受ける</div></div>
+      </div>
+    </div>
+    <div class="ai-example">
+      <div class="ai-example-title">💡 美容業界でのエージェントAI例：「休眠顧客復活エージェント」</div>
+      <div class="ai-flow">
+        <div class="af-step">90日未来店を検知</div>
+        <div class="af-arrow">→</div>
+        <div class="af-step">顧客プロフィール分析</div>
+        <div class="af-arrow">→</div>
+        <div class="af-step">最適メッセージ生成</div>
+        <div class="af-arrow">→</div>
+        <div class="af-step">LINE自動配信</div>
+        <div class="af-arrow">→</div>
+        <div class="af-step">反応測定・改善</div>
+        <div class="af-arrow">→</div>
+        <div class="af-step">予約確定</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">06 / 15</div>
+</div>
+
+<!-- ========== SLIDE 07: AX TALENT ========== -->
+<div class="slide s07">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--purple)">AX HUMAN RESOURCE</p>
+    <h2 class="h1" style="color:var(--dark)"><span class="grad-text">AX人材</span>という<br>新しいポジション</h2>
+    <div class="divider"></div>
+    <div class="ax-def">
+      <div class="ax-def-badge">AX</div>
+      <div class="ax-def-text">
+        <div class="ax-def-label">DEFINITION</div>
+        <div class="ax-def-title">Agentic Transformation 人材</div>
+        <div class="ax-def-body">
+          AIエージェントを設計・管理・改善し、自分のチームや業務プロセス全体をAI駆動型に変革できる人材。
+          「AIを使う人」ではなく「AIで組織を動かす人」。
+        </div>
+      </div>
+    </div>
+    <div class="ax-compare">
+      <div class="ax-era e1">
+        <div class="ax-era-period">〜2020年</div>
+        <div class="ax-era-title">職人時代</div>
+        <div class="ax-era-body">技術・経験・感性が価値の源泉。スキルは人の頭の中にある。</div>
+      </div>
+      <div class="ax-era e2">
+        <div class="ax-era-period">2020〜2025年</div>
+        <div class="ax-era-title">DX時代</div>
+        <div class="ax-era-body">デジタルツールを使いこなす能力が求められる。予約・会計・SNSの電子化。</div>
+      </div>
+      <div class="ax-era e3">
+        <div class="ax-era-period">2026年〜</div>
+        <div class="ax-era-title">AX時代</div>
+        <div class="ax-era-body">AIエージェントで組織を動かす設計力が価値になる。人間は「判断と関係性」に専念。</div>
+      </div>
+    </div>
+    <p style="margin-top:20px;font-size:13px;color:var(--gray);font-weight:700;">美容業界でのAX人材に必要なスキルセット：</p>
+    <div class="ax-skill-row">
+      <span class="ax-skill human">感情的つながりの構築</span>
+      <span class="ax-skill ai">データ解釈・意思決定</span>
+      <span class="ax-skill human">クリエイティブな提案力</span>
+      <span class="ax-skill ai">AIエージェントへの指示設計</span>
+      <span class="ax-skill human">顧客の「言葉にならない悩み」の察知</span>
+      <span class="ax-skill ai">業務プロセスの自動化設計</span>
+    </div>
+  </div>
+  <div class="slide-num" style="color:var(--gray)">07 / 15</div>
+</div>
+
+<!-- ========== SLIDE 08: A DAY IN AI SALON ========== -->
+<div class="slide s08">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--pink)">FUTURE OPERATIONS</p>
+    <h2 class="h1 white">AIで動くサロンの<span class="grad-text-gold">「1日」</span></h2>
+    <div class="divider gold"></div>
+    <div class="day-timeline">
+      <div class="day-item">
+        <div class="day-time">07:00</div>
+        <div class="day-dot-col"><div class="day-dot ai"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <div class="day-who pink-tag">🤖 AIエージェント</div>
+          <div class="day-action">前日データ分析・今日のアクションリスト自動生成</div>
+          <div class="day-detail">昨日の施術データ・物販実績・顧客反応を分析。今日フォローすべき顧客トップ5を自動抽出。</div>
+        </div>
+      </div>
+      <div class="day-item">
+        <div class="day-time">08:30</div>
+        <div class="day-dot-col"><div class="day-dot both"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <div class="day-who" style="color:rgba(255,255,255,.5)">👤 スタッフ + 🤖 AI</div>
+          <div class="day-action">朝礼：AIが生成した「今日の重点顧客」リストを5分で確認</div>
+          <div class="day-detail">今日来店する顧客の施術履歴・前回の悩み・おすすめ商品をAIが先読み。スタッフは「読む」だけ。</div>
+        </div>
+      </div>
+      <div class="day-item">
+        <div class="day-time">10:00</div>
+        <div class="day-dot-col"><div class="day-dot human"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <div class="day-who" style="color:var(--gold)">✨ エステティシャン</div>
+          <div class="day-action">施術・本物の接客に完全集中</div>
+          <div class="day-detail">カウンセリング情報はAIが事前整理済み。スタッフは「感情的なつながり」と「感性的な判断」だけに集中できる。</div>
+        </div>
+      </div>
+      <div class="day-item">
+        <div class="day-time">13:00</div>
+        <div class="day-dot-col"><div class="day-dot ai"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <div class="day-who" style="color:var(--pink)">🤖 AIエージェント</div>
+          <div class="day-action">午前の施術を受けた顧客にサンキューLINEを自動配信</div>
+          <div class="day-detail">顧客ごとにパーソナライズされた内容。次回来店の最適タイミング・おすすめメニューを自動提案。</div>
+        </div>
+      </div>
+      <div class="day-item">
+        <div class="day-time">18:00</div>
+        <div class="day-dot-col"><div class="day-dot ai"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <div class="day-who" style="color:var(--pink)">🤖 AIエージェント</div>
+          <div class="day-action">休眠顧客への自動フォロー実行・物販レコメンド配信</div>
+          <div class="day-detail">90日以上未来店の顧客を自動検知。季節・肌状態・過去施術データをもとに最適メッセージを自律送信。</div>
+        </div>
+      </div>
+      <div class="day-item">
+        <div class="day-time">21:00</div>
+        <div class="day-dot-col"><div class="day-dot ai"></div><div class="day-line"></div></div>
+        <div class="day-content">
+          <div class="day-who" style="color:var(--pink)">🤖 AIエージェント</div>
+          <div class="day-action">翌日準備・月次レポート自動更新・KPI計算</div>
+          <div class="day-detail">全て自動。経営者は翌朝「今月の数字」をNotionで確認するだけ。</div>
+        </div>
+      </div>
+    </div>
+    <div class="day-legend">
+      <div class="dl-item"><div class="dl-dot ai"></div><div class="dl-text">AIエージェント（完全自動）</div></div>
+      <div class="dl-item"><div class="dl-dot human"></div><div class="dl-text">エステティシャン（高付加価値業務のみ）</div></div>
+      <div class="dl-item"><div class="dl-dot both"></div><div class="dl-text">人間×AI（協働）</div></div>
+    </div>
+  </div>
+  <div class="slide-num">08 / 15</div>
+</div>
+
+<!-- ========== SLIDE 09: 2030 VISION ========== -->
+<div class="slide s09">
+  <div class="slide-inner" style="position:relative;z-index:1;">
+    <p class="slide-label" style="color:var(--pink)">FUTURE VISION</p>
+    <h2 class="h1 white">2030年、<span class="grad-text-gold">美容業界の姿</span></h2>
+    <div class="divider gold"></div>
+    <div class="vision-cards">
+      <div class="vision-card">
+        <div class="vc-icon">🏆</div>
+        <div class="vc-pct">Top 20%</div>
+        <div class="vc-title">AI導入サロンが売上の8割を獲得</div>
+        <div class="vc-body">全サロンの20%がAI導入。しかしその20%が業界売上の80%を独占する「勝者総取り」の構造へ。</div>
+      </div>
+      <div class="vision-card">
+        <div class="vc-icon">👁</div>
+        <div class="vc-pct">+45%</div>
+        <div class="vc-title">エージェントAI市場が年率45%成長</div>
+        <div class="vc-body">グローバルで最も成長するテクノロジー領域。美容・ヘルスケア・教育が主要採用分野となる。</div>
+      </div>
+      <div class="vision-card">
+        <div class="vc-icon">🧑‍💼</div>
+        <div class="vc-pct">×3倍</div>
+        <div class="vc-title">AX人材の採用競争が激化</div>
+        <div class="vc-body">AIエージェントを使いこなせるスタッフ・マネージャーの給与は一般職の3倍に。育成が経営の最重要課題になる。</div>
+      </div>
+      <div class="vision-card">
+        <div class="vc-icon">💰</div>
+        <div class="vc-pct">+38%</div>
+        <div class="vc-title">AI導入サロンのLTV向上</div>
+        <div class="vc-body">パーソナライズ接客・自動フォローにより顧客生涯価値が平均38%向上。リピート率が業界標準を大きく超える。</div>
+      </div>
+    </div>
+    <div class="vision-warn">
+      <div class="vision-warn-text">
+        「様子を見ていた」企業が動き出す頃には、<span>先行者が業界標準を作り終えている。</span><br>
+        そのタイムリミットは、<span>2027年末</span>。
+      </div>
+    </div>
+  </div>
+  <div class="vision-year">2030</div>
+  <div class="slide-num">09 / 15</div>
+</div>
+
+<!-- ========== SLIDE 10: SOLUTIONS ========== -->
+<div class="slide s10">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--purple)">OUR SOLUTIONS</p>
+    <h2 class="h1" style="color:var(--dark)">DigiLab Beauty<br><span class="grad-text">3つのソリューション</span></h2>
+    <div class="divider"></div>
+    <div class="sol-grid">
+      <div class="sol-card">
+        <div class="sol-tier">STARTER PLAN</div>
+        <div class="sol-price">¥80,000<span class="sol-unit" style="font-size:13px;">/月</span></div>
+        <div class="sol-name">データ分析<br>＋月次提案</div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">顧客データ月次分析レポート</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">休眠顧客リスト自動抽出</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">月1回オンライン戦略ミーティング</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">ビューティーAIウィークリー配信</div></div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-rec">RECOMMENDED</div>
+        <div class="sol-tier">STANDARD PLAN</div>
+        <div class="sol-price">¥150,000<span class="sol-unit">/月</span></div>
+        <div class="sol-name">AIエージェント<br>フル稼働</div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">Starterの全内容</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">休眠顧客復活エージェント稼働</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">LTV最大化エージェント設計・実行</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">スタッフAX研修プログラム</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">物販レコメンドLINE自動化</div></div>
+      </div>
+      <div class="sol-card">
+        <div class="sol-tier">PREMIUM PLAN</div>
+        <div class="sol-price">¥280,000<span class="sol-unit">/月</span></div>
+        <div class="sol-name">AIで動くサロン<br>完全設計</div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">Standardの全内容</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">専任AXコンサルタント</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">全業務フローのAI再設計</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">AX人材の育成プログラム設計</div></div>
+        <div class="sol-feat"><div class="sf-check">✓</div><div class="sf-text">信頼設計パッケージ（データ規約含む）</div></div>
+      </div>
+    </div>
+    <div class="sol-sub">
+      <strong>+ AIビューティーインテリジェンス</strong> ¥30,000/月（単体でも契約可）：毎週届くビューティーテック最前線レポート。国内外の事例・政策動向・競合分析を自動配信。
+    </div>
+  </div>
+  <div class="slide-num" style="color:var(--gray)">10 / 15</div>
+</div>
+
+<!-- ========== SLIDE 11: EFFECT NUMBERS ========== -->
+<div class="slide s11">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--pink)">PROVEN IMPACT</p>
+    <h2 class="h1 white">数字で見る<span class="grad-text-gold">導入効果</span></h2>
+    <div class="divider gold"></div>
+    <div class="effect-row">
+      <div class="effect-card">
+        <div class="ec-metric">REPEAT RATE ── リピート率</div>
+        <div class="ec-bars">
+          <div class="ec-bar-set">
+            <div class="ec-bar before bar-h1"></div>
+            <div class="ec-bar-label">導入前</div>
+          </div>
+          <div class="ec-bar-set">
+            <div class="ec-bar after bar-h2"></div>
+            <div class="ec-bar-label">導入後</div>
+          </div>
+        </div>
+        <div class="ec-result"><div class="ec-result-text">38% → 58%　　＋20pt 向上</div></div>
+        <div class="ec-body">AIエージェントによる最適タイミングのフォローが「忘れていた顧客」を呼び戻す。業界平均38%から大幅改善。</div>
+      </div>
+      <div class="effect-card">
+        <div class="ec-metric">DORMANT RECOVERY ── 休眠顧客復活率</div>
+        <div class="ec-bars">
+          <div class="ec-bar-set">
+            <div class="ec-bar before bar-h3"></div>
+            <div class="ec-bar-label">導入前</div>
+          </div>
+          <div class="ec-bar-set">
+            <div class="ec-bar after bar-h4"></div>
+            <div class="ec-bar-label">導入後</div>
+          </div>
+        </div>
+        <div class="ec-result"><div class="ec-result-text">5% → 22%　　4.4倍 改善</div></div>
+        <div class="ec-body">放置されていた休眠顧客をAIが自動検知・接触。人手では不可能だった個別フォローを大規模実施。</div>
+      </div>
+      <div class="effect-card">
+        <div class="ec-metric">RETAIL SALES ── 物販売上</div>
+        <div class="ec-bars">
+          <div class="ec-bar-set">
+            <div class="ec-bar before bar-h5"></div>
+            <div class="ec-bar-label">導入前</div>
+          </div>
+          <div class="ec-bar-set">
+            <div class="ec-bar after bar-h6"></div>
+            <div class="ec-bar-label">導入後</div>
+          </div>
+        </div>
+        <div class="ec-result"><div class="ec-result-text">物販売上　＋35%</div></div>
+        <div class="ec-body">顧客の肌データ・施術履歴から最適商品をAIが推薦。「なんとなく」から「データベース提案」へ。</div>
+      </div>
+      <div class="effect-card">
+        <div class="ec-metric">OPERATIONAL EFFICIENCY ── 業務時間削減</div>
+        <div class="ec-bars">
+          <div class="ec-bar-set">
+            <div class="ec-bar before bar-h7" style="background:rgba(255,255,255,.15);"></div>
+            <div class="ec-bar-label">削減前</div>
+          </div>
+          <div class="ec-bar-set">
+            <div class="ec-bar after bar-h8" style="background:linear-gradient(180deg,#00d4aa,var(--purple));"></div>
+            <div class="ec-bar-label">削減後</div>
+          </div>
+        </div>
+        <div class="ec-result" style="background:rgba(0,212,170,.1);">
+          <div class="ec-result-text" style="color:#00d4aa;">月40時間 → 管理業務を解放</div>
+        </div>
+        <div class="ec-body">レポート作成・フォロー管理・研修準備の自動化により、スタッフが月40時間を「施術・接客」へ再配分。</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">11 / 15</div>
+</div>
+
+<!-- ========== SLIDE 12: ROADMAP ========== -->
+<div class="slide s12">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--purple)">IMPLEMENTATION ROADMAP</p>
+    <h2 class="h1" style="color:var(--dark)">3ヶ月で<span class="grad-text">「AIで動くサロン」</span>へ</h2>
+    <div class="divider"></div>
+    <div class="roadmap">
+      <div class="rm-phase">
+        <div class="rm-dot">1</div>
+        <div class="rm-month">Month 1 ── 現状把握</div>
+        <div class="rm-title">基盤構築</div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">顧客データ監査・整理（どこに何がある？）</div></div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">顧客セグメント分類（RFM分析）</div></div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">目標KPI設定（3ヶ月で何を改善するか）</div></div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">初回月次レポート提出・ミーティング</div></div>
+        <div class="rm-result">「現状の見える化」完了</div>
+      </div>
+      <div class="rm-phase">
+        <div class="rm-dot">2</div>
+        <div class="rm-month">Month 2 ── 初期施策</div>
+        <div class="rm-title">エージェント始動</div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">休眠顧客リスト抽出・LINEアプローチ実行</div></div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">スタッフ向けAX研修（第1回）</div></div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">物販レコメンドLINE設計・配信テスト</div></div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">初期効果の計測・レポート</div></div>
+        <div class="rm-result">最初の「数字の変化」を確認</div>
+      </div>
+      <div class="rm-phase">
+        <div class="rm-dot">3</div>
+        <div class="rm-month">Month 3 ── 結果確認</div>
+        <div class="rm-title">本格稼働</div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">3ヶ月のBefore/After数値報告</div></div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">エージェント精度の改善・最適化</div></div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">次フェーズ（物販・新人育成）の設計</div></div>
+        <div class="rm-item"><div class="rm-item-dot"></div><div class="rm-item-text">継続・拡張プランの提案</div></div>
+        <div class="rm-result">「AIで動くサロン」へ本格移行</div>
+      </div>
+    </div>
+    <div class="rm-promise">
+      3ヶ月後、<span>リピート率・休眠顧客復活・物販売上の3指標</span>で必ず数字をお出しします。
+      数字が出なければ継続をおすすめしません。
+    </div>
+  </div>
+  <div class="slide-num" style="color:var(--gray)">12 / 15</div>
+</div>
+
+<!-- ========== SLIDE 13: ROI ========== -->
+<div class="slide s13">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--pink)">RETURN ON INVESTMENT</p>
+    <h2 class="h1 white">投資対効果：<span class="grad-text-gold">算数で証明する</span></h2>
+    <div class="divider gold"></div>
+    <div class="roi-layout">
+      <div class="roi-invest">
+        <div class="roi-invest-label">INVESTMENT ── 月次投資</div>
+        <div class="roi-invest-price">¥150,000</div>
+        <div class="roi-invest-unit">/月（Standardプラン）</div>
+        <div class="roi-invest-detail">
+          ・最低6ヶ月契約<br>
+          ・年契約で10%割引（¥135,000/月）<br>
+          ・初期設定費：¥0<br>
+          ・解約違約金：なし
+        </div>
+      </div>
+      <div class="roi-returns">
+        <div class="roi-returns-label">ESTIMATED RETURNS ── 月次効果試算</div>
+        <div class="roi-item">
+          <div class="roi-item-name">休眠顧客復活（500人×22%×¥8,000）</div>
+          <div class="roi-item-val">＋¥880,000</div>
+        </div>
+        <div class="roi-item">
+          <div class="roi-item-name">リピート率向上による売上増分</div>
+          <div class="roi-item-val">＋¥300,000</div>
+        </div>
+        <div class="roi-item">
+          <div class="roi-item-name">物販売上向上（+35%分）</div>
+          <div class="roi-item-val">＋¥200,000</div>
+        </div>
+        <div class="roi-item">
+          <div class="roi-item-name">業務効率化（40時間×¥2,500）</div>
+          <div class="roi-item-val">＋¥100,000</div>
+        </div>
+        <div class="roi-total-row">
+          <div class="roi-total-label">月次効果合計（試算）</div>
+          <div class="roi-total-val">＋¥1,480,000</div>
+        </div>
+      </div>
+      <div class="roi-ratio" style="grid-column:span 2;">
+        <div class="roi-ratio-num grad-text-gold">9.8<span style="font-size:32px">倍</span></div>
+        <div class="roi-ratio-label">投資対効果 ROI（試算）</div>
+        <div class="roi-ratio-sub">
+          ¥150,000の投資で月¥1,480,000の効果（試算）｜
+          ※数字は業界平均データと標準的な規模（顧客500名・物販月¥570,000規模）をもとにした推計値。実績は3ヶ月後に実測。
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">13 / 15</div>
+</div>
+
+<!-- ========== SLIDE 14: WHY NOW ========== -->
+<div class="slide s14">
+  <div class="slide-inner">
+    <p class="slide-label" style="color:var(--purple)">TIMING IS EVERYTHING</p>
+    <h2 class="h1" style="color:var(--dark)">なぜ、<span class="grad-text">今</span>なのか</h2>
+    <div class="divider"></div>
+    <div class="why-timeline">
+      <div class="why-item">
+        <div class="why-year">〜2024</div>
+        <div class="why-dot"></div>
+        <div class="why-content">
+          <div class="why-title" style="color:#bbb;">「AIは便利なツール」の時代</div>
+          <div class="why-body">ChatGPTで文章を書く、画像を生成する。点としてのAI利用。業務の本流には入っていない。</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-year">2025</div>
+        <div class="why-dot"></div>
+        <div class="why-content">
+          <div class="why-title">エージェントAI実用化元年</div>
+          <div class="why-body">Claude、GPT-4o等のエージェント機能が実用レベルに。業務プロセスへの本格統合が始まる。早期導入企業が優位を形成し始める。</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-year">2026</div>
+        <div class="why-dot"></div>
+        <div class="why-content">
+          <div class="why-now-badge">▶ NOW ◀ 今ここにいる</div>
+          <div class="why-title" style="color:var(--dark);">国家戦略×実装技術×市場機会が揃った</div>
+          <div class="why-body">AIホワイトペーパー2.0が「AI駆動型国家」を宣言。技術は実用段階。競合がまだ「ツール紹介」レベルのうちに先行する最後のウィンドウ。</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-year">2027</div>
+        <div class="why-dot"></div>
+        <div class="why-content">
+          <div class="why-title" style="color:#8a6000;">競合が動き始める</div>
+          <div class="why-body">大手ITベンダー・コンサルが美容業界向けAIに本格参入。「先行者優位」が固まる。この時点では先行企業の追いかけになる。</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-year">2028〜</div>
+        <div class="why-dot"></div>
+        <div class="why-content">
+          <div class="why-title" style="color:#8a6000;">「導入していない」がリスクになる</div>
+          <div class="why-body">AI導入が業界標準化。導入していないサロンは採用・集客・収益すべてで競合劣位。</div>
+        </div>
+      </div>
+    </div>
+    <div class="why-cta">
+      先行者優位のウィンドウは <span>2026年〜2027年初頭</span> まで。<br>
+      今始めれば、業界の「標準」を<span>作る側</span>になれる。
+    </div>
+  </div>
+  <div class="slide-num" style="color:var(--gray)">14 / 15</div>
+</div>
+
+<!-- ========== SLIDE 15: CTA ========== -->
+<div class="slide s15">
+  <div class="slide-inner">
+    <div class="cta-main">
+      <div class="cta-badge">NEXT STEPS</div>
+      <h2 class="display cta-title">まず、30分だけ<br><span class="grad-text-gold">話しましょう。</span></h2>
+      <p class="cta-sub">
+        売り込みはしません。<br>
+        貴社の現状データを見て、「AIで動けるか」を一緒に確認します。
+      </p>
+      <div class="cta-steps">
+        <div class="cta-step">
+          <div class="cta-step-num">1</div>
+          <div class="cta-step-title">30分 無料診断</div>
+          <div class="cta-step-body">現状の課題を整理。AIで動けるかを診断します</div>
+        </div>
+        <div class="cta-step">
+          <div class="cta-step-num">2</div>
+          <div class="cta-step-title">個別提案書提出</div>
+          <div class="cta-step-body">貴社の規模・課題に合わせた具体的な試算をお出しします</div>
+        </div>
+        <div class="cta-step">
+          <div class="cta-step-num">3</div>
+          <div class="cta-step-title">3ヶ月お試し開始</div>
+          <div class="cta-step-body">最短2週間でエージェント稼働。3ヶ月で数字を出します</div>
+        </div>
+      </div>
+      <a href="https://digilab-beauty.com/" class="cta-button">無料診断を予約する →</a>
+      <div class="cta-contact">
+        お問い合わせ: <a href="mailto:info@digilab-beauty.com">info@digilab-beauty.com</a>　|
+        <a href="https://digilab-beauty.com/">https://digilab-beauty.com/</a>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">15 / 15</div>
+</div>
+
+</body>
+</html>

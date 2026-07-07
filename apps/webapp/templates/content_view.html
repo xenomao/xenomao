@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ c.title }}｜閲覧{% endblock %}
+{% block content %}
+<div class="form-card form-wide" style="max-width:820px">
+  <div class="card-cat">{{ c.category }}</div>
+  <h1>{{ c.cover_emoji }} {{ c.title }}</h1>
+  <div class="muted">by {{ c.display_name }}</div>
+  <hr style="border:none;border-top:1px solid var(--line);margin:18px 0">
+
+  <div class="body-content">{{ c.body or '（本文はありません）' }}</div>
+
+  {% if c.file_name %}
+    <div style="margin-top:24px">
+      <a class="btn btn-ghost" href="{{ url_for('download', fn=c.file_name) }}">📎 添付ファイルをダウンロード</a>
+    </div>
+  {% endif %}
+
+  <div class="ref-box">
+    <b>🎁 このコンテンツを紹介して報酬を得る</b>
+    <p class="muted">下のあなた専用リンクから誰かが購入すると、紹介報酬（{{ c.referral_rate }}%）が受け取れます。</p>
+    <input type="text" value="{{ ref_url }}" readonly onclick="this.select()">
+  </div>
+
+  <p style="margin-top:20px">
+    <a href="{{ url_for('content_detail', cid=c.id) }}">← コンテンツ詳細・レビューへ</a>
+  </p>
+</div>
+{% endblock %}

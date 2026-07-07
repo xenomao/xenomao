@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}ログイン｜コスメブレイン{% endblock %}
+{% block content %}
+<div class="form-card">
+  <h1>ログイン</h1>
+  <form method="post">
+    <label>メールアドレス</label>
+    <input type="email" name="email" required>
+    <label>パスワード</label>
+    <input type="password" name="password" required>
+    <div style="margin-top:20px"><button class="btn btn-block">ログイン</button></div>
+  </form>
+  <p class="muted" style="margin-top:16px">アカウントがない方は
+    <a href="{{ url_for('register') }}">無料登録</a></p>
+</div>
+{% endblock %}

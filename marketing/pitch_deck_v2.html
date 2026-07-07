@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiLab Beauty | 最初の1手</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --p:#8b2fc9;--pk:#d946a8;--g:#ffd700;
+  --dk:#1a0533;--md:#3d1a6e;--lt:#f5eeff;
+  --gr:#555;--lg:#f4f4f4;
+}
+body{font-family:'Noto Sans JP','Hiragino Sans',sans-serif;background:#1a1a1a;}
+
+/* ── SLIDE BASE ── */
+.slide{
+  width:100%;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+  page-break-after:always;break-after:page;
+}
+.inner{max-width:1060px;width:100%;margin:0 auto;padding:56px 60px;}
+.snum{
+  position:absolute;bottom:28px;right:36px;
+  font-size:11px;letter-spacing:2px;font-weight:600;
+  color:rgba(255,255,255,.2);
+}
+.snum.dark{color:rgba(0,0,0,.18);}
+.logo-tag{
+  position:absolute;top:32px;right:48px;text-align:right;
+}
+.logo-tag .l{color:rgba(255,255,255,.9);font-size:16px;font-weight:900;letter-spacing:.5px;}
+.logo-tag .s{color:rgba(255,255,255,.4);font-size:8px;letter-spacing:3px;}
+.logo-tag.dark .l{color:var(--dk);}
+.logo-tag.dark .s{color:rgba(0,0,0,.3);}
+
+/* ── TYPE ── */
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;}
+.display{font-size:clamp(38px,5vw,64px);font-weight:900;line-height:1.15;}
+.h1{font-size:clamp(28px,3.8vw,46px);font-weight:900;line-height:1.2;}
+.h2{font-size:clamp(20px,2.5vw,30px);font-weight:700;line-height:1.3;}
+.lead{font-size:clamp(15px,1.6vw,18px);line-height:1.75;}
+.note{font-size:11px;line-height:1.6;opacity:.5;}
+.gd{background:linear-gradient(90deg,var(--p),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.gg{background:linear-gradient(90deg,#ffd700,#ffaa00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.bar{width:52px;height:3px;border-radius:2px;margin:18px 0;background:linear-gradient(90deg,var(--p),var(--pk));}
+.bar.gold{background:linear-gradient(90deg,var(--g),#ff9500);}
+
+/* ══════════════════════════════
+   SLIDE 01 ── HOOK
+══════════════════════════════ */
+.s01{background:linear-gradient(150deg,#0a0118 0%,#1a0533 50%,#3d1a6e 100%);}
+.s01::after{content:'';position:absolute;bottom:-20%;right:-10%;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,70,168,.18) 0%,transparent 70%);}
+
+.hook-num{
+  font-size:clamp(100px,14vw,160px);font-weight:900;line-height:1;
+  color:rgba(255,255,255,.06);position:absolute;right:60px;top:50%;
+  transform:translateY(-50%);letter-spacing:-8px;pointer-events:none;
+}
+.hook-badge{
+  display:inline-block;border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.7);font-size:10px;letter-spacing:3px;
+  padding:7px 20px;border-radius:20px;margin-bottom:24px;
+  background:rgba(255,255,255,.05);
+}
+.hook-title{color:#fff;margin-bottom:20px;}
+.hook-title em{font-style:normal;}
+.hook-sub{color:rgba(255,255,255,.6);max-width:560px;margin-bottom:36px;}
+.hook-stat{
+  display:flex;gap:32px;align-items:center;
+  padding:20px 28px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);border-radius:14px;
+  max-width:560px;
+}
+.hs-num{font-size:42px;font-weight:900;line-height:1;}
+.hs-num.pk{color:var(--pk);}
+.hs-num.g{color:var(--g);}
+.hs-text{color:rgba(255,255,255,.65);font-size:14px;line-height:1.5;}
+.hs-divider{width:1px;height:40px;background:rgba(255,255,255,.15);}
+
+/* ══════════════════════════════
+   SLIDE 02 ── PAIN
+══════════════════════════════ */
+.s02{background:#fff;}
+.pain-intro{
+  font-size:clamp(16px,2vw,22px);font-weight:700;
+  color:var(--dk);line-height:1.6;margin-bottom:36px;max-width:700px;
+}
+.pain-intro span{color:var(--p);}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.pain-card{border-radius:14px;padding:24px 20px;}
+.pain-card.c1{background:var(--lt);border:1.5px solid #ddd0f5;}
+.pain-card.c2{background:#fff5fc;border:1.5px solid #f0c0e0;}
+.pain-card.c3{background:#fff8e0;border:1.5px solid #ffe080;}
+.pain-icon{font-size:28px;margin-bottom:12px;}
+.pain-q{font-size:14px;font-weight:700;color:var(--dk);margin-bottom:8px;line-height:1.4;}
+.pain-body{font-size:12px;color:var(--gr);line-height:1.6;}
+.pain-truth{
+  margin-top:24px;padding:18px 24px;
+  background:var(--dk);border-radius:12px;
+  display:flex;align-items:center;gap:16px;
+}
+.pt-icon{font-size:22px;}
+.pt-text{color:rgba(255,255,255,.85);font-size:13px;line-height:1.6;}
+.pt-text strong{color:var(--g);}
+
+/* ══════════════════════════════
+   SLIDE 03 ── SLEEPING MONEY
+══════════════════════════════ */
+.s03{background:var(--dk);}
+.calc-wrap{margin-top:32px;}
+.calc-label{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.35);margin-bottom:20px;}
+.calc-row{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 24px;margin-bottom:12px;
+  border-radius:12px;
+}
+.calc-row.highlight{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.2);}
+.calc-row.normal{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);}
+.cr-label{flex:1;color:rgba(255,255,255,.6);font-size:14px;}
+.cr-val{font-size:22px;font-weight:900;min-width:120px;text-align:right;}
+.calc-row.normal .cr-val{color:#fff;}
+.calc-row.highlight .cr-val{color:var(--g);}
+.cr-op{color:rgba(255,255,255,.2);font-size:18px;font-weight:700;width:20px;text-align:center;}
+.calc-result{
+  margin-top:24px;padding:28px 32px;
+  background:linear-gradient(135deg,rgba(139,47,201,.25),rgba(217,70,168,.15));
+  border:1px solid rgba(217,70,168,.3);border-radius:16px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.cr-left{}
+.cr-left .crl-label{color:rgba(255,255,255,.45);font-size:11px;letter-spacing:2px;margin-bottom:6px;}
+.cr-left .crl-text{color:#fff;font-size:15px;font-weight:700;line-height:1.4;}
+.cr-right .crl-num{font-size:clamp(36px,5vw,56px);font-weight:900;color:var(--g);line-height:1;}
+.cr-right .crl-unit{font-size:14px;color:rgba(255,255,255,.4);margin-top:4px;}
+.calc-note{margin-top:14px;color:rgba(255,255,255,.3);font-size:11px;}
+
+/* ══════════════════════════════
+   SLIDE 04 ── FIRST MOVE
+══════════════════════════════ */
+.s04{background:var(--lt);}
+.first-move{
+  margin-top:28px;
+  background:linear-gradient(135deg,var(--dk),var(--md));
+  border-radius:20px;padding:36px 40px;position:relative;overflow:hidden;
+}
+.first-move::before{content:'';position:absolute;top:-30px;right:-30px;
+  width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,70,168,.2) 0%,transparent 70%);}
+.fm-step-label{font-size:10px;letter-spacing:4px;color:var(--g);margin-bottom:12px;}
+.fm-title{color:#fff;font-size:clamp(22px,3vw,34px);font-weight:900;margin-bottom:8px;position:relative;z-index:1;}
+.fm-sub{color:rgba(255,255,255,.55);font-size:14px;margin-bottom:28px;position:relative;z-index:1;}
+.fm-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:relative;z-index:1;}
+.fm-box{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;padding:10px 18px;
+}
+.fm-box-num{font-size:9px;color:var(--pk);letter-spacing:1px;margin-bottom:3px;}
+.fm-box-text{color:#fff;font-size:13px;font-weight:600;}
+.fm-arrow{color:var(--pk);font-size:20px;font-weight:900;}
+.why-simple{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.ws-card{background:#fff;border-radius:12px;padding:18px 16px;border:1.5px solid #e8d8f8;}
+.ws-icon{font-size:24px;margin-bottom:8px;}
+.ws-title{font-size:13px;font-weight:700;color:var(--dk);margin-bottom:4px;}
+.ws-body{font-size:11px;color:var(--gr);line-height:1.5;}
+
+/* ══════════════════════════════
+   SLIDE 05 ── 30 DAYS
+══════════════════════════════ */
+.s05{background:#fff;}
+.timeline30{margin-top:28px;}
+.tl-row{
+  display:flex;gap:0;
+  border-radius:14px;overflow:hidden;margin-bottom:14px;
+  border:1.5px solid #ede0ff;
+}
+.tl-week{
+  flex-shrink:0;width:110px;padding:18px 14px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;
+}
+.tl-row:nth-child(1) .tl-week{background:linear-gradient(180deg,var(--p),#6b1fa0);}
+.tl-row:nth-child(2) .tl-week{background:linear-gradient(180deg,#6b1fa0,var(--pk));}
+.tl-row:nth-child(3) .tl-week{background:linear-gradient(180deg,var(--pk),#e83080);}
+.tl-row:nth-child(4) .tl-week{background:linear-gradient(180deg,#d44,#ff6b6b);}
+.tl-week-num{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.6);margin-bottom:3px;}
+.tl-week-label{font-size:16px;font-weight:900;color:#fff;}
+.tl-body{flex:1;padding:18px 24px;background:#fff;}
+.tl-title{font-size:15px;font-weight:700;color:var(--dk);margin-bottom:6px;}
+.tl-items{display:flex;gap:10px;flex-wrap:wrap;}
+.tl-item{
+  font-size:11px;padding:4px 12px;border-radius:20px;
+  background:var(--lt);color:var(--p);font-weight:600;
+}
+.tl-result{
+  margin-top:10px;font-size:12px;color:var(--gr);
+}
+.tl-result strong{color:var(--dk);}
+.month1-result{
+  margin-top:24px;padding:18px 28px;
+  background:linear-gradient(135deg,var(--dk),var(--md));
+  border-radius:12px;display:flex;align-items:center;justify-content:space-between;
+}
+.mr-label{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:1px;}
+.mr-val{color:var(--g);font-size:18px;font-weight:900;}
+
+/* ══════════════════════════════
+   SLIDE 06 ── WHAT EXPANDS
+══════════════════════════════ */
+.s06{background:var(--dk);}
+.expand-wrap{margin-top:32px;}
+.ex-start{
+  padding:20px 28px;background:rgba(255,215,0,.08);
+  border:1px solid rgba(255,215,0,.25);border-radius:12px;
+  display:flex;align-items:center;gap:16px;margin-bottom:24px;
+}
+.ex-start-icon{font-size:28px;}
+.ex-start-text{color:var(--g);font-size:15px;font-weight:700;}
+.ex-start-sub{color:rgba(255,255,255,.45);font-size:12px;margin-top:3px;}
+.expand-arrow{text-align:center;color:rgba(255,255,255,.15);font-size:28px;margin-bottom:16px;}
+.ex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.ex-card{
+  border-radius:12px;padding:20px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+}
+.ex-card-num{font-size:10px;letter-spacing:2px;margin-bottom:8px;}
+.ex-card:nth-child(1) .ex-card-num{color:var(--p);}
+.ex-card:nth-child(2) .ex-card-num{color:var(--pk);}
+.ex-card:nth-child(3) .ex-card-num{color:#60a0ff;}
+.ex-card-title{color:#fff;font-size:14px;font-weight:700;margin-bottom:6px;}
+.ex-card-body{color:rgba(255,255,255,.45);font-size:12px;line-height:1.5;}
+.ex-card-timing{
+  margin-top:10px;font-size:10px;letter-spacing:1px;padding:4px 10px;
+  border-radius:20px;display:inline-block;
+}
+.ex-card:nth-child(1) .ex-card-timing{background:rgba(139,47,201,.2);color:var(--p);}
+.ex-card:nth-child(2) .ex-card-timing{background:rgba(217,70,168,.2);color:var(--pk);}
+.ex-card:nth-child(3) .ex-card-timing{background:rgba(96,160,255,.15);color:#60a0ff;}
+
+/* ══════════════════════════════
+   SLIDE 07 ── INVESTMENT
+══════════════════════════════ */
+.s07{background:#fff;}
+.invest-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px;}
+.inv-card{border-radius:16px;padding:28px;}
+.inv-card.left{background:var(--lt);border:2px solid var(--p);}
+.inv-card.right{background:linear-gradient(135deg,var(--dk),var(--md));}
+.inv-label{font-size:10px;letter-spacing:3px;margin-bottom:12px;}
+.inv-card.left .inv-label{color:var(--p);}
+.inv-card.right .inv-label{color:var(--g);}
+.inv-price{font-size:clamp(32px,4vw,48px);font-weight:900;line-height:1;margin-bottom:4px;}
+.inv-card.left .inv-price{color:var(--dk);}
+.inv-card.right .inv-price{color:#fff;}
+.inv-unit{font-size:13px;margin-bottom:20px;}
+.inv-card.left .inv-unit{color:var(--gr);}
+.inv-card.right .inv-unit{color:rgba(255,255,255,.4);}
+.inv-items{}
+.inv-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:10px;}
+.inv-check{font-size:14px;flex-shrink:0;}
+.inv-card.left .inv-check{color:var(--p);}
+.inv-card.right .inv-check{color:var(--g);}
+.inv-item-text{font-size:13px;line-height:1.5;}
+.inv-card.left .inv-item-text{color:var(--gr);}
+.inv-card.right .inv-item-text{color:rgba(255,255,255,.75);}
+.breakeven{
+  margin-top:24px;padding:20px 28px;
+  background:linear-gradient(135deg,var(--dk),var(--md));
+  border-radius:14px;grid-column:span 2;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.be-text{color:rgba(255,255,255,.65);font-size:14px;line-height:1.6;flex:1;}
+.be-text strong{color:#fff;}
+.be-calc{text-align:right;}
+.be-num{font-size:36px;font-weight:900;color:var(--g);line-height:1;}
+.be-label{color:rgba(255,255,255,.4);font-size:11px;margin-top:4px;}
+
+/* ══════════════════════════════
+   SLIDE 08 ── SAFETY NET
+══════════════════════════════ */
+.s08{background:var(--lt);}
+.safety-main{
+  margin-top:28px;padding:36px 40px;
+  background:#fff;border-radius:20px;
+  border:2px solid #e0d0f5;
+  position:relative;overflow:hidden;
+}
+.safety-main::before{content:'';position:absolute;top:-40px;right:-40px;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(139,47,201,.06) 0%,transparent 70%);}
+.safety-badge{
+  display:inline-block;background:linear-gradient(90deg,var(--p),var(--pk));
+  color:#fff;font-size:11px;font-weight:700;letter-spacing:2px;
+  padding:6px 20px;border-radius:20px;margin-bottom:20px;
+}
+.safety-title{font-size:clamp(20px,2.5vw,28px);font-weight:900;color:var(--dk);margin-bottom:8px;line-height:1.3;}
+.safety-sub{font-size:14px;color:var(--gr);line-height:1.7;margin-bottom:28px;}
+.safety-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.sg-card{text-align:center;padding:18px 14px;border-radius:12px;background:var(--lt);}
+.sg-icon{font-size:28px;margin-bottom:8px;}
+.sg-title{font-size:13px;font-weight:700;color:var(--dk);margin-bottom:4px;}
+.sg-body{font-size:11px;color:var(--gr);line-height:1.5;}
+.safety-promise{
+  margin-top:24px;padding:16px 24px;
+  background:var(--dk);border-radius:12px;
+  text-align:center;color:rgba(255,255,255,.75);font-size:13px;line-height:1.6;
+}
+.safety-promise strong{color:var(--g);}
+
+/* ══════════════════════════════
+   SLIDE 09 ── CTA: NOW
+══════════════════════════════ */
+.s09{background:linear-gradient(150deg,#0a0118,#1a0533,#2d0d54);}
+.s09::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 25% 60%,rgba(139,47,201,.2) 0%,transparent 50%),
+             radial-gradient(circle at 75% 30%,rgba(217,70,168,.15) 0%,transparent 40%);}
+.cta-wrap{position:relative;z-index:1;text-align:center;}
+.cta-eyebrow{
+  display:inline-block;border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.6);font-size:10px;letter-spacing:4px;
+  padding:7px 22px;border-radius:20px;margin-bottom:28px;
+}
+.cta-title{color:#fff;margin-bottom:12px;}
+.cta-sub{color:rgba(255,255,255,.5);font-size:16px;margin-bottom:40px;line-height:1.7;}
+.cta-box{
+  display:inline-block;max-width:580px;width:100%;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;padding:36px 40px;margin-bottom:28px;text-align:left;
+}
+.cb-label{font-size:10px;letter-spacing:3px;color:var(--g);margin-bottom:16px;}
+.cb-title{color:#fff;font-size:20px;font-weight:900;margin-bottom:20px;line-height:1.4;}
+.cb-steps{}
+.cb-step{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;}
+.cb-step-num{
+  flex-shrink:0;width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--p),var(--pk));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:12px;font-weight:700;
+}
+.cb-step-text{}
+.cb-step-title{color:#fff;font-size:14px;font-weight:700;margin-bottom:2px;}
+.cb-step-body{color:rgba(255,255,255,.45);font-size:12px;line-height:1.5;}
+.cta-btn{
+  display:inline-block;
+  background:linear-gradient(90deg,var(--p),var(--pk));
+  color:#fff;font-size:16px;font-weight:700;letter-spacing:1px;
+  padding:16px 52px;border-radius:40px;text-decoration:none;
+  box-shadow:0 8px 32px rgba(139,47,201,.45);
+}
+.cta-contact{margin-top:16px;color:rgba(255,255,255,.35);font-size:12px;}
+.cta-contact a{color:rgba(255,215,0,.8);}
+
+/* ── PRINT ── */
+@media print{
+  body{background:#fff;}
+  .slide{min-height:auto;height:100vh;page-break-after:always;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SLIDE 01 ── HOOK ══ -->
+<div class="slide s01">
+  <div class="logo-tag">
+    <div class="l">DigiLab Beauty</div>
+    <div class="s">DIGITAL LABORATORY</div>
+  </div>
+  <div class="hook-num">60%</div>
+  <div class="inner">
+    <div class="hook-badge">FOR BEAUTY EXECUTIVES</div>
+    <h1 class="display hook-title white">
+      貴社の顧客リスト、<br>
+      今日は何人が<br>
+      <span class="gg">「眠って」</span>いますか？
+    </h1>
+    <p class="lead hook-sub">
+      業界平均では、顧客の約60%が6ヶ月以内に休眠状態に入ります。<br>
+      その顧客たちは、今も貴社のデータの中に眠っています。
+    </p>
+    <div class="hook-stat">
+      <div>
+        <div class="hs-num pk">60<span style="font-size:24px">%</span></div>
+        <div class="hs-text">顧客が6ヶ月以内<br>に休眠する業界平均</div>
+      </div>
+      <div class="hs-divider"></div>
+      <div>
+        <div class="hs-num g">¥0</div>
+        <div class="hs-text">今、その顧客たちから<br>得られている収益</div>
+      </div>
+      <div class="hs-divider"></div>
+      <div>
+        <div class="hs-num" style="color:#00d4aa">今日</div>
+        <div class="hs-text">取り戻しを<br>始められるタイミング</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum">01 / 09</div>
+</div>
+
+<!-- ══ SLIDE 02 ── PAIN ══ -->
+<div class="slide s02">
+  <div class="logo-tag dark">
+    <div class="l">DigiLab Beauty</div>
+    <div class="s">DIGITAL LABORATORY</div>
+  </div>
+  <div class="inner">
+    <div class="eyebrow" style="color:var(--p)">THE REAL PROBLEM</div>
+    <h2 class="h1" style="color:var(--dk)">なぜ、わかっていても<br><span class="gd">できないのか</span></h2>
+    <div class="bar"></div>
+    <p class="pain-intro">
+      「休眠顧客にアプローチすべき」と知っている経営者は多い。<br>
+      それでもできない理由が、<span>3つ</span>あります。
+    </p>
+    <div class="pain-grid">
+      <div class="pain-card c1">
+        <div class="pain-icon">⏰</div>
+        <div class="pain-q">誰がやるのか問題</div>
+        <div class="pain-body">
+          スタッフは施術で手一杯。誰が休眠顧客リストを作り、誰がメッセージを送るのか。結局誰もやらない。
+        </div>
+      </div>
+      <div class="pain-card c2">
+        <div class="pain-icon">📋</div>
+        <div class="pain-q">何を送ればいい問題</div>
+        <div class="pain-body">
+          一斉メールでは反応がない。かといって1人ひとりに合わせたメッセージを作る時間もない。やっても効果が出ない。
+        </div>
+      </div>
+      <div class="pain-card c3">
+        <div class="pain-icon">📊</div>
+        <div class="pain-q">どこから手をつける問題</div>
+        <div class="pain-body">
+          顧客データはPOSやExcelにバラバラ。「誰が休眠状態か」を把握するだけで半日かかる。そもそも見えていない。
+        </div>
+      </div>
+    </div>
+    <div class="pain-truth">
+      <div class="pt-icon">💡</div>
+      <div class="pt-text">
+        これら3つの問題はすべて、<strong>「人がやらなくていい設計」</strong>に変えることで解決できます。<br>
+        それが、デジラボビューティーの「最初の1手」です。
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">02 / 09</div>
+</div>
+
+<!-- ══ SLIDE 03 ── SLEEPING MONEY ══ -->
+<div class="slide s03">
+  <div class="inner">
+    <div class="eyebrow" style="color:var(--pk)">SLEEPING REVENUE</div>
+    <h2 class="h1 white">貴社に今、いくらの<br><span class="gg">「眠った収益」</span>がありますか</h2>
+    <div class="bar gold"></div>
+    <div class="calc-wrap">
+      <div class="calc-label">貴社の数字で計算してみてください（目安）</div>
+      <div class="calc-row normal">
+        <div class="cr-label">顧客リスト総数（例）</div>
+        <div class="cr-op"></div>
+        <div class="cr-val">1,000 名</div>
+      </div>
+      <div class="calc-row normal">
+        <div class="cr-label">うち休眠顧客（業界平均60%）</div>
+        <div class="cr-op">×</div>
+        <div class="cr-val">600 名</div>
+      </div>
+      <div class="calc-row normal">
+        <div class="cr-label">適切なアプローチで戻る割合（実績値）</div>
+        <div class="cr-op">×</div>
+        <div class="cr-val">15〜22%</div>
+      </div>
+      <div class="calc-row normal">
+        <div class="cr-label">平均施術単価（例）</div>
+        <div class="cr-op">×</div>
+        <div class="cr-val">¥20,000</div>
+      </div>
+      <div class="calc-row highlight">
+        <div class="cr-label" style="color:var(--g);font-weight:700;">取り戻せる月次売上（試算）</div>
+        <div class="cr-op">=</div>
+        <div class="cr-val">¥180〜264万</div>
+      </div>
+      <div class="calc-result">
+        <div class="cr-left">
+          <div class="crl-label">INSIGHT</div>
+          <div class="crl-text">
+            顧客リストは、<br>手をつけていない<br><strong style="color:#fff;font-size:17px;">金鉱脈</strong>です。
+          </div>
+        </div>
+        <div class="cr-right">
+          <div class="crl-num">今すぐ<br><span style="font-size:clamp(28px,4vw,44px)">掘れる</span></div>
+          <div class="crl-unit">仕組みがあります</div>
+        </div>
+      </div>
+      <div class="calc-note">※顧客数・単価は貴社実態に合わせて計算します。30分の無料診断で実数をお出しします。</div>
+    </div>
+  </div>
+  <div class="snum">03 / 09</div>
+</div>
+
+<!-- ══ SLIDE 04 ── FIRST MOVE ══ -->
+<div class="slide s04">
+  <div class="logo-tag dark">
+    <div class="l">DigiLab Beauty</div>
+    <div class="s">DIGITAL LABORATORY</div>
+  </div>
+  <div class="inner">
+    <div class="eyebrow" style="color:var(--p)">THE FIRST MOVE</div>
+    <h2 class="h1" style="color:var(--dk)">最初にやること、<br><span class="gd">これだけです</span></h2>
+    <div class="bar"></div>
+    <div class="first-move">
+      <div class="fm-step-label">STEP 01 ── 最初の1手</div>
+      <div class="fm-title">「休眠顧客復活エージェント」<br>を立ち上げる</div>
+      <div class="fm-sub">AIが24時間自律的に動き、人手ゼロで休眠顧客にアプローチし続けます</div>
+      <div class="fm-flow">
+        <div class="fm-box">
+          <div class="fm-box-num">DETECT</div>
+          <div class="fm-box-text">休眠顧客を<br>自動検知</div>
+        </div>
+        <div class="fm-arrow">→</div>
+        <div class="fm-box">
+          <div class="fm-box-num">ANALYZE</div>
+          <div class="fm-box-text">顧客データを<br>読み取る</div>
+        </div>
+        <div class="fm-arrow">→</div>
+        <div class="fm-box">
+          <div class="fm-box-num">MESSAGE</div>
+          <div class="fm-box-text">個別メッセージを<br>自動生成</div>
+        </div>
+        <div class="fm-arrow">→</div>
+        <div class="fm-box">
+          <div class="fm-box-num">SEND</div>
+          <div class="fm-box-text">LINE で<br>自動配信</div>
+        </div>
+        <div class="fm-arrow">→</div>
+        <div class="fm-box">
+          <div class="fm-box-num">MEASURE</div>
+          <div class="fm-box-text">反応を測定・<br>改善し続ける</div>
+        </div>
+      </div>
+    </div>
+    <div class="why-simple">
+      <div class="ws-card">
+        <div class="ws-icon">🤖</div>
+        <div class="ws-title">スタッフは何もしない</div>
+        <div class="ws-body">AIエージェントが全ステップを自律実行。施術に集中できます。</div>
+      </div>
+      <div class="ws-card">
+        <div class="ws-icon">⚡</div>
+        <div class="ws-title">最短2週間で初配信</div>
+        <div class="ws-body">データ整備から初回配信まで2週間。スピードが命です。</div>
+      </div>
+      <div class="ws-card">
+        <div class="ws-icon">📈</div>
+        <div class="ws-title">1ヶ月で数字が出る</div>
+        <div class="ws-body">配信後1ヶ月で再来店数・反応率の実績値をレポートします。</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">04 / 09</div>
+</div>
+
+<!-- ══ SLIDE 05 ── 30 DAYS ══ -->
+<div class="slide s05">
+  <div class="logo-tag dark">
+    <div class="l">DigiLab Beauty</div>
+    <div class="s">DIGITAL LABORATORY</div>
+  </div>
+  <div class="inner">
+    <div class="eyebrow" style="color:var(--p)">30-DAY JOURNEY</div>
+    <h2 class="h1" style="color:var(--dk)">契約から<span class="gd">30日間</span>、<br>何が起きるか</h2>
+    <div class="bar"></div>
+    <div class="timeline30">
+      <div class="tl-row">
+        <div class="tl-week">
+          <div class="tl-week-num">WEEK</div>
+          <div class="tl-week-label">1</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-title">顧客データ診断・休眠顧客リスト確定</div>
+          <div class="tl-items">
+            <div class="tl-item">データ整理</div>
+            <div class="tl-item">休眠顧客を特定</div>
+            <div class="tl-item">優先度ランク付け</div>
+          </div>
+          <div class="tl-result">→ <strong>「何人眠っているか」が初めて数字で見える</strong></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">
+          <div class="tl-week-num">WEEK</div>
+          <div class="tl-week-label">2</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-title">エージェント設定・テスト配信</div>
+          <div class="tl-items">
+            <div class="tl-item">LINEエージェント設定</div>
+            <div class="tl-item">メッセージ設計</div>
+            <div class="tl-item">少数でテスト配信</div>
+          </div>
+          <div class="tl-result">→ <strong>貴社ブランドに合わせた文面を確認・承認</strong></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">
+          <div class="tl-week-num">WEEK</div>
+          <div class="tl-week-label">3</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-title">本番配信スタート</div>
+          <div class="tl-items">
+            <div class="tl-item">全休眠顧客へ配信</div>
+            <div class="tl-item">反応リアルタイム計測</div>
+            <div class="tl-item">予約導線の確認</div>
+          </div>
+          <div class="tl-result">→ <strong>開封率・返信率・予約率が数字で見え始める</strong></div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-week">
+          <div class="tl-week-num">WEEK</div>
+          <div class="tl-week-label">4</div>
+        </div>
+        <div class="tl-body">
+          <div class="tl-title">効果測定・初回レポート提出</div>
+          <div class="tl-items">
+            <div class="tl-item">再来店数カウント</div>
+            <div class="tl-item">売上インパクト計算</div>
+            <div class="tl-item">改善施策の提案</div>
+          </div>
+          <div class="tl-result">→ <strong>「月◯名が戻ってきた」が初めて実績として記録される</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="month1-result">
+      <div>
+        <div class="mr-label">1ヶ月後のゴール</div>
+        <div style="color:#fff;font-size:16px;font-weight:700;margin-top:4px;">休眠顧客の再来店数・売上増分が「実数」として残る</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="mr-val">数字が出なければ、継続を勧めません</div>
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">05 / 09</div>
+</div>
+
+<!-- ══ SLIDE 06 ── WHAT EXPANDS ══ -->
+<div class="slide s06">
+  <div class="inner">
+    <div class="eyebrow" style="color:var(--pk)">WHAT COMES NEXT</div>
+    <h2 class="h1 white">最初の1手が成功したら、<br><span class="gg">次に広がること</span></h2>
+    <div class="bar gold"></div>
+    <div class="expand-wrap">
+      <div class="ex-start">
+        <div class="ex-start-icon">✅</div>
+        <div>
+          <div class="ex-start-text">START：休眠顧客復活エージェント</div>
+          <div class="ex-start-sub">まずここで実績を作る。数字が出て初めて次へ進む。</div>
+        </div>
+      </div>
+      <div class="expand-arrow">↓ 実績が出たら自然に広がる</div>
+      <div class="ex-grid">
+        <div class="ex-card">
+          <div class="ex-card-num">NEXT 01</div>
+          <div class="ex-card-title">物販レコメンドエージェント</div>
+          <div class="ex-card-body">施術履歴・肌状態データから最適ホームケア商品を自動提案。物販売上を平均+35%改善。</div>
+          <div class="ex-card-timing">Month 2〜3</div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-num">NEXT 02</div>
+          <div class="ex-card-title">AI新人研修エージェント</div>
+          <div class="ex-card-body">スタッフのレベルに合わせた学習コンテンツを自動配信。先輩依存の研修から脱却。採用→独立が1ヶ月に短縮。</div>
+          <div class="ex-card-timing">Month 3〜4</div>
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-num">NEXT 03</div>
+          <div class="ex-card-title">月次経営分析レポート</div>
+          <div class="ex-card-body">売上・リピート率・LTV・スタッフ別実績をAIが毎月自動生成。経営判断の精度が上がる。</div>
+          <div class="ex-card-timing">Month 2〜</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:24px;padding:16px 24px;background:rgba(255,255,255,.04);border-radius:12px;border:1px solid rgba(255,255,255,.08);">
+      <p style="color:rgba(255,255,255,.5);font-size:13px;line-height:1.6;">
+        ⚠️ <strong style="color:rgba(255,255,255,.8);">重要：</strong>
+        これらは「最初の1手」が成功した後に自然に広がるものです。
+        最初から全部やろうとしない。まず1つ、確実に成果を出す。それが最速の道です。
+      </p>
+    </div>
+  </div>
+  <div class="snum">06 / 09</div>
+</div>
+
+<!-- ══ SLIDE 07 ── INVESTMENT ══ -->
+<div class="slide s07">
+  <div class="logo-tag dark">
+    <div class="l">DigiLab Beauty</div>
+    <div class="s">DIGITAL LABORATORY</div>
+  </div>
+  <div class="inner">
+    <div class="eyebrow" style="color:var(--p)">INVESTMENT</div>
+    <h2 class="h1" style="color:var(--dk)">費用と<span class="gd">元が取れる計算</span></h2>
+    <div class="bar"></div>
+    <div class="invest-layout">
+      <div class="inv-card left">
+        <div class="inv-label">まず試すなら</div>
+        <div class="inv-price">¥80,000</div>
+        <div class="inv-unit">/月　Starterプラン</div>
+        <div class="inv-items">
+          <div class="inv-item"><div class="inv-check">✓</div><div class="inv-item-text">休眠顧客リスト作成・診断</div></div>
+          <div class="inv-item"><div class="inv-check">✓</div><div class="inv-item-text">月1回の戦略ミーティング</div></div>
+          <div class="inv-item"><div class="inv-check">✓</div><div class="inv-item-text">ビューティーAIウィークリー配信</div></div>
+          <div class="inv-item"><div class="inv-check">✓</div><div class="inv-item-text">月次分析レポート</div></div>
+        </div>
+      </div>
+      <div class="inv-card right">
+        <div class="inv-label">エージェント全稼働なら</div>
+        <div class="inv-price">¥150,000</div>
+        <div class="inv-unit">/月　Standardプラン（推奨）</div>
+        <div class="inv-items">
+          <div class="inv-item"><div class="inv-check">✓</div><div class="inv-item-text">Starter全内容 ＋</div></div>
+          <div class="inv-item"><div class="inv-check">✓</div><div class="inv-item-text">休眠顧客復活エージェント稼働</div></div>
+          <div class="inv-item"><div class="inv-check">✓</div><div class="inv-item-text">LINE自動配信・反応測定</div></div>
+          <div class="inv-item"><div class="inv-check">✓</div><div class="inv-item-text">物販レコメンド設計</div></div>
+          <div class="inv-item"><div class="inv-check">✓</div><div class="inv-item-text">スタッフAX活用研修</div></div>
+        </div>
+      </div>
+      <div class="breakeven">
+        <div class="be-text">
+          <strong>損益分岐点は何名？</strong><br>
+          月¥150,000 ÷ 平均施術単価¥20,000 = <strong>月に8名</strong>戻れば元が取れます。<br>
+          休眠顧客600名の15%が戻れば <strong>90名</strong>。元が取れる確率は算数です。
+        </div>
+        <div class="be-calc">
+          <div class="be-num">8<span style="font-size:20px">名</span></div>
+          <div class="be-label">月に戻れば<br>投資回収（目安）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">07 / 09</div>
+</div>
+
+<!-- ══ SLIDE 08 ── SAFETY NET ══ -->
+<div class="slide s08">
+  <div class="logo-tag dark">
+    <div class="l">DigiLab Beauty</div>
+    <div class="s">DIGITAL LABORATORY</div>
+  </div>
+  <div class="inner">
+    <div class="eyebrow" style="color:var(--p)">RISK-FREE DESIGN</div>
+    <h2 class="h1" style="color:var(--dk)">失敗しない<br><span class="gd">3つの安心設計</span></h2>
+    <div class="bar"></div>
+    <div class="safety-main">
+      <div class="safety-badge">SAFETY FIRST</div>
+      <div class="safety-title">
+        「試しにやってみる」を、<br>安全にできる設計にしています。
+      </div>
+      <div class="safety-sub">
+        新しいことを始めるとき、最大の不安は「うまくいかなかったらどうするか」です。<br>
+        だからデジラボビューティーは、リスクを最小化した設計で提供しています。
+      </div>
+      <div class="safety-grid">
+        <div class="sg-card">
+          <div class="sg-icon">🔓</div>
+          <div class="sg-title">初期費用：ゼロ</div>
+          <div class="sg-body">システム構築・初期設定費用は一切いただきません。月額のみです。</div>
+        </div>
+        <div class="sg-card">
+          <div class="sg-icon">📅</div>
+          <div class="sg-title">3ヶ月単位で判断</div>
+          <div class="sg-body">最初の3ヶ月で数字が出なければ、こちらから「継続しないほうがいい」とお伝えします。</div>
+        </div>
+        <div class="sg-card">
+          <div class="sg-icon">🔐</div>
+          <div class="sg-title">データは貴社の資産</div>
+          <div class="sg-body">顧客データは一切外部に出しません。契約終了時に全てお返しします。</div>
+        </div>
+      </div>
+      <div class="safety-promise">
+        「3ヶ月後に数字が出ていなければ継続を勧めない」──<strong>これが私たちの約束です。</strong><br>
+        私たちが儲かるのは、貴社が成果を出し続けるときだけです。
+      </div>
+    </div>
+  </div>
+  <div class="snum dark">08 / 09</div>
+</div>
+
+<!-- ══ SLIDE 09 ── CTA ══ -->
+<div class="slide s09">
+  <div class="inner">
+    <div class="cta-wrap">
+      <div class="cta-eyebrow">TODAY'S NEXT STEP</div>
+      <h2 class="display cta-title">
+        今週、<span class="gg">30分だけ</span><br>ください。
+      </h2>
+      <p class="lead cta-sub">
+        売り込みはしません。<br>
+        貴社の顧客データを一緒に見て、「何人眠っているか」「いくら眠っているか」を<br>
+        その場でお伝えします。それだけです。
+      </p>
+      <div class="cta-box">
+        <div class="cb-label">30分で分かること</div>
+        <div class="cb-title">今日の30分が、<br>来月の売上を変える</div>
+        <div class="cb-steps">
+          <div class="cb-step">
+            <div class="cb-step-num">1</div>
+            <div class="cb-step-text">
+              <div class="cb-step-title">貴社の休眠顧客数を即日算出</div>
+              <div class="cb-step-body">顧客数と来店データがあれば、30分で「眠っている金額」が見えます</div>
+            </div>
+          </div>
+          <div class="cb-step">
+            <div class="cb-step-num">2</div>
+            <div class="cb-step-text">
+              <div class="cb-step-title">最初の1手のシミュレーション</div>
+              <div class="cb-step-body">どんなメッセージで、何人に、いつ送るか。具体的な設計をその場でお見せします</div>
+            </div>
+          </div>
+          <div class="cb-step">
+            <div class="cb-step-num">3</div>
+            <div class="cb-step-text">
+              <div class="cb-step-title">「やる・やらない」はその後で</div>
+              <div class="cb-step-body">30分の診断に費用は一切かかりません。判断はすべて診断後に</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="https://digilab-beauty.com/" class="cta-btn">30分の無料診断を予約する →</a>
+      <div class="cta-contact">
+        info@digilab-beauty.com　|　<a href="https://digilab-beauty.com/">https://digilab-beauty.com/</a>
+      </div>
+    </div>
+  </div>
+  <div class="snum">09 / 09</div>
+</div>
+
+</body>
+</html>

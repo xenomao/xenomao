@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>DegiLab Beauty 会員案内チラシ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .flyer {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  }
+
+  /* ヒーロー */
+  .hero {
+    background: linear-gradient(135deg, #1a0533 0%, #3d1a6e 40%, #8b2fc9 70%, #d946a8 100%);
+    padding: 48px 44px 40px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -15%;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    font-size: 10px;
+    font-weight: 500;
+    padding: 5px 16px;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+  }
+  .hero-title {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+  .hero-sub {
+    font-size: 13px;
+    font-weight: 300;
+    opacity: 0.85;
+    line-height: 1.7;
+  }
+  .today-badge {
+    position: absolute;
+    top: 36px; right: 36px;
+    background: #ffd700;
+    color: #1a0533;
+    font-weight: 900;
+    font-size: 11px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 1.4;
+    letter-spacing: 1px;
+  }
+
+  /* セクション共通 */
+  .section { padding: 32px 44px; }
+  .section-title {
+    font-size: 17px;
+    font-weight: 900;
+    color: #3d1a6e;
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #8b2fc9;
+  }
+
+  /* プランカード */
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .plan-card {
+    border-radius: 12px;
+    padding: 22px 20px;
+    position: relative;
+  }
+  .plan-individual {
+    background: linear-gradient(135deg, #f8f0ff 0%, #ffe8f8 100%);
+    border: 2px solid #8b2fc9;
+  }
+  .plan-corporate {
+    background: linear-gradient(135deg, #1a0533 0%, #3d1a6e 100%);
+    border: 2px solid #d946a8;
+    color: #fff;
+  }
+  .plan-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .plan-individual .plan-label { color: #8b2fc9; }
+  .plan-corporate .plan-label { color: #d946a8; }
+  .plan-price {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .plan-individual .plan-price { color: #3d1a6e; }
+  .plan-corporate .plan-price { color: #fff; }
+  .plan-price-note {
+    font-size: 11px;
+    margin-bottom: 14px;
+    opacity: 0.7;
+  }
+  .plan-features { list-style: none; }
+  .plan-features li {
+    font-size: 11.5px;
+    padding: 4px 0;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.4;
+  }
+  .plan-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  .plan-individual .plan-features li::before { color: #8b2fc9; }
+  .plan-corporate .plan-features li::before { color: #d946a8; }
+  .plan-individual .plan-features li { color: #333; }
+  .plan-corporate .plan-features li { color: rgba(255,255,255,0.9); }
+
+  /* 特典バナー */
+  .tokuten {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7c948 100%);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  .tokuten-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .tokuten-main {
+    font-size: 20px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .tokuten-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* 申込セクション */
+  .apply-section {
+    background: #f9f4ff;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+  }
+  .apply-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #3d1a6e;
+    margin-bottom: 16px;
+  }
+  .apply-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .apply-method {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e0d0f0;
+  }
+  .apply-method-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #8b2fc9;
+    margin-bottom: 8px;
+  }
+  .qr-placeholder {
+    width: 80px; height: 80px;
+    background: #eee;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #999;
+  }
+  .apply-method-note { font-size: 10px; color: #666; line-height: 1.5; }
+
+  /* 保証バー */
+  .guarantee {
+    background: #fff;
+    border: 1px solid #e0d0f0;
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .guarantee-icon { font-size: 24px; }
+  .guarantee-text { font-size: 11.5px; color: #333; line-height: 1.5; }
+  .guarantee-text strong { color: #3d1a6e; }
+
+  /* フッター */
+  .footer {
+    background: #1a0533;
+    padding: 20px 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand { color: #fff; }
+  .footer-name { font-size: 14px; font-weight: 700; }
+  .footer-sub { font-size: 10px; opacity: 0.6; margin-top: 2px; }
+  .footer-contact { text-align: right; }
+  .footer-contact-text { font-size: 10px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- ヒーロー -->
+  <div class="hero">
+    <div class="today-badge">TODAY<br>ONLY<br>特典あり</div>
+    <div class="hero-label">DIGILAB BEAUTY MEMBERSHIP 2026</div>
+    <div class="hero-title">美容業界のAI活用を、<br>あなたのサロンの武器に。</div>
+    <div class="hero-sub">月¥9,800から始められる会員プログラム。<br>学ぶだけでなく、実装まで伴走します。</div>
+  </div>
+
+  <!-- プラン -->
+  <div class="section">
+    <div class="section-title">会員プランのご案内</div>
+
+    <div class="plans">
+      <!-- 個人会員 -->
+      <div class="plan-card plan-individual">
+        <div class="plan-label">INDIVIDUAL PLAN</div>
+        <div class="plan-price">¥9,800<span style="font-size:14px;font-weight:400">/月</span></div>
+        <div class="plan-price-note">年払い：¥98,000（2ヶ月分お得）</div>
+        <ul class="plan-features">
+          <li>月次AIセミナー（オンライン）</li>
+          <li>AIツール活用テンプレ集</li>
+          <li>会員限定コミュニティ</li>
+          <li>業界ニュース先行配信</li>
+          <li>月2回の個別質問チャット</li>
+        </ul>
+      </div>
+
+      <!-- 法人会員 -->
+      <div class="plan-card plan-corporate">
+        <div class="plan-label">CORPORATE PLAN</div>
+        <div class="plan-price" style="font-size:22px">要相談<span style="font-size:13px;font-weight:400"> /月〜</span></div>
+        <div class="plan-price-note" style="color:rgba(255,255,255,0.6)">スタッフ人数・規模に応じてカスタム</div>
+        <ul class="plan-features">
+          <li>個人会員特典（全スタッフ分）</li>
+          <li>月次個別コンサル（60分）</li>
+          <li>AI導入サポート・立会い</li>
+          <li>共同マーケティング掲載</li>
+          <li>DQS認定取得の優先サポート</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 今日限定特典 -->
+    <div class="tokuten">
+      <div class="tokuten-title">★ TODAY ONLY SPECIAL OFFER ★</div>
+      <div class="tokuten-main">個人会員：入会月の会費 無料<br>法人相談：初回コンサル（¥30,000相当）無料</div>
+      <div class="tokuten-sub">本日ご入会・ご相談の方のみ適用。次回以降は通常価格となります。</div>
+    </div>
+
+    <!-- 申込 -->
+    <div class="apply-section">
+      <div class="apply-title">今すぐ申し込む（2分で完了）</div>
+      <div class="apply-methods">
+        <div class="apply-method">
+          <div class="apply-method-title">① QRコードから申込</div>
+          <div class="qr-placeholder">QRコード<br>ここに配置</div>
+          <div class="apply-method-note">スマホで読み込むと<br>決済ページへ直接移動</div>
+        </div>
+        <div class="apply-method">
+          <div class="apply-method-title">② 紙の申込書</div>
+          <div style="height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:8px">
+            <div style="font-size:36px">📝</div>
+          </div>
+          <div class="apply-method-note">スタッフにお声がけください。<br>その場でお渡しします。</div>
+        </div>
+      </div>
+      <div class="guarantee">
+        <div class="guarantee-icon">🛡️</div>
+        <div class="guarantee-text">
+          <strong>30日間 全額返金保証</strong><br>
+          入会後30日以内に「合わない」と感じた場合、理由を問わず全額お返しします。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <div class="footer-brand">
+      <div class="footer-name">鎌田麻央 / Mao Kamata</div>
+      <div class="footer-sub">DegiLab Beauty ｜ 美容業界AI・DXパートナー</div>
+    </div>
+    <div class="footer-contact">
+      <div class="footer-contact-text">
+        Instagram: @___________<br>
+        Email: ___________<br>
+        LINE: @___________
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

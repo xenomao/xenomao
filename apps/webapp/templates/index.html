@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>資格を持つあなたの<b>美容知識</b>が、収入になる。</h1>
+  <p>化粧品検定・美肌検定の有資格者だけが出品できる、知識コンテンツのマーケットプレイス。
+     買う人は「資格保持者が書いた」という安心の中で、正しい美容知識を学べます。
+     さらに<b>紹介機能</b>で、良いコンテンツを広めれば紹介報酬も受け取れます。</p>
+  <div class="cta">
+    {% if current_user %}
+      <a class="btn" href="{{ url_for('content_new') }}">知識を出品する</a>
+      <a class="btn btn-ghost" href="{{ url_for('search') }}">コンテンツを探す</a>
+    {% else %}
+      <a class="btn" href="{{ url_for('register') }}">無料で始める（資格を登録）</a>
+      <a class="btn btn-ghost" href="{{ url_for('search') }}">コンテンツを探す</a>
+    {% endif %}
+  </div>
+</section>
+
+<div class="stat-row">
+  <div class="stat"><b>{{ "{:,}".format(stats.users) }}</b>登録ユーザー</div>
+  <div class="stat"><b>{{ "{:,}".format(stats.verified) }}</b>資格審査済み販売者</div>
+  <div class="stat"><b>{{ "{:,}".format(stats.contents) }}</b>公開コンテンツ</div>
+  <div class="stat"><b>約180万人</b>が対象の有資格者</div>
+</div>
+
+<h2 class="section-title"><span class="rank">👑</span> 売れ筋ランキング</h2>
+<div class="grid">
+  {% for c in ranking %}{% include "_card.html" %}{% else %}
+    <p class="muted">まだコンテンツがありません。最初の出品者になりましょう！</p>
+  {% endfor %}
+</div>
+
+<h2 class="section-title">🆕 新着コンテンツ</h2>
+<div class="grid">
+  {% for c in newest %}{% include "_card.html" %}{% endfor %}
+</div>
+{% endblock %}

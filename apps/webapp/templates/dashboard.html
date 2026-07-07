@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}マイページ｜コスメブレイン{% endblock %}
+{% block content %}
+<h1>マイページ</h1>
+<p class="muted">こんにちは、{{ current_user.display_name }} さん
+  {% if current_user.is_admin %}<span class="badge badge-cert">運営</span>{% endif %}</p>
+
+<div class="stat-row">
+  <div class="stat"><b>¥{{ "{:,}".format(current_user.balance) }}</b>受取可能残高</div>
+  <div class="stat"><b>¥{{ "{:,}".format(earn.sale) }}</b>販売収益</div>
+  <div class="stat"><b>¥{{ "{:,}".format(earn.ref) }}</b>紹介報酬</div>
+  <div class="stat"><a href="{{ url_for('earnings') }}">収益明細を見る →</a></div>
+</div>
+
+{% if not verified %}
+<div class="panel" style="margin-bottom:24px;border-color:#f2e2bd;background:#fffdf6">
+  <b>⚠ まだ販売できません</b>
+  <p class="muted">コンテンツを販売するには、化粧品検定・美肌検定のいずれかの資格審査が必要です。</p>
+  <a class="btn btn-ghost" href="{{ url_for('cert_submit') }}">資格を登録する</a>
+</div>
+{% endif %}
+
+<h2 class="section-title">📚 出品したコンテンツ
+  {% if verified %}<a class="btn-mini" style="background:var(--purple)" href="{{ url_for('content_new') }}">＋ 新規出品</a>{% endif %}
+</h2>
+{% if my_contents %}
+<div class="grid">
+  {% for c in my_contents %}{% set st = content_stats(c.id) %}
+  <div class="card">
+    <a href="{{ url_for('content_detail', cid=c.id) }}" class="card-cover">{{ c.cover_emoji }}</a>
+    <div class="card-body">
+      <div class="card-cat">{{ c.category }}</div>
+      <a href="{{ url_for('content_detail', cid=c.id) }}" class="card-title">{{ c.title }}</a>
+      <div class="card-meta">
+        <span class="price">¥{{ "{:,}".format(c.price) }}</span>
+        <span class="muted">{{ c.sales_count }}件販売</span>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}<p class="muted">まだ出品していません。</p>{% endif %}
+
+<h2 class="section-title">🛒 購入したコンテンツ</h2>
+{% if purchases %}
+<table>
+  <tr><th>コンテンツ</th><th>購入額</th><th>購入日</th><th></th></tr>
+  {% for p in purchases %}
+  <tr>
+    <td>{{ p.cover_emoji }} {{ p.title }}</td>
+    <td>¥{{ "{:,}".format(p.price_paid) }}</td>
+    <td class="muted">{{ p.created_at[:10] }}</td>
+    <td><a href="{{ url_for('content_view', cid=p.cid) }}">読む</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}<p class="muted">まだ購入していません。<a href="{{ url_for('search') }}">コンテンツを探す</a></p>{% endif %}
+
+<h2 class="section-title">🎓 資格</h2>
+<p>
+  {% for ce in certs %}
+    {% if ce.verified == 1 %}<span class="badge">✓ {{ ce.cert_type }}</span>
+    {% elif ce.verified == 2 %}<span class="badge badge-warn">却下 {{ ce.cert_type }}</span>
+    {% else %}<span class="badge badge-mute">審査中 {{ ce.cert_type }}</span>{% endif %}
+  {% else %}<span class="muted">未登録</span>{% endfor %}
+  <a href="{{ url_for('cert_submit') }}" style="margin-left:8px">資格を追加</a>
+</p>
+{% endblock %}

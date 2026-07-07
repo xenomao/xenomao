@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}資格の登録・審査｜コスメブレイン{% endblock %}
+{% block content %}
+<div class="form-card form-wide">
+  <h1>資格を登録する</h1>
+  <p class="muted">コスメブレインでは、化粧品検定・美肌検定の<b>有資格者だけ</b>が販売できます。
+     提出いただいた資格を運営が確認し、承認後に出品が可能になります。</p>
+
+  <form method="post" enctype="multipart/form-data">
+    <label>保有資格</label>
+    <select name="cert_type" required>
+      {% for cert in allowed %}<option value="{{ cert }}">{{ cert }}</option>{% endfor %}
+    </select>
+    <label>認定番号（任意）</label>
+    <input type="text" name="cert_number" placeholder="例：CC-1-1234567">
+    <label>認定証の画像/PDF（任意・審査に利用）</label>
+    <input type="file" name="evidence">
+    <div style="margin-top:20px"><button class="btn">この資格を申請する</button></div>
+  </form>
+
+  <h2 style="margin-top:34px">申請状況</h2>
+  {% if certs %}
+  <table>
+    <tr><th>資格</th><th>認定番号</th><th>状態</th><th>申請日</th></tr>
+    {% for ce in certs %}
+    <tr>
+      <td>{{ ce.cert_type }}</td>
+      <td>{{ ce.cert_number or '—' }}</td>
+      <td>
+        {% if ce.verified == 1 %}<span class="badge">✓ 承認済み</span>
+        {% elif ce.verified == 2 %}<span class="badge badge-warn">却下</span>
+        {% else %}<span class="badge badge-mute">審査中</span>{% endif %}
+      </td>
+      <td class="muted">{{ ce.created_at[:10] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p class="muted">まだ申請がありません。</p>
+  {% endif %}
+</div>
+{% endblock %}

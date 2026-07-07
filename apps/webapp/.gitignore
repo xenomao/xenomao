@@ -1,0 +1,7 @@
+# 実行時に生成されるファイル（seed.py で再生成可能）
+cosmebrain.db
+demo_preview.html
+uploads/*
+!uploads/.gitkeep
+__pycache__/
+*.pyc

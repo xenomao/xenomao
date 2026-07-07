@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>DigiLab Beauty ニュースレター 創刊号</title>
+<style>
+  @page { size: A4; margin: 14mm 12mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif; font-size: 10.5px; color: #1a1a2e; background: #fff; line-height: 1.75; }
+
+  .header {
+    background: linear-gradient(135deg, #1a0533 0%, #3d1a6e 50%, #8b2fc9 100%);
+    padding: 18px 20px 14px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header-left .vol { font-size: 8.5px; letter-spacing: 2px; opacity: 0.7; margin-bottom: 3px; }
+  .header-left h1 { font-size: 18px; font-weight: 900; }
+  .header-left h1 span { color: #ffd700; }
+  .header-left .tagline { font-size: 9px; opacity: 0.75; margin-top: 3px; }
+  .header-right { text-align: right; font-size: 8.5px; opacity: 0.7; }
+
+  .date-bar {
+    background: #ffd700;
+    color: #1a0533;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 4px 20px;
+    letter-spacing: 1px;
+  }
+
+  .main { padding: 14px 4px 0; }
+
+  /* トピック */
+  .topics-header {
+    font-size: 10px;
+    font-weight: 900;
+    color: #6b1fa0;
+    border-bottom: 2px solid #8b2fc9;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  .article {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0e8ff;
+  }
+  .article:last-of-type { border-bottom: none; }
+  .article-tag {
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+  }
+  .tag-global { background: #e8d8ff; color: #6b1fa0; }
+  .tag-sales { background: #ffd7f0; color: #a0006b; }
+  .tag-edu { background: #d4edda; color: #155724; }
+  .article-title { font-size: 12px; font-weight: 900; color: #1a0533; margin-bottom: 5px; line-height: 1.4; }
+  .article-body { font-size: 9.5px; color: #444; line-height: 1.75; }
+  .article-highlight {
+    background: #faf5ff;
+    border-left: 3px solid #d946a8;
+    padding: 5px 8px;
+    margin-top: 6px;
+    font-size: 9.5px;
+    color: #333;
+  }
+  .article-highlight strong { color: #d946a8; }
+
+  .stat-box {
+    background: linear-gradient(135deg, #f8f0ff, #fff0f8);
+    border: 1px solid #e8c8ff;
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+  }
+  .stat-box .stat-num { font-size: 22px; font-weight: 900; color: #8b2fc9; line-height: 1; }
+  .stat-box .stat-unit { font-size: 9px; color: #8b2fc9; }
+  .stat-box .stat-label { font-size: 8px; color: #666; margin-top: 3px; line-height: 1.4; }
+
+  /* 編集後記 */
+  .editorial {
+    background: linear-gradient(135deg, #1a0533, #3d1a6e);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-top: 12px;
+    font-size: 9.5px;
+    line-height: 1.8;
+  }
+  .editorial .ed-title { font-size: 10px; font-weight: 700; color: #ffd700; margin-bottom: 4px; }
+
+  .footer-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid #e0ccff;
+    font-size: 8px;
+    color: #888;
+  }
+  .footer-bar .brand { font-weight: 900; color: #8b2fc9; font-size: 10px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="vol">MONTHLY NEWSLETTER — VOL.1</div>
+    <h1>Digi<span>Lab</span> Beauty</h1>
+    <div class="tagline">美容業界 × AI 最前線レポート</div>
+  </div>
+  <div class="header-right">
+    会員専用<br>2026年5月号<br>創刊号
+  </div>
+</div>
+<div class="date-bar">📅 2026年5月発行 ／ 毎月1回配信 ／ 会員限定</div>
+
+<div class="main">
+  <div class="topics-header">▍ 今月のトピックス</div>
+
+  <!-- 記事1 -->
+  <div class="article">
+    <div>
+      <span class="article-tag tag-global">🌍 海外動向</span>
+      <div class="article-title">ロレアルが「肌の生物学的年齢」を測るAIデバイスを発表</div>
+      <div class="article-body">
+        CES 2025でロレアルが公開した「Cell BioPrint」は、プロテオミクス（タンパク質解析）技術で肌表面を分析し、実年齢ではなく<strong>「肌の生物学的年齢」</strong>を算出するデバイスです。AIが成分への反応性を事前に予測し、個人に最適なスキンケアを科学的に提案します。
+        <div class="article-highlight">
+          <strong>サロン経営への示唆：</strong> この技術は2〜3年以内に日本市場に到達する見込み。「AI肌診断」を先行導入するサロンが、次世代の差別化ポイントを先取りできます。
+        </div>
+      </div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">2〜3</div>
+      <div class="stat-unit">年以内</div>
+      <div class="stat-label">日本市場<br>到達予測</div>
+    </div>
+  </div>
+
+  <!-- 記事2 -->
+  <div class="article">
+    <div>
+      <span class="article-tag tag-sales">💰 売上アップ</span>
+      <div class="article-title">AI×Instagram戦略で新規顧客を3倍にした表参道サロンの手法</div>
+      <div class="article-body">
+        都内サロン「EARTH 表参道店」がAI投稿最適化を導入した結果、6ヶ月でフォロワー数が約3倍（2,800→8,500）に増加。Instagram経由の月間売上は43万円から<strong>156万円（+263%）</strong>に伸長しました。<br><br>
+        成功の核心は「AI最適投稿時間の分析」「AI画像編集による統一感」「AIキャプション生成によるA/Bテスト」の3点セット。特にAI生成の文章は手作業の文章より<strong>保存率が2.8倍</strong>高かったと報告されています。
+        <div class="article-highlight">
+          <strong>今すぐ試せること：</strong> ChatGPTに「今週1週間分のエステサロンInstagram投稿テーマを、曜日別テーマ付きで作成して」と依頼してみましょう。
+        </div>
+      </div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">+263</div>
+      <div class="stat-unit">%</div>
+      <div class="stat-label">Instagram<br>経由売上<br>6ヶ月で</div>
+    </div>
+  </div>
+
+  <!-- 記事3 -->
+  <div class="article">
+    <div>
+      <span class="article-tag tag-sales">💰 客単価UP</span>
+      <div class="article-title">施術価格を変えずに客単価を5,000円上げるAI活用法</div>
+      <div class="article-body">
+        AIクロスセル提案・アップセル最適化・リピート間隔最適化の3つを組み合わせることで、施術単価を変えずに平均客単価を8,500円→<strong>13,200円（+55%）</strong>に改善した事例が報告されています。<br><br>
+        最も効果が高かったのは<strong>AI肌分析結果をレポート化してホームケアを提案</strong>する手法。「押し売り感ゼロで、物販売上が月平均+35%向上」という結果が出ています。
+        <div class="article-highlight">
+          <strong>無料で試せるStep1：</strong> ChatGPTに「施術後のホームケア提案トークスクリプトを5パターン作成して」と依頼。明日から使えるクロスセルトークが完成します。
+        </div>
+      </div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">+55</div>
+      <div class="stat-unit">%</div>
+      <div class="stat-label">客単価<br>改善事例<br>（6ヶ月）</div>
+    </div>
+  </div>
+
+  <!-- 記事4 -->
+  <div class="article">
+    <div>
+      <span class="article-tag tag-edu">📚 スタッフ教育</span>
+      <div class="article-title">AIで教育マニュアルを自動作成、新人の独り立ちが6ヶ月→3ヶ月に</div>
+      <div class="article-body">
+        「あの先輩がいないとわからない」という属人化問題を、ChatGPTが解決しています。ベテランスタッフの施術手順や接客ノウハウを録音→AI文字起こし→マニュアル化する流れで、新人育成期間が<strong>半減（6ヶ月→3ヶ月）</strong>した事例が出ています。<br><br>
+        作成すべき優先マニュアルTOP5は：①施術手順 ②カウンセリング ③接客マナー ④緊急対応（肌トラブル・クレーム）⑤物販提案。
+        <div class="article-highlight">
+          <strong>今月のアクション：</strong> ベテランスタッフに1メニューの手順を口頭で説明してもらいながら録音し、その文字起こしをChatGPTにマニュアル化してもらいましょう。
+        </div>
+      </div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">50</div>
+      <div class="stat-unit">%短縮</div>
+      <div class="stat-label">新人育成<br>期間が<br>半減</div>
+    </div>
+  </div>
+
+  <!-- 編集後記 -->
+  <div class="editorial">
+    <div class="ed-title">✉️ 編集後記</div>
+    創刊号をお届けできたことを、メンバー一同大変嬉しく思っています。「AI」という言葉は難しく聞こえますが、今月ご紹介した事例はすべて「ChatGPTに文章を頼む」「Canvaでデザインする」といった、今日からできる小さな一歩から始まっています。月1,000円という会員費は、AIを使うことで必ず回収できます。来月号では「予約管理 × AI自動化」の最新事例をお届けする予定です。お楽しみに！
+  </div>
+</div>
+
+<div class="footer-bar">
+  <div class="brand">DigiLab Beauty</div>
+  <div>会員専用ニュースレター ／ 無断転載禁止 ／ 2026年5月号 創刊号</div>
+  <div>次号：2026年6月発行予定</div>
+</div>
+
+</body>
+</html>
