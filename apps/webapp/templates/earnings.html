@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}収益明細｜コスメブレイン{% endblock %}
+{% block content %}
+<h1>収益明細</h1>
+<p class="muted">受取可能残高：<b>¥{{ "{:,}".format(current_user.balance) }}</b></p>
+{% if rows %}
+<table>
+  <tr><th>日付</th><th>種別</th><th>内容</th><th style="text-align:right">金額</th></tr>
+  {% for r in rows %}
+  <tr>
+    <td class="muted">{{ r.created_at[:16] }}</td>
+    <td>{% if r.kind=='sale' %}<span class="badge">販売</span>{% else %}<span class="badge badge-cert">紹介</span>{% endif %}</td>
+    <td>{{ r.note }}</td>
+    <td style="text-align:right" class="amount-plus">+¥{{ "{:,}".format(r.amount) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}<p class="muted">まだ収益はありません。</p>{% endif %}
+<p style="margin-top:20px"><a href="{{ url_for('dashboard') }}">← マイページへ</a></p>
+{% endblock %}

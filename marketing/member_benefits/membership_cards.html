@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>会員特典カード類｜DigiLab Beauty</title>
+<style>
+  @page { size: A4; margin: 10mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif; background: #f5f0ff; padding: 10px; }
+
+  h2.page-title {
+    font-size: 10px;
+    color: #888;
+    text-align: center;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+
+  /* ── 申込書（A5横サイズ想定） ── */
+  .form-section { margin-bottom: 20px; }
+  .form-section h3 {
+    font-size: 11px;
+    color: #6b1fa0;
+    margin-bottom: 6px;
+    border-left: 3px solid #8b2fc9;
+    padding-left: 8px;
+  }
+
+  .application-form {
+    background: #fff;
+    border: 2px solid #8b2fc9;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .form-header {
+    background: linear-gradient(135deg, #1a0533, #8b2fc9);
+    color: #fff;
+    border-radius: 5px;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .form-header .form-title { font-size: 13px; font-weight: 900; }
+  .form-header .form-date { font-size: 8.5px; opacity: 0.75; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+  .form-row.full { grid-template-columns: 1fr; }
+  .form-field label {
+    display: block;
+    font-size: 8.5px;
+    font-weight: 700;
+    color: #6b1fa0;
+    margin-bottom: 2px;
+  }
+  .form-field .input-line {
+    border-bottom: 1.5px solid #8b2fc9;
+    height: 20px;
+    background: #faf5ff;
+  }
+  .plan-select {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .plan-box {
+    border: 2px solid #e0ccff;
+    border-radius: 6px;
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  .plan-box.highlight { border-color: #d946a8; background: #fff0f8; }
+  .plan-box .plan-type { font-size: 9px; font-weight: 700; color: #8b2fc9; margin-bottom: 2px; }
+  .plan-box .plan-price { font-size: 14px; font-weight: 900; color: #1a0533; }
+  .plan-box .plan-price span { font-size: 9px; font-weight: 400; }
+  .plan-box .plan-note { font-size: 8px; color: #666; margin-top: 2px; }
+  .plan-box .check-circle {
+    width: 14px; height: 14px;
+    border: 2px solid #8b2fc9;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+  .special-badge {
+    display: inline-block;
+    background: #d946a8;
+    color: #fff;
+    font-size: 7.5px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 8px;
+    margin-left: 4px;
+  }
+  .payment-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin: 8px 0;
+  }
+  .payment-opt {
+    border: 1.5px solid #e0ccff;
+    border-radius: 4px;
+    padding: 5px 7px;
+    text-align: center;
+    font-size: 8.5px;
+  }
+  .payment-opt .check-sq {
+    width: 12px; height: 12px;
+    border: 1.5px solid #8b2fc9;
+    border-radius: 2px;
+    display: inline-block;
+    margin-right: 3px;
+    vertical-align: middle;
+  }
+  .sign-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .sign-field label { font-size: 8.5px; font-weight: 700; color: #6b1fa0; display: block; margin-bottom: 2px; }
+  .sign-box { border: 1.5px solid #8b2fc9; height: 32px; background: #faf5ff; border-radius: 3px; }
+
+  /* ── カード類（A6サイズ2枚横並び） ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  /* LINEグループQRカード */
+  .line-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(139,47,201,0.15);
+    height: 200px;
+  }
+  .line-card-header {
+    background: linear-gradient(135deg, #06c755, #00a040);
+    padding: 10px 12px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .line-icon { font-size: 22px; }
+  .line-card-header .lh-text .lh-label { font-size: 8.5px; opacity: 0.85; }
+  .line-card-header .lh-text .lh-title { font-size: 12px; font-weight: 900; }
+  .line-card-body { padding: 10px 12px; }
+  .qr-placeholder {
+    width: 70px; height: 70px;
+    border: 2px dashed #06c755;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7.5px;
+    color: #888;
+    text-align: center;
+    line-height: 1.4;
+    float: left;
+    margin-right: 10px;
+  }
+  .line-card-body .lc-steps { font-size: 8.5px; color: #444; line-height: 1.8; }
+  .line-card-body .lc-steps strong { color: #06c755; }
+  .line-card-footer {
+    background: #f0fff4;
+    padding: 5px 12px;
+    font-size: 7.5px;
+    color: #555;
+    clear: both;
+  }
+
+  /* 優先案内カード */
+  .priority-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(139,47,201,0.15);
+    height: 200px;
+    position: relative;
+  }
+  .priority-card-header {
+    background: linear-gradient(135deg, #1a0533, #8b2fc9, #d946a8);
+    padding: 10px 12px 8px;
+    color: #fff;
+  }
+  .priority-card-header .pc-badge {
+    display: inline-block;
+    background: rgba(255,215,0,0.25);
+    border: 1px solid rgba(255,215,0,0.5);
+    color: #ffd700;
+    font-size: 7.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .priority-card-header .pc-title { font-size: 12px; font-weight: 900; }
+  .priority-card-body { padding: 10px 12px; }
+  .priority-card-body .pc-text { font-size: 9px; color: #444; line-height: 1.8; }
+  .priority-card-body .pc-highlight {
+    background: #faf5ff;
+    border-left: 3px solid #d946a8;
+    padding: 5px 8px;
+    font-size: 8.5px;
+    color: #333;
+    margin-top: 6px;
+    border-radius: 0 4px 4px 0;
+  }
+  .priority-card-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #f8f0ff, #fff0f8);
+    padding: 5px 12px;
+    font-size: 7.5px;
+    color: #8b2fc9;
+    font-weight: 700;
+  }
+
+  .print-note {
+    text-align: center;
+    font-size: 8px;
+    color: #aaa;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<h2 class="page-title">DigiLab Beauty ／ 会員特典カード類 印刷用シート</h2>
+
+<!-- 入会申込書 -->
+<div class="form-section">
+  <h3>▍ 入会申込書（当日配布用）</h3>
+  <div class="application-form">
+    <div class="form-header">
+      <div class="form-title">DigiLab Beauty 入会申込書</div>
+      <div class="form-date">申込日：　　　　年　　月　　日</div>
+    </div>
+
+    <!-- お客様情報 -->
+    <div class="form-row">
+      <div class="form-field">
+        <label>お名前（フリガナ）</label>
+        <div class="input-line"></div>
+      </div>
+      <div class="form-field">
+        <label>会社名 ／ サロン名</label>
+        <div class="input-line"></div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label>役職・肩書き</label>
+        <div class="input-line"></div>
+      </div>
+      <div class="form-field">
+        <label>電話番号</label>
+        <div class="input-line"></div>
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-field">
+        <label>メールアドレス（会員情報・ニュースレター配信先）</label>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <!-- プラン選択 -->
+    <div style="font-size:8.5px;font-weight:700;color:#6b1fa0;margin:8px 0 4px;">▍ 入会プランを選択してください</div>
+    <div class="plan-select">
+      <div class="plan-box">
+        <span class="check-circle"></span>
+        <span class="plan-type">個人会員</span>
+        <div class="plan-price">¥1,000 <span>/ 月（税抜）</span></div>
+        <div class="plan-note">おひとり様・段階なし</div>
+      </div>
+      <div class="plan-box highlight">
+        <span class="check-circle"></span>
+        <span class="plan-type">法人会員</span>
+        <span class="special-badge">当日初月無料</span>
+        <div class="plan-price">¥50,000 <span>/ 1口・月（税抜）</span></div>
+        <div class="plan-note">口数は担当者にご相談ください</div>
+      </div>
+    </div>
+
+    <!-- 法人口数 -->
+    <div class="form-row" style="margin-top:4px;">
+      <div class="form-field">
+        <label>【法人の方】ご希望口数</label>
+        <div class="input-line"></div>
+      </div>
+      <div class="form-field">
+        <label>【法人の方】スタッフ人数（目安）</label>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <!-- お支払い方法 -->
+    <div style="font-size:8.5px;font-weight:700;color:#6b1fa0;margin:6px 0 4px;">▍ お支払い方法</div>
+    <div class="payment-row">
+      <div class="payment-opt"><span class="check-sq"></span>クレジットカード</div>
+      <div class="payment-opt"><span class="check-sq"></span>銀行振込（翌月末）</div>
+      <div class="payment-opt"><span class="check-sq"></span>口座振替</div>
+    </div>
+
+    <!-- 署名 -->
+    <div class="sign-row">
+      <div class="sign-field">
+        <label>ご署名（本人自署）</label>
+        <div class="sign-box"></div>
+      </div>
+      <div class="sign-field">
+        <label>担当スタッフ確認</label>
+        <div class="sign-box"></div>
+      </div>
+    </div>
+
+    <div style="font-size:7.5px;color:#888;margin-top:8px;line-height:1.7;">
+      ご記入いただいた個人情報はDigiLab Beautyの会員管理および会員向けサービスの提供にのみ使用します。<br>
+      入会後のキャンセル・解約は翌月末日までにご連絡いただいた場合に翌々月より停止となります。
+    </div>
+  </div>
+</div>
+
+<!-- カード類 -->
+<div class="form-section">
+  <h3>▍ 会員特典カード（切り取ってお渡しください）</h3>
+  <div class="cards-grid">
+
+    <!-- LINEグループQRカード -->
+    <div class="line-card">
+      <div class="line-card-header">
+        <div class="line-icon">💬</div>
+        <div class="lh-text">
+          <div class="lh-label">会員限定グループへのご招待</div>
+          <div class="lh-title">DigiLab Beauty<br>会員LINEグループ</div>
+        </div>
+      </div>
+      <div class="line-card-body">
+        <div class="qr-placeholder">
+          QRコード<br>をここに<br>印刷
+        </div>
+        <div class="lc-steps">
+          <strong>参加方法：</strong><br>
+          ① 左のQRコードをLINEで読み取る<br>
+          ② グループに参加<br>
+          ③ 会員番号＋お名前を投稿<br><br>
+          グループ内では最新AI情報・<br>メンバー同士の交流ができます
+        </div>
+      </div>
+      <div class="line-card-footer">
+        ※ このカードは会員証としてお持ちください ／ DigiLab Beauty
+      </div>
+    </div>
+
+    <!-- 優先案内カード -->
+    <div class="priority-card">
+      <div class="priority-card-header">
+        <div class="pc-badge">MEMBER ONLY</div>
+        <div class="pc-title">次回セミナー<br>優先ご案内カード</div>
+      </div>
+      <div class="priority-card-body">
+        <div class="pc-text">
+          このカードをお持ちの方には、次回DigiLab Beautyセミナーの<strong>一般公開より1週間早く</strong>ご案内メールをお送りします。
+        </div>
+        <div class="pc-highlight">
+          📩 案内先メールアドレス：<br>
+          <div style="border-bottom:1px solid #d946a8;height:16px;margin-top:4px;"></div>
+        </div>
+      </div>
+      <div class="priority-card-footer">
+        ご登録メールアドレス宛に優先案内をお届けします ／ DigiLab Beauty
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="print-note">このシートはA4用紙にカラー印刷し、カード部分は切り取ってご利用ください ／ 会員用 印刷専用データ</div>
+
+</body>
+</html>

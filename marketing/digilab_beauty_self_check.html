@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiLab Beauty - サロン・セルフチェック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:        #1f2540;
+    --ink-soft:   #4a5170;
+    --ink-mute:   #6b7290;
+    --line:       #e4e6f0;
+    --accent:     #2f3566;
+    --accent-2:   #6a30e0;
+    --cta-from:   #00c4cc;
+    --cta-mid:    #4f57f0;
+    --cta-to:     #8b3dff;
+    --bg:         #f6f5fb;
+    --card:       #ffffff;
+    --chip-bg:    #fbfbff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    color: var(--ink-soft);
+    background:
+      radial-gradient(1200px 500px at 50% -10%, #efeefb 0%, transparent 60%),
+      var(--bg);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.8;
+    display: flex;
+    justify-content: center;
+    padding: 48px 20px;
+    min-height: 100vh;
+  }
+
+  .wrap { width: 100%; max-width: 720px; }
+
+  .brand { text-align: center; margin-bottom: 26px; }
+  .brand__name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 600;
+    font-size: 30px; color: var(--accent); letter-spacing: .5px;
+  }
+  .brand__sub {
+    margin-top: 6px; font-size: 11px; letter-spacing: .42em;
+    color: var(--ink-mute); font-weight: 500;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 48px 46px 40px;
+    box-shadow: 0 24px 60px -28px rgba(31,37,64,.28);
+    text-align: center;
+  }
+
+  /* 画面切替 */
+  .screen { display: none; }
+  .screen.is-active { display: block; animation: fade .35s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  .eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-weight: 600;
+    font-size: 17px; letter-spacing: .22em;
+    color: var(--accent-2); margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 33px; line-height: 1.42; font-weight: 900;
+    color: var(--ink); letter-spacing: .01em;
+  }
+  h1 .em { color: var(--accent-2); }
+  h1 .min { font-size: .82em; }
+
+  .lead {
+    margin: 22px auto 0; max-width: 540px;
+    font-size: 14.5px; color: var(--ink-soft); text-align: left;
+  }
+  .lead .note { color: var(--ink); font-weight: 700; }
+
+  .meta {
+    display: flex; justify-content: center; align-items: stretch;
+    margin: 30px auto 4px; max-width: 460px;
+  }
+  .meta__item { flex: 1; padding: 4px 8px; }
+  .meta__item + .meta__item { border-left: 1px solid var(--line); }
+  .meta__num { font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.4; }
+  .meta__label { font-size: 11px; color: var(--ink-mute); letter-spacing: .06em; }
+
+  .axes {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 12px; margin: 26px 0 8px;
+  }
+  .axis {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 10px; background: var(--chip-bg);
+    border: 1px solid var(--line); border-radius: 12px;
+    font-size: 13.5px; font-weight: 500; color: var(--ink);
+  }
+  .axis svg { flex: none; color: var(--accent-2); opacity: .9; }
+
+  .cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; margin-top: 26px; padding: 18px 28px;
+    background: linear-gradient(120deg, var(--cta-from) 0%, var(--cta-mid) 52%, var(--cta-to) 100%);
+    color: #fff; font-size: 16px; font-weight: 700; letter-spacing: .04em;
+    font-family: inherit; text-decoration: none; border: none; border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 16px 30px -10px rgba(99,55,230,.55), 0 6px 14px -8px rgba(0,196,204,.5);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  }
+  .cta:hover { transform: translateY(-2px); filter: saturate(1.08) brightness(1.03);
+    box-shadow: 0 24px 40px -10px rgba(99,55,230,.6), 0 8px 18px -8px rgba(0,196,204,.55); }
+  .cta:active { transform: translateY(0); }
+  .cta svg { transition: transform .15s ease; }
+  .cta:hover svg { transform: translateX(3px); }
+
+  .reassure { margin-top: 12px; font-size: 12px; color: var(--ink-mute); }
+  .disclaimer {
+    margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line);
+    font-size: 11.5px; line-height: 1.7; color: var(--ink-mute);
+  }
+  .footer { margin-top: 24px; text-align: center; font-size: 11px; color: var(--ink-mute); letter-spacing: .04em; }
+
+  /* ===== 設問画面 ===== */
+  .quiz-head { text-align: left; }
+  .progress {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--ink-mute); margin-bottom: 10px;
+  }
+  .progress__axis { font-weight: 700; color: var(--accent-2); }
+  .bar { height: 8px; background: #eceaf7; border-radius: 99px; overflow: hidden; }
+  .bar__fill {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--cta-from), var(--cta-mid), var(--cta-to));
+    border-radius: 99px; transition: width .35s ease;
+  }
+  .qno { margin-top: 26px; font-size: 13px; color: var(--ink-mute); }
+  .question {
+    margin-top: 8px; font-size: 22px; line-height: 1.5; font-weight: 700;
+    color: var(--ink); text-align: left; min-height: 66px;
+  }
+  .options { display: grid; gap: 12px; margin-top: 26px; }
+  .opt {
+    display: flex; align-items: center; gap: 14px;
+    width: 100%; padding: 16px 18px; text-align: left;
+    background: var(--chip-bg); border: 1.5px solid var(--line);
+    border-radius: 14px; font-family: inherit; font-size: 15px; font-weight: 500;
+    color: var(--ink); cursor: pointer;
+    transition: border-color .15s ease, background .15s ease, transform .1s ease;
+  }
+  .opt:hover { border-color: var(--accent-2); background: #f7f4ff; }
+  .opt:active { transform: scale(.99); }
+  .opt.is-selected { border-color: var(--accent-2); background: #f1ecfe; }
+  .opt__dot {
+    flex: none; width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid #c9c6e0; position: relative;
+  }
+  .opt.is-selected .opt__dot { border-color: var(--accent-2); }
+  .opt.is-selected .opt__dot::after {
+    content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--accent-2);
+  }
+  .quiz-foot { display: flex; justify-content: space-between; margin-top: 28px; }
+  .ghost-btn {
+    background: none; border: none; font-family: inherit; font-size: 14px;
+    color: var(--ink-mute); cursor: pointer; padding: 8px 4px;
+  }
+  .ghost-btn:hover { color: var(--accent-2); }
+  .ghost-btn[disabled] { opacity: 0; pointer-events: none; }
+
+  /* ===== 結果画面 ===== */
+  .result-head { text-align: center; }
+  .result-title { font-size: 26px; font-weight: 900; color: var(--ink); margin-top: 6px; }
+  .radar-wrap { display: flex; justify-content: center; margin: 18px 0 6px; }
+  canvas { max-width: 100%; }
+  .scores { display: grid; gap: 12px; margin-top: 18px; text-align: left; }
+  .score-row { display: grid; grid-template-columns: 96px 1fr 38px; align-items: center; gap: 12px; }
+  .score-row .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+  .score-row .track { display: block; height: 10px; background: #eceaf7; border-radius: 99px; overflow: hidden; }
+  .score-row .fill { display: block; height: 100%; width: 0; border-radius: 99px;
+    background: linear-gradient(90deg, var(--cta-from), var(--cta-to)); transition: width .8s ease; }
+  .score-row .pct { font-size: 13px; font-weight: 700; color: var(--accent-2); text-align: right; }
+  .summary {
+    margin-top: 24px; padding: 20px; text-align: left;
+    background: #f7f4ff; border: 1px solid #e7e1fb; border-radius: 14px;
+    font-size: 14px; color: var(--ink-soft);
+  }
+  .summary b { color: var(--accent-2); }
+  .summary .h { display: block; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+
+  /* ===== 会員獲得（リード）導線 ===== */
+  .offer {
+    margin-top: 28px; padding: 30px 26px 26px; text-align: center;
+    background: linear-gradient(180deg, #ffffff 0%, #faf8ff 100%);
+    border: 1.5px solid #e7e1fb; border-radius: 18px;
+    box-shadow: 0 18px 44px -26px rgba(106,48,224,.4);
+  }
+  .offer__eyebrow {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600;
+    font-size: 15px; letter-spacing: .22em; color: var(--accent-2); margin-bottom: 8px;
+  }
+  .offer__title { font-size: 22px; line-height: 1.5; font-weight: 900; color: var(--ink); }
+  .offer__lead {
+    margin: 14px auto 0; max-width: 480px; text-align: left;
+    font-size: 14px; color: var(--ink-soft);
+  }
+  .offer__lead b { color: var(--accent-2); font-weight: 700; }
+  .offer__list {
+    list-style: none; margin: 18px auto 0; max-width: 480px; text-align: left;
+    display: grid; gap: 10px;
+  }
+  .offer__list li {
+    position: relative; padding-left: 30px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6;
+  }
+  .offer__list li::before {
+    content: ''; position: absolute; left: 0; top: 3px; width: 19px; height: 19px;
+    border-radius: 50%;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat,
+      linear-gradient(135deg, var(--cta-from), var(--cta-to));
+  }
+  .offer__list b { color: var(--ink); }
+
+  .lead { margin-top: 22px; }
+  .lead__input {
+    width: 100%; padding: 15px 16px; font-family: inherit; font-size: 15px; color: var(--ink);
+    background: #fff; border: 1.5px solid var(--line); border-radius: 12px; outline: none;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .lead__input::placeholder { color: #a9adc4; }
+  .lead__input:focus { border-color: var(--accent-2); box-shadow: 0 0 0 3px rgba(106,48,224,.12); }
+  .lead .cta { margin-top: 12px; }
+  .lead__error { margin-top: 8px; font-size: 12.5px; color: #d6336c; text-align: left; }
+
+  .lead-or {
+    position: relative; margin: 18px 0; font-size: 12px; color: var(--ink-mute);
+  }
+  .lead-or::before, .lead-or::after {
+    content: ''; position: absolute; top: 50%; width: 38%; height: 1px; background: var(--line);
+  }
+  .lead-or::before { left: 0; } .lead-or::after { right: 0; }
+  .line-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 14px 20px; text-decoration: none;
+    background: #06c755; color: #fff; font-size: 15px; font-weight: 700;
+    border-radius: 12px; transition: filter .15s ease, transform .15s ease;
+  }
+  .line-btn:hover { filter: brightness(1.05); }
+  .line-btn--cta {
+    margin-top: 22px; padding: 18px 22px; font-size: 16.5px; letter-spacing: .02em;
+    box-shadow: 0 16px 30px -10px rgba(6,199,85,.55);
+  }
+  .line-btn--cta:hover { transform: translateY(-2px); box-shadow: 0 22px 38px -10px rgba(6,199,85,.6); }
+  .line-btn--cta:active { transform: translateY(0); }
+
+  .lead-done {
+    margin-top: 6px; padding: 22px; text-align: center;
+    background: #f1ecfe; border: 1px solid #e0d6fb; border-radius: 14px;
+  }
+  .lead-done__icon {
+    width: 44px; height: 44px; margin: 0 auto 10px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 22px; font-weight: 700;
+    background: linear-gradient(135deg, var(--cta-from), var(--cta-to));
+  }
+  .lead-done__title { font-size: 16px; font-weight: 700; color: var(--ink); }
+  .lead-done__text { margin-top: 6px; font-size: 13.5px; color: var(--ink-soft); }
+  .lead-done__text b { color: var(--accent-2); }
+
+  .ghost-btn--center {
+    display: block; margin: 18px auto 0; font-size: 13.5px;
+  }
+
+  @media (max-width: 560px) {
+    .card { padding: 32px 20px 28px; }
+    h1 { font-size: 25px; }
+    .question { font-size: 19px; }
+    .axes { grid-template-columns: repeat(2, 1fr); }
+    .score-row { grid-template-columns: 78px 1fr 34px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="brand">
+      <div class="brand__name">DigiLab Beauty</div>
+      <div class="brand__sub">SALON SELF-CHECK</div>
+    </header>
+
+    <main class="card">
+      <!-- 画面1：イントロ -->
+      <section class="screen is-active" id="screen-intro">
+        <p class="eyebrow">WHERE ARE YOU NOW?</p>
+        <h1>あなたのサロンの<span class="em">「現在地」</span>を、<br><span class="min">たった</span>1分で。</h1>
+        <p class="lead">
+          これまで、サロンの状態を客観的に映す<span class="note">“ものさし”</span>はありませんでした。
+          デジラボビューティの評価のしくみ（DQS）をもとに、6つの軸で今の自店を整理します。
+          優劣をつけるものではなく、<span class="note">次の一歩を考えるための地図</span>です。
+        </p>
+        <div class="meta">
+          <div class="meta__item"><div class="meta__num">無料</div><div class="meta__label">登録不要</div></div>
+          <div class="meta__item"><div class="meta__num">約1分</div><div class="meta__label">所要時間</div></div>
+          <div class="meta__item"><div class="meta__num">全18問</div><div class="meta__label">選ぶだけ</div></div>
+        </div>
+        <div class="axes">
+          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>集客</div>
+          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>リピート</div>
+          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>単価・指名</div>
+          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>時間・運営</div>
+          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>発信・口コミ</div>
+          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>数字・経営</div>
+        </div>
+        <button class="cta" id="btn-start" type="button">
+          セルフチェックを始める
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <p class="reassure">クレジットカード・会員登録は不要です。</p>
+        <p class="disclaimer">この診断は自己評価を整理するものです。結果は成果や効果を保証・予測するものではありません。</p>
+      </section>
+
+      <!-- 画面2：設問 -->
+      <section class="screen" id="screen-quiz">
+        <div class="quiz-head">
+          <div class="progress">
+            <span class="progress__axis" id="q-axis">集客</span>
+            <span id="q-count">1 / 18</span>
+          </div>
+          <div class="bar"><div class="bar__fill" id="q-bar"></div></div>
+        </div>
+        <p class="qno" id="q-no">Q1</p>
+        <p class="question" id="q-text">—</p>
+        <div class="options" id="q-options"></div>
+        <div class="quiz-foot">
+          <button class="ghost-btn" id="btn-back" type="button">← 戻る</button>
+          <span></span>
+        </div>
+      </section>
+
+      <!-- 画面3：結果 -->
+      <section class="screen" id="screen-result">
+        <div class="result-head">
+          <p class="eyebrow">YOUR CURRENT MAP</p>
+          <p class="result-title">あなたのサロンの現在地</p>
+        </div>
+        <div class="radar-wrap"><canvas id="radar" width="420" height="360"></canvas></div>
+        <div class="scores" id="score-list"></div>
+        <div class="summary" id="summary"></div>
+
+        <!-- 会員獲得（リード）導線 -->
+        <div class="offer">
+          <p class="offer__eyebrow">NEXT STEP</p>
+          <h3 class="offer__title">現在地がわかったら、<br>次は「伸ばし方」を。</h3>
+          <p class="offer__lead">
+            あなたのいちばんの伸びしろ <b id="offer-axis">時間・運営</b> をはじめ、
+            6軸それぞれの<b>具体的な改善プラン</b>は、デジラボビューティの<b>無料会員</b>に公開しています。
+          </p>
+          <ul class="offer__list">
+            <li>軸ごとの「次の一歩」と優先順位がわかる<b>診断レポート（PDF）</b></li>
+            <li>サロン専門家への<b>無料オンライン相談</b>（30分）</li>
+            <li>成功事例・すぐ使える<b>テンプレート集</b></li>
+          </ul>
+
+          <a class="line-btn line-btn--cta" id="line-btn" href="https://line.me/R/ti/p/@803ytjuz" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.58 7.39 8.42 8.02.33.07.78.22.89.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.1-.46 5.9-3.48 8.05-5.96C21.4 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
+            LINEで無料の改善プランを受け取る
+          </a>
+          <p class="reassure">友だち追加は無料。診断レポートをLINEでお届けします。いつでもブロックできます。</p>
+        </div>
+
+        <button class="ghost-btn ghost-btn--center" id="btn-restart" type="button">↻ もう一度チェックする</button>
+        <p class="disclaimer">この診断は自己評価を整理するものです。結果は成果や効果を保証・予測するものではありません。</p>
+      </section>
+    </main>
+
+    <p class="footer">一般社団法人デジラボビューティ ／ DigiLab Beauty · Salon Self-Check</p>
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  var AXES = ["集客", "リピート", "単価・指名", "時間・運営", "発信・口コミ", "数字・経営"];
+
+  // 各軸3問 × 6軸 = 18問
+  var QUESTIONS = [
+    { axis: 0, text: "新規のお客様が「どの経路から来たか」を把握できている" },
+    { axis: 0, text: "毎月の新規客数を、数字で言える" },
+    { axis: 0, text: "集客の手段を複数（紹介・SNS・媒体など）持っている" },
+    { axis: 1, text: "次回予約をその場でご案内する仕組みがある" },
+    { axis: 1, text: "再来率（リピート率）を把握できている" },
+    { axis: 1, text: "来店が途絶えたお客様に、再アプローチしている" },
+    { axis: 2, text: "平均客単価を把握できている" },
+    { axis: 2, text: "追加メニューや店販を、自然に提案できている" },
+    { axis: 2, text: "指名・継続につながる関係づくりができている" },
+    { axis: 3, text: "予約や顧客情報を一元管理できている" },
+    { axis: 3, text: "スタッフの役割分担が明確になっている" },
+    { axis: 3, text: "事務・雑務に追われすぎていない" },
+    { axis: 4, text: "SNSやブログを、定期的に発信できている" },
+    { axis: 4, text: "Googleマップや口コミの評価を意識できている" },
+    { axis: 5, text: "毎月の売上・利益を把握できている" },
+    { axis: 5, text: "目標とする数値（KPI）を決めている" },
+    { axis: 5, text: "数字をもとに、次の打ち手を考えている" },
+    { axis: 4, text: "お客様が思わず紹介したくなる仕掛けがある" }
+  ];
+
+  var OPTIONS = [
+    { label: "できている", score: 3 },
+    { label: "まあまあできている", score: 2 },
+    { label: "あまりできていない", score: 1 },
+    { label: "できていない", score: 0 }
+  ];
+
+  var answers = new Array(QUESTIONS.length).fill(null);
+  var current = 0;
+
+  var screens = {
+    intro:  document.getElementById("screen-intro"),
+    quiz:   document.getElementById("screen-quiz"),
+    result: document.getElementById("screen-result")
+  };
+
+  function show(name) {
+    Object.keys(screens).forEach(function (k) {
+      screens[k].classList.toggle("is-active", k === name);
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderQuestion() {
+    var q = QUESTIONS[current];
+    document.getElementById("q-axis").textContent = AXES[q.axis];
+    document.getElementById("q-count").textContent = (current + 1) + " / " + QUESTIONS.length;
+    document.getElementById("q-no").textContent = "Q" + (current + 1);
+    document.getElementById("q-text").textContent = q.text;
+    document.getElementById("q-bar").style.width = (current / QUESTIONS.length * 100) + "%";
+    document.getElementById("btn-back").disabled = (current === 0);
+
+    var box = document.getElementById("q-options");
+    box.innerHTML = "";
+    OPTIONS.forEach(function (opt, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "opt" + (answers[current] === opt.score ? " is-selected" : "");
+      b.innerHTML = '<span class="opt__dot"></span><span>' + opt.label + "</span>";
+      b.addEventListener("click", function () {
+        answers[current] = opt.score;
+        // 選択を見せてから次へ
+        Array.prototype.forEach.call(box.children, function (c) { c.classList.remove("is-selected"); });
+        b.classList.add("is-selected");
+        setTimeout(next, 220);
+      });
+      box.appendChild(b);
+    });
+  }
+
+  function next() {
+    if (current < QUESTIONS.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      document.getElementById("q-bar").style.width = "100%";
+      showResult();
+    }
+  }
+
+  function back() {
+    if (current > 0) { current--; renderQuestion(); }
+  }
+
+  function axisScores() {
+    var sum = [0,0,0,0,0,0], cnt = [0,0,0,0,0,0];
+    QUESTIONS.forEach(function (q, i) {
+      sum[q.axis] += (answers[i] || 0);
+      cnt[q.axis] += 1;
+    });
+    return sum.map(function (s, i) { return Math.round(s / (cnt[i] * 3) * 100); });
+  }
+
+  function showResult() {
+    var pct = axisScores();
+    drawRadar(pct);
+
+    var list = document.getElementById("score-list");
+    list.innerHTML = "";
+    pct.forEach(function (p, i) {
+      var row = document.createElement("div");
+      row.className = "score-row";
+      row.innerHTML =
+        '<span class="name">' + AXES[i] + '</span>' +
+        '<span class="track"><span class="fill" style="width:0"></span></span>' +
+        '<span class="pct">' + p + '%</span>';
+      list.appendChild(row);
+      // アニメーション
+      setTimeout(function () { row.querySelector(".fill").style.width = p + "%"; }, 60 + i * 90);
+    });
+
+    // サマリー：最も低い軸＝次の一歩
+    var minI = 0, maxI = 0;
+    pct.forEach(function (p, i) { if (p < pct[minI]) minI = i; if (p > pct[maxI]) maxI = i; });
+    var avg = Math.round(pct.reduce(function (a, b) { return a + b; }, 0) / pct.length);
+    document.getElementById("summary").innerHTML =
+      '<span class="h">あなたの現在地</span>' +
+      '6軸の平均は <b>' + avg + '%</b>。いちばんの強みは <b>' + AXES[maxI] + '</b>、' +
+      'いま伸びしろが大きいのは <b>' + AXES[minI] + '</b> です。' +
+      'まずは「' + AXES[minI] + '」から、できそうな一歩を一つ選んでみましょう。';
+
+    // 会員導線に、伸びしろの軸名を差し込む
+    document.getElementById("offer-axis").textContent = AXES[minI];
+
+    show("result");
+  }
+
+  // ===== レーダーチャート（Canvas, ライブラリ不要） =====
+  function drawRadar(pct) {
+    var cv = document.getElementById("radar");
+    var dpr = window.devicePixelRatio || 1;
+    var W = 420, H = 360;
+    cv.width = W * dpr; cv.height = H * dpr;
+    cv.style.width = W + "px"; cv.style.height = H + "px";
+    var ctx = cv.getContext("2d");
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, W, H);
+
+    var cx = W / 2, cy = H / 2 + 6, R = 120, n = AXES.length;
+    function pt(i, r) {
+      var a = -Math.PI / 2 + i * (2 * Math.PI / n);
+      return [cx + Math.cos(a) * r, cy + Math.sin(a) * r];
+    }
+
+    // グリッド
+    for (var g = 1; g <= 4; g++) {
+      ctx.beginPath();
+      for (var i = 0; i <= n; i++) {
+        var p = pt(i % n, R * g / 4);
+        i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]);
+      }
+      ctx.strokeStyle = "#e7e4f4"; ctx.lineWidth = 1; ctx.stroke();
+    }
+    // 軸線＋ラベル
+    ctx.fillStyle = "#4a5170";
+    ctx.font = "12px 'Noto Sans JP', sans-serif";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    for (var j = 0; j < n; j++) {
+      var e = pt(j, R);
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(e[0], e[1]);
+      ctx.strokeStyle = "#ece9f6"; ctx.stroke();
+      var lp = pt(j, R + 24);
+      ctx.fillText(AXES[j], lp[0], lp[1]);
+    }
+    // データポリゴン
+    var grad = ctx.createLinearGradient(cx - R, cy - R, cx + R, cy + R);
+    grad.addColorStop(0, "rgba(0,196,204,0.85)");
+    grad.addColorStop(1, "rgba(139,61,255,0.85)");
+    ctx.beginPath();
+    for (var k = 0; k <= n; k++) {
+      var v = pct[k % n] / 100;
+      var pp = pt(k % n, R * Math.max(v, 0.02));
+      k === 0 ? ctx.moveTo(pp[0], pp[1]) : ctx.lineTo(pp[0], pp[1]);
+    }
+    ctx.closePath();
+    ctx.fillStyle = "rgba(106,48,224,0.16)"; ctx.fill();
+    ctx.strokeStyle = grad; ctx.lineWidth = 2.5; ctx.stroke();
+    for (var m = 0; m < n; m++) {
+      var dp = pt(m, R * Math.max(pct[m] / 100, 0.02));
+      ctx.beginPath(); ctx.arc(dp[0], dp[1], 4, 0, Math.PI * 2);
+      ctx.fillStyle = "#6a30e0"; ctx.fill();
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+  }
+
+  // ===== イベント =====
+  document.getElementById("btn-start").addEventListener("click", function () {
+    current = 0; answers.fill(null);
+    renderQuestion();
+    show("quiz");
+  });
+  document.getElementById("btn-back").addEventListener("click", back);
+  document.getElementById("btn-restart").addEventListener("click", function () {
+    current = 0; answers.fill(null);
+    show("intro");
+  });
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}コンテンツを探す｜コスメブレイン{% endblock %}
+{% block content %}
+<h1>コンテンツを探す</h1>
+<div style="margin:14px 0">
+  <a class="badge {{ 'badge-cert' if not cat else 'badge-mute' }}" href="{{ url_for('search', q=q) }}">すべて</a>
+  {% for c in CATEGORIES %}
+    <a class="badge {{ 'badge-cert' if cat==c else 'badge-mute' }}"
+       href="{{ url_for('search', q=q, cat=c) }}">{{ c }}</a>
+  {% endfor %}
+</div>
+{% if q or cat %}<p class="muted">{{ items|length }}件のコンテンツ
+  {% if q %}「{{ q }}」{% endif %}{% if cat %}／{{ cat }}{% endif %}</p>{% endif %}
+<div class="grid">
+  {% for c in items %}{% include "_card.html" %}{% else %}
+    <p class="muted">該当するコンテンツが見つかりませんでした。</p>
+  {% endfor %}
+</div>
+{% endblock %}

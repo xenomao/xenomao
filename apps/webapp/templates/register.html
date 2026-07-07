@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}無料登録｜コスメブレイン{% endblock %}
+{% block content %}
+<div class="form-card">
+  <h1>無料登録</h1>
+  <p class="muted">登録後に資格を申請すると、審査を経て知識コンテンツを販売できます。</p>
+  <form method="post">
+    <label>表示名（ニックネーム可）</label>
+    <input type="text" name="display_name" required placeholder="例：美容ライターMIKA">
+    <label>メールアドレス</label>
+    <input type="email" name="email" required>
+    <label>パスワード</label>
+    <input type="password" name="password" required minlength="6">
+    <div style="margin-top:20px"><button class="btn btn-block">登録する</button></div>
+  </form>
+  <p class="muted" style="margin-top:16px">すでにアカウントをお持ちですか？
+    <a href="{{ url_for('login') }}">ログイン</a></p>
+</div>
+{% endblock %}

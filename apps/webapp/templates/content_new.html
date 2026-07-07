@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}知識を出品する｜コスメブレイン{% endblock %}
+{% block content %}
+<div class="form-card form-wide">
+  <h1>知識を出品する</h1>
+  <p class="muted">あなたの美容知識をコンテンツにして販売しましょう。本文は購入者のみが読めます。</p>
+  <form method="post" enctype="multipart/form-data">
+    <label>タイトル</label>
+    <input type="text" name="title" required placeholder="例：化粧品検定1級が教える「成分表示の読み解き方」完全ガイド">
+
+    <div class="row2">
+      <div>
+        <label>カテゴリー</label>
+        <select name="category">
+          {% for cat in CATEGORIES %}<option value="{{ cat }}">{{ cat }}</option>{% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>カバー絵文字</label>
+        <input type="text" name="cover_emoji" value="📘" maxlength="4">
+      </div>
+    </div>
+
+    <label>紹介文（無料で公開される説明）</label>
+    <textarea name="summary" rows="3" placeholder="どんな知識が学べるかを書きましょう。購入の判断材料になります。"></textarea>
+
+    <label>本文（購入者だけが読める内容）</label>
+    <textarea name="body" rows="10" placeholder="ここに販売する知識の本文を書きます。"></textarea>
+
+    <label>添付ファイル（任意・PDFや資料など。購入者のみダウンロード可）</label>
+    <input type="file" name="file">
+
+    <div class="row2">
+      <div>
+        <label>価格（円・0で無料）</label>
+        <input type="number" name="price" value="980" min="0" step="100">
+      </div>
+      <div>
+        <label>紹介報酬率（%）</label>
+        <input type="number" name="referral_rate" value="30" min="0" max="80">
+        <div class="help">購入者があなたのコンテンツを紹介して売れた時に支払う報酬割合（Brain型）。</div>
+      </div>
+    </div>
+
+    <div style="margin-top:22px"><button class="btn">公開する</button></div>
+  </form>
+</div>
+{% endblock %}
