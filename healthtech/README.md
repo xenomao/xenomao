@@ -36,7 +36,7 @@
 - [2026-07-08 デイリー](news/2026-07-08_daily.md) — H1 2026 資金調達サマリー／GLP-1／AI医療記録
 
 ### IR考察
-- [2026 Q2 ヘルスケアIR考察](ir/2026Q2_healthcare_ir_analysis.md) — UNH・Lilly・Novo・エムスリー・JMDC ほか
+- （記事準備中 ── 決算シーズンに公開予定）
 
 ### 起業リサーチ
 - [2026 ヘルスケア起業リサーチ](startup/2026_healthcare_startup_research.md) — AIスクライブ／予防医療／DTx の参入余地
