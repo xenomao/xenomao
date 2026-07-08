@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { background:#0d1030; }
+  body {
+    font-family: "IPAPGothic","IPAGothic",sans-serif;
+    width:1280px; height:670px; overflow:hidden; position:relative;
+    display:flex; flex-direction:column; justify-content:space-between; padding:56px 84px 52px;
+    background:
+      radial-gradient(1100px 700px at 82% -10%, rgba(124,124,231,.38), transparent 60%),
+      radial-gradient(900px 620px at 8% 118%, rgba(45,212,191,.20), transparent 55%),
+      linear-gradient(135deg,#0d1030 0%,#151a4a 48%,#1b2360 100%);
+    color:#fff;
+  }
+  .grid { position:absolute; inset:0; z-index:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size:56px 56px; }
+  .frame { position:absolute; inset:26px; z-index:0; border:1.5px solid rgba(255,255,255,.14); border-radius:22px; }
+  .grid, .frame { pointer-events:none; }
+  body > *:not(.grid):not(.frame) { position:relative; z-index:1; }
+
+  .top { display:flex; align-items:center; gap:18px; }
+  .kicker { font-size:23px; font-weight:700; letter-spacing:.16em; color:#c8ccff; display:flex; align-items:center; gap:14px; }
+  .dot { width:11px; height:11px; border-radius:50%; background:#2dd4bf; box-shadow:0 0 16px #2dd4bf; }
+  .en { font-size:15px; letter-spacing:.34em; color:#8b91d6; font-weight:600; }
+  .date { margin-left:auto; font-size:22px; font-weight:700; letter-spacing:.05em;
+    color:#0d1030; background:linear-gradient(120deg,#a9e8dd,#c9bffb); padding:9px 20px; border-radius:999px; }
+
+  .headline { }
+  .lead { font-size:25px; font-weight:700; color:#a9e8dd; letter-spacing:.02em; margin-bottom:16px; }
+  h1 { font-size:64px; line-height:1.2; font-weight:800; letter-spacing:.005em; text-shadow:0 4px 30px rgba(0,0,0,.35); }
+  h1 .hl { color:#c9bffb; }
+  h1 .hl2 { color:#5eead4; }
+  .tags { margin-top:24px; display:flex; gap:14px; }
+  .tag { font-size:21px; font-weight:700; color:#e8eaff; border:1.5px solid rgba(201,191,251,.55);
+    background:rgba(124,124,231,.14); padding:9px 22px; border-radius:12px; }
+
+  .bottom { display:flex; align-items:flex-end; justify-content:space-between; }
+  .brand .name { font-size:27px; font-weight:800; letter-spacing:.16em; }
+  .brand .name b { color:#c9bffb; }
+  .brand .sub { font-size:16px; color:#9aa0dd; letter-spacing:.12em; margin-top:5px; }
+  .pulse { width:360px; height:64px; opacity:.9; }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="frame"></div>
+
+  <div class="top">
+    <div class="kicker"><span class="dot"></span>ヘルステック・デイリー</div>
+    <div class="en">HEALTHTECH RESEARCH</div>
+    <div class="date">2026.07.08</div>
+  </div>
+
+  <div class="headline">
+    <div class="lead">国内・海外ヘルステックの動きを、毎日まとめて考察</div>
+    <h1>デジタルヘルス投資は<span class="hl">「成熟期」</span>へ<br>資金は<span class="hl2">AI×医療</span>に集中する</h1>
+    <div class="tags">
+      <span class="tag"># H1 2026 資金調達</span>
+      <span class="tag"># GLP-1</span>
+      <span class="tag"># 医療AI</span>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="brand">
+      <div class="name"><b>Digilab</b> beauty</div>
+      <div class="sub">HEALTHTECH RESEARCH ／ NEWS・IR・STARTUP</div>
+    </div>
+    <svg class="pulse" viewBox="0 0 360 64" fill="none">
+      <path d="M0 32 H120 L138 32 L150 12 L168 52 L182 32 L198 32 L210 22 L222 42 L236 32 H360"
+            stroke="#5eead4" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</body>
+</html>
