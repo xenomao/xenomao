@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>タカラベルモント エステ事業部 ご提案 A/B/C ｜ Digilab beauty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@350;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lav:#9b7fc0; --lav-deep:#7a5d96; --lav-soft:#f3eaf8; --lav-line:#e0cdee;
+    --rose:#a8577f; --rose-soft:#fbe9f1; --gold:#b9932f;
+    --ink:#55495e; --ink-soft:#6f6578; --paper:#fff;
+    --head:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;
+    --body:'Noto Sans JP','Hiragino Sans',sans-serif;
+    --en:'Poppins',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:var(--body);background:#eceaf0;color:var(--ink);
+    display:flex;flex-direction:column;align-items:center;gap:22px;padding:24px;line-height:1.7}
+  .sheet{width:210mm;min-height:296mm;background:var(--paper);position:relative;overflow:hidden;
+    box-shadow:0 12px 40px rgba(80,60,110,.16);padding:15mm 15mm 13mm}
+  .sheet::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;
+    background:linear-gradient(90deg,var(--lav) 0%,var(--rose) 60%,var(--gold) 100%)}
+
+  /* header */
+  .head{display:flex;justify-content:space-between;align-items:flex-start;
+    border-bottom:1px solid var(--lav-line);padding-bottom:12px;margin-bottom:16px}
+  .brand{font-family:var(--en);font-weight:600;font-size:18px;letter-spacing:.14em;color:var(--lav-deep)}
+  .brand small{display:block;font-family:var(--body);font-weight:400;font-size:9.5px;letter-spacing:.22em;color:var(--ink-soft);margin-top:2px}
+  .to{text-align:right;font-size:10.5px;color:var(--ink-soft)}
+  .to b{display:block;font-family:var(--head);font-weight:700;font-size:13px;color:var(--ink);letter-spacing:.02em}
+
+  /* label + title */
+  .chip{display:inline-flex;align-items:center;gap:8px;background:var(--lav-soft);
+    border:1px solid var(--lav-line);border-radius:20px;padding:5px 15px;margin-bottom:14px}
+  .chip .n{font-family:var(--en);font-weight:600;font-size:13px;color:#fff;background:var(--lav);
+    width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .chip .k{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--lav-deep)}
+  h1{font-family:var(--head);font-weight:900;font-size:25px;line-height:1.35;color:#453b50;
+    letter-spacing:.01em;margin-bottom:6px}
+  h1 .em{color:var(--lav-deep)}
+  .lead{font-size:12px;color:var(--ink-soft);margin-bottom:18px;max-width:95%}
+
+  /* section */
+  .sec{margin-bottom:15px}
+  .sec-h{display:flex;align-items:center;gap:9px;font-family:var(--head);font-weight:700;
+    font-size:13.5px;color:var(--rose);margin-bottom:9px;letter-spacing:.03em}
+  .sec-h::before{content:'';width:14px;height:14px;border-radius:4px;
+    background:linear-gradient(135deg,var(--lav),var(--rose))}
+
+  ul.pts{list-style:none;display:flex;flex-direction:column;gap:8px}
+  ul.pts li{position:relative;padding-left:22px;font-size:12px;line-height:1.7}
+  ul.pts li::before{content:'';position:absolute;left:4px;top:8px;width:8px;height:8px;
+    border-radius:50%;background:var(--lav);box-shadow:0 0 0 3px var(--lav-soft)}
+  ul.pts li b{color:#453b50}
+
+  /* two-col merit + role */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .card{border:1px solid var(--lav-line);border-radius:12px;padding:13px 15px;background:#fdfbff}
+  .card.rose{background:var(--rose-soft);border-color:#f2d3e0}
+  .card h3{font-family:var(--head);font-weight:700;font-size:11.5px;letter-spacing:.06em;margin-bottom:8px;color:var(--ink)}
+  .card.rose h3{color:var(--rose)}
+  .card ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .card li{font-size:11px;padding-left:16px;position:relative;line-height:1.55}
+  .card li::before{content:'✓';position:absolute;left:0;color:var(--lav-deep);font-size:10px;font-weight:700}
+  .card.rose li::before{color:var(--rose)}
+
+  /* role split */
+  .role{display:grid;grid-template-columns:1fr 24px 1fr;align-items:center;gap:6px;margin-top:2px}
+  .role .box{border-radius:10px;padding:11px 13px;font-size:10.5px;line-height:1.5}
+  .role .tb{background:#f4f1f7;border:1px solid var(--lav-line)}
+  .role .dl{background:linear-gradient(135deg,#f6ecfa,#fbe9f1);border:1px solid #ecd3ea}
+  .role .box b{display:block;font-family:var(--head);font-weight:700;font-size:11px;margin-bottom:4px;color:#453b50}
+  .role .x{text-align:center;font-family:var(--en);font-size:16px;color:var(--lav);font-weight:600}
+
+  /* first step */
+  .step{margin-top:15px;background:linear-gradient(135deg,#faf6fd,#f6eefb);
+    border:1px dashed var(--lav);border-radius:12px;padding:13px 16px}
+  .step b{font-family:var(--head);font-weight:700;color:var(--lav-deep);font-size:12.5px}
+  .step p{font-size:11.5px;margin-top:4px;color:var(--ink)}
+
+  /* footer */
+  .foot{position:absolute;left:15mm;right:15mm;bottom:9mm;display:flex;justify-content:space-between;
+    align-items:center;border-top:1px solid var(--lav-line);padding-top:9px;font-size:9.5px;color:var(--ink-soft)}
+  .foot .en{font-family:var(--en);letter-spacing:.1em}
+
+  @media print{
+    body{background:#fff;padding:0;gap:0}
+    .sheet{box-shadow:none;width:auto;min-height:auto;page-break-after:always;padding:14mm 15mm}
+    .sheet:last-child{page-break-after:auto}
+  }
+  @page{size:A4;margin:0}
+</style>
+</head>
+<body>
+
+<!-- ============ 提案A：教育 ============ -->
+<section class="sheet">
+  <div class="head">
+    <div class="brand">Digilab beauty<small>一般社団法人デジラボビューティー</small></div>
+    <div class="to"><b>タカラベルモント株式会社 エステ事業部 御中</b>ご提案書 ｜ 2026.07.08</div>
+  </div>
+
+  <div class="chip"><span class="n">A</span><span class="k">EDUCATION ｜ 人材育成</span></div>
+  <h1>「AI協働エステティシャン」<br><span class="em">共同認定プログラム</span></h1>
+  <p class="lead">1974年開校のエステティックアカデミーに、<b>AI活用・情報セキュリティ・コンプライアンス</b>の新科目をモジュールとして追加。「手技」も「AI協働」も測る、AI時代の共同認定を創出します。</p>
+
+  <div class="sec">
+    <div class="sec-h">なぜ今か</div>
+    <ul class="pts">
+      <li>サロンにAIツールが浸透する一方、「正しく・安全に使える人材」を育てる<b>体系的なカリキュラムは業界に存在しない</b>。</li>
+      <li>アカデミーという<b>既存の教育導線</b>があれば、全国のサロン人材へ最短距離で届けられる。ゼロから販路を作る必要がない。</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">ご提案内容</div>
+    <ul class="pts">
+      <li><b>AI科目モジュールの提供</b> — 弊団体のAI活用ガイドライン2026／AIセキュリティ検定を、アカデミー向け講座として編成。</li>
+      <li><b>DQSフレームワークによる評価</b> — H軸(手技・人間的価値)×A軸(AI協働)の二軸で測る新しい認定基準。手技の価値を否定せず、科学的に補強します。</li>
+      <li><b>共同ブランド認定証</b> — 「タカラベルモント公認 × Digilab beauty監修」の認定として、受講者と導入サロンの信頼を可視化。</li>
+    </ul>
+  </div>
+
+  <div class="cols">
+    <div class="card">
+      <h3>タカラベルモント様のメリット</h3>
+      <ul>
+        <li>アカデミーの提供価値に「AI時代対応」を追加</li>
+        <li>機器・化粧品導入に続く新たな教育収益の柱</li>
+        <li>他社にない「AI×手技」認定で差別化</li>
+      </ul>
+    </div>
+    <div class="card rose">
+      <h3>役割分担 ― 競合しません</h3>
+      <ul>
+        <li>手技・接客教育は<b>アカデミーが主管</b></li>
+        <li>弊団体は<b>AI/DX/セキュリティの空白科目のみ</b>担当</li>
+        <li>あくまで補完役に徹します</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <b>はじめの一歩</b>
+    <p>まずは既存受講生向けに<b>90分の単発AI講座を1本、共催で試験開催</b>。反応を見てからカリキュラム化を判断いただけます。（投資・リスク最小）</p>
+  </div>
+
+  <div class="foot"><span>一般社団法人デジラボビューティー ｜ digilabbeauty@gmail.com</span><span class="en">digilab beauty ×  TAKARA BELMONT ｜ Proposal A</span></div>
+</section>
+
+<!-- ============ 提案B：安全 ============ -->
+<section class="sheet">
+  <div class="head">
+    <div class="brand">Digilab beauty<small>一般社団法人デジラボビューティー</small></div>
+    <div class="to"><b>タカラベルモント株式会社 エステ事業部 御中</b>ご提案書 ｜ 2026.07.08</div>
+  </div>
+
+  <div class="chip"><span class="n">B</span><span class="k">SAFETY ｜ 安全・コンプライアンス</span></div>
+  <h1>サロンAI導入<br><span class="em">コンプライアンス・パッケージ</span></h1>
+  <p class="lead">機器・DXの導入提案に同梱する「安全教育セット」。<b>AIを使うほど増える個人情報・薬機法・景表法・SNSのリスク</b>を、導入の入口で先回りしてケアします。</p>
+
+  <div class="sec">
+    <div class="sec-h">なぜ今か</div>
+    <ul class="pts">
+      <li>AIによる肌診断・自動提案・SNS運用が広がるほど、<b>薬機法・景表法・個人情報の事故リスク</b>がサロン現場で増大している。</li>
+      <li>導入企業にとって「安全に使えること」は、機器そのものと同じくらい重要な<b>選定・継続の条件</b>になりつつある。</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">ご提案内容 ― 3点セット</div>
+    <ul class="pts">
+      <li><b>美容AIセキュリティ基礎検定3級</b> — スタッフが最低限おさえるべき安全リテラシーを検定化。</li>
+      <li><b>法令・コンプライアンス問題集</b> — 特商法・景表法・薬機法・個人情報・SNS・AIガイドラインを10問+解説で学習。</li>
+      <li><b>美容業界AI活用ガイドライン2026</b> — 「やってよい／いけない」を明文化したパートナー向け指針。</li>
+    </ul>
+  </div>
+
+  <div class="cols">
+    <div class="card">
+      <h3>タカラベルモント様のメリット</h3>
+      <ul>
+        <li>「機器を入れる＝安全教育もセット」を標準化</li>
+        <li>導入後トラブルの予防で顧客満足・継続率向上</li>
+        <li>AI/DX推進の"守り"を外部専門機能で補完</li>
+      </ul>
+    </div>
+    <div class="card rose">
+      <h3>提供形態</h3>
+      <ul>
+        <li>教材の<b>卸提供</b>（サロンへ同梱配布）</li>
+        <li>年次更新の<b>サブスク型</b>で最新法令に追従</li>
+        <li>タカラベルモント様名義／共同ブランドも可</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <b>はじめの一歩</b>
+    <p>まずは<b>デモ用の検定・問題集を数十アカウント分ご提供</b>。現場スタッフに試していただき、同梱パッケージ化の効果を確認いただけます。</p>
+  </div>
+
+  <div class="foot"><span>一般社団法人デジラボビューティー ｜ digilabbeauty@gmail.com</span><span class="en">digilab beauty ×  TAKARA BELMONT ｜ Proposal B</span></div>
+</section>
+
+<!-- ============ 提案C：診断 ============ -->
+<section class="sheet">
+  <div class="head">
+    <div class="brand">Digilab beauty<small>一般社団法人デジラボビューティー</small></div>
+    <div class="to"><b>タカラベルモント株式会社 エステ事業部 御中</b>ご提案書 ｜ 2026.07.08</div>
+  </div>
+
+  <div class="chip"><span class="n">C</span><span class="k">DIAGNOSIS ｜ 診断・経営支援</span></div>
+  <h1>「サロンAI活用度診断」<br><span class="em">× 経営コンサル連携</span></h1>
+  <p class="lead">全10問・約2分のセルフ診断を、タカラベルモント様の<b>経営相談・開業支援の"入口"</b>に。サロンの現状を可視化し、機器・化粧品・教育・AIツールの最適提案へ自然に接続します。</p>
+
+  <div class="sec">
+    <div class="sec-h">なぜ今か</div>
+    <ul class="pts">
+      <li>多くのサロンは「AI・DXで何から手をつけるべきか」を言語化できていない。<b>診断はその会話の口火</b>を切る。</li>
+      <li>診断結果は、そのまま<b>コンサルの現状把握資料</b>となり、提案の説得力とリード獲得力を高める。</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">ご提案内容</div>
+    <ul class="pts">
+      <li><b>診断ツールのOEM提供</b> — タカラベルモント様の営業・アカデミー・展示会で使える形にカスタマイズ。</li>
+      <li><b>結果連動の提案フロー設計</b> — 診断結果 → 機器／化粧品／教育／AIツールへの共同カスタマージャーニーを設計。</li>
+      <li><b>レーダーチャート可視化</b> — AI活用診断Webアプリで、サロンの強み・弱みをその場でグラフ化。</li>
+    </ul>
+  </div>
+
+  <div class="role">
+    <div class="box tb"><b>タカラベルモント</b>全国のサロン網・営業導線・機器/化粧品/経営支援という「提案の受け皿」</div>
+    <div class="x">×</div>
+    <div class="box dl"><b>Digilab beauty</b>AI活用度を測る診断・可視化ツールという「会話の入口」</div>
+  </div>
+
+  <div class="step">
+    <b>はじめの一歩</b>
+    <p>まずは<b>現行の診断ページをそのまま営業現場でお試し利用</b>（改修不要）。手応えを見てからOEM化・提案フロー連携へ進めます。<br><span style="font-size:10.5px;color:var(--ink-soft)">デモ：https://xenomao.github.io/xenomao/shindan/</span></p>
+  </div>
+
+  <div class="foot"><span>一般社団法人デジラボビューティー ｜ digilabbeauty@gmail.com</span><span class="en">digilab beauty ×  TAKARA BELMONT ｜ Proposal C</span></div>
+</section>
+
+</body>
+</html>
