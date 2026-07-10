@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>AI時代だからこそ、輝く人 — DigiLab Beauty White Paper Vol.1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2e2940;
+    --body:#37324a;
+    --sub:#6c6480;
+    --lav:#8a76b3;
+    --lav-deep:#5c4a84;
+    --lav-line:#c3b4de;
+    --lav-bg:#f5f1fb;
+    --lav-bg2:#eee7f6;
+    --rose:#b3778f;
+    --teal:#6f97ac;
+    --cream:#f3efe8;
+    --indigo:#3b3357;
+    --hair:#e4dced;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    color:var(--body);
+    font-weight:400;
+    line-height:1.92;
+    font-size:10.2pt;
+    letter-spacing:.01em;
+  }
+  .serif{font-family:'Noto Serif JP',serif;}
+
+  @page{ size:A4; margin:0; }
+  .page{
+    position:relative;
+    width:210mm; height:297mm;
+    padding:20mm 19mm 16mm;
+    background:#ffffff;
+    overflow:hidden;
+    page-break-after:always;
+  }
+  .page:last-child{page-break-after:auto;}
+
+  /* running footer */
+  .foot{
+    position:absolute; left:19mm; right:19mm; bottom:11mm;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:7.6pt; color:#a99fbd; letter-spacing:.04em;
+    border-top:1px solid var(--hair); padding-top:5px;
+  }
+  .foot .pg{font-variant-numeric:tabular-nums;}
+
+  /* ---------- COVER ---------- */
+  .cover{padding:0;}
+  .cover-inner{position:relative;width:100%;height:100%;padding:22mm 19mm;}
+  .cover-deco{position:absolute;top:0;right:0;width:96mm;height:190mm;background:linear-gradient(180deg,#efe7f7 0%,#f6f1f4 100%);z-index:0;}
+  .cover-c1{position:absolute;top:44mm;right:14mm;width:78mm;height:78mm;border-radius:50%;background:#c9b8e2;opacity:.85;z-index:0;}
+  .cover-c2{position:absolute;top:70mm;right:6mm;width:52mm;height:52mm;border-radius:50%;background:#f0dfe8;z-index:0;}
+  .cover-content{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;}
+  .cover-kicker{font-size:9pt;letter-spacing:.22em;color:var(--lav-deep);font-weight:500;}
+  .cover-kicker .bar{color:var(--lav-line);margin:0 10px;}
+  .cover-title{margin-top:44mm;}
+  .cover-title h1{font-family:'Noto Serif JP',serif;font-weight:600;color:var(--ink);font-size:37pt;line-height:1.42;letter-spacing:.04em;}
+  .cover-sub{margin-top:16mm;}
+  .cover-sub .s1{font-family:'Noto Serif JP',serif;font-size:14.5pt;color:var(--lav-deep);letter-spacing:.05em;font-weight:500;}
+  .cover-sub .s2{margin-top:9px;font-family:'Noto Serif JP',serif;font-size:11pt;color:var(--rose);letter-spacing:.08em;}
+  .cover-sub .s2 .dash{color:var(--lav-line);}
+  .cover-rule{margin-top:12px;width:150mm;height:2px;background:linear-gradient(90deg,var(--lav) 0%,var(--rose) 100%);}
+  .cover-lead{margin-top:16mm;max-width:118mm;font-size:10pt;line-height:2.05;color:#4a4460;}
+  .cover-lead p+p{margin-top:1.1em;}
+  .cover-foot{margin-top:auto;}
+  .cover-foot .org{font-size:9.4pt;color:#5a5470;letter-spacing:.03em;}
+  .cover-foot .fw{margin-top:7px;font-size:8.4pt;letter-spacing:.16em;color:#a99fbd;}
+
+  /* ---------- headings ---------- */
+  h2.chap{font-family:'Noto Serif JP',serif;font-weight:600;color:var(--ink);font-size:19pt;letter-spacing:.03em;line-height:1.4;}
+  h2.chap .no{color:var(--lav);margin-right:.5em;}
+  .chap-rule{margin:11px 0 20px;height:2px;background:linear-gradient(90deg,var(--lav) 0%,var(--lav-line) 62%,transparent 100%);}
+  .chap-rule.rose{background:linear-gradient(90deg,var(--rose) 0%,#e0c0cd 62%,transparent 100%);}
+
+  h3.sec{font-family:'Noto Sans JP',sans-serif;font-weight:500;color:var(--lav-deep);font-size:12pt;letter-spacing:.02em;margin:20px 0 7px;}
+  h3.sec .idx{color:var(--lav);font-weight:600;margin-right:.35em;}
+  p.tx{font-size:10pt;line-height:1.95;color:var(--body);text-align:justify;}
+  p.tx+p.tx{margin-top:.7em;}
+
+  .lead-band{font-size:10pt;line-height:1.98;color:#463f5c;text-align:justify;}
+
+  /* ---------- section title (おわりに etc) ---------- */
+  h3.plain{font-family:'Noto Serif JP',serif;font-weight:600;color:var(--lav-deep);font-size:14pt;letter-spacing:.05em;margin-bottom:12px;}
+
+  /* ---------- pull quote ---------- */
+  .quote{margin:26px 0 4px;padding:20px 24px;background:var(--lav-bg);border:1px solid var(--lav-line);border-radius:4px;text-align:center;}
+  .quote .q{font-family:'Noto Serif JP',serif;font-size:14pt;color:var(--lav-deep);letter-spacing:.04em;line-height:1.7;font-weight:500;}
+
+  /* ---------- TOC ---------- */
+  .toc-title{font-family:'Noto Serif JP',serif;font-size:16pt;color:var(--ink);letter-spacing:.14em;font-weight:600;margin-bottom:4px;}
+  .toc-en{font-size:8pt;letter-spacing:.28em;color:var(--lav);text-transform:uppercase;margin-bottom:18px;}
+  .toc ul{list-style:none;}
+  .toc li{display:flex;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--hair);}
+  .toc .n{font-family:'Noto Serif JP',serif;color:var(--lav);font-size:10.5pt;width:34px;flex:none;}
+  .toc .t{font-size:10.5pt;color:var(--ink);font-weight:500;}
+  .toc .dots{flex:1;border-bottom:1px dotted #cfc6dd;margin:0 10px;transform:translateY(-3px);}
+  .toc .pg{font-size:9.5pt;color:var(--sub);font-variant-numeric:tabular-nums;}
+
+  /* ---------- summary table ---------- */
+  table{border-collapse:collapse;width:100%;font-size:9.4pt;}
+  .kv{margin-top:16px;border:1px solid var(--lav-line);border-radius:4px;overflow:hidden;}
+  .kv tr{border-bottom:1px solid #e7dff2;}
+  .kv tr:last-child{border-bottom:none;}
+  .kv td{padding:11px 16px;vertical-align:middle;line-height:1.6;}
+  .kv td.k{width:44mm;background:var(--lav);color:#fff;font-weight:500;font-size:9.2pt;letter-spacing:.02em;}
+  .kv td.v{background:#faf7fd;color:var(--body);}
+  tr:nth-child(even) .k{background:var(--lav-deep);}
+
+  /* ---------- generic data table ---------- */
+  .dt{margin-top:14px;border:1px solid #ded5ec;border-radius:4px;overflow:hidden;}
+  .dt th{background:var(--indigo);color:#fff;font-weight:500;text-align:left;padding:10px 14px;font-size:9.2pt;letter-spacing:.03em;}
+  .dt td{padding:10px 14px;border-top:1px solid #e9e2f2;line-height:1.62;vertical-align:top;font-size:9.3pt;}
+  .dt tbody tr:nth-child(odd) td{background:#faf8fd;}
+  .dt .ax{font-family:'Noto Serif JP',serif;color:var(--lav-deep);font-weight:600;text-align:center;width:18mm;letter-spacing:.04em;white-space:nowrap;}
+  .dt th.ax{font-size:8.4pt;letter-spacing:.02em;color:#fff;}
+  .cap{margin:22px 0 0;font-size:10.5pt;color:var(--ink);font-weight:500;font-family:'Noto Serif JP',serif;letter-spacing:.03em;}
+
+  /* compact / dense helpers for tight pages */
+  .chap.sm{font-size:16.5pt;line-height:1.36;}
+  .page.dense h3.sec{margin-top:13px;margin-bottom:5px;}
+  .page.dense p.tx{line-height:1.8;}
+  .page.dense p.tx+p.tx{margin-top:.5em;}
+  .page.dense .cap{margin-top:15px;}
+  .dt.compact td{padding:6.5px 14px;font-size:9pt;}
+  .dt.compact th{padding:8px 14px;}
+
+  /* ---------- chapter 2 cards ---------- */
+  .card{margin-top:16px;border-radius:5px;overflow:hidden;border:1px solid var(--hair);}
+  .card .hd{display:flex;align-items:center;gap:16px;padding:12px 20px;color:#fff;}
+  .card .hd .num{font-family:'Noto Serif JP',serif;font-size:22pt;font-weight:600;line-height:1;opacity:.92;}
+  .card .hd .ttl{font-family:'Noto Serif JP',serif;font-size:13pt;font-weight:600;letter-spacing:.06em;}
+  .card .bd{padding:15px 20px 17px;background:var(--cream);font-size:9.6pt;line-height:1.9;text-align:justify;color:#413b52;}
+  .card.c1 .hd{background:#8a76b3;}
+  .card.c2 .hd{background:#b3778f;}
+  .card.c3 .hd{background:#6f97ac;}
+
+  /* ---------- chapter 5 proposals ---------- */
+  .prop{margin-top:15px;border-radius:5px;overflow:hidden;border:1px solid var(--hair);}
+  .prop .hd{display:flex;align-items:center;gap:14px;padding:10px 20px;color:#fff;}
+  .prop .hd .tag{font-size:8.6pt;letter-spacing:.08em;font-weight:500;background:rgba(255,255,255,.22);padding:3px 10px;border-radius:20px;white-space:nowrap;}
+  .prop .hd .ttl{font-family:'Noto Serif JP',serif;font-size:11.6pt;font-weight:600;letter-spacing:.03em;}
+  .prop .bd{padding:13px 20px 15px;background:var(--cream);font-size:9.5pt;line-height:1.88;text-align:justify;color:#413b52;}
+  .prop.p1 .hd{background:#8a76b3;}
+  .prop.p2 .hd{background:#b3778f;}
+  .prop.p3 .hd{background:#6f97ac;}
+  .prop.p4 .hd{background:#5c4a84;}
+
+  .imprint{margin-top:26px;display:flex;border:1px solid var(--lav-line);border-radius:4px;overflow:hidden;}
+  .imprint .lb{background:var(--lav);color:#fff;padding:14px 16px;font-size:9pt;font-weight:500;width:34mm;flex:none;display:flex;align-items:center;letter-spacing:.04em;}
+  .imprint .vv{background:#faf7fd;padding:14px 18px;font-size:9.3pt;color:var(--body);line-height:1.8;display:flex;align-items:center;flex:1;min-width:0;flex-wrap:wrap;}
+
+  .divider{height:1px;background:var(--hair);margin:30px 0;}
+  .end-note{margin-top:14px;font-size:9.9pt;line-height:2;color:#463f5c;text-align:justify;}
+  .end-note p+p{margin-top:1em;}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : COVER ============ -->
+<section class="page cover">
+  <div class="cover-inner">
+    <div class="cover-deco"></div>
+    <div class="cover-c1"></div>
+    <div class="cover-c2"></div>
+    <div class="cover-content">
+      <div class="cover-kicker">DIGILAB BEAUTY WHITE PAPER<span class="bar">|</span>Vol.1<span class="bar">/</span>2026.07</div>
+
+      <div class="cover-title">
+        <h1>AI時代だからこそ、<br>輝く人</h1>
+      </div>
+
+      <div class="cover-sub">
+        <div class="s1">「人間の価値」を再定義する、エステティシャンへの提言</div>
+        <div class="s2"><span class="dash">——&nbsp;</span>AIはメンタルヘルス領域までカバーできるのか<span class="dash">&nbsp;——</span></div>
+        <div class="cover-rule"></div>
+      </div>
+
+      <div class="cover-lead">
+        <p>AIの急速な普及は、知識と情報処理のほぼ全領域で、人間の能力を超えつつある。しかし「心」の領域——感情の揺らぎ、孤独、意欲の喪失、自己肯定感の回復——を、AIは本当にカバーできるのか。</p>
+        <p>本白書は、この問いをデジラボビューティが正面から掲げ、裸の身体に直接触れることを許された、医療以外で唯一無二の専門職であるエステティシャンの「人間の固有価値」を提言する。</p>
+      </div>
+
+      <div class="cover-foot">
+        <div class="org">一般社団法人デジラボビューティ<span style="color:#c3b4de;margin:0 10px;">|</span>代表理事　鎌田麻央</div>
+        <div class="fw">DIGILAB QUALITY STANDARD (DQS) FRAMEWORK</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 : TOC + EXEC SUMMARY ============ -->
+<section class="page">
+  <div class="toc-en">Contents</div>
+  <div class="toc-title">目次</div>
+  <nav class="toc">
+    <ul>
+      <li><span class="n">—</span><span class="t">エグゼクティブサマリー</span><span class="dots"></span><span class="pg">02</span></li>
+      <li><span class="n">01</span><span class="t">問いの背景 —— AIと「心」の境界線</span><span class="dots"></span><span class="pg">03</span></li>
+      <li><span class="n">02</span><span class="t">AIが代替できない3つの本質</span><span class="dots"></span><span class="pg">04</span></li>
+      <li><span class="n">03</span><span class="t">エステティシャンとメンタルヘルス —— 見えない接点</span><span class="dots"></span><span class="pg">05</span></li>
+      <li><span class="n">—</span><span class="t">図表 ｜ AIとエステティシャンの役割分担</span><span class="dots"></span><span class="pg">06</span></li>
+      <li><span class="n">04</span><span class="t">DQSフレームワークとの接続</span><span class="dots"></span><span class="pg">07</span></li>
+      <li><span class="n">05</span><span class="t">提言</span><span class="dots"></span><span class="pg">08</span></li>
+      <li><span class="n">—</span><span class="t">おわりに</span><span class="dots"></span><span class="pg">09</span></li>
+    </ul>
+  </nav>
+
+  <div style="margin-top:26px;">
+    <h2 class="chap serif">エグゼクティブサマリー</h2>
+    <div class="chap-rule rose"></div>
+    <p class="lead-band">「AIはメンタルヘルス領域までカバーできるのか」——これが、デジラボビューティの中核的な問いである。AIは情報処理・知識合成・定型的な対話において、急速に人間を超えつつある。しかし、感情の揺らぎ、孤独感、自己肯定感の回復、生きる意欲の再生という領域では、AIは本質的な限界を抱える。本白書はその構造を分析し、裸の身体に直接触れることを職業として許された、医療以外で唯一無二の専門職であるエステティシャンが担うべき「人間の固有価値」を提言する。</p>
+
+    <table class="kv">
+      <tr><td class="k">中核の問い</td><td class="v">AIはメンタルヘルス領域までカバーできるのか</td></tr>
+      <tr><td class="k">エステティシャンの位置</td><td class="v">医療以外で唯一、裸の身体に直接触れることを許された専門職</td></tr>
+      <tr><td class="k">デジラボの仮説</td><td class="v">「心」に触れる仕事は、原理的にAIが代替できない</td></tr>
+      <tr><td class="k">3つの核心</td><td class="v">身体性と場の空気 ／ 判断責任 ／ 問いを立てる力</td></tr>
+      <tr><td class="k">DQSとの接続</td><td class="v">H軸4項目が、AI時代の人間的価値を認証基準として定義する</td></tr>
+    </table>
+  </div>
+
+  <div class="foot"><span>一般社団法人デジラボビューティ　WHITE PAPER Vol.1　2026</span><span class="pg">p. 2</span></div>
+</section>
+
+<!-- ============ PAGE 3 : CHAPTER 1 ============ -->
+<section class="page">
+  <h2 class="chap"><span class="no">Chapter 1</span>問いの背景 —— AIと「心」の境界線</h2>
+  <div class="chap-rule"></div>
+
+  <h3 class="sec"><span class="idx">1-1</span>AIが達成したこと</h3>
+  <p class="tx">大規模言語モデル（LLM）の登場以降、テキスト生成・要約・翻訳・画像生成といった領域で、AIは多くの専門職の平均的パフォーマンスを上回るに至った。メンタルヘルスの分野においても、認知行動療法（CBT）の考え方を取り入れた対話ボットや、感情に寄り添う会話モデルの開発・普及が進んでいる。「いつでも・どこでも・低コストで」応答できるという利便性において、AIはすでに人間を明らかに上回っている。</p>
+
+  <h3 class="sec"><span class="idx">1-2</span>しかし、AIに届かない領域がある</h3>
+  <p class="tx">AIは言語のパターンから応答を組み立てる。だが人間の「心の傷」は、言語だけで成り立ってはいない。涙のあたたかさ、沈黙の重さ、「もう少しそばにいてほしい」という願い——これらは、テキストや音声のデータに還元しきれない、身体的で関係的な経験である。AIは「共感」を精緻に模倣できる。しかし「共にいる」ことはできない。この一点の差こそが、メンタルヘルス領域におけるAIの本質的な限界である。</p>
+
+  <h3 class="sec"><span class="idx">1-3</span>デジラボビューティの問い</h3>
+  <p class="tx">私たちは、この問いを「エステティシャン」という職業の文脈から立てる。エステティシャンは、医療従事者を除けば、顧客の裸の身体に直接触れることを職業として正式に許された、唯一の専門職である。美容師・ネイリスト・セラピストもまた顧客の身体に接するが、肌そのものに、衣服を脱いだ状態の身体に、長時間にわたって触れ続ける職業は、エステティシャンをおいて他にない。この身体的接近性の高さは、本来であれば医療に準じる専門性と倫理的責任を要請するものであり、同時に、AIが原理的に到達しえない領域への、最も深いアクセス権を意味する。デジラボビューティは、この特異な職業的地位を正面から評価し、AIがどれほど進化しても代替されえない中核的価値として定義する。</p>
+
+  <div class="quote"><div class="q">「AIは共感を模倣できる。しかし、"共にいる"ことはできない。」</div></div>
+
+  <div class="foot"><span>一般社団法人デジラボビューティ　WHITE PAPER Vol.1　2026</span><span class="pg">p. 3</span></div>
+</section>
+
+<!-- ============ PAGE 4 : CHAPTER 2 ============ -->
+<section class="page">
+  <h2 class="chap"><span class="no">Chapter 2</span>AIが代替できない3つの本質</h2>
+  <div class="chap-rule"></div>
+
+  <div class="card c1">
+    <div class="hd"><span class="num">01</span><span class="ttl">身体性と場の空気</span></div>
+    <div class="bd">AIが扱えるのは、テキストと画像である。皮膚の感触、体温、呼吸のリズム、沈黙の重さは、その処理の外にある。エステティシャンは、医療従事者を除けば唯一、衣服を脱いだ無防備な身体に長時間直接触れることを許された専門職である。施術者の手のぬくもり、カウンセリングの「間（ま）」、ただ同じ場に居ること自体が、言葉を超えた情報となる。メンタルヘルスの回復に不可欠な「身体が安心する」という体験は、物理的な接触と場の共有によってのみ生まれる。AIが人と場を共有することは、原理的にできない。</div>
+  </div>
+
+  <div class="card c2">
+    <div class="hd"><span class="num">02</span><span class="ttl">判断責任</span></div>
+    <div class="bd">AIは確率で答えを返す。「この人に、今これを言うべきか」「今日は施術よりも話を聞くべきか」——こうした倫理的・関係的な判断を、結果への責任とともに下せるのは、人間だけである。メンタルヘルスの文脈では、この判断の精度が、当事者の安全に直結する。AIはリスクを確率として評価できるが、その人の目を見て、その場で判断を引き受けることはできない。</div>
+  </div>
+
+  <div class="card c3">
+    <div class="hd"><span class="num">03</span><span class="ttl">問いを立てる力</span></div>
+    <div class="bd">AIは答えを出す機械である。しかしメンタルヘルスの支援において最も重要なのは、「あなたは本当は何を大切にしているのか」という問いを、その人とともに探す過程そのものである。答えを提供することではなく、問いを立てる関係性こそが、治癒的に機能する。エステティシャンは施術を通じて、顧客がその問いと静かに向き合う「場と時間」を提供している。とりわけ、衣服を脱ぎ、無防備な身体を委ねるという高度な信頼の上に成り立つ施術の時間において、この「問いを共に探す」関係性を、最も深く築くことができる立場にある。</div>
+  </div>
+
+  <div class="quote" style="margin-top:24px;"><div class="q">AIは「答え」を持っている。<br>人間は、その人とともに「問い」を立てられる。</div></div>
+
+  <div class="foot"><span>一般社団法人デジラボビューティ　WHITE PAPER Vol.1　2026</span><span class="pg">p. 4</span></div>
+</section>
+
+<!-- ============ PAGE 5 : CHAPTER 3 ============ -->
+<section class="page">
+  <h2 class="chap sm"><span class="no">Chapter 3</span>エステティシャンとメンタルヘルス —— 見えない接点</h2>
+  <div class="chap-rule rose"></div>
+
+  <h3 class="sec"><span class="idx">3-1</span>エステティシャンは「医療以外で唯一」の身体的接近性を持つ</h3>
+  <p class="tx">エステティシャンの施術は、顧客が衣服を脱ぎ、無防備な肌を委ねるという、医療行為に匹敵する身体的接近性の上に成立している。この接近性は本来、極めて高い専門性・倫理観・責任感を要請するものであり、単なる「美容サービス」という枠を超えた職業的地位を持つべきものである。しかし業界の自己認識は、この本質的な価値の高さに比して、十分に言語化・評価されてこなかった。デジラボビューティは、この職業的地位を正しく再定義することを、使命の一つに掲げる。</p>
+
+  <h3 class="sec"><span class="idx">3-2</span>エステサロンは「予防的メンタルケア」の現場である</h3>
+  <p class="tx">エステサロンを訪れる人々の動機は、「綺麗になりたい」だけではない。「少し休みたい」「誰かに話を聞いてほしい」「自分を取り戻したい」——そうした思いが、そこには重なっている。施術中の会話、肌に直接触れられる安心感、無防備なまま過ごす非日常の時間。これらは医療としてのメンタルヘルスケアとは異なるが、日常の中で「心の負荷を下げる」機能を、他のどの職業よりも深く担っている。エステティシャンは、この機能を自覚的・意図的に高めていける立場にある。</p>
+
+  <h3 class="sec"><span class="idx">3-3</span>AIとの協働と、AIに委ねてはならないもの</h3>
+  <p class="tx">AIは、エステティシャンの業務においても強力な道具となる。予約管理・カルテ分析・施術提案・マーケティングは、AIが効率化できる。しかし、「あの人、今日はなんだか元気がなかったな」という肌や表情からの直感的な気づき、「今日は施術より話を聞こう」という咄嗟の判断、無防備な身体に触れる瞬間に立ち上がる信頼関係——これらはAIが学習・模倣できても、人が身体を持ってその場にいることでしか生まれない。エステティシャンはAIを使い倒しながら、この領域を自らの本丸として守らなければならない。</p>
+
+  <h3 class="sec"><span class="idx">3-4</span>デジラボビューティが取り組む理由</h3>
+  <p class="tx">「AI時代に、メンタルヘルス領域まで人間がカバーすべきか」という問いは、美容業界だけのものではない。しかし私たちは、エステティシャンこそが、医療以外で最も深く、最も日常的・継続的に人々の「心身の境界」に関わる専門職であると考える。この問いに正面から向き合い、DQSフレームワークを通じて「心と肌の両方に触れる専門職の質」を定義・認証すること。それが、デジラボビューティの使命の核心である。</p>
+
+  <div class="foot"><span>一般社団法人デジラボビューティ　WHITE PAPER Vol.1　2026</span><span class="pg">p. 5</span></div>
+</section>
+
+<!-- ============ PAGE 6 : EXHIBIT (役割分担) ============ -->
+<section class="page">
+  <div class="toc-en" style="margin-top:2mm;">Exhibit</div>
+  <h2 class="chap serif" style="font-size:17pt;">図表 ｜ AIとエステティシャンの役割分担</h2>
+  <div class="chap-rule rose"></div>
+
+  <p class="tx" style="margin-bottom:4px;">メンタルヘルス領域において、AIが担える機能と、人間にしか担えない機能は、明確に分かれている。両者を混同せず、それぞれの役割を意識的に設計することが、AI時代におけるエステティシャンの専門職戦略の出発点となる。</p>
+
+  <table class="dt" style="margin-top:22px;">
+    <thead><tr><th style="width:34mm;">領域</th><th style="width:56mm;">AIができること</th><th>人間にしかできないこと</th></tr></thead>
+    <tbody>
+      <tr><td>情報提供</td><td>セルフケア情報の即時提供</td><td>顧客の状況に応じた取捨選択と判断</td></tr>
+      <tr><td>傾聴</td><td>24時間のテキスト応答</td><td>沈黙を共有し、体温を持って聞く</td></tr>
+      <tr><td>気づき</td><td>行動データからの異常検知</td><td>表情・声・空気感からの直感的察知</td></tr>
+      <tr><td>継続ケア</td><td>アプリ通知・リマインド</td><td>「また来てよかった」という関係の蓄積</td></tr>
+      <tr><td>危機対応</td><td>リスク指標の検出・警告</td><td>判断責任を持った、即時の人的介入</td></tr>
+      <tr><td>意味の回復</td><td>情報・コンテンツの提供</td><td>「あなたはどうしたいか」を問い続ける関係</td></tr>
+    </tbody>
+  </table>
+
+  <div class="quote" style="margin-top:34px;"><div class="q">AIが提供するのは「情報」と「効率」。<br>エステティシャンが提供するのは「関係性による回復」。</div></div>
+
+  <p class="tx" style="margin-top:30px;color:var(--sub);font-size:9.4pt;">この役割分担は、エステティシャンから仕事を奪うためのものではない。定型的な業務をAIに委ねるほど、人間は「関係性による回復」という最も価値の高い領域へ、時間と専門性を解き放つことができる。役割を分けることは、専門職としての価値を最大化するための戦略である。</p>
+
+  <div class="foot"><span>一般社団法人デジラボビューティ　WHITE PAPER Vol.1　2026</span><span class="pg">p. 6</span></div>
+</section>
+
+<!-- ============ PAGE 7 : CHAPTER 4 ============ -->
+<section class="page">
+  <h2 class="chap"><span class="no">Chapter 4</span>DQSフレームワークとの接続</h2>
+  <div class="chap-rule"></div>
+
+  <p class="tx">一般社団法人デジラボビューティが策定したDQS（DigiLab Quality Standard）は、7軸28項目・112点満点の評価フレームワークである。そのうちH軸（人間品質）の4項目は、医療以外で唯一、裸の身体に直接触れる専門職であるエステティシャンが担う、メンタルヘルス領域を含む「人間の固有価値」を、認証基準として定義している。AI時代において、DQSの認証は「このエステティシャンは、AIが代替できない領域を意識的に担っている」という、確かな証明として機能する。</p>
+
+  <table class="dt" style="margin-top:18px;">
+    <thead><tr><th class="ax" style="text-align:center;">DQS軸</th><th style="width:46mm;">軸の意味</th><th>メンタルヘルス領域との接続</th></tr></thead>
+    <tbody>
+      <tr><td class="ax">H1</td><td>技術・知識の品質</td><td>裸の身体への施術が心に作用する、そのメカニズムへの理解</td></tr>
+      <tr><td class="ax">H2</td><td>接客・コミュニケーション</td><td>言語化できない不調の察知と、場を共有する力</td></tr>
+      <tr><td class="ax">H3</td><td>倫理・誠実性</td><td>「今この人に、何が必要か」という判断責任</td></tr>
+      <tr><td class="ax">H4</td><td>継続学習・成長</td><td>AI時代の変化を読み、問いを立て続ける専門家像</td></tr>
+      <tr><td class="ax">A1</td><td>デジタルツール活用</td><td>AIを使い倒し、人間の時間を本丸に集中させる</td></tr>
+      <tr><td class="ax">A2</td><td>データ活用・分析</td><td>AIの出力を批判的に読み、顧客ケアへ還元する</td></tr>
+      <tr><td class="ax">A3</td><td>オンライン発信・信頼性</td><td>「心に触れる専門職」としての思想と言語の発信</td></tr>
+    </tbody>
+  </table>
+
+  <div class="quote" style="margin-top:30px;"><div class="q">DQS認証とは、AIが代替できない領域を<br>意識的に担っていることの、証明である。</div></div>
+
+  <div class="foot"><span>一般社団法人デジラボビューティ　WHITE PAPER Vol.1　2026</span><span class="pg">p. 7</span></div>
+</section>
+
+<!-- ============ PAGE 8 : CHAPTER 5 ============ -->
+<section class="page">
+  <h2 class="chap"><span class="no">Chapter 5</span>提言</h2>
+  <div class="chap-rule rose"></div>
+
+  <div class="prop p1">
+    <div class="hd"><span class="tag">提言 1</span><span class="ttl">エステティシャンを「医療に最も近い非医療職」として再定義せよ</span></div>
+    <div class="bd">エステティシャンは、医療従事者を除けば唯一、裸の身体に直接触れることを職業として許されている。この身体的接近性の高さに見合う専門性・倫理観・社会的地位を、業界全体で再構築すべきである。「美容サービス業」という従来の枠組みを超え、「心身の境界に関わる専門職」へと自己定義を更新することが、AI時代における最大の差別化になる。</div>
+  </div>
+
+  <div class="prop p2">
+    <div class="hd"><span class="tag">提言 2</span><span class="ttl">「察知力」を言語化し、教育可能にせよ</span></div>
+    <div class="bd">「なんだか今日は元気がなかったな」という、肌に触れる中で生まれる直感的な気づきは、訓練によって高められる専門的能力である。この察知力を言語化・体系化し、教育カリキュラムに組み込むことで、エステティシャン全体の「メンタルケア感度」を底上げできる。DQSのH2軸は、その評価基準を提供する。</div>
+  </div>
+
+  <div class="prop p3">
+    <div class="hd"><span class="tag">提言 3</span><span class="ttl">AIという武器と、人間の手 —— 新しい職業階層を作れ</span></div>
+    <div class="bd">予約管理・顧客分析・SNS運用・施術提案の効率化はAIに委ね、エステティシャン自身は「裸の身体に触れ、心の状態を読み取る」という、AIには代替できない中核業務に、時間と専門性を集中させること。強力な武器としてのAIを駆使しながら人間の手による施術を深化させることで、従来の「美容従事者」を超えた、より高い専門性と社会的地位を備えた新しい職業階層が生まれる。これは、エステティシャンの地位向上そのものである。</div>
+  </div>
+
+  <div class="prop p4">
+    <div class="hd"><span class="tag">提言 4</span><span class="ttl">問いを立て続ける機関として、デジラボが機能する</span></div>
+    <div class="bd">「AIはメンタルヘルス領域までカバーできるのか」——この問いに、エステティシャンが向き合い続けるために、デジラボビューティは中立的な場を提供する。DQS認証・研究・教育・対話を通じて、エステティシャンという職業が本来持つ「人間の固有価値」と地位を守り、高めていくインフラとして機能することを、ここに宣言する。</div>
+  </div>
+
+  <div class="foot"><span>一般社団法人デジラボビューティ　WHITE PAPER Vol.1　2026</span><span class="pg">p. 8</span></div>
+</section>
+
+<!-- ============ PAGE 9 : おわりに ============ -->
+<section class="page">
+  <div style="margin-top:6mm;"></div>
+  <h3 class="plain">おわりに</h3>
+  <div class="end-note">
+    <p>AIは「心の苦しさ」を検出し、「適切な情報」を提示し、「似た状況の事例」を参照できる。しかし、「あなたのそばにいる」ことはできない。人は、情報によってではなく、関係性によって回復する。この原則は、AIがどれほど進化しても変わらない。</p>
+    <p>医療以外で唯一、裸の身体に直接触れることを許されたエステティシャンは、その関係性を、日常の中で最も継続的に、そして最も深く育てられる専門職である。デジラボビューティは、この職業が本来持つべき専門性と社会的地位を正しく定義し、DQSフレームワークを通じて「人間的価値」を可視化・認証していく。AIという武器を駆使しながら、人間の手による施術を極めることで、エステティシャンという職業は、新しい階層へと進化する。</p>
+    <p>業界の未来は、AIへの恐怖からではなく、人間の固有価値への深い自信から始まる。</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="quote" style="border:none;background:linear-gradient(135deg,#f5f1fb 0%,#f6eef2 100%);">
+    <div class="q" style="font-size:13pt;">人は、情報によってではなく、<br>関係性によって回復する。</div>
+  </div>
+
+  <div class="imprint">
+    <div class="lb">発行機関</div>
+    <div class="vv"><span style="white-space:nowrap;">一般社団法人デジラボビューティ（DigiLab Beauty）</span>　<span style="white-space:nowrap;">代表理事：鎌田麻央</span>　　<span style="white-space:nowrap;">発行：2026年7月　White Paper Vol.1</span></div>
+  </div>
+
+  <div class="foot"><span>一般社団法人デジラボビューティ　WHITE PAPER Vol.1　2026</span><span class="pg">p. 9</span></div>
+</section>
+
+</body>
+</html>
