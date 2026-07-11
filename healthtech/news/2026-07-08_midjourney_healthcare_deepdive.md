@@ -5,6 +5,13 @@
 
 > 画像生成AIの Midjourney が2026年6月に発表した医療参入。話題性が先行しがちなので、**「何を発表したか」「技術の実体」「構想」「冷静な論点（批判）」「何をウォッチすべきか」**に分けて深掘りします。※投資勧誘・効能保証ではありません。
 
+### 公式ページ（アクセス先）
+
+- **Midjourney Medical 公式トップ**: https://www.midjourney.com/medical
+- **発表ブログ「A New Era of Midjourney」**: https://www.midjourney.com/medical/blogpost
+
+※ 上記は検索結果および複数の報道（MobiHealthNews・Forbes・PYMNTS 等）で公式ページと確認済み。ただし当リサーチ環境からの**自動取得（bot）はサイト側が 403 で拒否**するため、本文はページ直読みではなく**公表内容を報じた一次〜二次ソース**に基づく。**通常のブラウザからは閲覧可能**。
+
 ---
 
 ## 1. 何を発表したか（What）
