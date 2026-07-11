@@ -44,6 +44,7 @@
 ### ニュース（研究・技術・デバイス・ビューティー）
 - [2026-07-08 研究・デバイス・ビューティー連携 洗い出し](news/2026-07-08_research_devices_beauty.md) — 電子スキン／CES 2026デバイス／スキン・ロンジェビティ／中国CBE／国内(資生堂・ポーラ)研究
 - [2026-07-08 ビッグニュース＆注目企業ウォッチ](news/2026-07-08_bignews_companies.md) — Midjourneyのヘルス参入／Clair Health(女性ホルモンwearable・Stanford発)
+- [2026-07-08 深掘り：Midjourneyのヘルスケア参入](news/2026-07-08_midjourney_healthcare_deepdive.md) — 技術の実体(Butterfly社の超音波チップ)・専門家の懐疑・規制の論点
 - [2026-07-08 デイリー（初回・業界サマリー）](news/2026-07-08_daily.md) — H1 2026のヘルステック全体動向
 
 ### 起業リサーチ
