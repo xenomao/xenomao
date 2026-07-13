@@ -1,0 +1,259 @@
+<title>デジラボビューティー ポジショニング1枚</title>
+<style>
+  :root{
+    --bg:#FBFAFE; --surface:#FFFFFF; --surface-2:#F6F3FC;
+    --ink:#26232F; --ink-soft:#615C70; --ink-faint:#938DA3;
+    --lav:#B9A7E6; --lav-deep:#8A72C9; --lav-wash:#EDE7FA; --lav-line:#E2D9F4;
+    --gold:#C6A15B; --gold-wash:#F5EEDD;
+    --line:#EAE6F2; --shadow:0 1px 2px rgba(58,42,102,.05),0 8px 30px rgba(58,42,102,.06);
+    --serif:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP","Songti SC",serif;
+    --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP",system-ui,sans-serif;
+    --latin:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#171522; --surface:#201D2C; --surface-2:#262234;
+      --ink:#F0ECF8; --ink-soft:#B7B0C9; --ink-faint:#7E7793;
+      --lav:#C3B2EE; --lav-deep:#B49CEC; --lav-wash:#2A2440; --lav-line:#3A3352;
+      --gold:#D9BC80; --gold-wash:#332B1B;
+      --line:#302A42; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 34px rgba(0,0,0,.32);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FBFAFE; --surface:#FFFFFF; --surface-2:#F6F3FC;
+    --ink:#26232F; --ink-soft:#615C70; --ink-faint:#938DA3;
+    --lav:#B9A7E6; --lav-deep:#8A72C9; --lav-wash:#EDE7FA; --lav-line:#E2D9F4;
+    --gold:#C6A15B; --gold-wash:#F5EEDD;
+    --line:#EAE6F2; --shadow:0 1px 2px rgba(58,42,102,.05),0 8px 30px rgba(58,42,102,.06);
+  }
+  :root[data-theme="dark"]{
+    --bg:#171522; --surface:#201D2C; --surface-2:#262234;
+    --ink:#F0ECF8; --ink-soft:#B7B0C9; --ink-faint:#7E7793;
+    --lav:#C3B2EE; --lav-deep:#B49CEC; --lav-wash:#2A2440; --lav-line:#3A3352;
+    --gold:#D9BC80; --gold-wash:#332B1B;
+    --line:#302A42; --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 34px rgba(0,0,0,.32);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    line-height:1.85;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+  .wrap{max-width:860px;margin:0 auto;padding:clamp(28px,6vw,72px) clamp(20px,5vw,56px) 80px;}
+
+  .eyebrow{font-family:var(--latin);font-size:11px;font-weight:600;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--lav-deep);margin:0 0 14px;}
+  .rule{height:1px;background:var(--line);border:0;margin:0;}
+
+  /* masthead */
+  .mast{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
+    padding-bottom:20px;border-bottom:1px solid var(--line);}
+  .brand{font-family:var(--latin);font-weight:600;letter-spacing:.24em;font-size:14px;color:var(--ink);}
+  .brand b{color:var(--lav-deep);font-weight:700;}
+  .doc-meta{font-family:var(--latin);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);}
+
+  /* thesis */
+  .thesis{margin:46px 0 8px;}
+  .thesis .kicker{font-family:var(--sans);font-size:14px;letter-spacing:.04em;color:var(--ink-soft);margin:0 0 18px;}
+  .thesis h1{font-family:var(--serif);font-weight:600;letter-spacing:.02em;
+    font-size:clamp(27px,4.6vw,44px);line-height:1.5;margin:0;text-wrap:balance;}
+  .thesis h1 .hl{color:var(--lav-deep);}
+  .thesis h1 .u{background:linear-gradient(transparent 62%,var(--lav-wash) 62%);padding:0 .06em;}
+  .thesis .one{margin:26px 0 0;font-size:15px;color:var(--ink-soft);max-width:60ch;}
+
+  section{margin-top:56px;}
+  h2.sec{font-family:var(--serif);font-weight:600;font-size:clamp(19px,2.7vw,24px);
+    letter-spacing:.03em;margin:0 0 8px;line-height:1.5;}
+  .lead{color:var(--ink-soft);font-size:15px;margin:0 0 26px;max-width:64ch;}
+  .lead b{color:var(--ink);font-weight:600;}
+
+  /* from -> to */
+  .shift{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow);}
+  .shift .cell{padding:24px clamp(18px,3vw,30px);}
+  .shift .from{background:var(--surface-2);}
+  .shift .to{background:linear-gradient(180deg,var(--lav-wash),var(--surface));}
+  .shift .tag{font-family:var(--latin);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-faint);margin:0 0 10px;}
+  .shift .to .tag{color:var(--lav-deep);}
+  .shift .txt{font-family:var(--serif);font-size:clamp(16px,2.3vw,20px);line-height:1.55;margin:0;color:var(--ink);}
+  .shift .strike{color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--lav-line);}
+  .shift .arrow{display:flex;align-items:center;justify-content:center;color:var(--lav);font-size:22px;
+    padding:0 6px;background:var(--surface);}
+  @media(max-width:560px){
+    .shift{grid-template-columns:1fr;}
+    .shift .arrow{padding:8px;transform:rotate(90deg);}
+  }
+
+  /* insight callout */
+  .insight{border-left:3px solid var(--lav);background:var(--surface);border-radius:0 14px 14px 0;
+    padding:22px clamp(20px,3vw,28px);box-shadow:var(--shadow);}
+  .insight p{margin:0;}
+  .insight .big{font-family:var(--serif);font-size:clamp(17px,2.4vw,21px);line-height:1.55;color:var(--ink);}
+  .insight .sub{margin-top:12px;color:var(--ink-soft);font-size:14.5px;}
+  .insight .big em{font-style:normal;color:var(--lav-deep);}
+
+  /* staircase */
+  .steps{display:flex;flex-direction:column;gap:16px;}
+  .step{position:relative;display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,26px);
+    align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:22px clamp(18px,3vw,28px);box-shadow:var(--shadow);}
+  .step .num{font-family:var(--latin);font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--lav-deep);
+    background:var(--lav-wash);border-radius:999px;width:52px;height:52px;display:flex;align-items:center;
+    justify-content:center;flex:none;}
+  .step:nth-child(1){margin-right:clamp(0px,9vw,120px);}
+  .step:nth-child(2){margin-right:clamp(0px,4.5vw,60px);}
+  .step h3{font-family:var(--serif);font-weight:600;font-size:18px;margin:2px 0 4px;letter-spacing:.02em;}
+  .step h3 .lab{font-family:var(--sans);font-size:12px;font-weight:700;color:var(--lav-deep);
+    letter-spacing:.14em;margin-right:10px;}
+  .step p{margin:0;color:var(--ink-soft);font-size:14.5px;}
+  .step .res{display:inline-block;margin-top:10px;font-size:12.5px;color:var(--ink);
+    background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:3px 12px;}
+  .step .res b{color:var(--lav-deep);}
+  @media(max-width:560px){.step:nth-child(1),.step:nth-child(2){margin-right:0;}}
+
+  /* capstone / cert */
+  .cap{margin-top:16px;background:linear-gradient(160deg,var(--surface),var(--gold-wash));
+    border:1px solid var(--line);border-radius:16px;padding:26px clamp(20px,3vw,30px);
+    box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,26px);align-items:center;}
+  .seal{width:56px;height:56px;flex:none;}
+  .cap h3{font-family:var(--serif);font-weight:600;font-size:clamp(17px,2.4vw,21px);margin:0 0 6px;letter-spacing:.03em;}
+  .cap h3 .g{color:var(--gold);}
+  .cap p{margin:0;color:var(--ink-soft);font-size:14.5px;}
+
+  /* pains resolve */
+  .pains{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .pain{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);}
+  .pain .p{font-family:var(--serif);font-size:15px;color:var(--ink-soft);margin:0 0 8px;}
+  .pain .p .x{color:var(--lav);font-family:var(--latin);margin-right:8px;font-weight:700;}
+  .pain .a{margin:0;font-size:14px;color:var(--ink);}
+  .pain .a b{color:var(--lav-deep);}
+  @media(max-width:560px){.pains{grid-template-columns:1fr;}}
+
+  /* closing identity */
+  .identity{margin-top:60px;text-align:center;padding:38px 24px;border-top:1px solid var(--line);}
+  .identity .eyebrow{margin-bottom:18px;}
+  .identity p{font-family:var(--serif);font-weight:600;font-size:clamp(19px,3vw,27px);line-height:1.65;
+    margin:0 auto;max-width:24ch;letter-spacing:.02em;text-wrap:balance;}
+  .identity p .hl{color:var(--lav-deep);}
+  .foot{margin-top:34px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-family:var(--latin);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);}
+
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards;}
+  .reveal:nth-child(2){animation-delay:.05s}.reveal:nth-child(3){animation-delay:.1s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}}
+
+  @media print{
+    body{background:#fff}
+    .reveal{animation:none;opacity:1;transform:none}
+    .step,.cap,.insight,.shift,.pain,.identity{box-shadow:none}
+    section{break-inside:avoid}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="mast">
+    <div class="brand">DIGILAB <b>BEAUTY</b></div>
+    <div class="doc-meta">Positioning &middot; 内部戦略メモ &middot; 2026</div>
+  </header>
+
+  <div class="thesis">
+    <p class="kicker reveal">私たちが、業界で取る立ち位置。</p>
+    <h1 class="reveal">すべてが<span class="u">偽装できる</span>AI時代に、<br>
+      <span class="hl">誠実なサロン</span>を、AIで強い店に<br>育て、そして<span class="hl">証明する</span>。</h1>
+    <p class="one reveal">正直にやっているのに、価格や広告のうまい店に埋もれる——その悔しさを、仕組みで終わらせるために。</p>
+  </div>
+
+  <section>
+    <p class="eyebrow">The Shift &middot; 立ち位置の転換</p>
+    <h2 class="sec">「AIを教える団体」から、「サロンを育て、信頼を証明する機関」へ。</h2>
+    <p class="lead">AIツールの教え役は、機能と価格で比べられ、いずれ埋もれます。私たちが立つのは、<b>誰も両方は持っていない交差点</b>——法務・コンプライアンスの権威と、AIリテラシー。ここでしか、誠実さは証明できない。</p>
+    <div class="shift">
+      <div class="cell from">
+        <p class="tag">From</p>
+        <p class="txt"><span class="strike">AI・DXを教えてくれる団体</span><br>——他社と横並び。埋もれる側。</p>
+      </div>
+      <div class="arrow" aria-hidden="true">&rarr;</div>
+      <div class="cell to">
+        <p class="tag">To</p>
+        <p class="txt">誠実なサロンを育て、<br>その到達を<b>証明する機関</b>。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The Insight &middot; 時代の追い風</p>
+    <div class="insight reveal">
+      <p class="big">AIによって「嘘の見せ方」が<em>タダで無限に</em>作れる時代。<br>だからこそ、<em>偽装していないと"証明された"店</em>が、最大の希少価値になる。</p>
+      <p class="sub">偽の口コミ、盛ったビフォーアフター、誇大広告——それが100倍安く量産される。信頼が、最後に残る通貨になる。その通貨を発行できるのが、私たちです。</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">The Method &middot; 育成の3ステップ</p>
+    <h2 class="sec">時間 &rarr; 質 &rarr; 集客。埋もれる店と、順番が逆。</h2>
+    <p class="lead">埋もれるサロンは、いつも集客から手をつけて消耗する。私たちの道は逆。<b>まず時間を作り、質を上げ、最後に選ばれる</b>——見せ方に頼らず集客する、唯一の順序。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <div>
+          <h3><span class="lab">土台</span>バックヤードをAIで自動化</h3>
+          <p>予約・顧客記録・在庫・経理。事務の孤独から解放する。</p>
+          <span class="res">生まれるもの&nbsp;&rarr;&nbsp;<b>時間</b></span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div>
+          <h3><span class="lab">知</span>AIで教育とカウンセリングを深める</h3>
+          <p>社員教育資料づくり、お客様の体質にもとづく学習。</p>
+          <span class="res">生まれるもの&nbsp;&rarr;&nbsp;<b>施術と接客の質=誠実さ</b></span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div>
+          <h3><span class="lab">集客</span>時間と質を、正しく発信する</h3>
+          <p>生まれた余白と実力を、誠実な発信とデータ設計で集客に変える。</p>
+          <span class="res">生まれるもの&nbsp;&rarr;&nbsp;<b>客単価・リピート・新規</b></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cap reveal">
+      <svg class="seal" viewBox="0 0 64 64" role="img" aria-label="デジラボ認証シール">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity=".5"/>
+        <circle cx="32" cy="32" r="24" fill="none" stroke="var(--gold)" stroke-width="1.2"/>
+        <path d="M23 32.5l6.2 6.2L42 26" fill="none" stroke="var(--lav-deep)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <g fill="var(--gold)">
+          <circle cx="32" cy="4.5" r="1.5"/><circle cx="32" cy="59.5" r="1.5"/>
+          <circle cx="4.5" cy="32" r="1.5"/><circle cx="59.5" cy="32" r="1.5"/>
+        </g>
+      </svg>
+      <div>
+        <h3>頂点にあるのは、<span class="g">「デジラボ認証サロン」</span>。</h3>
+        <p>3段を登りきった店に贈る、誠実&times;AI活用の証明。罰ゲームの合格証ではなく、サロンが欲しがる憧れのバッジ。そして私たちは、このマークを<b>お客様側に広める</b>——個人では買えない信頼を、団体が配る。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Why It Works &middot; 4つの痛みが、ひとつに繋がる</p>
+    <div class="pains">
+      <div class="pain reveal"><p class="p"><span class="x">01</span>正直者が埋もれる悔しさ</p><p class="a">認証マークが、誠実さを<b>目に見える形</b>に変える。</p></div>
+      <div class="pain reveal"><p class="p"><span class="x">02</span>差別化できない苦しさ</p><p class="a"><b>「認証サロン」であること</b>が、差別化そのものになる。</p></div>
+      <div class="pain reveal"><p class="p"><span class="x">03</span>集客の不安</p><p class="a">団体がマークを広め、<b>集客を仲間ごと後押し</b>する。</p></div>
+      <div class="pain reveal"><p class="p"><span class="x">04</span>一人サロンの孤独</p><p class="a">同じマークを掲げる<b>仲間との連帯</b>が生まれる。</p></div>
+    </div>
+  </section>
+
+  <div class="identity">
+    <p class="eyebrow">Our Identity &middot; 私たちの正体</p>
+    <p>誠実なサロンを、AIで<span class="hl">「時間 &rarr; 質 &rarr; 集客」</span>の順に育て上げ、<br>その到達を証明して、<span class="hl">業界の新しい信頼のスタンダード</span>になる。</p>
+    <div class="foot">
+      <span>一般社団法人 デジラボビューティー</span>
+      <span>digilabbeauty@gmail.com</span>
+    </div>
+  </div>
+
+</div>
