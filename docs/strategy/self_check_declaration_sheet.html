@@ -1,0 +1,271 @@
+<title>誠実運営セルフチェック&宣言シート(草案) — デジラボビューティー</title>
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#101318; --bg-sub:#181C23;
+      --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+      --navy:#9FB4DA; --navy-soft:#7D93BC;
+      --gold:#C9A85C;
+      --line:#2B313B; --line-strong:#E8EAEE;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+  }
+  :root[data-theme="dark"]{
+    --bg:#101318; --bg-sub:#181C23;
+    --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+    --navy:#9FB4DA; --navy-soft:#7D93BC;
+    --gold:#C9A85C;
+    --line:#2B313B; --line-strong:#E8EAEE;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",YuGothic,"Noto Sans JP",system-ui,sans-serif;
+    font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+  .wrap{max-width:800px;margin:0 auto;padding:clamp(32px,6vw,64px) clamp(20px,5vw,48px) 72px;}
+
+  .docband{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.12em;color:var(--ink-faint);}
+  .docband .cls{border:1px solid var(--line);padding:2px 12px;color:var(--ink-soft);}
+  .titleblock{margin:44px 0 0;padding:0 0 32px;border-bottom:3px double var(--line-strong);}
+  .titleblock .sup{font-size:13.5px;letter-spacing:.08em;color:var(--ink-soft);margin:0 0 16px;}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(22px,3.8vw,30px);line-height:1.6;letter-spacing:.04em;
+    margin:0;color:var(--ink);text-wrap:balance;}
+  h1 .navy{color:var(--navy);}
+  .titleblock .org{margin:24px 0 0;font-size:13.5px;color:var(--ink-soft);letter-spacing:.06em;}
+
+  .howto{margin:30px 0 0;padding:20px 24px;background:var(--bg-sub);border-left:4px solid var(--navy);}
+  .howto p{margin:0 0 .7em;font-size:14px;color:var(--ink-soft);}
+  .howto p:last-child{margin-bottom:0;}
+  .howto b{color:var(--ink);}
+
+  section{margin-top:48px;}
+  .chap{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--line-strong);
+    padding-bottom:10px;margin-bottom:18px;}
+  .chap .no{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;
+    color:var(--navy);font-size:14px;letter-spacing:.14em;white-space:nowrap;}
+  .chap h2{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(17px,2.6vw,20px);letter-spacing:.05em;margin:0;line-height:1.6;}
+  .chap .cnt{margin-left:auto;font-size:12px;color:var(--ink-faint);letter-spacing:.08em;white-space:nowrap;}
+  p{margin:0 0 1em;}
+  .body p{color:var(--ink-soft);}
+  .body p b{color:var(--ink);}
+
+  .item{border:1px solid var(--line);margin-bottom:14px;break-inside:avoid;}
+  .item .head{display:grid;grid-template-columns:52px 1fr 120px;align-items:stretch;
+    border-bottom:1px solid var(--line);}
+  .item .num{display:flex;align-items:center;justify-content:center;background:var(--bg-sub);
+    color:var(--navy);font-weight:700;font-size:12.5px;border-right:1px solid var(--line);padding:8px 4px;}
+  .item .qq{padding:12px 16px;color:var(--ink);font-weight:600;font-size:14.5px;line-height:1.7;}
+  .item .boxes{display:flex;align-items:center;justify-content:center;gap:14px;
+    border-left:1px solid var(--line);padding:8px;font-size:12.5px;color:var(--ink-soft);white-space:nowrap;}
+  .cb{display:inline-block;width:15px;height:15px;border:1.5px solid var(--ink-soft);
+    vertical-align:-2px;margin-right:4px;}
+  .item .meas{padding:11px 16px;font-size:13px;color:var(--ink-soft);}
+  .item .meas b{color:var(--ink);}
+  .item .meas .lab{color:var(--navy);font-weight:600;margin-right:.5em;}
+  @media(max-width:600px){
+    .item .head{grid-template-columns:44px 1fr;}
+    .item .boxes{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);justify-content:flex-start;padding-left:16px;}
+  }
+
+  .keybox{margin:26px 0 0;border:1px solid var(--line-strong);padding:20px 24px;}
+  .keybox .lab{font-size:11.5px;letter-spacing:.22em;color:var(--navy);font-weight:600;margin:0 0 8px;}
+  .keybox p{margin:0 0 .8em;font-size:14px;line-height:1.9;color:var(--ink-soft);}
+  .keybox p:last-child{margin-bottom:0;}
+  .keybox b{color:var(--ink);}
+
+  .decl{margin-top:20px;border:2px solid var(--line-strong);padding:24px 26px;}
+  .decl h3{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;
+    font-size:17px;letter-spacing:.06em;margin:0 0 14px;color:var(--ink);}
+  .decl p{font-size:14px;color:var(--ink-soft);}
+  .decl ol{margin:0 0 1em;padding-left:1.6em;color:var(--ink-soft);font-size:14px;}
+  .decl li{margin-bottom:6px;}
+  .sig{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px;}
+  .sig .f{border-bottom:1px solid var(--ink-soft);padding:22px 4px 6px;font-size:12.5px;color:var(--ink-faint);}
+  @media(max-width:560px){.sig{grid-template-columns:1fr;}}
+
+  .certline{display:flex;align-items:center;gap:10px;margin:28px 0 6px;
+    font-size:12px;letter-spacing:.2em;color:var(--gold);font-weight:600;}
+  .certline::before,.certline::after{content:"";height:1px;background:var(--gold);flex:1;opacity:.5;}
+
+  .note{margin-top:52px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--ink-faint);line-height:1.9;}
+  .note b{color:var(--ink-soft);}
+  .foot{margin-top:30px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.1em;color:var(--ink-faint);}
+
+  @media print{
+    body{font-size:12.5px}
+    section{break-inside:avoid}
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="docband">
+    <span>2026年7月14日</span>
+    <span class="cls">草案 / 制度第二段階「宣言」用</span>
+  </div>
+
+  <div class="titleblock">
+    <p class="sup">デジラボ認証(仮称) 第二段階</p>
+    <h1>誠実運営セルフチェック &amp;<br><span class="navy">宣言シート(草案)</span></h1>
+    <p class="org">一般社団法人デジラボビューティー</p>
+  </div>
+
+  <div class="howto">
+    <p><b>このシートの使い方</b> — 全13項目を、いまのお店の状態のまま正直にチェックしてください。審査はありません。書類の提出も不要です。</p>
+    <p><b>全部「はい」なら</b> → 宣言(末尾)に署名して登録。「宣言サロン」として公表されます。</p>
+    <p><b>「いいえ」「わからない」があったら</b> → それが今のお店の伸びしろです。該当する講座・整備ガイドをご案内します。整えてから宣言すれば大丈夫。<b>できていないことは、恥ではなく出発点です。</b></p>
+  </div>
+
+  <!-- A 契約 -->
+  <section class="body">
+    <div class="chap"><span class="no">A</span><h2>契約とお客様への説明</h2><span class="cnt">5項目</span></div>
+
+    <div class="item">
+      <div class="head"><div class="num">A-1</div><div class="qq">長期・高額のコース契約では、法律で決められた書面(概要書面・契約書面)をお渡ししている。<br><span style="font-weight:400;font-size:12.5px;color:var(--ink-faint)">※該当する契約(期間1か月超・金額5万円超のコース等)を扱っていないお店は「はい」で結構です。</span></div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>契約書のひな形に、サービス内容・期間・金額・解約の条件が書かれていて、契約前に必ず渡している。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">A-2</div><div class="qq">クーリング・オフと中途解約について、契約前に口頭と書面で説明している。</div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>「途中でやめられます」「その場合の精算はこうなります」を、お客様が契約する前に説明できる資料がある。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">A-3</div><div class="qq">施術中の勧誘はしない。当日の契約を迫らず、持ち帰って検討してもらってよいことを伝えている。</div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>この方針をスタッフ全員が知っていて、店内掲示またはウェブサイトでお客様にも伝えている。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">A-4</div><div class="qq">回数券・前払いコースを扱う場合、有効期限・使い残し分の扱い・返金の条件を、契約前に書面で伝えている。<br><span style="font-weight:400;font-size:12.5px;color:var(--ink-faint)">※前払いを扱っていないお店は「はい」で結構です。</span></div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>「期限が切れたらどうなるか」「途中でやめたらいくら戻るか」に、書面で答えられる。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">A-5</div><div class="qq">お客様からの苦情・相談の受付先を決めて伝えており、受けた内容と対応を記録に残している。</div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>「ご意見はこちらへ」の連絡先(電話・メール・LINE等)が明示されていて、ノートやアプリに記録が残っている。</div>
+    </div>
+  </section>
+
+  <!-- B 表示 -->
+  <section class="body">
+    <div class="chap"><span class="no">B</span><h2>広告・SNS・お店の表示</h2><span class="cnt">4項目</span></div>
+
+    <div class="item">
+      <div class="head"><div class="num">B-1</div><div class="qq">「治る」「痩せる」「シミが消える」など、医薬品や医療のような効果の断定を、広告・SNS・接客トークで使っていない。</div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>直近のSNS投稿・メニュー表・LPを見返して、効果を断定する言葉がない。迷う表現は「化粧品×薬機法」講座で確認できる。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">B-2</div><div class="qq">ビフォーアフター写真を使う場合、撮影条件をそろえ、加工やAI生成の有無を明示している。加工・生成した画像を実例のように見せていない。<br><span style="font-weight:400;font-size:12.5px;color:var(--ink-faint)">※ビフォーアフターを使っていないお店は「はい」で結構です。</span></div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>照明・角度・メイクの条件がそろっていて、「加工なし」または「イメージ画像」の別が写真から分かる。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">B-3</div><div class="qq">謝礼や割引と引き換えの投稿には「PR」等の関係明示をつけている。自分やスタッフが一般客のふりをして口コミを書いていない。</div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>お客様に投稿をお願いする時のルールが決まっている。「サクラ投稿」は一切していない。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">B-4</div><div class="qq">「通常◯円→今だけ◯円」のような二重価格は、実際にその通常価格で販売していた実績がある場合にだけ使っている。追加費用や割引の条件は、小さな注記でなく本文で伝えている。</div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>「元の値段」を聞かれたら、販売実績で答えられる。条件つきの安さを、条件を隠して見せていない。</div>
+    </div>
+  </section>
+
+  <!-- C AI -->
+  <section class="body">
+    <div class="chap"><span class="no">C</span><h2>AIの使い方</h2><span class="cnt">4項目</span></div>
+
+    <div class="item">
+      <div class="head"><div class="num">C-1</div><div class="qq">カウンセリング・肌診断・チャット応対などにAIを使っている場合、そのことをお客様が事前に分かるようにしている。<br><span style="font-weight:400;font-size:12.5px;color:var(--ink-faint)">※お客様に対してAIを使っていないお店は「はい」で結構です。</span></div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>「AIによる分析を参考にしています」等の一言が、店内・ウェブ・応対のどこかで伝わる。隠して使わない。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">C-2</div><div class="qq">AIで作った画像や文章を、実際の施術例や実在のお客様の声のように見せていない。</div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>生成画像には「イメージ」と分かる表示。AIに書かせた「お客様の声」は存在しない。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">C-3</div><div class="qq">お客様の名前・肌の状態・施術記録などの個人情報をAIツールに入力する時のルールを決めている(入れてよい情報・ダメな情報の区別、使うツールの限定)。</div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>「お客様の実名や写真はそのまま入れない」等のルールが文字になっていて、スタッフと共有されている。</div>
+    </div>
+
+    <div class="item">
+      <div class="head"><div class="num">C-4</div><div class="qq">AIが作ったカウンセリング内容・広告文・お客様向けの文章は、必ず人が確認してから使っている。最終的な責任者が決まっている。</div>
+        <div class="boxes"><span><span class="cb"></span>はい</span><span><span class="cb"></span>いいえ</span></div></div>
+      <div class="meas"><span class="lab">目安</span>「AIが書いたものをそのまま公開しない」が徹底されていて、誰が最終確認するか決まっている。</div>
+    </div>
+  </section>
+
+  <!-- 宣言 -->
+  <section class="body">
+    <div class="chap"><span class="no">宣言</span><h2>誠実運営の宣言</h2></div>
+    <div class="keybox">
+      <p class="lab">宣言の前にご確認ください</p>
+      <p>・宣言に審査はありません。<b>あなたの正直さが、この制度の土台です。</b></p>
+      <p>・宣言サロンは、店名・所在地(市区町村)・宣言日を当法人のウェブサイトで公表します。</p>
+      <p>・宣言内容に<b>虚偽があると判明した場合、登録を抹消し、その事実を公表します。</b></p>
+      <p>・宣言は「第三者の審査を受けた」ことを意味しません。「認証サロン」との混同を招く表示はできません。</p>
+    </div>
+
+    <div class="decl">
+      <h3>宣言書</h3>
+      <p>当店は、上記13項目のすべてに「はい」と答えられることを確認し、次のとおり宣言します。</p>
+      <ol>
+        <li>お客様との契約と説明を、誠実に行います。</li>
+        <li>広告・SNS・店頭での表示に、偽りや誇張を用いません。</li>
+        <li>AIを使うときは、隠さず、偽らず、人が責任を持ちます。</li>
+      </ol>
+      <p>この宣言に反する事実が判明した場合、登録の抹消と公表に異議を申し立てません。</p>
+      <div class="sig">
+        <div class="f">店舗名</div>
+        <div class="f">代表者氏名</div>
+        <div class="f">所在地(市区町村まで)</div>
+        <div class="f">宣言日</div>
+      </div>
+    </div>
+
+    <div class="certline">DIGILAB DECLARED SALON</div>
+    <p style="font-size:13px;color:var(--ink-faint)">登録方法(ウェブフォーム等)・公表ページ・宣言サロンの表示ルールは、制度確定にあわせて別途定めます。</p>
+  </section>
+
+  <div class="note">
+    <b>注記</b> — 本シートは、デジラボ認証(仮称)制度構成・審査基準 第2次草案の必須13項目を、サロン向けの平易な表現に置き換えた草案である。項目の内容・文言は外部専門家の法令確認により変更されることがある。確定前に対外配布しないこと。
+  </div>
+
+  <div class="foot">
+    <span>一般社団法人 デジラボビューティー</span>
+    <span>digilabbeauty@gmail.com</span>
+  </div>
+
+</div>

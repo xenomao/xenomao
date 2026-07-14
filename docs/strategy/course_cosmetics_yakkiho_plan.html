@@ -1,0 +1,266 @@
+<title>「化粧品×薬機法」講座 企画書 第1次案 — デジラボビューティー</title>
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+    --ok:#1E6B45; --ng:#8C2F39;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#101318; --bg-sub:#181C23;
+      --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+      --navy:#9FB4DA; --navy-soft:#7D93BC;
+      --gold:#C9A85C;
+      --line:#2B313B; --line-strong:#E8EAEE;
+      --ok:#5FBF8F; --ng:#E08A93;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+    --ok:#1E6B45; --ng:#8C2F39;
+  }
+  :root[data-theme="dark"]{
+    --bg:#101318; --bg-sub:#181C23;
+    --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+    --navy:#9FB4DA; --navy-soft:#7D93BC;
+    --gold:#C9A85C;
+    --line:#2B313B; --line-strong:#E8EAEE;
+    --ok:#5FBF8F; --ng:#E08A93;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",YuGothic,"Noto Sans JP",system-ui,sans-serif;
+    font-size:15px;line-height:1.95;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+  .wrap{max-width:840px;margin:0 auto;padding:clamp(32px,6vw,64px) clamp(20px,5vw,48px) 72px;}
+
+  .docband{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.12em;color:var(--ink-faint);}
+  .docband .cls{border:1px solid var(--line);padding:2px 12px;color:var(--ink-soft);}
+  .titleblock{margin:44px 0 0;padding:0 0 36px;border-bottom:3px double var(--line-strong);}
+  .titleblock .sup{font-size:13.5px;letter-spacing:.08em;color:var(--ink-soft);margin:0 0 16px;}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(23px,4vw,32px);line-height:1.6;letter-spacing:.04em;
+    margin:0;color:var(--ink);text-wrap:balance;}
+  h1 .navy{color:var(--navy);}
+  .titleblock .org{margin:26px 0 0;font-size:13.5px;color:var(--ink-soft);letter-spacing:.06em;}
+
+  .abstract{margin:34px 0 0;padding:22px 26px;background:var(--bg-sub);border-left:4px solid var(--navy);}
+  .abstract p{margin:0 0 .8em;font-size:14.5px;color:var(--ink-soft);}
+  .abstract p:last-child{margin-bottom:0;}
+  .abstract b{color:var(--ink);}
+
+  section{margin-top:58px;}
+  .chap{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--line-strong);
+    padding-bottom:10px;margin-bottom:22px;}
+  .chap .no{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;
+    color:var(--navy);font-size:15px;letter-spacing:.14em;white-space:nowrap;}
+  .chap h2{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(18px,2.8vw,22px);letter-spacing:.05em;margin:0;line-height:1.6;}
+  p{margin:0 0 1em;}
+  .body p{color:var(--ink-soft);}
+  .body p b, .body li b{color:var(--ink);font-weight:600;}
+
+  .tblwrap{overflow-x:auto;margin:8px 0 4px;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.75;}
+  caption{caption-side:top;text-align:left;font-size:12.5px;color:var(--ink-faint);
+    letter-spacing:.08em;padding-bottom:8px;}
+  th{font-weight:600;color:var(--ink);background:var(--bg-sub);
+    border-top:2px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+    padding:9px 12px;text-align:left;}
+  td{border-bottom:1px solid var(--line);padding:11px 12px;vertical-align:top;color:var(--ink-soft);}
+  td .strong{color:var(--ink);font-weight:600;}
+  tr:last-child td{border-bottom:2px solid var(--line-strong);}
+  td.no{white-space:nowrap;color:var(--navy);font-weight:600;}
+
+  ol.legal{margin:0 0 1em;padding-left:0;list-style:none;counter-reset:li;}
+  ol.legal>li{counter-increment:li;position:relative;padding-left:2.4em;margin-bottom:14px;color:var(--ink-soft);}
+  ol.legal>li::before{content:"(" counter(li) ")";position:absolute;left:0;top:0;
+    color:var(--navy);font-weight:600;letter-spacing:.02em;}
+  ol.legal>li .t{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;}
+
+  .keybox{margin:26px 0 0;border:1px solid var(--line-strong);padding:20px 24px;}
+  .keybox .lab{font-size:11.5px;letter-spacing:.22em;color:var(--navy);font-weight:600;margin:0 0 8px;}
+  .keybox p{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:15.5px;line-height:1.9;color:var(--ink);}
+  .keybox p .navy{color:var(--navy);}
+
+  .q{border:1px solid var(--line);margin-bottom:14px;}
+  .q .qh{display:grid;grid-template-columns:56px 1fr;border-bottom:1px solid var(--line);}
+  .q .qn{display:flex;align-items:center;justify-content:center;background:var(--bg-sub);
+    color:var(--navy);font-weight:700;font-size:13px;border-right:1px solid var(--line);padding:8px;}
+  .q .qt{padding:10px 16px;color:var(--ink);font-size:14px;}
+  .q .qa{display:grid;grid-template-columns:56px 1fr;}
+  .q .av{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;
+    border-right:1px solid var(--line);padding:8px;}
+  .q .av.ok{color:var(--ok);} .q .av.ng{color:var(--ng);}
+  .q .ae{padding:10px 16px;color:var(--ink-soft);font-size:13.5px;}
+
+  .note{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--ink-faint);line-height:1.9;}
+  .note b{color:var(--ink-soft);}
+  .foot{margin-top:30px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.1em;color:var(--ink-faint);}
+
+  @media print{
+    body{font-size:12.5px}
+    section{break-inside:avoid}
+    .q{break-inside:avoid}
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="docband">
+    <span>2026年7月14日</span>
+    <span class="cls">第1次案 / 内部検討資料</span>
+  </div>
+
+  <div class="titleblock">
+    <p class="sup">学習プログラム第1弾(制度第一段階「修了」) 企画書</p>
+    <h1>「化粧品 × 薬機法」講座<br><span class="navy">カリキュラム・確認テスト 第1次案</span></h1>
+    <p class="org">一般社団法人デジラボビューティー</p>
+  </div>
+
+  <div class="abstract">
+    <p><b>位置づけ</b> — 制度構成(修了・宣言・認証)の第一段階を担う、テーマ別学習プログラムの第1弾。認証制度全体の認知の入口であり、受講者母体の形成を兼ねる。</p>
+    <p><b>選定理由</b> — 「このSNS投稿は書いてよいのか」は、規模を問わずサロンが日常的に直面する不安であり、受講動機が最も立てやすい。かつ認証基準②(表示の適正)に直結する。</p>
+    <p><b>本案の状態</b> — 教材内容は既存の法令・コンプライアンス問題集(試作版)を母体とする。<b>薬事の専門家による監修前の草案</b>であり、監修を経て確定する。</p>
+  </div>
+
+  <!-- 第1 -->
+  <section class="body">
+    <div class="chap"><span class="no">第1</span><h2>講座の目的と到達目標</h2></div>
+    <p>本講座は、受講者を薬機法の専門家にすることを目的としない。<b>サロンの現場で日々発生する表現の判断を、自分で・その場で・根拠をもって行えるようにする</b>ことを目的とする。到達目標は次の3点。</p>
+    <ol class="legal">
+      <li><span class="t">言える範囲が分かる</span>化粧品について標榜できる効能効果の範囲(56項目)の考え方を理解し、「言える/言えない」を原則から判断できる。</li>
+      <li><span class="t">危ない表現に気づける</span>自店のSNS投稿・LP・POP・口頭トークの中の、医薬品的な効能表現・断定表現に自分で気づき、言い換えられる。</li>
+      <li><span class="t">違反時に何が起きるか知っている</span>薬機法の広告規制が「何人も」を対象とすること(サロンも対象)、課徴金・行政指導のリスクを説明できる。</li>
+    </ol>
+    <div class="keybox">
+      <p class="lab">講座の基本メッセージ</p>
+      <p>薬機法は、サロンを縛る敵ではない。<span class="navy">正しい表現を身につけた店だけが、堂々と発信できる</span>——規制の理解は、生成AIで誇大広告が量産される時代の、誠実な店の武器である。</p>
+    </div>
+  </section>
+
+  <!-- 第2 -->
+  <section class="body">
+    <div class="chap"><span class="no">第2</span><h2>受講対象と提供形態</h2></div>
+    <div class="tblwrap">
+      <table>
+        <tr><th style="width:24%">項目</th><th>内容</th></tr>
+        <tr><td><span class="strong">受講対象</span></td><td>エステティックサロンのオーナー・従業者。会員・非会員を問わない(非会員への開放が認知拡大の要件)。</td></tr>
+        <tr><td><span class="strong">提供形態</span></td><td>第1期はオンラインセミナー(ライブ)+配布資料で実施し、収録後は録画+資料のオンデマンド提供に切り替える。ライブ実施は既存のセミナー運営の延長で開始でき、初期開発費を抑えられる。</td></tr>
+        <tr><td><span class="strong">所要時間</span></td><td>本編90分(5モジュール)+確認テスト(10問・約15分)。</td></tr>
+        <tr><td><span class="strong">修了要件</span></td><td>全モジュールの受講および確認テスト10問中8問以上の正答。不合格の場合は再受験可(回数制限なし。目的は選抜でなく定着のため)。</td></tr>
+        <tr><td><span class="strong">発行物</span></td><td>修了証(氏名・修了日・講座名を記載)。修了者は「デジラボビューティー『化粧品×薬機法』講座 修了」と表示できる。</td></tr>
+        <tr><td><span class="strong">受講料</span></td><td>検討事項。認知拡大を優先する場合、第1期は無料または少額(会員無料・非会員少額)とする案を推す。</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 第3 -->
+  <section class="body">
+    <div class="chap"><span class="no">第3</span><h2>カリキュラム(本編90分・5モジュール)</h2></div>
+    <div class="tblwrap">
+      <table>
+        <caption>表1 モジュール構成</caption>
+        <tr><th style="width:8%">番号</th><th style="width:26%">モジュール</th><th style="width:8%">時間</th><th>内容と到達目標</th></tr>
+        <tr>
+          <td class="no">M1</td><td>なぜ薬機法が<br>サロンを守るのか</td><td>10分</td>
+          <td>広告規制の全体像(薬機法・景表法の役割分担)。規制対象は「何人も」であり、メーカーだけでなくサロンの投稿・トークも対象になること。課徴金制度・行政指導の存在。<b>目標: 「自分ごと」として捉え直す。</b></td>
+        </tr>
+        <tr>
+          <td class="no">M2</td><td>化粧品で「言える範囲」</td><td>25分</td>
+          <td>化粧品・医薬部外品・医薬品の区分と、化粧品の効能効果の範囲(56項目)の考え方。「うるおいを与える」「ハリを与える」等の言える表現と、「シミが消える」「治る」等の言えない表現の原則。<b>目標: 個別表現を暗記せず、原則から判断できる。</b></td>
+        </tr>
+        <tr>
+          <td class="no">M3</td><td>施術の表現</td><td>20分</td>
+          <td>施術メニューの表現の論点。医行為と誤認させる表現、身体の構造・機能への効果を断定する表現(「脂肪を分解」「セルライト除去」等)の危うさ。美容・リラクゼーション目的としての適切な表現。<b>目標: 自店メニュー表を自分で点検できる。</b></td>
+        </tr>
+        <tr>
+          <td class="no">M4</td><td>SNS・LPの実践</td><td>25分</td>
+          <td>実例演習(添削形式)。ビフォーアフター写真の条件、体験談・お客様の声の引用の注意(体験談でも誇大広告になり得る)、「個人の感想です」等の打消し表示が免罪符にならないこと、ステマ規制との関係。<b>目標: 明日の投稿から使える言い換えの型を持ち帰る。</b></td>
+        </tr>
+        <tr>
+          <td class="no">M5</td><td>物販・カウンセリング<br>トーク</td><td>10分</td>
+          <td>店頭POP・口頭説明も規制の対象となり得ること。カウンセリングでの説明の型(効能の断定でなく、使用感・特徴・継続の提案で語る)。<b>目標: 書き言葉だけでなく話し言葉も整える。</b></td>
+        </tr>
+      </table>
+    </div>
+    <p style="margin-top:14px">全モジュールで、<b>NG例→なぜNGか(根拠)→言い換え例</b>の三点セットを必ず示す。禁止の列挙ではなく「こう言えば言える」で終わる構成とし、受講後に発信が萎縮しないよう設計する。</p>
+  </section>
+
+  <!-- 第4 -->
+  <section class="body">
+    <div class="chap"><span class="no">第4</span><h2>確認テスト(案) — 10問・8問正答で修了</h2></div>
+    <p>○×形式を基本とする。以下は出題案と解説の草案(監修で差し替えあり)。</p>
+
+    <div class="q"><div class="qh"><div class="qn">問1</div><div class="qt">化粧品の紹介で「シミが消える」と表現してよい。</div></div>
+      <div class="qa"><div class="av ng">×</div><div class="ae">化粧品の効能の範囲を超える医薬品的な表現。「日やけによるシミ・ソバカスを防ぐ」は範囲内。</div></div></div>
+
+    <div class="q"><div class="qh"><div class="qn">問2</div><div class="qt">「肌にうるおいを与える」は化粧品で標榜できる。</div></div>
+      <div class="qa"><div class="av ok">○</div><div class="ae">効能効果の範囲(56項目)に含まれる表現。</div></div></div>
+
+    <div class="q"><div class="qh"><div class="qn">問3</div><div class="qt">薬機法の広告規制はメーカーが対象であり、サロンのSNS投稿は対象外である。</div></div>
+      <div class="qa"><div class="av ng">×</div><div class="ae">誇大広告等の禁止は「何人も」が対象。サロンの投稿・トークも対象になる。</div></div></div>
+
+    <div class="q"><div class="qh"><div class="qn">問4</div><div class="qt">施術メニューに「脂肪を分解して痩せる」と記載してよい。</div></div>
+      <div class="qa"><div class="av ng">×</div><div class="ae">身体の構造・機能への効果の断定であり、医行為・医薬品的効能と誤認させるおそれがある。</div></div></div>
+
+    <div class="q"><div class="qh"><div class="qn">問5</div><div class="qt">お客様の実際の感想であれば、「アトピーが治った」という声を紹介してよい。</div></div>
+      <div class="qa"><div class="av ng">×</div><div class="ae">体験談の引用でも、医薬品的な効能を伝えれば広告規制の対象になり得る。事実であることは免罪符にならない。</div></div></div>
+
+    <div class="q"><div class="qh"><div class="qn">問6</div><div class="qt">「個人の感想です」と注記すれば、効果を断定する表現も許される。</div></div>
+      <div class="qa"><div class="av ng">×</div><div class="ae">打消し表示は本文の誇大な印象を打ち消さないと判断されることが多く、免罪符にならない。</div></div></div>
+
+    <div class="q"><div class="qh"><div class="qn">問7</div><div class="qt">医薬部外品と化粧品では、標榜できる効能効果の範囲が異なる。</div></div>
+      <div class="qa"><div class="av ok">○</div><div class="ae">医薬部外品は承認された効能(例: 美白有効成分による「メラニンの生成を抑え、しみ・そばかすを防ぐ」)を標榜できる。区分の確認が必要。</div></div></div>
+
+    <div class="q"><div class="qh"><div class="qn">問8</div><div class="qt">店内での口頭の説明は広告ではないため、規制を気にしなくてよい。</div></div>
+      <div class="qa"><div class="av ng">×</div><div class="ae">口頭の説明・カウンセリングトークも、規制の対象となり得る。</div></div></div>
+
+    <div class="q"><div class="qh"><div class="qn">問9</div><div class="qt">ビフォーアフター写真は、撮影条件をそろえ、加工・生成の有無を明示するなど適正な条件の下であれば、直ちに違法となるものではない。</div></div>
+      <div class="qa"><div class="av ok">○</div><div class="ae">一律禁止ではないが、効果の保証と誤認させる使い方は景表法・薬機法上の問題となる。条件管理が前提。</div></div></div>
+
+    <div class="q"><div class="qh"><div class="qn">問10</div><div class="qt">広告規制に違反した場合、課徴金の納付や行政指導の対象となることがある。</div></div>
+      <div class="qa"><div class="av ok">○</div><div class="ae">薬機法には課徴金制度があり、景表法にも措置命令・課徴金がある。</div></div></div>
+  </section>
+
+  <!-- 第5 -->
+  <section class="body">
+    <div class="chap"><span class="no">第5</span><h2>修了認定と表示のルール</h2></div>
+    <ol class="legal">
+      <li><span class="t">修了認定</span>修了者に修了証を発行し、希望者は修了者として登録する。</li>
+      <li><span class="t">表示のルール</span>修了の表示は「講座を修了した」事実の表示に限る。<b>修了をもってサロンの適法性・品質が認められたと誤認させる表示は禁止</b>する(認証(第三段階)との混同を防ぐ。制度全体の信用を守るための要件)。</li>
+      <li><span class="t">宣言・認証への接続</span>修了者には、第二段階(宣言)のセルフチェックシートを案内し、制度の階段を上る導線を組み込む。</li>
+    </ol>
+  </section>
+
+  <!-- 第6 -->
+  <section class="body">
+    <div class="chap"><span class="no">第6</span><h2>制作・監修と進め方</h2></div>
+    <ol class="legal">
+      <li><span class="t">教材の母体</span>既存の法令・コンプライアンス問題集(試作版)の薬機法・景表法パートを講義形式に再構成する。ゼロからの制作ではない。</li>
+      <li><span class="t">監修</span>薬事に知見のある専門家(薬剤師・弁護士等)の監修を受けてから提供を開始する。監修者名は教材に記載する(教材自体の信頼性の担保)。</li>
+      <li><span class="t">進め方</span>①本企画書の内容確定 → ②教材スライド・台本の作成 → ③専門家監修 → ④第1期ライブセミナー開催 → ⑤録画のオンデマンド化。効果はKPI(申込数・修了率・宣言への進行率)で検証する。</li>
+    </ol>
+  </section>
+
+  <div class="note">
+    <b>注記</b> — 本企画書の法令に関する記述(効能効果の範囲、規制の対象、課徴金制度等)は監修前の整理である。教材化にあたっては、厚生労働省・消費者庁の通知・ガイドライン(医薬品等適正広告基準を含む)との整合を専門家の監修により確認すること。「薬事法」は旧称であり、対外資料では現行の「医薬品医療機器等法(薬機法)」の表記に統一する。
+  </div>
+
+  <div class="foot">
+    <span>一般社団法人 デジラボビューティー</span>
+    <span>digilabbeauty@gmail.com</span>
+  </div>
+
+</div>
