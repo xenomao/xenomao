@@ -1,0 +1,289 @@
+<title>理事会説明メモ — 認証制度構想の全体像と進め方 — デジラボビューティー</title>
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#101318; --bg-sub:#181C23;
+      --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+      --navy:#9FB4DA; --navy-soft:#7D93BC;
+      --gold:#C9A85C;
+      --line:#2B313B; --line-strong:#E8EAEE;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+  }
+  :root[data-theme="dark"]{
+    --bg:#101318; --bg-sub:#181C23;
+    --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+    --navy:#9FB4DA; --navy-soft:#7D93BC;
+    --gold:#C9A85C;
+    --line:#2B313B; --line-strong:#E8EAEE;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",YuGothic,"Noto Sans JP",system-ui,sans-serif;
+    font-size:15px;line-height:1.9;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+  .wrap{max-width:840px;margin:0 auto;padding:clamp(32px,6vw,64px) clamp(20px,5vw,48px) 72px;}
+
+  .docband{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.12em;color:var(--ink-faint);}
+  .docband .cls{border:1px solid var(--line);padding:2px 12px;color:var(--ink-soft);}
+  .titleblock{margin:44px 0 0;padding:0 0 32px;border-bottom:3px double var(--line-strong);}
+  .titleblock .sup{font-size:13.5px;letter-spacing:.08em;color:var(--ink-soft);margin:0 0 16px;}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(22px,3.8vw,31px);line-height:1.6;letter-spacing:.04em;
+    margin:0;color:var(--ink);text-wrap:balance;}
+  h1 .navy{color:var(--navy);}
+  .titleblock .org{margin:24px 0 0;font-size:13.5px;color:var(--ink-soft);letter-spacing:.06em;}
+
+  .abstract{margin:32px 0 0;padding:20px 24px;background:var(--bg-sub);border-left:4px solid var(--navy);}
+  .abstract p{margin:0 0 .7em;font-size:14.5px;color:var(--ink-soft);}
+  .abstract p:last-child{margin-bottom:0;}
+  .abstract b{color:var(--ink);}
+
+  section{margin-top:54px;}
+  .chap{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--line-strong);
+    padding-bottom:10px;margin-bottom:20px;}
+  .chap .no{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;
+    color:var(--navy);font-size:15px;letter-spacing:.14em;white-space:nowrap;}
+  .chap h2{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(18px,2.7vw,21px);letter-spacing:.05em;margin:0;line-height:1.6;}
+  p{margin:0 0 1em;}
+  .body p{color:var(--ink-soft);}
+  .body p b, .body li b{color:var(--ink);font-weight:600;}
+
+  ol.legal{margin:0 0 1em;padding-left:0;list-style:none;counter-reset:li;}
+  ol.legal>li{counter-increment:li;position:relative;padding-left:2.4em;margin-bottom:13px;color:var(--ink-soft);}
+  ol.legal>li::before{content:"(" counter(li) ")";position:absolute;left:0;top:0;
+    color:var(--navy);font-weight:600;letter-spacing:.02em;}
+  ol.legal>li .t{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;}
+
+  .tblwrap{overflow-x:auto;margin:8px 0 4px;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.75;}
+  caption{caption-side:top;text-align:left;font-size:12.5px;color:var(--ink-faint);
+    letter-spacing:.08em;padding-bottom:8px;}
+  th{font-weight:600;color:var(--ink);background:var(--bg-sub);
+    border-top:2px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+    padding:9px 12px;text-align:left;}
+  td{border-bottom:1px solid var(--line);padding:10px 12px;vertical-align:top;color:var(--ink-soft);}
+  td .strong{color:var(--ink);font-weight:600;}
+  td .navy{color:var(--navy);font-weight:600;}
+  tr:last-child td{border-bottom:2px solid var(--line-strong);}
+  td.no{white-space:nowrap;color:var(--navy);font-weight:600;}
+
+  /* ===== 全体図 ===== */
+  .mapbox{border:1px solid var(--line-strong);padding:clamp(16px,3vw,28px);margin:10px 0 6px;}
+  .map-title{font-size:11.5px;letter-spacing:.22em;color:var(--navy);font-weight:600;margin:0 0 18px;}
+  .tier{display:grid;grid-template-columns:96px 1fr 168px;gap:0;border:1px solid var(--line);margin-bottom:0;}
+  .tier + .tier{border-top:0;}
+  .tier .lv{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    background:var(--bg-sub);border-right:1px solid var(--line);padding:12px 6px;text-align:center;}
+  .tier .lv .l1{font-size:10.5px;letter-spacing:.14em;color:var(--ink-faint);}
+  .tier .lv .l2{font-weight:700;font-size:14px;color:var(--navy);letter-spacing:.1em;}
+  .tier .mid{padding:13px 16px;}
+  .tier .mid .nm{font-weight:600;color:var(--ink);font-size:14px;margin:0 0 3px;}
+  .tier .mid .ds{font-size:12.5px;color:var(--ink-soft);margin:0;line-height:1.7;}
+  .tier .doc{border-left:1px solid var(--line);padding:13px 14px;background:var(--bg);}
+  .tier .doc .dl{font-size:10.5px;letter-spacing:.16em;color:var(--ink-faint);margin:0 0 3px;}
+  .tier .doc .dn{font-size:12px;color:var(--navy);font-weight:600;margin:0;line-height:1.65;}
+  .tier.top .lv .l2{color:var(--gold);}
+  .tier.top{background:linear-gradient(90deg,transparent,transparent);}
+  .down{display:flex;align-items:center;gap:10px;padding:6px 0 6px 40px;color:var(--ink-faint);font-size:12px;letter-spacing:.06em;}
+  .down::before{content:"▼";color:var(--navy);font-size:10px;}
+  .map-base{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+  .map-cell{border:1px dashed var(--line);padding:10px 14px;font-size:12.5px;color:var(--ink-soft);}
+  .map-cell b{color:var(--ink);display:block;font-size:12.5px;margin-bottom:2px;}
+  .map-out{margin-top:14px;border:1px solid var(--gold);padding:12px 16px;font-size:13px;color:var(--ink-soft);}
+  .map-out b{color:var(--gold);letter-spacing:.06em;}
+  @media(max-width:620px){
+    .tier{grid-template-columns:76px 1fr;}
+    .tier .doc{grid-column:1/-1;border-left:0;border-top:1px dashed var(--line);}
+    .map-base{grid-template-columns:1fr;}
+  }
+
+  /* ===== 経路 ===== */
+  .route{margin:18px 0 4px;border:1px solid var(--line);}
+  .route .row{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--line);}
+  .route .row:last-child{border-bottom:0;}
+  .route .s{display:flex;align-items:center;justify-content:center;background:var(--bg-sub);
+    color:var(--navy);font-weight:600;font-size:12.5px;border-right:1px solid var(--line);
+    padding:8px;text-align:center;letter-spacing:.04em;line-height:1.5;}
+  .route .c{padding:12px 16px;color:var(--ink-soft);font-size:13.5px;}
+  .route .c b{color:var(--ink);}
+  @media(max-width:520px){.route .row{grid-template-columns:88px 1fr;}}
+
+  .keybox{margin:24px 0 0;border:1px solid var(--line-strong);padding:18px 22px;}
+  .keybox .lab{font-size:11.5px;letter-spacing:.22em;color:var(--navy);font-weight:600;margin:0 0 8px;}
+  .keybox p{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:15px;line-height:1.9;color:var(--ink);}
+  .keybox p .navy{color:var(--navy);}
+
+  .note{margin-top:52px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--ink-faint);line-height:1.9;}
+  .note b{color:var(--ink-soft);}
+  .foot{margin-top:30px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.1em;color:var(--ink-faint);}
+
+  @media print{
+    body{font-size:12.5px}
+    section{break-inside:avoid}
+    .mapbox,.route{break-inside:avoid}
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="docband">
+    <span>2026年7月14日</span>
+    <span class="cls">理事会説明メモ / 内部限り</span>
+  </div>
+
+  <div class="titleblock">
+    <p class="sup">審議のお願い</p>
+    <h1>「AI活用 × 第三者認証」構想<br><span class="navy">全体像と進め方について</span></h1>
+    <p class="org">一般社団法人デジラボビューティー 理事長 鎌田麻央</p>
+  </div>
+
+  <div class="abstract">
+    <p><b>本メモの目的</b> — 当法人の立ち位置を「AI・DXを教える団体」から「誠実なサロンを育て、その到達を証明する機関」へ発展させる構想について、全体像・準備済みの文書・進め方の順序を説明し、理事会の審議をお願いするものです。</p>
+    <p><b>お願いしたい判断は第5(審議事項)の5点</b>です。本日は方向性の承認をいただきたく、個別の細部(審査項目の文言等)は専門家の確認を経て確定します。</p>
+  </div>
+
+  <!-- 第1 なぜ -->
+  <section class="body">
+    <div class="chap"><span class="no">第1</span><h2>なぜ今か — 3行の要約</h2></div>
+    <ol class="legal">
+      <li>エステティック業界は、誠実さを消費者が事前に確認する手段がなく、価格と広告量で選ばれる市場になっている。誠実な小規模サロンほど埋もれる。</li>
+      <li>生成AIの普及で、偽の口コミ・盛った施術例が事実上コストゼロで量産される。この構造は今後、確実に悪化する。</li>
+      <li>だからこそ「偽装していないことが確認された店」の希少価値が上がる。<b>法令の教育とAIリテラシーの両方を扱える当法人だけが、この確認の担い手になれる。</b></li>
+    </ol>
+  </section>
+
+  <!-- 第2 全体図 -->
+  <section class="body">
+    <div class="chap"><span class="no">第2</span><h2>制度全体図</h2></div>
+    <div class="mapbox">
+      <p class="map-title">DIGILAB BEAUTY — 制度の階段と対応文書</p>
+
+      <div class="map-base" style="margin-top:0;margin-bottom:14px;">
+        <div class="map-cell"><b>入口(無償)</b>サロンAI活用度診断・セルフチェック — 自店の現在地を知る</div>
+        <div class="map-cell"><b>土台の思想</b>構想書「誠実な事業者が、正しく選ばれる市場へ」 — 全体の設計図</div>
+      </div>
+
+      <div class="tier">
+        <div class="lv"><span class="l1">第一段階</span><span class="l2">修 了</span></div>
+        <div class="mid">
+          <p class="nm">テーマ別学習プログラムの受講・修了</p>
+          <p class="ds">第1弾「化粧品×薬機法」講座(90分+テスト10問)。審査なし。広く参加を集める認知の入口。</p>
+        </div>
+        <div class="doc"><p class="dl">対応文書</p><p class="dn">講座企画書<br>(カリキュラム・確認テスト 第1次案)</p></div>
+      </div>
+      <div class="down">整えられたら、次の段へ</div>
+      <div class="tier">
+        <div class="lv"><span class="l1">第二段階</span><span class="l2">宣 言</span></div>
+        <div class="mid">
+          <p class="nm">必須13項目のセルフチェックと自己宣言・登録</p>
+          <p class="ds">証憑提出なし・審査なし。宣言サロンとして公表。虚偽判明時は登録抹消・公表。</p>
+        </div>
+        <div class="doc"><p class="dl">対応文書</p><p class="dn">誠実運営セルフチェック&amp;<br>宣言シート(草案)</p></div>
+      </div>
+      <div class="down">実体を整えた店だけが、頂上へ</div>
+      <div class="tier top">
+        <div class="lv"><span class="l1">第三段階</span><span class="l2">認 証</span></div>
+        <div class="mid">
+          <p class="nm">第三者審査(書面・実査・聴取)による「認証サロン」</p>
+          <p class="ds">16項目の審査基準。有効期間1年・更新制。少数の先行サロンから開始し、成功事例を作る。</p>
+        </div>
+        <div class="doc"><p class="dl">対応文書</p><p class="dn">制度構成・審査基準<br>(第2次草案)</p></div>
+      </div>
+
+      <div class="map-out">
+        <b>出口 — 消費者への開示</b><br>
+        当法人が「サロン選びの基準」を消費者に向けて発信し、宣言・認証サロンを公表する。個々の小規模サロンには不可能な信頼形成を、団体が代行する。ここで初めて、会員の誠実さが「選ばれる理由」に変わる。
+      </div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--ink-faint)">4つの文書はすべて草案として作成済み。いずれも外部専門家の確認前であり、確定前に対外配布しない。</p>
+  </section>
+
+  <!-- 第3 アプローチ -->
+  <section class="body">
+    <div class="chap"><span class="no">第3</span><h2>どこからアプローチするか — 順序と理由</h2></div>
+    <p>原則は2つ。<b>「内から外へ」</b>(内部の合意なしに外に出さない)、<b>「軽いものから重いものへ」</b>(法的リスクの小さい教育から始め、認証は最後)。</p>
+    <div class="route">
+      <div class="row"><div class="s">手順1<br>理事会</div><div class="c"><b>本メモによる方向性の合意(本日)。</b>ここが起点。合意前に外部への説明は行わない。</div></div>
+      <div class="row"><div class="s">手順2<br>法務顧問</div><div class="c">構想書・審査基準草案を法務顧問に相談し、<b>監修の進め方と外部専門家(薬事)の起用</b>を設計する。名称「デジラボ認証」等の商標調査もこの段階で着手する。</div></div>
+      <div class="row"><div class="s">手順3<br>顧問・提携先</div><div class="c">顧問(デジタルサロン協会)に構想を共有し、業界側の後ろ盾と連携可能性を確認する。<b>単独の新興団体より、既存団体と連携した制度のほうが信頼の立ち上がりが速い。</b></div></div>
+      <div class="row"><div class="s">手順4<br>講座第1弾</div><div class="c">監修を経た「化粧品×薬機法」講座をライブ開催(まず会員向け→非会員開放)。<b>教育は認証と違い法的リスクが小さく、既存のセミナー運営の延長で今すぐ動ける。</b>ここで受講者=制度の母体を作る。</div></div>
+      <div class="row"><div class="s">手順5<br>宣言第1期</div><div class="c">講座修了者を中心に宣言サロンの登録を開始。<b>公表ページに最初の店名が並ぶことが、制度が実在する証拠になる。</b></div></div>
+      <div class="row"><div class="s">手順6<br>試行審査</div><div class="c">宣言サロンから少数の協力店を募り、認証の試行審査(パイロット)。負担と判定可能性を検証して基準を確定する。</div></div>
+      <div class="row"><div class="s">手順7<br>行政・対外</div><div class="c">試行の実績(受講数・宣言数・改善事例)が揃った段階で、業界の自主的な健全化の取り組みとして、行政の相談窓口・関係機関への情報提供を検討する。<b>実績ゼロで省庁に行かない。数字を持って行く。</b></div></div>
+    </div>
+    <div class="keybox">
+      <p class="lab">順序の考え方(一言で)</p>
+      <p>先に<span class="navy">教育で人を集め</span>、<span class="navy">宣言で実在の店名を並べ</span>、その実績を持って<span class="navy">認証と行政アプローチ</span>に進む。逆順は、すべて失敗する。</p>
+    </div>
+  </section>
+
+  <!-- 第4 スケジュール -->
+  <section class="body">
+    <div class="chap"><span class="no">第4</span><h2>当面のスケジュール(目安・90日)</h2></div>
+    <div class="tblwrap">
+      <table>
+        <tr><th style="width:18%">期間</th><th>主な取り組み</th><th style="width:30%">到達目標</th></tr>
+        <tr><td><span class="strong">〜30日</span></td><td>理事会合意/法務顧問との監修設計・薬事専門家の打診/講座スライド・台本の作成/商標調査の着手</td><td>監修体制が決まっている</td></tr>
+        <tr><td><span class="strong">31〜60日</span></td><td>講座教材の専門家監修/第1期ライブ講座の開催(会員向け)/セルフチェックシートの文言確認</td><td>第1期修了者が出ている</td></tr>
+        <tr><td><span class="strong">61〜90日</span></td><td>講座の非会員開放・録画化/宣言サロン第1期の登録受付・公表ページ整備/試行審査の協力店打診</td><td>宣言サロンの公表が始まっている</td></tr>
+      </table>
+    </div>
+    <p style="margin-top:12px;font-size:13.5px">認証(第三段階)の開始時期は、試行審査の結果を見て理事会で別途決定する。<b>焦って認証を始めないことが、制度の信用を守る。</b></p>
+  </section>
+
+  <!-- 第5 審議事項 -->
+  <section class="body">
+    <div class="chap"><span class="no">第5</span><h2>審議事項(お願いしたい判断・5点)</h2></div>
+    <ol class="legal">
+      <li><span class="t">立ち位置の転換の承認</span>「誠実なサロンを育て、証明する機関」への発展を、当法人の方針として承認いただきたい(構想書のとおり)。</li>
+      <li><span class="t">三段階制度の骨格の承認</span>修了・宣言・認証の三段階構成と、「基準の水準は下げず、到達を段階化する」設計の承認。</li>
+      <li><span class="t">講座第1弾の着手承認</span>「化粧品×薬機法」講座の教材作成・専門家監修・第1期開催の着手。監修費用・商標調査費用の予算枠の目安についてご協議いただきたい。</li>
+      <li><span class="t">ブランド表現の方針確認</span>認証機関としての信頼性に合わせ、制作物をパステル・淡色主体から白地ベースの明快な配色(ネイビー×ゴールド系)へ移行する方針の確認(2026年7月13日理事長指示の追認)。</li>
+      <li><span class="t">対外ルールの確認</span>全文書は専門家確認・監修完了まで対外配布しない。統計・法令の記載は対外提出前に一次資料で確認する。修了・宣言・認証の表示を混同させる運用をしない。</li>
+    </ol>
+  </section>
+
+  <!-- 第6 リスク -->
+  <section class="body">
+    <div class="chap"><span class="no">第6</span><h2>想定されるリスクと予防線</h2></div>
+    <div class="tblwrap">
+      <table>
+        <tr><th style="width:32%">リスク</th><th>予防線(設計済み)</th></tr>
+        <tr><td>「何様か」という業界の反発</td><td>審査だけの団体ではなく<span class="strong">育成が本体</span>。基準・審査手続は全文公開し、透明性で応える。</td></tr>
+        <tr><td>認証店で問題が起きて制度の信用が傷つく</td><td>認証は<span class="strong">確認できる3点のみを保証</span>し、施術効果等は対象外と明示。通報窓口・取消し・公表のルールを先に定めてある。</td></tr>
+        <tr><td>宣言の「自己申告」が軽く見られる</td><td>虚偽判明時の登録抹消・公表に本人が同意する設計。宣言と認証はマークの意匠で明確に区別する。</td></tr>
+        <tr><td>法令記載の誤りによる信頼失墜</td><td>全文書に「専門家確認前」を明記済み。監修完了まで対外配布しないルール(審議事項5)。</td></tr>
+        <tr><td>名称・マークの商標問題</td><td>「デジラボ認証(仮称)」のまま先行使用しない。商標調査を手順2で実施してから名称を確定する。</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <div class="note">
+    <b>添付(いずれも草案・内部限り)</b> — ①構想書「誠実な事業者が、正しく選ばれる市場へ」/②制度構成・審査基準 第2次草案/③「化粧品×薬機法」講座 企画書 第1次案/④誠実運営セルフチェック&宣言シート(草案)
+  </div>
+
+  <div class="foot">
+    <span>一般社団法人 デジラボビューティー</span>
+    <span>digilabbeauty@gmail.com</span>
+  </div>
+
+</div>
