@@ -1,0 +1,244 @@
+<title>デジラボ認証(仮称) 審査基準 第1次草案 — デジラボビューティー</title>
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#101318; --bg-sub:#181C23;
+      --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+      --navy:#9FB4DA; --navy-soft:#7D93BC;
+      --gold:#C9A85C;
+      --line:#2B313B; --line-strong:#E8EAEE;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+  }
+  :root[data-theme="dark"]{
+    --bg:#101318; --bg-sub:#181C23;
+    --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+    --navy:#9FB4DA; --navy-soft:#7D93BC;
+    --gold:#C9A85C;
+    --line:#2B313B; --line-strong:#E8EAEE;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",YuGothic,"Noto Sans JP",system-ui,sans-serif;
+    font-size:15px;line-height:1.95;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+  .wrap{max-width:840px;margin:0 auto;padding:clamp(32px,6vw,64px) clamp(20px,5vw,48px) 72px;}
+
+  .docband{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.12em;color:var(--ink-faint);}
+  .docband .cls{border:1px solid var(--line);padding:2px 12px;color:var(--ink-soft);}
+  .titleblock{margin:44px 0 0;padding:0 0 36px;border-bottom:3px double var(--line-strong);}
+  .titleblock .sup{font-size:13.5px;letter-spacing:.08em;color:var(--ink-soft);margin:0 0 16px;}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(23px,4vw,32px);line-height:1.6;letter-spacing:.04em;
+    margin:0;color:var(--ink);text-wrap:balance;}
+  h1 .navy{color:var(--navy);}
+  .titleblock .org{margin:26px 0 0;font-size:13.5px;color:var(--ink-soft);letter-spacing:.06em;}
+
+  .abstract{margin:34px 0 0;padding:22px 26px;background:var(--bg-sub);border-left:4px solid var(--navy);}
+  .abstract p{margin:0 0 .8em;font-size:14.5px;color:var(--ink-soft);}
+  .abstract p:last-child{margin-bottom:0;}
+  .abstract b{color:var(--ink);}
+
+  section{margin-top:58px;}
+  .chap{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--line-strong);
+    padding-bottom:10px;margin-bottom:22px;}
+  .chap .no{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;
+    color:var(--navy);font-size:15px;letter-spacing:.14em;white-space:nowrap;}
+  .chap h2{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(18px,2.8vw,22px);letter-spacing:.05em;margin:0;line-height:1.6;}
+  p{margin:0 0 1em;}
+  .body p{color:var(--ink-soft);}
+  .body p b, .body li b{color:var(--ink);font-weight:600;}
+
+  h3.std{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;
+    font-size:16.5px;letter-spacing:.05em;color:var(--ink);margin:34px 0 6px;}
+  h3.std .tag{display:inline-block;font-family:inherit;color:var(--navy);margin-right:10px;}
+  p.stdnote{font-size:13.5px;color:var(--ink-faint);margin:0 0 14px;}
+
+  .tblwrap{overflow-x:auto;margin:8px 0 4px;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;line-height:1.75;}
+  caption{caption-side:top;text-align:left;font-size:12.5px;color:var(--ink-faint);
+    letter-spacing:.08em;padding-bottom:8px;}
+  th{font-weight:600;color:var(--ink);background:var(--bg-sub);
+    border-top:2px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+    padding:9px 12px;text-align:left;}
+  td{border-bottom:1px solid var(--line);padding:11px 12px;vertical-align:top;color:var(--ink-soft);}
+  td .strong{color:var(--ink);font-weight:600;}
+  tr:last-child td{border-bottom:2px solid var(--line-strong);}
+  td.no{white-space:nowrap;color:var(--navy);font-weight:600;}
+  td.kbn,th.kbn{text-align:center;white-space:nowrap;}
+  .must{color:var(--navy);font-weight:700;}
+  .rec{color:var(--ink-faint);font-weight:600;}
+
+  ol.legal{margin:0 0 1em;padding-left:0;list-style:none;counter-reset:li;}
+  ol.legal>li{counter-increment:li;position:relative;padding-left:2.4em;margin-bottom:14px;color:var(--ink-soft);}
+  ol.legal>li::before{content:"(" counter(li) ")";position:absolute;left:0;top:0;
+    color:var(--navy);font-weight:600;letter-spacing:.02em;}
+  ol.legal>li .t{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;}
+
+  .keybox{margin:26px 0 0;border:1px solid var(--line-strong);padding:20px 24px;}
+  .keybox .lab{font-size:11.5px;letter-spacing:.22em;color:var(--navy);font-weight:600;margin:0 0 8px;}
+  .keybox p{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:15.5px;line-height:1.9;color:var(--ink);}
+  .keybox p .navy{color:var(--navy);}
+
+  .flow{margin:20px 0 4px;border:1px solid var(--line);}
+  .flow .row{display:grid;grid-template-columns:110px 1fr;border-bottom:1px solid var(--line);}
+  .flow .row:last-child{border-bottom:0;}
+  .flow .s{display:flex;align-items:center;justify-content:center;background:var(--bg-sub);
+    color:var(--navy);font-weight:600;font-size:13px;border-right:1px solid var(--line);
+    padding:8px;text-align:center;letter-spacing:.06em;}
+  .flow .c{padding:13px 18px;color:var(--ink-soft);font-size:14px;}
+  .flow .c b{color:var(--ink);}
+  @media(max-width:520px){.flow .row{grid-template-columns:84px 1fr;}}
+
+  .certline{display:flex;align-items:center;gap:10px;margin:24px 0 10px;
+    font-size:12px;letter-spacing:.2em;color:var(--gold);font-weight:600;}
+  .certline::before,.certline::after{content:"";height:1px;background:var(--gold);flex:1;opacity:.5;}
+
+  .note{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--ink-faint);line-height:1.9;}
+  .note b{color:var(--ink-soft);}
+  .foot{margin-top:30px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.1em;color:var(--ink-faint);}
+
+  @media print{
+    body{font-size:12.5px}
+    section{break-inside:avoid}
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="docband">
+    <span>2026年7月14日</span>
+    <span class="cls">第1次草案 / 内部検討資料</span>
+  </div>
+
+  <div class="titleblock">
+    <p class="sup">「AI活用 × 第三者認証」構想(案) 別紙</p>
+    <h1>デジラボ認証(仮称)<br><span class="navy">審査基準 第1次草案</span></h1>
+    <p class="org">一般社団法人デジラボビューティー</p>
+  </div>
+
+  <div class="abstract">
+    <p><b>本草案の位置づけ</b> — 構想書第4に定めた確認事項3点(①契約の適正 ②表示の適正 ③AI活用の透明性)を、審査可能な個別基準に展開した第1次草案である。<b>弁護士等の外部専門家による法令面の確認を経ていない段階</b>のものであり、確認後に確定版とする。</p>
+    <p><b>設計原則</b> — 確認できる事実のみを基準とし、施術の効果・満足度など確認できない事項は対象にしない(第4参照)。基準はすべて、事業者が「何を出せば適合になるか」を事前に判断できる形で書く。</p>
+  </div>
+
+  <!-- 第1 総則 -->
+  <section class="body">
+    <div class="chap"><span class="no">第1</span><h2>総則</h2></div>
+    <ol class="legal">
+      <li><span class="t">目的</span>本認証は、エステティックサービスを提供する事業者のうち、契約・表示の適正およびAI活用の透明性について本基準への適合が確認された者を消費者に開示し、消費者の合理的な選択を支援することを目的とする。</li>
+      <li><span class="t">対象</span>エステティックサービスを提供する事業者(店舗単位)。規模・法人格を問わない。一人サロンを含む小規模事業者が取得可能であることを制度設計の要件とする。</li>
+      <li><span class="t">区分</span>各基準は<b>必須</b>と<b>推奨</b>に区分する。認証には必須項目の全適合を要する。推奨項目は適合を要しないが、審査時に確認し、更新時の改善目標として扱う。</li>
+      <li><span class="t">確認方法</span>審査は「書面」(規程・ひな形・記録等の提出)、「実査」(広告・店頭・ウェブ表示の現物確認)、「聴取」(オンライン可のヒアリング)のいずれか又は組み合わせによる。</li>
+    </ol>
+    <div class="keybox">
+      <p class="lab">本認証が保証しない事項</p>
+      <p>施術の効果・満足度、医学的な安全性、事業者の経営状態は、本認証の確認対象に<span class="navy">含まれない</span>。認証の表示にあたっては、これらを保証するものと誤認させる表現を事業者・本法人の双方に禁止する。</p>
+    </div>
+  </section>
+
+  <!-- 第2 基準1 -->
+  <section class="body">
+    <div class="chap"><span class="no">第2</span><h2>基準① 契約の適正</h2></div>
+    <p>特定商取引法(特定継続的役務提供)への適合と、勧誘・解約における誠実な運用を確認する。</p>
+    <div class="tblwrap">
+      <table>
+        <caption>表1 契約の適正に関する審査項目</caption>
+        <tr><th style="width:8%">番号</th><th style="width:30%">確認項目</th><th>適合の内容</th><th class="kbn" style="width:10%">確認方法</th><th class="kbn" style="width:8%">区分</th></tr>
+        <tr><td class="no">1-1</td><td>法定書面の交付</td><td>特定継続的役務提供に該当する契約について、概要書面・契約書面のひな形が法定記載事項を満たし、交付手順が定められている。該当契約を扱わない事業者は、その旨の申告で足りる。</td><td class="kbn">書面</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">1-2</td><td>クーリング・オフ<br>中途解約の説明</td><td>クーリング・オフおよび中途解約の権利と法定の精算ルールを、契約前に口頭および書面で説明する手順が定められ、説明資料が備えられている。</td><td class="kbn">書面・聴取</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">1-3</td><td>勧誘の自主基準</td><td>施術中の勧誘を行わない、当日契約を求めない(持ち帰り検討を認める)等の勧誘自主基準を定め、店内またはウェブで開示している。</td><td class="kbn">書面・実査</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">1-4</td><td>前払金の取扱いの開示</td><td>回数券・前払コースを扱う場合、有効期限・未消化分の取扱い・返金条件を契約前に書面で開示している。</td><td class="kbn">書面</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">1-5</td><td>苦情対応</td><td>苦情の受付窓口を定めて開示し、受付・対応の記録を残している。</td><td class="kbn">書面</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">1-6</td><td>前払金の保全的措置</td><td>長期・高額の前払いを避ける料金設計(月謝制・都度払い等)を採用している。</td><td class="kbn">書面</td><td class="kbn"><span class="rec">推奨</span></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 第3 基準2 -->
+  <section class="body">
+    <div class="chap"><span class="no">第3</span><h2>基準② 表示の適正</h2></div>
+    <p>景品表示法・医薬品医療機器等法(薬機法)への適合を、広告・ウェブサイト・SNS・店頭表示の現物で確認する。</p>
+    <div class="tblwrap">
+      <table>
+        <caption>表2 表示の適正に関する審査項目</caption>
+        <tr><th style="width:8%">番号</th><th style="width:30%">確認項目</th><th>適合の内容</th><th class="kbn" style="width:10%">確認方法</th><th class="kbn" style="width:8%">区分</th></tr>
+        <tr><td class="no">2-1</td><td>効果効能表現</td><td>医薬品的な効能効果(治る・痩せる等の断定、身体の構造・機能への効果の標榜)を広告・SNS・接客トークで用いていない。化粧品・機器の紹介は法令上許容される表現の範囲内である。</td><td class="kbn">実査・聴取</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">2-2</td><td>ビフォーアフター表示</td><td>施術前後の写真を用いる場合、撮影条件をそろえ、画像の加工・生成の有無を明示している。加工・生成画像を実例と誤認させる表示がない。</td><td class="kbn">実査</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">2-3</td><td>口コミ・体験談</td><td>対価を提供した投稿に事業者との関係を明示している(ステルスマーケティング規制への適合)。事業者自身・従業者による一般消費者を装った投稿を行っていない。</td><td class="kbn">実査・聴取</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">2-4</td><td>価格表示</td><td>二重価格表示は比較対照価格の根拠(販売実績等)を保持している。割引条件・追加費用は打消し表示に頼らず本文で明示している。</td><td class="kbn">実査・書面</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">2-5</td><td>表示の点検記録</td><td>広告・SNS投稿の公開前点検の手順(点検者・点検日を記録)を定め、運用している。</td><td class="kbn">書面</td><td class="kbn"><span class="rec">推奨</span></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 第4 基準3 -->
+  <section class="body">
+    <div class="chap"><span class="no">第4</span><h2>基準③ AI活用の透明性</h2></div>
+    <p>AIの利用を制限する基準ではない。<b>利用の事実を隠さず、AIの出力に人が責任を持ち、顧客情報を適正に扱う</b>ことを確認する基準である。</p>
+    <div class="tblwrap">
+      <table>
+        <caption>表3 AI活用の透明性に関する審査項目</caption>
+        <tr><th style="width:8%">番号</th><th style="width:30%">確認項目</th><th>適合の内容</th><th class="kbn" style="width:10%">確認方法</th><th class="kbn" style="width:8%">区分</th></tr>
+        <tr><td class="no">3-1</td><td>AI利用の開示</td><td>カウンセリング・肌診断・接客応対(チャット等)にAIを利用する場合、その旨を顧客が事前に認知できる形で開示している。</td><td class="kbn">実査</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">3-2</td><td>生成物の非偽装</td><td>生成AIで作成した画像・文章を、実際の施術例・実在の顧客の声と誤認させる形で用いていない(基準2-2・2-3と連動)。</td><td class="kbn">実査</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">3-3</td><td>顧客情報の取扱い</td><td>顧客の個人情報(氏名・肌状態・施術記録等)をAIツールに入力する場合のルール(入力可否の区分、匿名化、利用ツールの限定)を定め、利用目的を顧客に通知・同意取得している。</td><td class="kbn">書面</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">3-4</td><td>人による最終確認</td><td>AIが作成したカウンセリング内容・広告文・顧客向け文書は、公開・使用前に人が確認し、最終責任の所在(確認者)を定めている。</td><td class="kbn">書面・聴取</td><td class="kbn"><span class="must">必須</span></td></tr>
+        <tr><td class="no">3-5</td><td>従業者教育</td><td>AI利用に関わる従業者が、本法人の教育プログラム(検定または講習)その他同等の教育を受けている。</td><td class="kbn">書面</td><td class="kbn"><span class="rec">推奨</span></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 第5 審査プロセス -->
+  <section class="body">
+    <div class="chap"><span class="no">第5</span><h2>審査の手続</h2></div>
+    <div class="flow">
+      <div class="row"><div class="s">1 自己点検</div><div class="c">事業者がチェックリスト(サロンAI活用度診断を拡張)により自己点検し、申請書類を準備する。<b>この段階は無償</b>とし、参加の入口を広く保つ。</div></div>
+      <div class="row"><div class="s">2 書面審査</div><div class="c">規程・ひな形・記録類を確認する。不備は不合格とせず、<b>改善事項として通知し再提出を認める</b>(育成を目的とする制度であるため)。</div></div>
+      <div class="row"><div class="s">3 実査・聴取</div><div class="c">広告・ウェブ・店頭表示の現物確認と、オンライン可のヒアリングを行う。</div></div>
+      <div class="row"><div class="s">4 判定</div><div class="c">審査担当者と判定者を分離する。必須項目の全適合をもって認証を付与する。</div></div>
+      <div class="row"><div class="s">5 開示</div><div class="c">認証事業者を認証番号・有効期間とともに本法人ウェブサイトで公表する。事業者は所定の表示ルールに従いマークを使用できる。</div></div>
+      <div class="row"><div class="s">6 維持・更新</div><div class="c">有効期間は<b>1年</b>とし、更新時に再審査する。消費者からの通報窓口を設け、重大な不適合(虚偽申告、行政処分等)を確認した場合は認証を取り消し、取消しの事実を公表する。</div></div>
+    </div>
+    <div class="certline">DIGILAB CERTIFIED SALON</div>
+    <p style="font-size:13.5px;color:var(--ink-faint);margin-top:2px">審査料・更新料の設定、マークの意匠・表示ルールは、外部専門家の確認と並行して別途定める。</p>
+  </section>
+
+  <!-- 第6 確定までの手順 -->
+  <section class="body">
+    <div class="chap"><span class="no">第6</span><h2>本基準の確定までの手順</h2></div>
+    <ol class="legal">
+      <li><span class="t">法令面の確認</span>弁護士等の外部専門家による全項目の確認を受け、法令の引用・適合の内容を確定する。</li>
+      <li><span class="t">試行審査(パイロット)</span>少数の協力サロンに対して本草案による試行審査を行い、事業者側の負担(準備時間・書類量)と基準の判定可能性を検証し、基準を改訂する。</li>
+      <li><span class="t">確定・公開</span>確定版の基準と審査手続を一般に公開する。基準の公開自体を、制度の透明性の担保とする。</li>
+    </ol>
+  </section>
+
+  <div class="note">
+    <b>注記</b> — 本草案における法令(特定商取引法・景品表示法・医薬品医療機器等法・個人情報保護法)への言及は、外部専門家の確認前の整理である。対外提出・公開前に、条文・施行状況・所管庁のガイドラインとの整合を確認すること。
+  </div>
+
+  <div class="foot">
+    <span>一般社団法人 デジラボビューティー</span>
+    <span>digilabbeauty@gmail.com</span>
+  </div>
+
+</div>
