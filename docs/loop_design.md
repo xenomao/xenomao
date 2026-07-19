@@ -64,6 +64,11 @@
 - **scripts(検証役)**: 機械判定ロジックは `scripts/*.sh` に置き、スキルからは呼ぶだけにする
 - **hooks(割り込み)**: `.claude/settings.json` に定義。ロジック本体は scripts に置く
 
+## MCP連携
+
+ループ運用で使う外部ツール接続(GitHub・Playwright・Claude Code Remote ほか)は `docs/mcp_setup.md` を参照。
+ローカルセッション用のサーバー定義はリポジトリ直下の `.mcp.json` にある。
+
 ## 今後の候補(未実装)
 
 - コンプラ問題集・検定LPのリンク切れチェック(ゴール型)

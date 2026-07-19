@@ -56,6 +56,7 @@
 - LP関連(marketing/⇔public/ の同期対象)を編集したら、完了報告前に `scripts/check_lp_sync.sh` が終了コード0であることを確認する(`/lp-sync` スキル)
 - 公開URLの死活・デプロイ反映確認は `/site-health` スキル(`scripts/check_site_health.sh`)
 - 同期対象HTMLの編集時は PostToolUse フックが自動で同期チェックを行う(`.claude/settings.json`)
+- MCP連携(GitHub・Playwright ほか)は `.mcp.json` と `docs/mcp_setup.md` を参照
 
 ## ブランド
 
