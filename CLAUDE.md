@@ -50,6 +50,13 @@
 - 公開URL: https://xenomao.github.io/xenomao/compliance/
 - 内容: 特商法・景表法・薬機法・個人情報保護法・SNS・AIガイドラインの10問+解答解説。「AI美容カウンセリング技能資格(ビューティーフェロー3級)」に基づく学習用教材
 
+## ループ設計(エージェント運用)
+
+- 設計全体は `docs/loop_design.md` を参照(4パターンの対応表・使い方)
+- LP関連(marketing/⇔public/ の同期対象)を編集したら、完了報告前に `scripts/check_lp_sync.sh` が終了コード0であることを確認する(`/lp-sync` スキル)
+- 公開URLの死活・デプロイ反映確認は `/site-health` スキル(`scripts/check_site_health.sh`)
+- 同期対象HTMLの編集時は PostToolUse フックが自動で同期チェックを行う(`.claude/settings.json`)
+
 ## ブランド
 
 - デザイン: 白基調 × パステルラベンダー(概要資料PDF準拠)。ダークパープルの旧配色は使わない
