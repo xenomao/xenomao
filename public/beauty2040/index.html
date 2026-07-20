@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<!-- Beauty 2040 未来共創プロジェクト LP / 配信用コピー: public/beauty2040/index.html(更新時は両方を同期すること) -->
+<!-- TODO: 参加フォーム公開後、data-form のリンク(現在は公式LINE)をGoogleフォームURLに差し替える -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty 2040 | 美容業界の未来を、共に設計する。| 一般社団法人デジラボビューティー</title>
+<meta name="description" content="あなたは、2040年にも美容業界は存在していると思いますか?――AI時代に美容業界は何を価値として社会に残すのかを共に設計する未来共創プロジェクト。成果は白書として公開し、参加者全員の名前を掲載します。参加無料。">
+<meta property="og:title" content="Beauty 2040 | 美容業界の未来を、共に設計する。">
+<meta property="og:description" content="未来を予測するのではなく、一緒に作る。共同設計者100名を募集。成果は白書として公開し、参加者全員の名前を掲載します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xenomao.github.io/xenomao/beauty2040/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Shippori+Mincho+B1:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@350;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#37303e; --ink-strong:#2a2331; --muted:#8b8093;
+  --lav:#b79ad1; --lav-deep:#8e6bb0; --pink:#e39cbd;
+  --wash:#faf7fb; --wash2:#f5eef7; --line:#ece3f1;
+  --grad:linear-gradient(120deg,#f7d9e3 0%,#ddc7ef 52%,#c9d9f2 100%);
+  --rule:linear-gradient(90deg,#f0a8c4,#9b7fc0,#35406b);
+  --head:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;
+  --serif:'Shippori Mincho B1','Noto Serif JP',serif;
+  --body:'Noto Sans JP','Hiragino Sans',sans-serif;
+  --en:'Poppins',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);font-weight:400;color:var(--ink);background:#fff;line-height:1.95;letter-spacing:.04em;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+::selection{background:#ecdcf5}
+.wrap{max-width:1080px;margin:0 auto;padding:0 6vw}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+.rv.on{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+.nb{display:inline-block}
+
+/* wordmark */
+.wordmark{line-height:1.15;text-decoration:none;display:inline-block}
+.wordmark .l1{font-family:var(--en);font-weight:500;font-size:20px;letter-spacing:.42em;color:#6d6076}
+.wordmark .l2{font-family:var(--en);font-weight:300;font-size:13px;letter-spacing:.58em;color:#b9a8c6;display:block}
+
+/* header */
+.header{position:fixed;inset:0 0 auto 0;z-index:100;padding:16px 4vw;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.gnav{display:flex;gap:26px;align-items:center}
+.gnav a{font-size:12.5px;font-weight:500;letter-spacing:.1em;color:var(--ink);text-decoration:none;padding-bottom:3px;position:relative}
+.gnav a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--rule);border-radius:2px;transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.gnav a:not(.nav-cta):hover::after{transform:scaleX(1);transform-origin:left}
+.nav-cta{background:linear-gradient(120deg,#9b7fc0,#8e6bb0);color:#fff !important;font-weight:700;border-radius:40px;padding:9px 22px;box-shadow:0 4px 16px rgba(155,127,192,.35);transition:transform .3s,box-shadow .3s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(155,127,192,.45)}
+@media(max-width:900px){.gnav a:not(.nav-cta){display:none}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.08em;text-decoration:none;border-radius:44px;padding:16px 36px;transition:transform .3s,box-shadow .3s}
+.btn .arr{font-family:var(--en);font-weight:400;transition:transform .3s}
+.btn:hover .arr{transform:translateX(5px)}
+.btn-main{background:linear-gradient(120deg,#9b7fc0,#8e6bb0);color:#fff;box-shadow:0 10px 28px rgba(142,107,176,.35)}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(142,107,176,.45)}
+.btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(90,70,110,.12)}
+
+/* section heads */
+section{padding:96px 0}
+.sec-head{margin-bottom:52px}
+.sec-head.center{text-align:center}
+.sec-en{font-family:var(--en);font-weight:600;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--lav-deep);margin-bottom:14px}
+.sec-title{font-family:var(--serif);font-weight:700;font-size:clamp(24px,3.6vw,35px);line-height:1.6;letter-spacing:.05em;color:var(--ink-strong)}
+.sec-rule{width:70px;height:2px;background:var(--rule);margin-top:20px}
+.sec-head.center .sec-rule{margin-left:auto;margin-right:auto}
+.sec-lead{margin-top:20px;font-size:14.5px;color:var(--ink);max-width:680px}
+.sec-head.center .sec-lead{margin-left:auto;margin-right:auto}
+
+/* ===== hero ===== */
+.hero{position:relative;padding:170px 0 110px;text-align:center;overflow:hidden;
+  background:
+    radial-gradient(ellipse 55% 50% at 18% 12%, rgba(247,217,227,.55), transparent 62%),
+    radial-gradient(ellipse 50% 55% at 85% 20%, rgba(221,199,239,.6), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,217,242,.5), transparent 65%),
+    #fdfbfe}
+.hero .inner{position:relative;z-index:2}
+.hero-badge{display:inline-block;font-size:11.5px;font-weight:500;letter-spacing:.22em;color:var(--lav-deep);border:1px solid var(--line);background:rgba(255,255,255,.7);border-radius:30px;padding:7px 20px;margin-bottom:34px}
+.hero-q{font-family:var(--serif);font-weight:700;font-size:clamp(24px,4.6vw,44px);line-height:1.75;letter-spacing:.06em;color:var(--ink-strong);margin-bottom:30px}
+.hero-q .q-mark{color:transparent;background:linear-gradient(120deg,#c98bb0,#8e6bb0);-webkit-background-clip:text;background-clip:text}
+.hero-2040{font-family:var(--en);font-weight:300;font-size:clamp(13px,1.6vw,15px);letter-spacing:.52em;color:var(--lav-deep);text-transform:uppercase;margin-bottom:14px}
+.hero-2040 strong{font-weight:600}
+.hero-sub{font-family:var(--serif);font-size:clamp(15px,2vw,19px);letter-spacing:.14em;color:var(--ink);margin-bottom:26px}
+.hero-desc{font-size:14.5px;color:var(--ink);max-width:640px;margin:0 auto 44px}
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-meta{display:flex;justify-content:center;flex-wrap:wrap;margin:56px auto 0;border:1px solid var(--line);border-radius:10px;max-width:780px;overflow:hidden;background:rgba(255,255,255,.75)}
+.hero-meta .m{flex:1 1 25%;min-width:160px;padding:18px 14px;border-right:1px solid var(--line)}
+.hero-meta .m:last-child{border-right:none}
+.hero-meta .mk{font-family:var(--en);font-size:10px;letter-spacing:.24em;color:var(--lav-deep);text-transform:uppercase;margin-bottom:7px}
+.hero-meta .mv{font-family:var(--serif);font-weight:700;font-size:15.5px;color:var(--ink-strong);letter-spacing:.06em}
+@media(max-width:640px){.hero-meta .m{flex:1 1 50%;border-bottom:1px solid var(--line)}}
+
+/* ===== problem / concept ===== */
+.concept{background:#fff}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:860px){.concept-grid{grid-template-columns:1fr}}
+.not-this{border:1px solid var(--line);border-radius:14px;padding:34px 30px;background:var(--wash)}
+.but-this{border-radius:14px;padding:34px 30px;background:linear-gradient(150deg,#f5eef7,#eee7f6 60%,#e9e9f6);border:1px solid #e2d6ee}
+.ct-label{font-family:var(--en);font-weight:600;font-size:11px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:16px}
+.not-this .ct-label{color:var(--muted)}
+.but-this .ct-label{color:var(--lav-deep)}
+.ct-title{font-family:var(--serif);font-weight:700;font-size:21px;line-height:1.7;color:var(--ink-strong);margin-bottom:14px}
+.ct-body{font-size:14px;color:var(--ink)}
+.concept-lead{font-family:var(--serif);font-weight:700;font-size:clamp(18px,2.6vw,24px);line-height:2;text-align:center;margin-top:64px;color:var(--ink-strong)}
+.concept-lead .u{background:linear-gradient(transparent 68%,#ecdcf5 68%)}
+
+/* ===== co-designer ===== */
+.codesign{background:var(--wash)}
+.cd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:860px){.cd-grid{grid-template-columns:1fr}}
+.cd-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px 26px;transition:transform .35s,box-shadow .35s}
+.cd-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(120,95,150,.12)}
+.cd-num{font-family:var(--en);font-weight:300;font-size:30px;color:var(--lav);line-height:1;margin-bottom:16px}
+.cd-title{font-family:var(--head);font-weight:700;font-size:16.5px;color:var(--ink-strong);margin-bottom:10px}
+.cd-body{font-size:13.5px;color:var(--ink)}
+
+/* ===== whitepaper ===== */
+.wp{background:#fff}
+.wp-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:860px){.wp-grid{grid-template-columns:1fr}}
+.wp-visual{position:relative;border-radius:16px;padding:44px 38px;background:linear-gradient(160deg,#f7f2fa,#efe6f5 55%,#e7e4f4);border:1px solid #e2d6ee;text-align:center}
+.wp-visual .doc{background:#fff;border:1px solid var(--line);border-radius:8px;box-shadow:0 24px 50px rgba(110,85,140,.16);padding:34px 26px;max-width:320px;margin:0 auto;text-align:left}
+.wp-visual .doc .d-en{font-family:var(--en);font-weight:600;font-size:10px;letter-spacing:.32em;color:var(--lav-deep);text-transform:uppercase;margin-bottom:10px}
+.wp-visual .doc .d-title{font-family:var(--serif);font-weight:700;font-size:20px;line-height:1.6;color:var(--ink-strong);margin-bottom:14px}
+.wp-visual .doc .d-line{height:6px;border-radius:3px;background:var(--wash2);margin-bottom:8px}
+.wp-visual .doc .d-line.s{width:70%}
+.wp-visual .doc .d-names{margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-size:10.5px;letter-spacing:.14em;color:var(--muted);line-height:2}
+.wp-points{list-style:none}
+.wp-points li{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+.wp-points li:first-child{padding-top:0}
+.wp-points .ic{flex:0 0 auto;width:38px;height:38px;border-radius:50%;background:var(--wash2);display:flex;align-items:center;justify-content:center;font-size:16px}
+.wp-points .t{font-weight:700;font-size:15px;color:var(--ink-strong);margin-bottom:4px}
+.wp-points .b{font-size:13.5px;color:var(--ink)}
+
+/* ===== join(3層) ===== */
+.join{background:var(--wash)}
+.join-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+@media(max-width:900px){.join-grid{grid-template-columns:1fr}}
+.plan{background:#fff;border:1px solid var(--line);border-radius:16px;padding:36px 28px;display:flex;flex-direction:column;position:relative;transition:transform .35s,box-shadow .35s}
+.plan:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(120,95,150,.12)}
+.plan.featured{border:2px solid var(--lav-deep);box-shadow:0 14px 36px rgba(142,107,176,.16)}
+.plan .reco{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(120deg,#9b7fc0,#8e6bb0);color:#fff;font-size:11px;font-weight:700;letter-spacing:.16em;border-radius:20px;padding:4px 18px;white-space:nowrap}
+.plan .p-en{font-family:var(--en);font-weight:600;font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--lav-deep);margin-bottom:8px}
+.plan .p-name{font-family:var(--serif);font-weight:700;font-size:21px;color:var(--ink-strong);margin-bottom:6px}
+.plan .p-time{font-size:12px;color:var(--muted);letter-spacing:.1em;margin-bottom:18px}
+.plan ul{list-style:none;flex:1}
+.plan ul li{position:relative;padding:8px 0 8px 24px;font-size:13.5px;border-bottom:1px dashed var(--line)}
+.plan ul li::before{content:'✓';position:absolute;left:2px;color:var(--lav-deep);font-weight:700}
+.plan .p-note{margin-top:16px;font-size:12px;color:var(--muted)}
+.join-common{text-align:center;margin-top:40px;font-size:14px}
+.join-common .free{font-family:var(--serif);font-weight:700;font-size:clamp(17px,2.4vw,22px);color:var(--ink-strong)}
+.join-common .free .em{color:var(--lav-deep)}
+
+/* ===== schedule ===== */
+.sched{background:#fff}
+.timeline{position:relative;margin-top:10px}
+.timeline::before{content:'';position:absolute;left:19px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,#f0a8c4,#9b7fc0,#35406b);border-radius:2px}
+.tl-item{position:relative;padding:0 0 38px 62px}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:10px;top:4px;width:20px;height:20px;border-radius:50%;background:#fff;border:2px solid var(--lav-deep)}
+.tl-item.now .tl-dot{background:var(--lav-deep);box-shadow:0 0 0 6px rgba(142,107,176,.18)}
+.tl-when{font-family:var(--en);font-weight:600;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--lav-deep);margin-bottom:4px}
+.tl-title{font-weight:700;font-size:16px;color:var(--ink-strong);margin-bottom:4px}
+.tl-body{font-size:13.5px;color:var(--ink);max-width:640px}
+
+/* ===== faq ===== */
+.faq{background:var(--wash)}
+.qa{background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.qa summary{cursor:pointer;list-style:none;display:flex;gap:14px;align-items:baseline;padding:20px 24px;font-weight:700;font-size:14.5px;color:var(--ink-strong)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .q{font-family:var(--en);font-weight:600;color:var(--lav-deep);flex:0 0 auto}
+.qa .a{padding:0 24px 20px 52px;font-size:13.5px;color:var(--ink)}
+
+/* ===== org / cta ===== */
+.org{background:#fff}
+.org-box{border:1px solid var(--line);border-radius:16px;padding:40px 36px;background:var(--wash)}
+.org-box dl{display:grid;grid-template-columns:150px 1fr;gap:10px 20px;font-size:13.5px}
+@media(max-width:640px){.org-box dl{grid-template-columns:1fr}}
+.org-box dt{font-weight:700;color:var(--ink-strong)}
+.org-box dd a{color:var(--lav-deep)}
+
+.cta-final{position:relative;text-align:center;padding:110px 0;overflow:hidden;
+  background:
+    radial-gradient(ellipse 55% 60% at 15% 20%, rgba(247,217,227,.6), transparent 62%),
+    radial-gradient(ellipse 55% 60% at 88% 80%, rgba(201,217,242,.55), transparent 62%),
+    var(--wash2)}
+.cta-final .inner{position:relative;z-index:2}
+.cta-q{font-family:var(--serif);font-weight:700;font-size:clamp(20px,3.4vw,32px);line-height:1.9;color:var(--ink-strong);margin-bottom:14px}
+.cta-sub{font-size:14.5px;color:var(--ink);max-width:600px;margin:0 auto 40px}
+
+/* footer */
+footer{background:#fff;border-top:1px solid var(--line);padding:36px 4vw;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+footer .fnav{display:flex;gap:22px;flex-wrap:wrap}
+footer a{font-size:12px;color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--lav-deep)}
+footer .copy{font-family:var(--en);font-weight:300;font-size:11px;letter-spacing:.12em;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- ============ header ============ -->
+<header class="header">
+  <a class="wordmark" href="../">
+    <span class="l1">Digilab</span>
+    <span class="l2">beauty</span>
+  </a>
+  <nav class="gnav">
+    <a href="#concept">プロジェクトについて</a>
+    <a href="#codesign">共同設計者とは</a>
+    <a href="#whitepaper">白書</a>
+    <a href="#join">参加方法</a>
+    <a href="#schedule">スケジュール</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://lin.ee/O8g2Egp" class="nav-cta" data-form>参加する</a>
+  </nav>
+</header>
+
+<!-- ============ hero ============ -->
+<section class="hero">
+  <div class="wrap inner">
+    <div class="hero-badge rv on">未来共創プロジェクト | 主催: 一般社団法人デジラボビューティー</div>
+    <h1 class="hero-q rv on d1"><span class="nb">あなたは、2040年にも</span><br><span class="nb">美容業界は存在していると</span><span class="nb">思いますか<span class="q-mark">?</span></span></h1>
+    <div class="hero-2040 rv on d2"><strong>Beauty 2040</strong> &mdash; Co-Design Project</div>
+    <p class="hero-sub rv on d2">未来を予測するのではなく、未来を一緒に作る。</p>
+    <p class="hero-desc rv on d2">これは「AIをどう使うか」の議論ではありません。AI時代に美容業界は<strong>何を価値として社会に残すのか</strong>を、業界の内側から共に設計する場です。成果は白書として公開し、参加者全員のお名前を掲載します。</p>
+    <div class="hero-actions rv on d3">
+      <a class="btn btn-main" href="https://lin.ee/O8g2Egp" data-form>共同設計者として参加する<span class="arr">&rarr;</span></a>
+      <a class="btn btn-ghost" href="#concept">プロジェクトを知る<span class="arr">&darr;</span></a>
+    </div>
+    <div class="hero-meta rv on d3">
+      <div class="m"><div class="mk">Participation</div><div class="mv">参加無料</div></div>
+      <div class="m"><div class="mk">Format</div><div class="mv">オンライン中心</div></div>
+      <div class="m"><div class="mk">Members</div><div class="mv">先着<span class="nb">100名</span></div></div>
+      <div class="m"><div class="mk">Output</div><div class="mv">白書として公開</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ concept ============ -->
+<section class="concept" id="concept">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="sec-en">Concept</div>
+      <h2 class="sec-title">問いの立て方を、変える。</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-lead">「AIに仕事を奪われるのか」という不安の声は、美容業界にも広がっています。けれど私たちは、この問いの立て方自体を変えるべきだと考えました。</p>
+    </div>
+    <div class="concept-grid">
+      <div class="not-this rv">
+        <div class="ct-label">This is not</div>
+        <h3 class="ct-title">「AIをどう使うか」の<br>議論ではありません</h3>
+        <p class="ct-body">ツールの使い方は、時代とともに変わり続けます。ノウハウを追いかけるだけでは、業界の足元は定まりません。Beauty 2040は、AI活用セミナーでも未来予測レポートでもありません。</p>
+      </div>
+      <div class="but-this rv d1">
+        <div class="ct-label">This is</div>
+        <h3 class="ct-title">「何を価値として社会に残すのか」を<br>共に設計する場です</h3>
+        <p class="ct-body">AIがどれだけ進化しても代替されない、美容業界の本質的な価値。それを現場の言葉で言語化し、2040年に向けた業界の共通言語として設計する――それがこのプロジェクトの目的です。</p>
+      </div>
+    </div>
+    <p class="concept-lead rv"><span class="nb">未来は、予測するものではなく、</span><span class="nb"><span class="u">設計するもの</span>だと私たちは考えます。</span></p>
+  </div>
+</section>
+
+<!-- ============ co-designer ============ -->
+<section class="codesign" id="codesign">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="sec-en">Co-Designer</div>
+      <h2 class="sec-title">あなたは参加者ではなく、<br class="sp">「共同設計者」です。</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-lead">Beauty 2040に「聴講席」はありません。現場に立つあなたの実感こそが、白書の素材であり、業界の未来の設計図になります。</p>
+    </div>
+    <div class="cd-grid">
+      <div class="cd-card rv">
+        <div class="cd-num">01</div>
+        <div class="cd-title">現場の実感を持ち寄る</div>
+        <p class="cd-body">エステティシャン・美容師・セラピスト・ネイリスト。お客様の身体と心に日々触れているあなたが感じる「AIに代替されない価値」を、言葉にして持ち寄ります。</p>
+      </div>
+      <div class="cd-card rv d1">
+        <div class="cd-num">02</div>
+        <div class="cd-title">対話して、設計する</div>
+        <p class="cd-body">オンラインの共創セッションとアンケートを通じて、経営者・メーカー・ディーラー・教育機関の視点を重ね合わせ、2040年に残すべき価値を定義していきます。</p>
+      </div>
+      <div class="cd-card rv d2">
+        <div class="cd-num">03</div>
+        <div class="cd-title">名前とともに、残す</div>
+        <p class="cd-body">設計の成果は白書「Beauty 2040」として無料公開。共同設計者としてのあなたの名前が、業界の未来の出発点に刻まれます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ whitepaper ============ -->
+<section class="wp" id="whitepaper">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="sec-en">Whitepaper</div>
+      <h2 class="sec-title">成果物は白書。<br class="sp">業界の最初の「OS」の種になる。</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="wp-grid">
+      <div class="wp-visual rv">
+        <div class="doc">
+          <div class="d-en">Whitepaper</div>
+          <div class="d-title">Beauty 2040<br>美容業界が社会に残す価値</div>
+          <div class="d-line"></div>
+          <div class="d-line"></div>
+          <div class="d-line s"></div>
+          <div class="d-names">共同設計者(掲載イメージ)<br>あなたの名前 / サロン名 ほか100名</div>
+        </div>
+      </div>
+      <ul class="wp-points rv d1">
+        <li>
+          <div class="ic">📖</div>
+          <div><div class="t">無料公開・引用自由</div><div class="b">読んで終わる報告書ではなく、教育・採用・サロンの発信に使える業界の共通言語として公開します。</div></div>
+        </li>
+        <li>
+          <div class="ic">✒️</div>
+          <div><div class="t">参加者全員の名前を掲載</div><div class="b">共同設計者・コントリビューター・賛同者、すべての参加区分でお名前を掲載します(掲載は希望者のみ・サロン名併記可)。</div></div>
+        </li>
+        <li>
+          <div class="ic">🌱</div>
+          <div><div class="t">業界の最初のOSの種</div><div class="b">ここで定義された価値の言葉が、業界標準として育っていく出発点。白書は完成ではなく、バージョン0.1の始まりです。</div></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ join ============ -->
+<section class="join" id="join">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="sec-en">How to Join</div>
+      <h2 class="sec-title">3つの関わり方。<br class="sp">どれを選んでも、名前が残る。</h2>
+      <div class="sec-rule"></div>
+      <p class="sec-lead">忙しさもスタンスも、人それぞれ。あなたに合った深さで参画できます。</p>
+    </div>
+    <div class="join-grid">
+      <div class="plan featured rv">
+        <div class="reco">いちばん深く関わる</div>
+        <div class="p-en">Co-Designer</div>
+        <div class="p-name">共同設計者</div>
+        <div class="p-time">目安: 月90分 × 全3回程度</div>
+        <ul>
+          <li>オンライン共創セッションに参加</li>
+          <li>白書の内容・構成を共に設計</li>
+          <li>白書に名前+コメントを掲載</li>
+          <li>発表会での紹介</li>
+        </ul>
+        <p class="p-note">現場の声を業界の言葉に変える中心メンバーです。</p>
+      </div>
+      <div class="plan rv d1">
+        <div class="p-en">Contributor</div>
+        <div class="p-name">コントリビューター</div>
+        <div class="p-time">目安: 30分〜</div>
+        <ul>
+          <li>アンケート・テーマ別ヒアリングで現場の声を提供</li>
+          <li>回答が白書の素材として活きる</li>
+          <li>白書に名前を掲載</li>
+        </ul>
+        <p class="p-note">セッション参加が難しい方はこちら。</p>
+      </div>
+      <div class="plan rv d2">
+        <div class="p-en">Supporter</div>
+        <div class="p-name">賛同者</div>
+        <div class="p-time">目安: 5分</div>
+        <ul>
+          <li>プロジェクトの趣旨に賛同し、名前を連ねる</li>
+          <li>白書に名前を掲載</li>
+          <li>進捗レポートをお届け</li>
+        </ul>
+        <p class="p-note">まずは応援から、でも大歓迎です。</p>
+      </div>
+    </div>
+    <div class="join-common rv">
+      <p class="free">参加費は、どの区分も<span class="em">無料</span>。創設メンバーは<span class="em">先着100名</span>です。</p>
+      <div style="margin-top:28px">
+        <a class="btn btn-main" href="https://lin.ee/O8g2Egp" data-form>参加を申し込む<span class="arr">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ schedule ============ -->
+<section class="sched" id="schedule">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-en">Schedule</div>
+      <h2 class="sec-title">2026年から、2040年への設計図。</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="timeline">
+      <div class="tl-item now rv">
+        <div class="tl-dot"></div>
+        <div class="tl-when">Now &mdash; 2026 Summer</div>
+        <div class="tl-title">共同設計者100名の募集(創設メンバー)</div>
+        <p class="tl-body">この呼びかけが、プロジェクトの始まりです。申込時の「2040年の美容業界に残したい価値」への回答が、そのまま白書の最初の素材になります。</p>
+      </div>
+      <div class="tl-item rv">
+        <div class="tl-dot"></div>
+        <div class="tl-when">Kickoff</div>
+        <div class="tl-title">キックオフイベント(オンライン・無料・90分)</div>
+        <p class="tl-body">プロジェクトの全体像を共有し、最初の共創ワークを行います。日程は参加者に公式LINE・メールでご案内します。</p>
+      </div>
+      <div class="tl-item rv">
+        <div class="tl-dot"></div>
+        <div class="tl-when">Session 1&ndash;3</div>
+        <div class="tl-title">共創セッション(オンライン・全3回程度)</div>
+        <p class="tl-body">「残すべき価値の定義」「AIとの役割分担」「2040年のサロン像」をテーマに対話し、白書の骨子を設計します。</p>
+      </div>
+      <div class="tl-item rv">
+        <div class="tl-dot"></div>
+        <div class="tl-when">2026&ndash;2027</div>
+        <div class="tl-title">白書「Beauty 2040」公開・発表会</div>
+        <p class="tl-body">参加者全員の名前とともに無料公開。公開はゴールではなく、業界のOSとして育てていくバージョン0.1の始まりです。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ faq ============ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="sec-en">FAQ</div>
+      <h2 class="sec-title">よくあるご質問</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <details class="qa rv">
+      <summary><span class="q">Q.</span>本当に無料ですか?あとから費用がかかりませんか?</summary>
+      <p class="a">A. すべての参加区分で無料です。白書の制作・公開まで、参加者に費用のご負担は一切ありません。白書にお名前を掲載させていただくことが、私たちにとっての何よりの対価です。</p>
+    </details>
+    <details class="qa rv">
+      <summary><span class="q">Q.</span>美容業界の経験が浅くても参加できますか?</summary>
+      <p class="a">A. はい。経験年数は問いません。現場に立つ方はもちろん、サロン経営者、メーカー・ディーラー、教育機関、美容業界を支える関連事業者の方まで歓迎します。多様な視点こそが設計の材料です。</p>
+    </details>
+    <details class="qa rv">
+      <summary><span class="q">Q.</span>セッションに毎回参加できるか不安です。</summary>
+      <p class="a">A. コントリビューター(アンケート回答・30分〜)や賛同者(5分)の区分をご用意しています。途中で関わり方を変えることもできますので、まずは気軽にご参加ください。</p>
+    </details>
+    <details class="qa rv">
+      <summary><span class="q">Q.</span>名前の掲載は必須ですか?</summary>
+      <p class="a">A. 掲載はご希望の方のみです。本名・サロン名併記・イニシャルなど表記もお選びいただけます。公開前に必ず最終確認のご連絡をします。個人情報は<a href="../privacy.html" style="color:var(--lav-deep)">プライバシーポリシー</a>に基づき適切に管理します。</p>
+    </details>
+    <details class="qa rv">
+      <summary><span class="q">Q.</span>「業界のOS」とはどういう意味ですか?</summary>
+      <p class="a">A. パソコンのOSがすべてのアプリの土台になるように、業界が共有する「価値の定義」は、教育・採用・サービス設計・発信すべての土台になります。Beauty 2040の白書は、その最初のバージョンを業界の手で書く試みです。</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ org ============ -->
+<section class="org" id="org">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="sec-en">Organizer</div>
+      <h2 class="sec-title">主催団体</h2>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="org-box rv">
+      <dl>
+        <dt>団体名</dt><dd>一般社団法人デジラボビューティー</dd>
+        <dt>活動内容</dt><dd>美容業界のAI活用・DX推進支援。美容AIセキュリティ基礎検定の運営、AI活用ガイドラインの策定、セミナー・教育事業など。</dd>
+        <dt>理事長</dt><dd>鎌田麻央</dd>
+        <dt>公式サイト</dt><dd><a href="../">https://xenomao.github.io/xenomao/</a></dd>
+        <dt>Instagram</dt><dd><a href="https://www.instagram.com/digilab.beauty_official/" target="_blank" rel="noopener">@digilab.beauty_official</a></dd>
+        <dt>公式LINE</dt><dd><a href="https://lin.ee/O8g2Egp" target="_blank" rel="noopener">https://lin.ee/O8g2Egp</a></dd>
+        <dt>お問い合わせ</dt><dd><a href="mailto:digilabbeauty@gmail.com">digilabbeauty@gmail.com</a></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============ final cta ============ -->
+<section class="cta-final">
+  <div class="wrap inner">
+    <p class="cta-q rv"><span class="nb">2040年の美容業界を、</span><br><span class="nb">誰かの予測に任せますか。</span><span class="nb">それとも、一緒に設計しますか。</span></p>
+    <p class="cta-sub rv d1">白書に刻まれるのは、あなたの名前です。創設メンバーは先着100名。</p>
+    <div class="rv d2">
+      <a class="btn btn-main" href="https://lin.ee/O8g2Egp" data-form>共同設計者として参加する<span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a class="wordmark" href="../" style="transform:scale(.85);transform-origin:left center">
+    <span class="l1">Digilab</span>
+    <span class="l2">beauty</span>
+  </a>
+  <nav class="fnav">
+    <a href="../">団体公式サイト</a>
+    <a href="../kentei/">美容AIセキュリティ基礎検定</a>
+    <a href="../shindan/">サロンAI活用度診断</a>
+    <a href="../privacy.html">プライバシーポリシー</a>
+  </nav>
+  <div class="copy">&copy; 2026 Digilab beauty. All rights reserved.</div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.rv:not(.on)').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
