@@ -146,7 +146,9 @@ body{font-family:var(--sans);color:var(--ink);background:#d5d8de;padding:34px 16
 .spine{grid-column:2;height:14px;position:relative;}
 .spine::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1.5px;background:var(--line);transform:translateX(-50%);}
 .spine::after{content:"▽";position:absolute;left:50%;bottom:-3px;transform:translateX(-50%);font-size:9px;color:var(--ink3);}
-.mapcap{font-size:9.5px;color:var(--ink3);margin-top:10px;letter-spacing:.5px;}
+.mapcap{font-size:9px;color:var(--ink3);margin-top:8px;letter-spacing:.3px;line-height:1.5;}
+.orgwrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.orgwrap svg{width:100%;height:100%;}
 
 /* =================================================================
    SLIDE 5 — OS POSITIONING
@@ -324,36 +326,140 @@ body{font-family:var(--sans);color:var(--ink);background:#d5d8de;padding:34px 16
       <div class="eyebrow">03 Industry Map<span class="jp">業界の全体構造</span></div>
       <h2 class="title" style="font-size:27px;">美容・エステティック業界は、<span class="mark">こう統治されている</span>。</h2>
     </div>
-    <div class="orgmap">
-      <div class="tier t1">
-        <div class="tlbl">行政</div>
-        <div class="tnodes">
-          <div class="node gov"><div class="nn">厚生労働省</div><div class="nr">衛生管理</div></div>
-          <div class="node gov"><div class="nn">経済産業省 ヘルスケア産業課</div><div class="nr">エステティック産業を所管</div></div>
-          <div class="node gov"><div class="nn">消費者庁</div><div class="nr">生命・身体の安全／契約相談</div></div>
-        </div>
-      </div>
-      <div class="spine"></div>
-      <div class="tier t2">
-        <div class="tlbl">中核・<br>認証</div>
-        <div class="tnodes">
-          <div class="node side"><div class="nn">日本エステティック研究財団</div><div class="nr">調査研究（厚労省 所轄）</div></div>
-          <div class="node hub"><div class="nn">JEPA 日本エステティック振興協議会</div><div class="nr">業界統一自主基準の策定・行政窓口</div></div>
-          <div class="node side"><div class="nn">日本エステティック機構（JEO）</div><div class="nr">中立・第三者認証</div></div>
-        </div>
-      </div>
-      <div class="spine"></div>
-      <div class="tier t3">
-        <div class="tlbl">会員<br>団体</div>
-        <div class="tnodes">
-          <div class="node"><div class="nn">日本エステティック協会</div><div class="nr">エステティシャンの団体</div></div>
-          <div class="node"><div class="nn">日本エステティック業協会（AEA）</div><div class="nr">サロン経営者の団体</div></div>
-          <div class="node"><div class="nn">日本エステティック工業会（JEIA）</div><div class="nr">機器・化粧品 企業の団体</div></div>
-          <div class="node cons"><div class="nn">日本エステティック試験センター（JEEC）</div><div class="nr">試験制度の運営</div></div>
-        </div>
-      </div>
+    <div class="orgwrap">
+      <svg viewBox="0 0 1000 460" preserveAspectRatio="xMidYMid meet" role="img" aria-label="美容・エステティック業界団体 組織図">
+        <style>
+          .nm{font-family:'Noto Sans JP','Hiragino Sans',sans-serif;fill:#111827;font-weight:700;text-anchor:middle;}
+          .pre{font-family:'Noto Sans JP','Hiragino Sans',sans-serif;fill:#6f7688;font-weight:500;text-anchor:middle;}
+          .sub{font-family:'Noto Sans JP','Hiragino Sans',sans-serif;fill:#5b6172;text-anchor:middle;}
+          .en{font-family:'Poppins',sans-serif;fill:#9aa0b0;text-anchor:middle;letter-spacing:.5px;}
+          .wn{fill:#ffffff;} .wp{fill:#e0cf9f;} .ws{fill:#cdd3df;}
+          .rel{font-family:'Noto Sans JP','Hiragino Sans',sans-serif;fill:#7c5c16;font-weight:700;text-anchor:middle;}
+          .leg{font-family:'Noto Sans JP','Hiragino Sans',sans-serif;fill:#6f7688;text-anchor:start;}
+          .ln{stroke:#17223c;stroke-width:1.4;fill:none;}
+          .dl{stroke:#8a90a6;stroke-width:1.2;stroke-dasharray:5 3;fill:none;}
+          rect.box{fill:#ffffff;stroke:#17223c;stroke-width:1.2;}
+          rect.gov{fill:#f4f6f9;stroke:#17223c;stroke-width:1.1;}
+          rect.cons{fill:#ffffff;stroke:#5b6172;stroke-width:1.1;}
+          rect.hub{fill:#17223c;stroke:#9a7420;stroke-width:2;}
+          rect.band{fill:#eef1f6;}
+          rect.lbg{fill:#ffffff;}
+        </style>
+        <defs>
+          <marker id="ar" markerWidth="8" markerHeight="8" refX="6.2" refY="3" orient="auto-start-reverse"><path d="M0,0 L7,3 L0,6 z" fill="#17223c"/></marker>
+          <marker id="ad" markerWidth="8" markerHeight="8" refX="6.2" refY="3" orient="auto-start-reverse"><path d="M0,0 L7,3 L0,6 z" fill="#8a90a6"/></marker>
+        </defs>
+
+        <!-- grouping bands (industry) -->
+        <rect class="band" x="8" y="116" width="726" height="98" rx="12"/>
+        <rect class="band" x="8" y="366" width="690" height="80" rx="12"/>
+
+        <!-- ===== connectors (drawn under boxes) ===== -->
+        <!-- 所轄 : 厚労省 → 研究財団 -->
+        <line class="ln" x1="123" y1="60" x2="123" y2="135" marker-end="url(#ar)"/>
+        <!-- 協力 : 経産省 → JEPA -->
+        <line class="ln" x1="373" y1="60" x2="373" y2="125" marker-end="url(#ar)"/>
+        <!-- 協力 (上段・点線) : 経産省 → 消費者庁 -->
+        <line class="dl" x1="481" y1="30" x2="785" y2="30" marker-end="url(#ad)"/>
+        <!-- 支援協力 (点線) : 経産省 → JEO -->
+        <path class="dl" d="M445,60 C500,105 545,105 600,135" marker-end="url(#ad)"/>
+        <!-- 協力 (点線) : 消費者庁 → JEO -->
+        <path class="dl" d="M788,42 C750,95 730,110 703,135" marker-end="url(#ad)"/>
+        <!-- 消費者庁 → 国民生活センター -->
+        <line class="ln" x1="882" y1="60" x2="882" y2="117" marker-end="url(#ar)"/>
+        <!-- 協力関係 (双方向) : 研究財団 ↔ JEPA -->
+        <line class="ln" x1="222" y1="168" x2="254" y2="168" marker-start="url(#ar)" marker-end="url(#ar)"/>
+        <!-- JEPA → JEO (支援協力) -->
+        <line class="ln" x1="490" y1="168" x2="518" y2="168" marker-end="url(#ar)"/>
+        <!-- JEO → 国民生活センター (点線) -->
+        <path class="dl" d="M718,160 C750,155 760,150 785,150" marker-end="url(#ad)"/>
+        <!-- JEPA → 会員団体 (分配) -->
+        <line class="ln" x1="373" y1="206" x2="373" y2="346"/>
+        <line class="ln" x1="123" y1="346" x2="579" y2="346"/>
+        <line class="ln" x1="123" y1="346" x2="123" y2="373" marker-end="url(#ar)"/>
+        <line class="ln" x1="351" y1="346" x2="351" y2="373" marker-end="url(#ar)"/>
+        <line class="ln" x1="579" y1="346" x2="579" y2="373" marker-end="url(#ar)"/>
+        <!-- 国民生活センター → 都道府県 消費者生活センター -->
+        <line class="ln" x1="882" y1="176" x2="882" y2="229" marker-end="url(#ar)"/>
+        <!-- 協力 (点線) : 都道府県センター → 試験センター -->
+        <line class="dl" x1="882" y1="286" x2="882" y2="373" marker-end="url(#ad)"/>
+
+        <!-- ===== boxes ===== -->
+        <!-- 行政 -->
+        <rect class="gov" x="28" y="8" width="190" height="52" rx="6"/>
+        <text class="nm" x="123" y="32" font-size="14">厚生労働省</text>
+        <text class="sub" x="123" y="48" font-size="9.5">衛生管理</text>
+
+        <rect class="gov" x="268" y="8" width="210" height="52" rx="6"/>
+        <text class="nm" x="373" y="30" font-size="13.5">経済産業省</text>
+        <text class="sub" x="373" y="46" font-size="9.5">ヘルスケア産業課／産業所管</text>
+
+        <rect class="gov" x="788" y="8" width="188" height="52" rx="6"/>
+        <text class="nm" x="882" y="32" font-size="13.5">消費者庁</text>
+        <text class="sub" x="882" y="47" font-size="9">安全確保・契約相談</text>
+
+        <!-- 中核・認証 -->
+        <rect class="box" x="24" y="138" width="196" height="60" rx="6"/>
+        <text class="pre" x="122" y="156" font-size="8.5">公益財団法人</text>
+        <text class="nm" x="122" y="176" font-size="11.5">日本エステティック研究財団</text>
+        <text class="sub" x="122" y="190" font-size="8">調査研究</text>
+
+        <rect class="hub" x="256" y="128" width="232" height="78" rx="8"/>
+        <text class="pre wp" x="372" y="148" font-size="8.5">一般社団法人　JEPA</text>
+        <text class="nm wn" x="372" y="170" font-size="13">日本エステティック振興協議会</text>
+        <text class="sub ws" x="372" y="188" font-size="8.5">業界統一自主基準の策定・行政窓口</text>
+
+        <rect class="box" x="520" y="138" width="198" height="60" rx="6"/>
+        <text class="pre" x="619" y="155" font-size="8">特定非営利活動法人</text>
+        <text class="nm" x="619" y="174" font-size="11.5">日本エステティック機構</text>
+        <text class="en" x="619" y="189" font-size="8">JEO</text>
+
+        <rect class="cons" x="788" y="120" width="188" height="56" rx="6"/>
+        <text class="pre" x="882" y="139" font-size="8">独立行政法人</text>
+        <text class="nm" x="882" y="159" font-size="11.5">国民生活センター</text>
+
+        <!-- 消費者保護 -->
+        <rect class="cons" x="788" y="232" width="188" height="54" rx="6"/>
+        <text class="nm" x="882" y="255" font-size="11">都道府県</text>
+        <text class="nm" x="882" y="273" font-size="11">消費者生活センター</text>
+
+        <!-- 会員団体 -->
+        <rect class="box" x="20" y="376" width="206" height="58" rx="6"/>
+        <text class="pre" x="123" y="394" font-size="8">一般社団法人</text>
+        <text class="nm" x="123" y="415" font-size="11.5">日本エステティック協会</text>
+
+        <rect class="box" x="246" y="376" width="210" height="58" rx="6"/>
+        <text class="pre" x="351" y="393" font-size="8">一般社団法人</text>
+        <text class="nm" x="351" y="411" font-size="11">日本エステティック業協会</text>
+        <text class="en" x="351" y="426" font-size="7.5">AEA</text>
+
+        <rect class="box" x="476" y="376" width="206" height="58" rx="6"/>
+        <text class="pre" x="579" y="393" font-size="8">一般社団法人</text>
+        <text class="nm" x="579" y="411" font-size="11">日本エステティック工業会</text>
+        <text class="en" x="579" y="426" font-size="7.5">JEIA</text>
+
+        <rect class="cons" x="788" y="376" width="188" height="58" rx="6"/>
+        <text class="pre" x="882" y="393" font-size="8">一般財団法人</text>
+        <text class="nm" x="882" y="411" font-size="10.5">日本エステティック試験センター</text>
+        <text class="en" x="882" y="426" font-size="7.5">JEEC</text>
+
+        <!-- ===== relation labels (on top) ===== -->
+        <g><rect class="lbg" x="109" y="91" width="28" height="15"/><text class="rel" x="123" y="102" font-size="9.5">所轄</text></g>
+        <g><rect class="lbg" x="359" y="90" width="28" height="15"/><text class="rel" x="373" y="101" font-size="9.5">協力</text></g>
+        <g><rect class="lbg" x="619" y="15" width="28" height="15"/><text class="rel" x="633" y="26" font-size="9.5">協力</text></g>
+        <g><rect class="lbg" x="516" y="92" width="52" height="15"/><text class="rel" x="542" y="103" font-size="9.5">支援協力</text></g>
+        <g><rect class="lbg" x="728" y="86" width="28" height="15"/><text class="rel" x="742" y="97" font-size="9.5">協力</text></g>
+        <g><rect class="lbg" x="209" y="150" width="58" height="15"/><text class="rel" x="238" y="161" font-size="9.5">協力関係</text></g>
+        <g><rect class="lbg" x="892" y="323" width="28" height="15"/><text class="rel" x="906" y="334" font-size="9.5">協力</text></g>
+
+        <!-- legend -->
+        <line class="ln" x1="20" y1="452" x2="44" y2="452"/>
+        <text class="leg" x="48" y="455" font-size="8.5">所轄・主たる関係</text>
+        <line class="dl" x1="196" y1="452" x2="220" y2="452"/>
+        <text class="leg" x="224" y="455" font-size="8.5">協力関係（点線）</text>
+      </svg>
     </div>
-    <div class="mapcap">出典：一般社団法人日本エステティック振興協議会 公開資料をもとに作成。消費者保護（国民生活センター・都道府県消費生活センター）と各行政が連携する成熟した制度構造。</div>
+    <div class="mapcap">出典：一般社団法人日本エステティック振興協議会「業界団体 組織図」を基に作図。行政（厚労省・経産省・消費者庁）と、研究財団・JEPA・認証機構（JEO）、各エステティック団体、消費者保護機関（国民生活センター・都道府県消費者生活センター）が連携する制度構造。</div>
   </div>
   <div class="foot">一般社団法人デジラボビューティー ｜ 賛助会員のご案内</div>
   <div class="pnum">04</div>
