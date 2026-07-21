@@ -10,6 +10,7 @@
 | 美容AIセキュリティ基礎検定3級 LP | https://xenomao.github.io/xenomao/kentei/ | `public/kentei/index.html` |
 | 法令・コンプライアンス問題集 | https://xenomao.github.io/xenomao/compliance/ | `public/compliance/index.html` |
 | サロンAI活用度診断(全10問) | https://xenomao.github.io/xenomao/shindan/ | `public/shindan/index.html` |
+| 賛助会員向けプレゼンデッキ | https://xenomao.github.io/xenomao/sponsor/ | `public/sponsor/index.html`(本体: `marketing/digilab_beauty_sponsor_deck.html`) |
 | 鎌田麻央 個人ビジネスLP | https://xenomao.github.io/xenomao/kamata/ | `public/kamata/index.html` |
 | プライバシーポリシー | https://xenomao.github.io/xenomao/privacy.html | `public/privacy.html` |
 | 検定LP用OGPシェア画像 | https://xenomao.github.io/xenomao/kentei/ogp.png | `public/kentei/ogp.png` |
