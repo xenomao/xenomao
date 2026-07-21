@@ -65,11 +65,11 @@
 | 代表理事 | 鎌田 麻央 |
 | 所在地 | 東京都渋谷区道玄坂1丁目10番8号 渋谷道玄坂東急ビル 2F-C |
 | 事業内容 | 美容業界向けAI教育・セミナー／専門コミュニティ運営／実践的ビジネスツール・診断の開発／業界ガイドライン・検定の策定 |
-| 公式サイト | https://digilab-beauty.com/ |
+| 公式サイト | https://xenomao.github.io/xenomao/ |
 
 ## ■ 本件に関するお問い合わせ
 
 一般社団法人デジラボビューティー 広報担当
 メール：digilabbeauty@gmail.com
-公式サイト：https://digilab-beauty.com/
+公式サイト：https://xenomao.github.io/xenomao/
 Instagram：@digilab.beauty_official ／ 公式LINE：https://lin.ee/O8g2Egp
