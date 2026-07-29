@@ -38,6 +38,15 @@
 - 公開URL: https://xenomao.github.io/xenomao/shindan/
 - 全10問・約2分のセルフ診断
 
+### Beauty TIMES LP(美容業界特化 情報プラットフォーム)
+
+- 本体: `marketing/beauty_times_lp.html` / 配信用コピー: `public/beauty_times/index.html`(内容は同一。更新時は両方を同期すること)
+- 公開URL: https://xenomao.github.io/xenomao/beauty_times/
+- コンセプト: 「展示会は3日間。ブランドは365日。」展示会(Beautyworld Japan等)で終わらない情報発信を行うデジタルショールーム
+- デザインは他LPと別系統の**エディトリアル調**(白基調 × ローズ→ラベンダーのグラデーション、ダークヒーロー)。ブランドページのUIモックアップ・情報接触量グラフ(SVG)・Before/During/Afterのインフォグラフィックで「サービスを体験できるLP」として構成
+- CTA(資料請求・掲載相談)は暫定で `mailto:digilabbeauty@gmail.com` 宛。**専用の問い合わせフォーム/連絡先が決まったら差し替えること**
+- OGP画像は未作成(`og:image` 未指定)。SNS拡散を行う場合は1200×630のOGPを用意する
+
 ### 成果物一覧
 
 - 全成果物(公開URL・ガイドライン・ツール・アプリ・販促資料)の棚卸しは `docs/asset_inventory.md` を参照
