@@ -63,9 +63,16 @@ section{padding:118px 0}
 .gnav a{font-size:12.5px;font-weight:500;letter-spacing:.09em;color:rgba(255,255,255,.86);text-decoration:none;position:relative;padding-bottom:3px;transition:color .3s}
 .gnav a:not(.nav-cta)::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:var(--grad);border-radius:2px;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--ease)}
 .gnav a:not(.nav-cta):hover::after{transform:scaleX(1);transform-origin:left}
-.nav-cta{background:var(--grad);color:#fff !important;font-weight:700;border-radius:100px;padding:10px 24px;box-shadow:0 6px 20px rgba(178,80,120,.32);transition:transform .3s var(--ease),box-shadow .3s}
+.nav-cta{background:var(--grad);color:#fff !important;font-weight:700;border-radius:100px;padding:10px 24px;box-shadow:0 6px 20px rgba(178,80,120,.32);transition:transform .3s var(--ease),box-shadow .3s;white-space:nowrap}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(178,80,120,.42)}
+.cta-s{display:none}
 @media(max-width:980px){.gnav a:not(.nav-cta){display:none}}
+@media(max-width:560px){
+  .cta-l{display:none}
+  .cta-s{display:inline}
+  .nav-cta{padding:9px 18px;font-size:12px}
+  .wordmark .w1,.wordmark .w2{font-size:17px}
+}
 
 /* ===== buttons ===== */
 .btn{display:inline-flex;align-items:center;gap:11px;font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.06em;text-decoration:none;border-radius:100px;padding:17px 34px;transition:transform .35s var(--ease),box-shadow .35s,background .35s,color .35s;white-space:nowrap}
@@ -117,7 +124,10 @@ section{padding:118px 0}
 .hero-sub{font-family:var(--head);font-weight:500;font-size:clamp(15px,2.1vw,20px);letter-spacing:.09em;color:#f0e6f2;margin-bottom:22px}
 .hero-desc{font-size:14px;color:#a9adc0;line-height:2.15;max-width:520px;margin-bottom:40px}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-.hero-scroll{position:relative;z-index:3;margin-top:74px;display:flex;align-items:center;gap:14px;font-family:var(--en);font-size:10px;letter-spacing:.3em;color:rgba(255,255,255,.45);text-transform:uppercase}
+.trust-line{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px}
+.trust-line li{position:relative;font-size:12px;letter-spacing:.05em;color:#b6bacb;padding-left:19px}
+.trust-line li::before{content:'\2713';position:absolute;left:0;top:0;color:var(--rose-l);font-size:11px;font-weight:700}
+.hero-scroll{position:relative;z-index:3;margin-top:56px;display:flex;align-items:center;gap:14px;font-family:var(--en);font-size:10px;letter-spacing:.3em;color:rgba(255,255,255,.45);text-transform:uppercase}
 .hero-scroll .bar{width:54px;height:1px;background:rgba(255,255,255,.28);position:relative;overflow:hidden}
 .hero-scroll .bar::after{content:'';position:absolute;inset:0;background:var(--rose-l);transform:translateX(-100%);animation:slide 2.6s var(--ease) infinite}
 @keyframes slide{0%{transform:translateX(-100%)}60%{transform:translateX(100%)}100%{transform:translateX(100%)}}
@@ -296,8 +306,13 @@ section{padding:118px 0}
 .pl:hover{transform:translateY(-6px);box-shadow:0 26px 54px rgba(40,30,60,.1)}
 .pl.pop{border-color:transparent;box-shadow:0 26px 60px rgba(178,80,120,.16);background:linear-gradient(#fff,#fff) padding-box,var(--grad) border-box;border:1.5px solid transparent}
 .pl .flag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);font-family:var(--en);font-weight:600;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#fff;background:var(--grad);border-radius:100px;padding:5px 16px;white-space:nowrap}
-.pl .pn{font-family:var(--en);font-weight:600;font-size:17px;letter-spacing:.12em;color:var(--ink);margin-bottom:8px}
-.pl .pd{font-size:12.5px;color:var(--ink3);line-height:1.9;min-height:48px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.pl .pn{font-family:var(--en);font-weight:600;font-size:17px;letter-spacing:.12em;color:var(--ink);margin-bottom:10px}
+.pl .pp{display:flex;align-items:baseline;gap:1px;margin-bottom:8px;line-height:1}
+.pl .pp .cur{font-family:var(--en);font-weight:400;font-size:17px;color:var(--ink)}
+.pl .pp .amt{font-family:var(--en);font-weight:600;font-size:30px;letter-spacing:.005em;color:var(--ink)}
+.pl .pp .per{font-size:11.5px;color:var(--muted);margin-left:5px;letter-spacing:.04em}
+.pl.pop .pp .cur,.pl.pop .pp .amt{color:transparent;background:var(--grad);-webkit-background-clip:text;background-clip:text}
+.pl .pd{font-size:12.5px;color:var(--ink3);line-height:1.9;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:16px}
 .pl ul{list-style:none;flex:1;margin-bottom:22px}
 .pl li{position:relative;padding:7px 0 7px 22px;font-size:12.5px;color:var(--ink2);line-height:1.8}
 .pl li::before{content:'\2713';position:absolute;left:0;top:7px;font-size:11px;font-weight:700;color:var(--rose)}
@@ -339,6 +354,74 @@ section{padding:118px 0}
 .closing .cc a{color:#c9cbd8;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2)}
 .closing .cc a:hover{color:#fff}
 
+/* ===== BOOKING ===== */
+.booking{background:var(--paper2);padding-bottom:132px}
+.bk-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:36px;align-items:start}
+@media(max-width:920px){.bk-grid{grid-template-columns:1fr;gap:28px}}
+.bk-h{font-family:var(--head);font-weight:700;font-size:14px;letter-spacing:.08em;color:var(--ink);margin-bottom:18px;display:flex;align-items:center;gap:11px}
+.bk-h::before{content:'';width:20px;height:2px;border-radius:2px;background:var(--grad)}
+.bk-know{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 28px}
+.bk-know-list{list-style:none;counter-reset:none}
+.bk-know-list li{display:flex;gap:15px;padding:15px 0;border-bottom:1px dashed var(--line)}
+.bk-know-list li:last-child{border-bottom:none;padding-bottom:0}
+.bk-know-list .bn{flex:0 0 auto;font-family:var(--en);font-weight:600;font-size:11px;letter-spacing:.1em;color:#fff;background:var(--grad);border-radius:6px;padding:4px 8px;height:fit-content;margin-top:2px}
+.bk-know-list b{display:block;font-family:var(--head);font-weight:700;font-size:14px;letter-spacing:.04em;color:var(--ink);margin-bottom:4px}
+.bk-know-list div{font-size:12.5px;color:var(--ink3);line-height:1.9}
+.bk-assure{list-style:none;margin-top:20px;display:grid;gap:9px}
+.bk-assure li{position:relative;padding-left:26px;font-size:12.5px;color:var(--ink2);letter-spacing:.03em}
+.bk-assure li::before{content:'\2713';position:absolute;left:5px;top:0;color:var(--rose);font-weight:700;font-size:12px}
+.bk-flow{margin-top:28px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px}
+.bk-flow-row{display:grid;gap:8px}
+.bk-flow .bf{display:flex;align-items:center;gap:11px;font-size:12.5px;color:var(--ink2);letter-spacing:.03em;background:var(--paper2);border-radius:100px;padding:10px 18px}
+.bk-flow .bfn{font-family:var(--en);font-weight:600;font-size:10px;color:#fff;background:var(--grad);width:19px;height:19px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto}
+.bk-flow .bfa{display:none}
+
+.bk-form-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:38px 36px 32px;box-shadow:0 30px 70px rgba(40,30,60,.09)}
+@media(max-width:560px){.bk-form-card{padding:30px 22px 26px}}
+.bk-form-h{font-family:var(--serif);font-weight:700;font-size:20px;letter-spacing:.06em;color:var(--ink);margin-bottom:10px}
+.bk-form-s{font-size:12.5px;color:var(--ink3);line-height:1.9;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.fr{margin-bottom:18px}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.fr2{grid-template-columns:1fr;gap:0}}
+.fr label{display:flex;align-items:center;gap:9px;font-family:var(--head);font-weight:700;font-size:12.5px;letter-spacing:.05em;color:var(--ink);margin-bottom:9px}
+.req,.opt{font-family:var(--body);font-weight:700;font-size:9.5px;letter-spacing:.08em;border-radius:3px;padding:3px 7px}
+.req{color:#fff;background:var(--rose)}
+.opt{color:var(--muted);background:var(--paper3)}
+.fr input,.fr select,.fr textarea{width:100%;font-family:var(--body);font-size:13.5px;color:var(--ink);background:var(--paper2);border:1px solid var(--line);border-radius:9px;padding:13px 15px;letter-spacing:.03em;transition:border-color .3s,background .3s,box-shadow .3s;-webkit-appearance:none;appearance:none}
+.fr textarea{resize:vertical;line-height:1.85;min-height:82px}
+.fr select{background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%239297a8' stroke-width='1.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:38px}
+.fr input::placeholder,.fr textarea::placeholder{color:#b8bcca}
+.fr input:focus,.fr select:focus,.fr textarea:focus{outline:none;background:#fff;border-color:var(--rose);box-shadow:0 0 0 3px rgba(214,83,110,.12)}
+.fr input.err,.fr select.err,.fr textarea.err{border-color:#d6536e;background:#fdf4f6}
+.fdates{display:grid;gap:9px}
+.fd{display:flex;align-items:center;gap:12px}
+.fd .fdl{flex:0 0 auto;width:52px;font-size:11.5px;color:var(--ink3);letter-spacing:.04em}
+.bk-submit{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:11px;font-family:var(--body);font-size:14.5px;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--grad);border:none;border-radius:100px;padding:18px;cursor:pointer;box-shadow:0 14px 34px rgba(178,80,120,.34);transition:transform .3s var(--ease),box-shadow .3s;margin-top:6px}
+.bk-submit .arr{font-family:var(--en);font-weight:400;transition:transform .3s var(--ease)}
+.bk-submit:hover{transform:translateY(-3px);box-shadow:0 20px 44px rgba(178,80,120,.44)}
+.bk-submit:hover .arr{transform:translateX(5px)}
+.bk-note{margin-top:16px;font-size:11.5px;color:var(--muted);line-height:1.9}
+.bk-note b{color:var(--ink2)}
+.bk-fallback{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bk-copy{font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:.05em;color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:100px;padding:9px 18px;cursor:pointer;transition:transform .3s var(--ease),box-shadow .3s;flex:0 0 auto}
+.bk-copy:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(40,30,60,.1)}
+.bk-copy.done{border-color:var(--rose);color:var(--rose)}
+.bk-fb-txt{font-size:11.5px;color:var(--muted);line-height:1.8;flex:1 1 200px}
+.bk-fb-txt a{color:var(--ink2)}
+
+/* ===== STICKY CTA ===== */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:110;background:rgba(255,255,255,.92);backdrop-filter:blur(16px) saturate(1.4);border-top:1px solid var(--line);box-shadow:0 -8px 30px rgba(40,30,60,.08);transform:translateY(110%);transition:transform .5s var(--ease);padding:12px 5vw}
+.sticky-cta.show{transform:none}
+.sc-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.sc-txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sc-t1{font-family:var(--head);font-weight:700;font-size:13.5px;letter-spacing:.05em;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc-t2{font-size:11.5px;color:var(--ink3);letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:640px){
+  .sticky-cta{padding:10px 4vw}
+  .sc-txt{display:none}
+  .sc-inner .btn{width:100%;justify-content:center;padding:15px}
+}
+
 /* ===== FOOTER ===== */
 .footer{background:#07080d;color:#8b90a3;padding:64px 0 30px;font-size:12.5px}
 .footer-grid{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.08)}
@@ -370,7 +453,7 @@ section{padding:118px 0}
     <a href="#reasons">選ばれる理由</a>
     <a href="#plans">掲載プラン</a>
     <a href="#faq">FAQ</a>
-    <a class="nav-cta" href="#contact">掲載を相談する</a>
+    <a class="nav-cta" href="#contact"><span class="cta-l">30分Zoom相談を予約</span><span class="cta-s">無料相談</span></a>
   </nav>
 </header>
 
@@ -387,9 +470,14 @@ section{padding:118px 0}
         <p class="hero-sub rv on d2">美容業界の情報が、365日動き続ける。</p>
         <p class="hero-desc rv on d2">Beauty TIMESは、美容業界に特化した情報プラットフォームです。展示会で終わらない情報発信を実現し、企業・ブランド・サロンをつなぎ、継続的なビジネス機会を創出します。</p>
         <div class="hero-actions rv on d3">
-          <a class="btn btn-grad" href="#contact">資料請求<span class="arr">&rarr;</span></a>
-          <a class="btn btn-glass" href="#contact">掲載について相談する<span class="arr">&rarr;</span></a>
+          <a class="btn btn-grad" href="#contact">30分のZoom相談を予約<span class="arr">&rarr;</span></a>
+          <a class="btn btn-glass" href="#plans">料金を見る<span class="arr">&rarr;</span></a>
         </div>
+        <ul class="trust-line rv on d3">
+          <li>オンライン30分・相談無料</li>
+          <li>掲載は年額 &yen;50,000&#12316;</li>
+          <li>その場でのご契約は不要です</li>
+        </ul>
       </div>
 
       <div class="mock-wrap rv on d3">
@@ -443,7 +531,7 @@ section{padding:118px 0}
     <div class="s"><div class="sv">3<em>日間</em></div><div class="sk">展示会の会期</div></div>
     <div class="s"><div class="sv">365<em>日</em></div><div class="sk">Beauty TIMESの発信期間</div></div>
     <div class="s"><div class="sv">8<em>機能</em></div><div class="sk">ブランド発信の手段</div></div>
-    <div class="s"><div class="sv">1<em>ページ</em></div><div class="sk">ブランドの情報資産</div></div>
+    <div class="s"><div class="sv">30<em>分</em></div><div class="sk">オンライン相談(無料)</div></div>
   </div>
 </section>
 
@@ -681,55 +769,59 @@ section{padding:118px 0}
     <div class="sec-head center rv">
       <p class="sec-en">Plans</p>
       <h2 class="sec-title">掲載プラン</h2>
-      <p class="sec-lead">ブランドページ掲載から、年間を通じたプロモーションまで。目的と体制にあわせてお選びいただけます。</p>
+      <p class="sec-lead">ブランドページ掲載から、年間を通じたプロモーションまで。目的と体制にあわせてお選びいただけます。年額 &yen;50,000 から始められます。</p>
     </div>
     <div class="pl-grid">
       <div class="pl rv d1">
         <div class="pn">Starter</div>
-        <p class="pd">ブランドページ掲載</p>
+        <div class="pp"><span class="cur">&yen;</span><span class="amt">50,000</span><span class="per">/年</span></div>
+        <p class="pd">まずはブランドページを持つ</p>
         <ul>
           <li>ブランドページ</li>
           <li>企業・商品情報の掲載</li>
           <li>お問い合わせ受付</li>
         </ul>
-        <a class="pb line" href="#contact">相談する</a>
+        <a class="pb line" href="#contact">このプランで相談する</a>
       </div>
       <div class="pl pop rv d2">
         <span class="flag">Popular</span>
         <div class="pn">Standard</div>
-        <p class="pd">ブランドページ＋プレスリリース</p>
+        <div class="pp"><span class="cur">&yen;</span><span class="amt">180,000</span><span class="per">/年</span></div>
+        <p class="pd">発信し続けて商談につなげる</p>
         <ul>
           <li>Starterの内容すべて</li>
           <li>プレスリリース配信</li>
           <li>商品データベース掲載</li>
           <li>資料ダウンロード</li>
         </ul>
-        <a class="pb fill" href="#contact">相談する</a>
+        <a class="pb fill" href="#contact">このプランで相談する</a>
       </div>
       <div class="pl rv d3">
         <div class="pn">Premium</div>
-        <p class="pd">AI記事・動画・特集掲載</p>
+        <div class="pp"><span class="cur">&yen;</span><span class="amt">360,000</span><span class="per">/年</span></div>
+        <p class="pd">記事・動画で存在感を出す</p>
         <ul>
           <li>Standardの内容すべて</li>
           <li>AIコンテンツ・記事制作</li>
           <li>動画掲載</li>
           <li>特集ページ掲載</li>
         </ul>
-        <a class="pb line" href="#contact">相談する</a>
+        <a class="pb line" href="#contact">このプランで相談する</a>
       </div>
       <div class="pl rv d4">
         <div class="pn">Enterprise</div>
-        <p class="pd">年間プロモーション・個別提案</p>
+        <div class="pp"><span class="cur">&yen;</span><span class="amt">600,000</span><span class="per">/年&#12316;</span></div>
+        <p class="pd">年間で設計し、伴走する</p>
         <ul>
           <li>Premiumの内容すべて</li>
           <li>年間プロモーション設計</li>
           <li>展示会連携企画</li>
           <li>個別のご提案</li>
         </ul>
-        <a class="pb line" href="#contact">相談する</a>
+        <a class="pb line" href="#contact">このプランで相談する</a>
       </div>
     </div>
-    <p class="pl-note rv">※ 料金・掲載内容の詳細はお問い合わせください。</p>
+    <p class="pl-note rv">※ 表示はすべて税別・年額です。掲載内容の詳細やお見積りは、30分のオンライン相談でご説明します。</p>
   </div>
 </section>
 
@@ -753,22 +845,128 @@ section{padding:118px 0}
         <summary><span class="q">Q.</span>プレスリリースだけ利用できますか?<span class="tg"></span></summary>
         <p class="a"><span class="qa">A.</span>はい。用途に応じたプランをご用意しています。</p>
       </details>
+      <details class="faq-item rv d2">
+        <summary><span class="q">Q.</span>料金はいくらからですか?<span class="tg"></span></summary>
+        <p class="a"><span class="qa">A.</span>ブランドページを掲載するStarterプランが年額 &yen;50,000(税別)です。プレスリリース配信を含むStandardは年額 &yen;180,000、AI記事・動画・特集掲載を含むPremiumは年額 &yen;360,000、年間プロモーションを設計するEnterpriseは年額 &yen;600,000&#12316;となります。</p>
+      </details>
+      <details class="faq-item rv d3">
+        <summary><span class="q">Q.</span>30分の相談では何を話しますか?<span class="tg"></span></summary>
+        <p class="a"><span class="qa">A.</span>御社のブランドがBeauty TIMES上でどんなページになるかのイメージ、展示会と連携した年間の発信の進め方、プランと費用感の3点をご説明します。その場でのご契約は不要です。</p>
+      </details>
+      <details class="faq-item rv d3">
+        <summary><span class="q">Q.</span>相談はオンラインですか? 費用はかかりますか?<span class="tg"></span></summary>
+        <p class="a"><span class="qa">A.</span>Zoomを使ったオンラインでの実施で、相談自体は無料です。ご予約後、日程を確定のうえZoomのURLをメールでお送りします。</p>
+      </details>
     </div>
   </div>
 </section>
 
 <!-- CLOSING -->
-<section class="closing" id="contact">
+<section class="closing" id="closing">
   <span class="grid-lines"></span>
   <div class="wrap">
     <p class="sec-en rv">Get Started</p>
     <h2 class="rv d1">あなたのブランドを、<br><b>展示会で終わらせない。</b></h2>
     <p class="rv d2">Beauty TIMESは、美容業界の企業・ブランド・サロンが365日つながり続けるためのプラットフォームです。情報を発信し続けることで、新たな商談・パートナー・顧客との出会いを生み出します。</p>
     <div class="hero-actions rv d3">
-      <a class="btn btn-grad" href="mailto:digilabbeauty@gmail.com?subject=%5BBeauty%20TIMES%5D%20%E6%8E%B2%E8%BC%89%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">掲載について相談する<span class="arr">&rarr;</span></a>
-      <a class="btn btn-glass" href="mailto:digilabbeauty@gmail.com?subject=%5BBeauty%20TIMES%5D%20%E8%B3%87%E6%96%99%E8%AB%8B%E6%B1%82">資料をダウンロード<span class="arr">&rarr;</span></a>
+      <a class="btn btn-grad" href="#contact">30分のZoom相談を予約<span class="arr">&rarr;</span></a>
     </div>
-    <p class="cc rv d3">お問い合わせ: <a href="mailto:digilabbeauty@gmail.com">digilabbeauty@gmail.com</a></p>
+    <p class="cc rv d3">まずは話を聞くだけでも構いません。</p>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="contact">
+  <div class="wrap-wide">
+    <div class="sec-head center rv">
+      <p class="sec-en">Book a Meeting</p>
+      <h2 class="sec-title">30分のオンライン相談を予約する</h2>
+      <p class="sec-lead">Zoomをつないで30分。御社のブランドがBeauty TIMESでどう見えるかを、具体的にご説明します。</p>
+    </div>
+
+    <div class="bk-grid">
+      <div class="bk-left">
+        <div class="bk-know rv d1">
+          <p class="bk-h">30分でわかること</p>
+          <ol class="bk-know-list">
+            <li><span class="bn">01</span><div><b>掲載イメージ</b>御社のブランドページが、実際にどんな構成・見え方になるか。</div></li>
+            <li><span class="bn">02</span><div><b>年間の進め方</b>展示会の前・会期中・会期後に、何をどう発信していくか。</div></li>
+            <li><span class="bn">03</span><div><b>プランと費用</b>目的に合うプランと、年額費用・スケジュールの目安。</div></li>
+          </ol>
+        </div>
+
+        <ul class="bk-assure rv d2">
+          <li>相談は無料です</li>
+          <li>その場でのご契約は不要です</li>
+          <li>しつこい営業のご連絡はいたしません</li>
+          <li>出展の有無にかかわらずご相談いただけます</li>
+        </ul>
+
+        <div class="bk-flow rv d2">
+          <p class="bk-h">ご予約から相談までの流れ</p>
+          <div class="bk-flow-row">
+            <div class="bf"><span class="bfn">1</span>フォーム送信</div>
+            <span class="bfa">&rarr;</span>
+            <div class="bf"><span class="bfn">2</span>日程確定・Zoom URLをメール</div>
+            <span class="bfa">&rarr;</span>
+            <div class="bf"><span class="bfn">3</span>30分の相談</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bk-form-card rv d2">
+        <p class="bk-form-h">予約フォーム</p>
+        <p class="bk-form-s">ご希望の日時を第3希望までお知らせください。<br>1営業日以内に、日程確定のご連絡をいたします。</p>
+        <form id="bkForm" novalidate>
+          <div class="fr">
+            <label for="f_company">会社名・ブランド名 <span class="req">必須</span></label>
+            <input id="f_company" name="company" type="text" required autocomplete="organization" placeholder="株式会社ビューティータイムズ">
+          </div>
+          <div class="fr2">
+            <div class="fr">
+              <label for="f_name">お名前 <span class="req">必須</span></label>
+              <input id="f_name" name="name" type="text" required autocomplete="name" placeholder="美容 花子">
+            </div>
+            <div class="fr">
+              <label for="f_tel">電話番号 <span class="opt">任意</span></label>
+              <input id="f_tel" name="tel" type="tel" autocomplete="tel" placeholder="03-0000-0000">
+            </div>
+          </div>
+          <div class="fr">
+            <label for="f_mail">メールアドレス <span class="req">必須</span></label>
+            <input id="f_mail" name="mail" type="email" required autocomplete="email" placeholder="info@example.co.jp">
+          </div>
+          <div class="fr">
+            <label for="f_d1">ご希望日時 <span class="req">必須</span></label>
+            <div class="fdates">
+              <div class="fd"><span class="fdl">第1希望</span><input id="f_d1" name="d1" type="datetime-local" required></div>
+              <div class="fd"><span class="fdl">第2希望</span><input id="f_d2" name="d2" type="datetime-local"></div>
+              <div class="fd"><span class="fdl">第3希望</span><input id="f_d3" name="d3" type="datetime-local"></div>
+            </div>
+          </div>
+          <div class="fr">
+            <label for="f_plan">ご興味のあるプラン <span class="opt">任意</span></label>
+            <select id="f_plan" name="plan">
+              <option value="未定・相談したい">未定・相談したい</option>
+              <option value="Starter(年額 5万円)">Starter(年額 5万円)</option>
+              <option value="Standard(年額 18万円)">Standard(年額 18万円)</option>
+              <option value="Premium(年額 36万円)">Premium(年額 36万円)</option>
+              <option value="Enterprise(年額 60万円〜)">Enterprise(年額 60万円&#12316;)</option>
+            </select>
+          </div>
+          <div class="fr">
+            <label for="f_msg">ご相談内容 <span class="opt">任意</span></label>
+            <textarea id="f_msg" name="msg" rows="3" placeholder="例)Beautyworld Japanに出展予定です。会期後の集客について相談したいです。"></textarea>
+          </div>
+          <button type="submit" class="bk-submit">この内容で予約を申し込む<span class="arr">&rarr;</span></button>
+          <p class="bk-note">送信するとメールソフトが起動し、入力内容が本文に入った状態で <b>digilabbeauty@gmail.com</b> 宛のメールが作成されます。内容をご確認のうえ送信してください。</p>
+          <div class="bk-fallback">
+            <button type="button" class="bk-copy" id="bkCopy">入力内容をコピー</button>
+            <span class="bk-fb-txt">メールソフトが開かない場合は、コピーして <a href="mailto:digilabbeauty@gmail.com">digilabbeauty@gmail.com</a> へお送りください。</span>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -785,12 +983,13 @@ section{padding:118px 0}
           <a href="#timeline">展示会連携</a>
           <a href="#plans">掲載プラン</a>
           <a href="#faq">FAQ</a>
+          <a href="#contact">相談を予約</a>
         </div>
       </div>
       <div class="f-contact">
         <p class="lbl">Contact</p>
+        <a href="#contact">30分のオンライン相談を予約する</a>
         <a href="mailto:digilabbeauty@gmail.com">digilabbeauty@gmail.com</a>
-        <a href="#contact">資料請求・掲載のご相談</a>
       </div>
     </div>
     <div class="f-bottom">
@@ -799,6 +998,17 @@ section{padding:118px 0}
     </div>
   </div>
 </footer>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sc-inner">
+    <div class="sc-txt">
+      <span class="sc-t1">展示会は3日間。ブランドは365日。</span>
+      <span class="sc-t2">掲載は年額 &yen;50,000&#12316; / ご相談は無料です</span>
+    </div>
+    <a class="btn btn-grad btn-sm" href="#contact">30分のZoom相談を予約<span class="arr">&rarr;</span></a>
+  </div>
+</div>
 
 <script>
   /* scroll reveal */
@@ -856,6 +1066,125 @@ section{padding:118px 0}
       });
     }, {threshold:.4});
     bio.observe(band);
+  })();
+
+  /* sticky CTA: 表示はヒーローを過ぎてから、予約セクションが見えたら引っ込める */
+  (function(){
+    var bar = document.getElementById('stickyCta');
+    var hero = document.getElementById('top');
+    var booking = document.getElementById('contact');
+    if(!bar || !hero || !booking) return;
+    function update(){
+      var pastHero = window.scrollY > hero.offsetHeight - 120;
+      var bookingTop = booking.getBoundingClientRect().top;
+      var bookingVisible = bookingTop < window.innerHeight - 100;
+      bar.classList.toggle('show', pastHero && !bookingVisible);
+    }
+    update();
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+  })();
+
+  /* 予約フォーム: 入力内容をメール本文に組み立てて送信 */
+  (function(){
+    var form = document.getElementById('bkForm');
+    if(!form) return;
+    var TO = 'digilabbeauty@gmail.com';
+    var SUBJECT = '[Beauty TIMES] 30分オンライン相談のご予約';
+    var WD = ['日','月','火','水','木','金','土'];
+
+    /* 希望日時は翌日以降のみ選択可能にする */
+    (function(){
+      var d = new Date(); d.setDate(d.getDate() + 1); d.setHours(10, 0, 0, 0);
+      var pad = function(n){ return String(n).padStart(2, '0'); };
+      var min = d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+      ['f_d1','f_d2','f_d3'].forEach(function(id){
+        var el = document.getElementById(id); if(el) el.min = min;
+      });
+    })();
+
+    function fmtDate(v){
+      if(!v) return '(未記入)';
+      var d = new Date(v);
+      if(isNaN(d.getTime())) return v;
+      return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日(' + WD[d.getDay()] + ') '
+        + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+    }
+    function val(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+    function buildBody(){
+      var lines = [
+        'Beauty TIMES 30分オンライン相談の予約を申し込みます。',
+        '',
+        '■ 会社名・ブランド名: ' + val('f_company'),
+        '■ お名前: ' + val('f_name'),
+        '■ 電話番号: ' + (val('f_tel') || '(未記入)'),
+        '■ メールアドレス: ' + val('f_mail'),
+        '',
+        '■ ご希望日時',
+        '　第1希望: ' + fmtDate(val('f_d1')),
+        '　第2希望: ' + fmtDate(val('f_d2')),
+        '　第3希望: ' + fmtDate(val('f_d3')),
+        '',
+        '■ ご興味のあるプラン: ' + val('f_plan'),
+        '',
+        '■ ご相談内容:',
+        (val('f_msg') || '(未記入)')
+      ];
+      return lines.join('\n');
+    }
+
+    var REQUIRED = ['f_company','f_name','f_mail','f_d1'];
+    function validate(){
+      var first = null;
+      REQUIRED.forEach(function(id){
+        var el = document.getElementById(id);
+        if(!el) return;
+        var bad = !el.value.trim() || (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
+        el.classList.toggle('err', bad);
+        if(bad && !first) first = el;
+      });
+      if(first){
+        first.scrollIntoView({behavior:'smooth', block:'center'});
+        first.focus({preventScroll:true});
+        return false;
+      }
+      return true;
+    }
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!validate()) return;
+      window.location.href = 'mailto:' + TO
+        + '?subject=' + encodeURIComponent(SUBJECT)
+        + '&body=' + encodeURIComponent(buildBody());
+    });
+
+    form.querySelectorAll('input, select, textarea').forEach(function(el){
+      el.addEventListener('input', function(){ el.classList.remove('err'); });
+    });
+
+    var copyBtn = document.getElementById('bkCopy');
+    if(copyBtn){
+      copyBtn.addEventListener('click', function(){
+        var text = SUBJECT + '\n\n' + buildBody();
+        var done = function(){
+          copyBtn.textContent = 'コピーしました';
+          copyBtn.classList.add('done');
+          setTimeout(function(){ copyBtn.textContent = '入力内容をコピー'; copyBtn.classList.remove('done'); }, 2200);
+        };
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(done, fallback);
+        } else { fallback(); }
+        function fallback(){
+          var ta = document.createElement('textarea');
+          ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); done(); } catch(err){ /* 手動コピーに委ねる */ }
+          document.body.removeChild(ta);
+        }
+      });
+    }
   })();
 </script>
 </body>
