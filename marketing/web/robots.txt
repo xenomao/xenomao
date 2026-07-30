@@ -1,0 +1,14 @@
+# DigiLab Beauty - robots.txt
+# すべてのクローラーに全ページのクロールを許可
+User-agent: *
+Allow: /
+
+# 主要検索エンジンを明示的に許可
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# サイトマップの場所（※独自ドメインに合わせて変更してください）
+Sitemap: https://digilab-beauty.com/sitemap.xml

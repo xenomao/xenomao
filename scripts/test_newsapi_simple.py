@@ -4,12 +4,14 @@ NewsAPI 簡易テストスクリプト（標準ライブラリのみ使用）
 APIキーが正しく動作するかテストします
 """
 
+import os
+
 import urllib.request
 import urllib.parse
 import json
 
 # APIキー（.envから手動でコピー）
-NEWSAPI_KEY = "d28b5d379b234515b40cd8d2bbb64068"
+NEWSAPI_KEY = os.getenv("NEWSAPI_KEY", "")  # .env / 環境変数から読み込む(ハードコード禁止)
 
 def test_newsapi_simple():
     """NewsAPI接続テスト（標準ライブラリのみ）"""

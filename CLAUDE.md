@@ -14,6 +14,17 @@
 詳細は非公開リポジトリの `MOVE_LOG.md` を参照。
 ※ 本リポジトリの過去のコミット履歴にはファイルが残っている(履歴書き換え未実施)。
 
+**未移動の機密データ(2026-07-30時点)**: ブランチ `claude/beauty-prospect-list-uoqu3j` に営業見込みリスト
+(`prospects/output/beauty_prospect_10k.csv` 約3.5MB ほか)が残っている。**mainには取り込まないこと。**
+非公開リポジトリへ移すまでブランチのまま保持する。
+
+### 秘密情報(APIキー等)の扱い
+
+- `.env` は**コミット禁止**(`.gitignore` 済み)。雛形は `.env.example` を使う
+- APIキー・パスワードをソースにハードコードしない。必ず `os.getenv()` で環境変数から読む
+- 2026-07-30に `.env` の追跡解除と `scripts/main.py` / `scripts/test_newsapi_simple.py` の
+  ハードコードキー除去を実施。**過去コミットにはキーが残るため、露出したキーは無効化・再発行が必要**
+
 ## LP(ランディングページ)
 
 - 本体: `marketing/digilab_beauty_lp.html`(単一HTML・画像はbase64埋め込み)
@@ -38,11 +49,45 @@
 - 公開URL: https://xenomao.github.io/xenomao/shindan/
 - 全10問・約2分のセルフ診断
 
+### Beauty 2040(未来共創プロジェクト)
+
+- 本体: `marketing/beauty_2040_lp.html` / 配信用コピー: `public/beauty2040/index.html`(内容は同一。更新時は両方を同期すること)
+- 公開URL(予定): https://xenomao.github.io/xenomao/beauty2040/ ※ `gh-pages` 未反映のため本番未公開
+- 立ち上げキット(TODO・リリース文・100人集客プラン): `docs/projects/beauty_2040/`
+
+### ピュアライン様LP(問い合わせ特化)
+
+- 本体: `marketing/pureline_lp.html` / 配信用コピー: `public/pureline/index.html`(内容は同一。更新時は両方を同期すること)
+- 公開URL: https://xenomao.github.io/xenomao/pureline/(`gh-pages` に先行公開済み)
+- 批評・再設計の根拠: `docs/reports/pureline_site_critique_and_relaunch.md`
+
 ### 成果物一覧
 
 - 全成果物(公開URL・ガイドライン・ツール・アプリ・販促資料)の棚卸しは `docs/asset_inventory.md` を参照
+- 未完了事項と次アクション(優先順位付き)は `docs/status/incomplete_items_and_next_actions.md` を参照
 - KPIダッシュボード(社内用): `tools/kpi_dashboard.html`(+ マニュアル)。公開はしない
-- 過去ブランチに散在していた成果物は2026-07-06にmainへ集約済み(アプリは `apps/` 配下)
+- 過去ブランチに散在していた成果物は2026-07-06と**2026-07-30**の2回、mainへ集約済み(アプリは `apps/` 配下)
+
+### ディレクトリ構成(2026-07-30 整理後)
+
+| ディレクトリ | 中身 |
+|---|---|
+| `public/` | GitHub Pages 配信物(公開URLの実体) |
+| `marketing/` | LP・チラシ・デッキの本体、ロゴ、素材(`assets/`) |
+| `docs/guidelines/` | AI活用ガイドライン・広告ガイドライン(HTML/PDF/骨子) |
+| `docs/whitepapers/` | ホワイトペーパー |
+| `docs/strategy/` | 事業計画・認証制度設計・ポジショニング・想定問答・商標調査 |
+| `docs/proposals/` | 他社向け協業提案(タカラベルモント等) |
+| `docs/reports/` | 調査・分析レポート(K-Beauty/SEO/セキュリティ等) |
+| `docs/projects/` | プロジェクト単位の実行キット(Beauty 2040 等) |
+| `docs/guides/` | 運用・ツールの手順書 |
+| `docs/ops/` | エージェント運用設計(ループ設計・MCP設定) |
+| `docs/seminar/` `docs/templates/` `docs/press/` | セミナー運営資料・テンプレ・プレスリリース |
+| `docs/status/` | 進捗・未完了事項の管理 |
+| `scripts/` | 収集・配信・チェック用スクリプト |
+| `tools/` | 社内向けHTMLツール(非公開) |
+| `blog/` `healthtech/` | コンテンツ |
+| `apps/` | Webアプリ(`web` = Next.js / `webapp` = Flask) |
 
 ### 法令・コンプライアンス問題集
 
@@ -50,9 +95,22 @@
 - 公開URL: https://xenomao.github.io/xenomao/compliance/
 - 内容: 特商法・景表法・薬機法・個人情報保護法・SNS・AIガイドラインの10問+解答解説。「AI美容カウンセリング技能資格(ビューティーフェロー3級)」に基づく学習用教材
 
+## ループ設計(エージェント運用)
+
+- 設計全体は `docs/ops/loop_design.md` を参照(4パターンの対応表・使い方)
+- LP関連(`marketing/` ⇔ `public/` の同期対象)を編集したら、完了報告前に `scripts/check_lp_sync.sh` が終了コード0であることを確認する(`/lp-sync` スキル)
+- 公開URLの死活・デプロイ反映確認は `/site-health` スキル(`scripts/check_site_health.sh`)
+- 同期対象HTMLの編集時は PostToolUse フックが自動で同期チェックを行う(`.claude/settings.json`)
+- MCP連携(GitHub・Playwright ほか)は `.mcp.json` と `docs/ops/mcp_setup.md` を参照
+
 ## ブランド
 
-- デザイン: 白基調 × パステルラベンダー(概要資料PDF準拠)。ダークパープルの旧配色は使わない
+- **方針転換(2026-07-13・鎌田様指示): パステルラベンダー主体・「淡い」路線は廃止方向。**
+  「誠実なサロンを育て、証明する認証機関」という立ち位置に合わせ、白地ベースで、はっきりした・権威性のある配色へ移行する
+  (戦略資料はディープネイビー×ゴールド系=検定LPの系統で制作)。新規制作物はパステル・淡い色使いを主体にしないこと。
+  **既存LP群(メインLP・診断・鎌田様LP等)の改修は未実施**
+- (旧・参考)デザイン: 白基調 × パステルラベンダー(概要資料PDF準拠)。ダークパープルの旧配色は使わない
+- ロゴ: `marketing/digilab_beauty_logo.svg`
 - ロゴ表記: "Digilab beauty"(Poppins系・ワイドトラッキング)
 - 連絡先: digilabbeauty@gmail.com
 

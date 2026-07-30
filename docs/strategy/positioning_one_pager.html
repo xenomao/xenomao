@@ -1,0 +1,262 @@
+<title>エステティック業界における「AI活用×第三者認証」構想 — デジラボビューティー</title>
+<style>
+  :root{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#101318; --bg-sub:#181C23;
+      --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+      --navy:#9FB4DA; --navy-soft:#7D93BC;
+      --gold:#C9A85C;
+      --line:#2B313B; --line-strong:#E8EAEE;
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#FFFFFF; --bg-sub:#F5F6F8;
+    --ink:#14181F; --ink-soft:#3E4550; --ink-faint:#6B7280;
+    --navy:#16294A; --navy-soft:#3A517A;
+    --gold:#A8842C;
+    --line:#D9DDE3; --line-strong:#14181F;
+  }
+  :root[data-theme="dark"]{
+    --bg:#101318; --bg-sub:#181C23;
+    --ink:#E8EAEE; --ink-soft:#B9BEC7; --ink-faint:#828A96;
+    --navy:#9FB4DA; --navy-soft:#7D93BC;
+    --gold:#C9A85C;
+    --line:#2B313B; --line-strong:#E8EAEE;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",YuGothic,"Noto Sans JP",system-ui,sans-serif;
+    font-size:15px;line-height:1.95;-webkit-font-smoothing:antialiased;font-feature-settings:"palt" 1;}
+  .serif{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;}
+  .wrap{max-width:800px;margin:0 auto;padding:clamp(32px,6vw,64px) clamp(20px,5vw,48px) 72px;}
+
+  /* ---- 表紙部 ---- */
+  .docband{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.12em;color:var(--ink-faint);}
+  .docband .cls{border:1px solid var(--line);padding:2px 12px;color:var(--ink-soft);}
+  .titleblock{margin:44px 0 0;padding:0 0 36px;border-bottom:3px double var(--line-strong);}
+  .titleblock .sup{font-size:13.5px;letter-spacing:.08em;color:var(--ink-soft);margin:0 0 16px;}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(24px,4.2vw,34px);line-height:1.6;letter-spacing:.04em;
+    margin:0;color:var(--ink);text-wrap:balance;}
+  h1 .navy{color:var(--navy);}
+  .titleblock .org{margin:26px 0 0;font-size:13.5px;color:var(--ink-soft);letter-spacing:.06em;}
+
+  .abstract{margin:34px 0 0;padding:22px 26px;background:var(--bg-sub);border-left:4px solid var(--navy);}
+  .abstract p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .abstract p b{color:var(--ink);}
+
+  /* ---- 章 ---- */
+  section{margin-top:58px;}
+  .chap{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--line-strong);
+    padding-bottom:10px;margin-bottom:22px;}
+  .chap .no{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;
+    color:var(--navy);font-size:15px;letter-spacing:.14em;white-space:nowrap;}
+  .chap h2{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP",serif;
+    font-weight:600;font-size:clamp(18px,2.8vw,22px);letter-spacing:.05em;margin:0;line-height:1.6;}
+  p{margin:0 0 1em;}
+  .body p{color:var(--ink-soft);}
+  .body p b, .body li b{color:var(--ink);font-weight:600;}
+
+  ol.legal{margin:0 0 1em;padding-left:0;list-style:none;counter-reset:li;}
+  ol.legal>li{counter-increment:li;position:relative;padding-left:2.4em;margin-bottom:14px;color:var(--ink-soft);}
+  ol.legal>li::before{content:"(" counter(li) ")";position:absolute;left:0;top:0;
+    color:var(--navy);font-weight:600;letter-spacing:.02em;}
+  ol.legal>li .t{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;}
+
+  .keybox{margin:26px 0 0;border:1px solid var(--line-strong);padding:20px 24px;}
+  .keybox .lab{font-size:11.5px;letter-spacing:.22em;color:var(--navy);font-weight:600;margin:0 0 8px;}
+  .keybox p{margin:0;font-family:"Hiragino Mincho ProN","Yu Mincho",serif;
+    font-size:16.5px;line-height:1.9;color:var(--ink);}
+  .keybox p .navy{color:var(--navy);}
+
+  /* ---- 表 ---- */
+  .tblwrap{overflow-x:auto;margin:8px 0 4px;}
+  table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.7;}
+  caption{caption-side:top;text-align:left;font-size:12.5px;color:var(--ink-faint);
+    letter-spacing:.08em;padding-bottom:8px;}
+  th{font-weight:600;color:var(--ink);background:var(--bg-sub);
+    border-top:2px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+    padding:10px 14px;text-align:left;white-space:nowrap;}
+  td{border-bottom:1px solid var(--line);padding:12px 14px;vertical-align:top;color:var(--ink-soft);}
+  td .strong{color:var(--ink);font-weight:600;}
+  td .navy{color:var(--navy);font-weight:600;}
+  tr:last-child td{border-bottom:2px solid var(--line-strong);}
+
+  /* ---- 論理の連鎖 ---- */
+  .chain{margin:20px 0 4px;border:1px solid var(--line);}
+  .chain .row{display:grid;grid-template-columns:44px 1fr;border-bottom:1px solid var(--line);}
+  .chain .row:last-child{border-bottom:0;}
+  .chain .n{display:flex;align-items:center;justify-content:center;
+    background:var(--bg-sub);color:var(--navy);font-weight:600;font-size:13px;
+    border-right:1px solid var(--line);}
+  .chain .c{padding:14px 18px;color:var(--ink-soft);font-size:14.5px;}
+  .chain .c b{color:var(--ink);}
+  .chain .concl .n{background:var(--navy);color:var(--bg);}
+  .chain .concl .c{color:var(--ink);font-weight:600;}
+
+  /* ---- 認証章の見出し飾り ---- */
+  .certline{display:flex;align-items:center;gap:10px;margin:24px 0 10px;
+    font-size:12px;letter-spacing:.2em;color:var(--gold);font-weight:600;}
+  .certline::before,.certline::after{content:"";height:1px;background:var(--gold);flex:1;opacity:.5;}
+
+  .note{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--ink-faint);line-height:1.9;}
+  .note b{color:var(--ink-soft);}
+  .foot{margin-top:30px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:12px;letter-spacing:.1em;color:var(--ink-faint);}
+
+  @media print{
+    body{font-size:13px}
+    section{break-inside:avoid}
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="docband">
+    <span>2026年7月13日</span>
+    <span class="cls">内部検討資料(対外説明用素案)</span>
+  </div>
+
+  <div class="titleblock">
+    <p class="sup">エステティック業界の健全化と小規模事業者の生産性向上に向けて</p>
+    <h1>誠実な事業者が、正しく選ばれる市場へ<br>
+      <span class="navy">——「AI活用 × 第三者認証」構想(案)</span></h1>
+    <p class="org">一般社団法人デジラボビューティー</p>
+  </div>
+
+  <div class="abstract">
+    <p><b>要旨</b> — エステティック業は、施術資格・営業許可を要しない自由参入型の市場であり、サービス品質や契約の適正さを消費者が事前に判別する手段が乏しい。その結果、価格と広告量が事実上の選択基準となり、技術と誠実さに投資する小規模事業者ほど埋没する構造がある。生成AIの普及は虚偽表示の量産を容易にし、この構造を悪化させる一方、小規模事業者の生産性を引き上げる手段ともなり得る。本構想は、<b>教育・実装・認証の三層</b>により誠実な事業者のAI活用を支援し、その到達を第三者として確認・開示することで、<b>消費者の選択基準を「広告量」から「確認された信頼」へ転換する</b>ことを目的とする。</p>
+  </div>
+
+  <!-- 第1 -->
+  <section class="body">
+    <div class="chap"><span class="no">第1</span><h2>業界の構造課題 — 誠実さが市場で評価されない理由</h2></div>
+    <ol class="legal">
+      <li>
+        <span class="t">参入規制・資格制度の不在</span>
+        エステティックの施術には、医師法・理容師法・美容師法のような業法上の資格要件がなく、開業にあたり許認可も要しない。品質・安全・契約適正の担保は、各事業者の自主性に委ねられている。
+      </li>
+      <li>
+        <span class="t">消費者トラブルの恒常化</span>
+        国民生活センター(PIO-NET)に寄せられるエステティックサービス関連の相談は、長年にわたり役務分野の上位を占め、中途解約・強引な勧誘・効果表示をめぐる契約トラブルが中心である。2022〜2023年には大手脱毛エステの経営破綻が相次ぎ、前払金の返還問題が社会問題化した。特定商取引法は本業種を「特定継続的役務提供」に指定し規制しているが、トラブルの水準は依然高い。
+      </li>
+      <li>
+        <span class="t">帰結 — 逆淘汰の発生</span>
+        エステティックサービスは、利用前に品質を判定できない「経験財」であり、施術効果に至っては利用後も判定が難しい「信用財」の性格を持つ。消費者が良否を事前に見分けられない市場では、<b>価格の安さと広告への露出量が事実上の選択基準</b>となる。結果として、広告投資力のある事業者に需要が集中し、技術・カウンセリング・法令遵守に投資する小規模事業者ほど埋没する——経済学で「情報の非対称性による逆淘汰」と呼ばれる市場の失敗が、現に生じている。
+      </li>
+    </ol>
+    <div class="keybox">
+      <p class="lab">本構想の課題認識</p>
+      <p>問題は個々の事業者の努力不足ではなく、<span class="navy">「誠実さを消費者が確認する手段」が市場に存在しない</span>という構造にある。ゆえに解決策は、精神論ではなく<span class="navy">確認と開示の仕組み</span>でなければならない。</p>
+    </div>
+  </section>
+
+  <!-- 第2 -->
+  <section class="body">
+    <div class="chap"><span class="no">第2</span><h2>環境変化 — 生成AIは構造を悪化も解決もさせる</h2></div>
+    <p>生成AIの普及は、前記の構造課題に対して両義的に作用する。</p>
+    <div class="tblwrap">
+      <table>
+        <tr><th style="width:26%">作用</th><th>内容</th></tr>
+        <tr>
+          <td><span class="strong">リスク面</span><br>非対称性の拡大</td>
+          <td>口コミ・体験談・施術前後画像といった「信頼の手がかり」の偽装コストが事実上ゼロになった。景品表示法によるステルスマーケティング規制(2023年10月施行)は、広告・口コミの信頼性がすでに制度的課題となっていることを示す。生成AIはこの偽装をさらに容易化し、<span class="strong">表示情報全体の信頼性を一段と低下させる</span>見通しである。</td>
+        </tr>
+        <tr>
+          <td><span class="strong">機会面</span><br>経営資源の民主化</td>
+          <td>これまで大手事業者のみが保有し得た業務システム(予約・顧客記録・経理)、社員教育体制、顧客分析は、生成AIにより<span class="strong">小規模事業者にも到達可能</span>となった。一方、中小企業のAI活用は大企業に比して大きく遅れているとの調査が相次いでおり、活用支援の空白が存在する。</td>
+        </tr>
+      </table>
+    </div>
+    <p style="margin-top:14px">すなわち、放置すれば情報の非対称性は拡大し、適切に活用されれば小規模事業者の対抗手段となる。分水嶺は、<b>「誠実な活用」を教育し、実装させ、その実態を第三者が確認する仕組み</b>の有無である。この仕組みは現在、業界のどこにも存在しない。既存の業界団体は技術・衛生を中心とし、AI事業者は倫理・法令遵守を担保しない。<b>法令遵守とAIリテラシーの双方を教育・確認できる主体</b>が、本構想の立脚点である。</p>
+  </section>
+
+  <!-- 第3 -->
+  <section class="body">
+    <div class="chap"><span class="no">第3</span><h2>構想 — 教育・実装・認証の三層モデル</h2></div>
+    <p>本法人は、誠実な事業者を対象に、次の三層を段階的に提供する。</p>
+    <div class="tblwrap">
+      <table>
+        <caption>表1 三層モデルの構成</caption>
+        <tr><th style="width:17%">層</th><th style="width:44%">内容</th><th>変革の対象</th></tr>
+        <tr>
+          <td><span class="navy">第1層</span><br><span class="strong">教育</span></td>
+          <td>検定・ガイドラインにより、関係法令(特定商取引法・景品表示法・医薬品医療機器等法・個人情報保護法)とAIリテラシーを体系的に教育する。<span class="strong">(整備計画は第6参照)</span></td>
+          <td><span class="strong">人</span>が変わる<br>判断基準の獲得</td>
+        </tr>
+        <tr>
+          <td><span class="navy">第2層</span><br><span class="strong">実装</span></td>
+          <td>①バックヤード業務(予約・顧客記録・在庫・経理)のAIによる自動化、②社員教育資料の作成、③顧客の体質・肌質に関する学習・カウンセリング準備へのAI適用を、導入から定着まで伴走支援する。</td>
+          <td><span class="strong">経営</span>が変わる<br>時間の創出と、その時間の<br>サービス品質への再投資</td>
+        </tr>
+        <tr>
+          <td><span class="navy">第3層</span><br><span class="strong">認証・開示</span></td>
+          <td>契約の適正(特商法)・表示の適正(景表法/薬機法)・AI活用の透明性を第三者として確認し、基準到達事業者を「認証サロン」として<span class="strong">消費者に向けて開示</span>する。</td>
+          <td><span class="strong">市場</span>が変わる<br>選択基準の転換</td>
+        </tr>
+      </table>
+    </div>
+    <p style="margin-top:14px">要諦は順序にある。集客難に直面した事業者は広告・値引きから着手して消耗しがちだが、本モデルは<b>第1層・第2層で経営の実体(時間と品質)を先に変え、第3層でその実体を市場に開示する</b>。実体の裏付けを持つ開示であることが、認証の信用の源泉となる。</p>
+  </section>
+
+  <!-- 第4 -->
+  <section class="body">
+    <div class="chap"><span class="no">第4</span><h2>認証が需要を動かす論理</h2></div>
+    <p>「認証を与えれば客が来る」という素朴な期待に、本構想は依拠しない。認証が需要を動かす経路は、次のとおり制度的先例に基づいて設計する。</p>
+    <div class="chain">
+      <div class="row"><div class="n">1</div><div class="c">エステティックサービスは<b>経験財・信用財</b>であり、消費者は品質と契約の誠実さを事前に判別できない(第1)。</div></div>
+      <div class="row"><div class="n">2</div><div class="c">判別できない市場では、<b>第三者による確認・格付けの開示</b>が消費者の探索コストを引き下げ、選択行動を変える。有機JAS(食品表示)、プライバシーマーク(個人情報保護)、旅館・ホテルの第三者評価等、<b>情報の非対称性が強い分野で認証制度が機能してきた先例</b>がある。</div></div>
+      <div class="row"><div class="n">3</div><div class="c">本認証は、確認事項を<b>①契約の適正 ②表示の適正 ③AI活用の透明性</b>の3点に限定して明文化し、確認プロセスを公開する。確認できないもの(施術効果そのもの等)は認証の対象にしない——<b>過大な保証をしないことが、制度の信用を守る</b>。</div></div>
+      <div class="row"><div class="n">4</div><div class="c">開示は事業者側の掲示に留めず、本法人が<b>消費者向けの情報発信(サロン選びの基準の啓発)</b>を継続して行い、マークの認知を市場側に形成する。個々の小規模事業者には不可能な信頼形成を、団体が代行する。</div></div>
+      <div class="row concl"><div class="n">∴</div><div class="c">認証と開示により、消費者の選択基準を「広告量・価格」から「確認された信頼」へ移す経路が成立する。効果は導入後、認証事業者の新規来店数・成約率・顧客相談件数等のKPIで検証し、数値で公表する。</div></div>
+    </div>
+    <div class="certline">DIGILAB CERTIFIED SALON</div>
+    <p style="font-size:13.5px;color:var(--ink-faint);margin-top:2px">認証名称・意匠・審査細目は、第2段階(認証基準設計)で別途定める。</p>
+  </section>
+
+  <!-- 第5 -->
+  <section class="body">
+    <div class="chap"><span class="no">第5</span><h2>期待される効果</h2></div>
+    <div class="tblwrap">
+      <table>
+        <tr><th style="width:22%">主体</th><th>効果</th></tr>
+        <tr><td><span class="strong">消費者</span></td><td>安全な選択肢の可視化。契約・表示トラブルの予防。生成AI時代における「確認された情報」へのアクセス。</td></tr>
+        <tr><td><span class="strong">事業者</span><br>(小規模サロン)</td><td>AI活用による生産性向上と教育の内製化。広告投資に依存しない差別化手段の獲得。同一基準を共有する事業者間の連帯。</td></tr>
+        <tr><td><span class="strong">業界・行政</span></td><td>法規制の空白領域を民間の自主的な共同規律で補完。業界イメージの回復と、健全な事業者の残存・成長による市場の質的改善。</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 第6 -->
+  <section class="body">
+    <div class="chap"><span class="no">第6</span><h2>今後の取り組み — 実施に向けた整備計画</h2></div>
+    <p>実施に必要な教材・ツール類は、現在いずれも試作段階(ベータ版)にある。以下の順で実用水準への引き上げと運用の立ち上げを進める。<b>記載は実装難易度の低い順</b>(上ほど早期に着手・完了できる見込みのもの)とする。</p>
+    <ol class="legal">
+      <li><span class="t">サロンAI活用度診断の整備</span>試作版(全10問のセルフ診断)をもとに、設問と判定基準を見直し、事業者が自らの現在地を測る無償の入口として整備する。教育・実装・認証へ進む段階的導線の起点とする。</li>
+      <li><span class="t">法令・コンプライアンス教材の整備</span>特定商取引法・景品表示法・医薬品医療機器等法・個人情報保護法を扱う問題集の試作版をもとに、専門家の確認を経て、テーマ別学習プログラム(第1弾「化粧品×薬機法」講座)として整備する。認証の確認事項①(契約の適正)②(表示の適正)への対応と、制度の認知拡大の入口を兼ねる。</li>
+      <li><span class="t">AI活用ガイドラインの改訂</span>草案(2026年版)をもとに、認証の確認事項③(AI活用の透明性)の審査に用いることができる基準へ具体化する。</li>
+      <li><span class="t">検定の実施体制の構築</span>美容AIセキュリティ基礎検定(3級)の教材原案をもとに、受験受付・採点・認定発行を含む継続的な実施運営を設計・立ち上げる。運営構築に一定の期間を要するため、優先順位は上記3点に次ぐ。</li>
+      <li><span class="t">認証の確認体制の整備</span>理事会(理事長・副理事長・監事)・法務顧問・顧問および実務部会の体制をもとに、認証の法令面の確認について外部専門家の関与を含む体制を整備する。</li>
+    </ol>
+  </section>
+
+  <div class="note">
+    <b>注記</b> — 本資料中の統計・制度に関する記述(PIO-NET相談動向、事業者破綻、ステルスマーケティング規制等)は、対外提出前に消費者庁・国民生活センター・経済産業省等の一次資料により最新の数値・施行日を確認し、出典を付記すること。
+  </div>
+
+  <div class="foot">
+    <span>一般社団法人 デジラボビューティー</span>
+    <span>digilabbeauty@gmail.com</span>
+  </div>
+
+</div>

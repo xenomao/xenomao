@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DigiLab Beauty サイトマップ
+  ※ <loc> は実際に公開する独自ドメインのURLに合わせて変更してください。
+  ※ <lastmod> は更新のたびに更新日へ書き換えてください。
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://digilab-beauty.com/</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

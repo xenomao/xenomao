@@ -21,6 +21,8 @@ DigiLab Beauty AI組織システム - Replit統合スクリプト
 ==========================================================
 """
 
+import os
+
 import sqlite3
 import json
 import re
@@ -32,7 +34,7 @@ from datetime import datetime, timedelta
 # 設定
 # ===================================
 DB_NAME = "digilab_beauty.db"
-NEWSAPI_KEY = "d28b5d379b234515b40cd8d2bbb64068"
+NEWSAPI_KEY = os.getenv("NEWSAPI_KEY", "")  # .env / 環境変数から読み込む(ハードコード禁止)
 
 # ===================================
 # 1. データベース作成
