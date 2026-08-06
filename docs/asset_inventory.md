@@ -27,6 +27,8 @@
 
 | 名前 | ファイル |
 |---|---|
+| 美容画像・AI生成コンテンツ 開示基準 v0.1(骨子・**未監修/未公開**) | `docs/standards/beauty_image_disclosure_standard_v0.1.md` |
+| ASIA BEAUTYTECH AWARDS 2026 応募ドラフト(社内用) | `docs/awards/asia_beautytech_awards_2026_application.md` |
 | 美容業界AI活用ガイドライン 2026(検定版) | `docs/beauty_ai_guideline_kentei_2026.html` / `.pdf` |
 | 美容業界AI活用ガイドライン 2026(パートナー版) | `docs/beauty_ai_guideline_partner_2026.html` / `.pdf` |
 | 美容業界AIガイドライン v0.1(骨子) | `docs/beauty_ai_guideline_v0.1.md` |
