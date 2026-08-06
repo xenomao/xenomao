@@ -154,8 +154,12 @@ Google スプレッドシート(投稿日時・画像URL・本文)
 
 ### Step 3. Instagram ビジネスアカウントID(IG_USER_ID)を取得する
 
-[グラフAPIエクスプローラ](https://developers.facebook.com/tools/explorer/) で作成したアプリを選び、
-アクセストークンを生成してから次を実行します。
+> この作業にはトークンが必要です。**Step 4 を先に済ませてから戻ってきても構いません**
+> (Step 4 のシステムユーザートークンをそのまま `${TOKEN}` に使えます)。
+> [グラフAPIエクスプローラ](https://developers.facebook.com/tools/explorer/) で
+> 一時的なトークンを発行して実行してもかまいません。
+
+IG_USER_ID は秘密情報ではなく、単なるアカウントの識別番号です。
 
 ```bash
 # Facebookログイン方式の場合
@@ -171,18 +175,82 @@ curl -s "https://graph.facebook.com/v25.0/${PAGE_ID}?fields=instagram_business_a
 curl -s "https://graph.instagram.com/v25.0/me?fields=id,username&access_token=${TOKEN}"
 ```
 
-### Step 4. 長期アクセストークンを用意する
+### Step 4. アクセストークンを取得する(最重要)
 
-短期トークン(1〜2時間)のままでは自動投稿が止まります。次のどちらかにします。
+トークンには3種類あり、**自動投稿に使えるのは実質「システムユーザートークン」だけ**です。
 
-**(推奨)システムユーザートークン — 無期限**
+| 種類 | 有効期限 | 自動投稿での可否 |
+|---|---|---|
+| 短期ユーザートークン | 1〜2時間 | ❌ すぐ止まる |
+| 長期ユーザートークン | 60日 | △ 2か月ごとに人手で更新が必要 |
+| **システムユーザートークン** | **無期限** | ✅ **これを使う** |
 
-1. ビジネス設定 →「ユーザー」→「システムユーザー」→ 追加(役割: 管理者)
-2. 「アセットを割り当て」でアプリ・Facebookページ・Instagramアカウントを割り当て
-3. 「新しいトークンを生成」→ アプリと必要な権限を選択 → トークンをコピー
-4. 有効期限は **「無期限」** を選択
+#### 4-1. 作業する人と前提
 
-**(代替)長期ユーザートークン — 60日**
+- **Instagramアカウントと Facebookページ の管理者権限を持つ人**が作業します
+- ビジネスポートフォリオ(旧ビジネスマネージャ)が必要です。
+  まだ無い場合は https://business.facebook.com/ で作成し、
+  Facebookページ と Instagramアカウント の両方を追加しておきます
+
+#### 4-2. システムユーザーを作る
+
+1. https://business.facebook.com/settings を開く(= ビジネス設定)
+2. 左メニュー **「ユーザー」→「システムユーザー」**
+3. **「追加」** をクリック
+   - 名前: `digilab-ig-bot`(任意。人ではなくプログラム用のアカウントです)
+   - 役割: **管理者システムユーザー**
+4. 作成した `digilab-ig-bot` を選び、**「アセットを割り当て」** で次の3つを割り当てる
+
+| アセット種別 | 対象 | 与える権限 |
+|---|---|---|
+| アプリ | Step 2 で作ったアプリ | アプリの管理(フルコントロール) |
+| ページ | デジラボビューティーのFacebookページ | コンテンツの管理 |
+| Instagramアカウント | @digilab.beauty_official | コンテンツの管理(フルコントロール) |
+
+> **3つすべての割り当てが必須です。** どれか1つでも漏れると、
+> トークンは発行できても投稿時に `code=200`(権限不足)で失敗します。
+
+#### 4-3. トークンを生成する
+
+1. `digilab-ig-bot` の画面で **「新しいトークンを生成」**
+2. **アプリ**: Step 2 で作ったアプリを選択
+3. **トークンの有効期限**: **「無期限」** を選択 ★ここが重要
+4. **アクセス許可** に次をチェック
+
+```
+instagram_basic
+instagram_content_publish
+pages_show_list
+pages_read_engagement
+business_management
+```
+
+5. 「トークンを生成」→ 表示された文字列(`EAA...` で始まる長い文字列)をコピー
+
+> ⚠️ **トークンはこの画面を閉じると二度と表示されません。**
+> コピーしたら、寄り道せずそのまま Step 5 のGitHub Secretsに貼り付けてください。
+> メール・チャット・メモアプリに残さないこと(残った場合はMeta側で削除して再発行)。
+
+#### 4-4. トークンが正しいか確認する
+
+https://developers.facebook.com/tools/debug/accesstoken/ にトークンを貼ると、
+次の3点を確認できます。
+
+- **有効期限**: `受け取らない`(= Never)になっていること
+- **アプリ**: Step 2 で作ったアプリになっていること
+- **スコープ**: 上の5つの権限が含まれていること
+
+#### 4-5. ビジネス認証を求められた場合
+
+Metaから **ビジネス認証(Business Verification)** を求められることがあります。
+その場合はビジネス設定の「セキュリティセンター」から、登記情報などを提出します
+(法人番号・所在地・電話番号で審査。数日かかります)。
+一般社団法人デジラボビューティーは法人なので、登記事項証明書で通ります。
+
+#### (代替)長期ユーザートークン — 60日
+
+システムユーザーが使えない場合の暫定手段です。60日ごとに人手での更新が必要になるため、
+恒久運用には向きません。
 
 ```bash
 curl -s "https://graph.facebook.com/v25.0/oauth/access_token\
@@ -192,10 +260,7 @@ curl -s "https://graph.facebook.com/v25.0/oauth/access_token\
 &fb_exchange_token=${SHORT_LIVED_TOKEN}"
 ```
 
-60日で失効するため、**カレンダーに55日後の更新リマインダーを登録** してください。
-
-トークンの権限と有効期限は次で確認できます。
-https://developers.facebook.com/tools/debug/accesstoken/
+この場合は **カレンダーに55日後の更新リマインダーを登録** してください。
 
 ### Step 5. GitHub Secrets を登録する
 
@@ -208,6 +273,22 @@ https://developers.facebook.com/tools/debug/accesstoken/
 
 > トークンは絶対にコードやコミットに含めないこと。誤ってコミットした場合は
 > Meta側でトークンを失効(再生成)させてから、Secretsを入れ直します。
+
+**登録できたか確認する**
+
+Actions →「Instagram 自動投稿」→ Run workflow で `dry_run` にチェックして実行します。
+Secretsが未設定なら「IG_USER_ID / IG_ACCESS_TOKEN が未設定です」というエラーで止まります。
+
+トークンが実際に投稿権限を持っているかは、次で確認できます(投稿はされません)。
+
+```bash
+curl -s "https://graph.facebook.com/v25.0/${IG_USER_ID}/content_publishing_limit\
+?fields=config,quota_usage&access_token=${IG_ACCESS_TOKEN}"
+```
+
+- 正常: `{"data":[{"config":{"quota_total":50},"quota_usage":0}]}` のような応答
+- `code=190`: トークンが無効。Step 4-3 をやり直す
+- `code=200`: 権限不足。Step 4-2 のアセット割り当てを見直す
 
 ### Step 6. 画像を用意する(自動生成 / 手持ち画像)
 
