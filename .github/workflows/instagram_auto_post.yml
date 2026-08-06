@@ -11,12 +11,17 @@ on:
         description: ID指定で即時投稿(空なら予約時刻順)
         type: string
         default: ''
+      retry_errors:
+        description: 失敗済み(status=error)の投稿も再試行する
+        type: boolean
+        default: false
   schedule:
     # 毎時05分(UTC)に予約投稿をチェック。JSTの分は変わらない
     - cron: '5 * * * *'
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: instagram-auto-post
@@ -33,7 +38,7 @@ jobs:
           python-version: '3.12'
 
       - name: 依存パッケージをインストール
-        run: pip install requests
+        run: pip install requests pillow
 
       - name: 投稿キューの有無を確認
         id: check
@@ -45,7 +50,20 @@ jobs:
             echo "ready=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Secretsの設定を確認
+        if: steps.check.outputs.ready == 'true'
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          if [ -z "$IG_USER_ID" ] || [ -z "$IG_ACCESS_TOKEN" ]; then
+            echo "::error::IG_USER_ID / IG_ACCESS_TOKEN が未設定です。"
+            echo "docs/guides/instagram_auto_post_manual.md のStep 2〜5を実施してください。"
+            exit 1
+          fi
+
       - name: Instagramへ投稿
+        id: publish
         if: steps.check.outputs.ready == 'true'
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
@@ -54,7 +72,9 @@ jobs:
         run: |
           python scripts/instagram_auto_post.py \
             ${{ inputs.dry_run && '--dry-run' || '' }} \
-            ${{ inputs.post_id && format('--post-id {0}', inputs.post_id) || '' }}
+            ${{ inputs.retry_errors && '--retry-errors' || '' }} \
+            ${{ inputs.post_id && format('--post-id {0}', inputs.post_id) || '' }} \
+            2>&1 | tee /tmp/post_log.txt
 
       - name: 投稿結果をキューに反映
         if: always() && steps.check.outputs.ready == 'true' && !inputs.dry_run
@@ -64,5 +84,64 @@ jobs:
             git config user.email 'github-actions[bot]@users.noreply.github.com'
             git add marketing/instagram/post_queue.json
             git commit -m 'chore: Instagram投稿キューの状態を更新'
+            git pull --rebase origin main
             git push
           fi
+
+      # 無人運用のため、失敗はIssueで通知する(同じIssueに追記して重複を防ぐ)
+      - name: 失敗をIssueで通知
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let log = '';
+            try {
+              log = fs.readFileSync('/tmp/post_log.txt', 'utf8').slice(-3000);
+            } catch (e) {
+              log = '(ログを取得できませんでした)';
+            }
+
+            const title = '🔴 Instagram自動投稿が失敗しています';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `自動投稿ワークフローが失敗しました。`,
+              '',
+              `- 実行ログ: ${runUrl}`,
+              `- 発生時刻: ${new Date().toISOString()}`,
+              '',
+              '<details><summary>スクリプト出力</summary>',
+              '',
+              '```',
+              log,
+              '```',
+              '',
+              '</details>',
+              '',
+              '対処方法は `docs/guides/instagram_auto_post_manual.md` の',
+              '「トラブルシューティング」を参照してください。',
+            ].join('\n');
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'instagram-auto-post',
+            });
+
+            if (existing.data.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.data[0].number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ['instagram-auto-post'],
+              });
+            }

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>セミナー告知テンプレート</title>
+<style>
+  /* Instagram フィード推奨サイズ 1080×1350(4:5) */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    /* CI(fonts-noto-cjk)とローカルで同じ描画になるようNotoを優先する */
+    font-family: "Noto Sans CJK JP", "Noto Sans JP", "IPAPGothic", sans-serif;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- テーマ: navy(権威・セミナー向け) ---- */
+  body.navy {
+    --bg: #f6efe4;
+    --ink: #14264b;
+    --accent: #b8935a;
+    --band: #14264b;
+    --band-ink: #ffffff;
+    --chip: #1d4f8f;
+  }
+
+  /* ---- テーマ: lavender(デジラボビューティー標準) ---- */
+  body.lavender {
+    --bg: #ffffff;
+    --ink: #3b3550;
+    --accent: #9b8ec4;
+    --band: #6f63a8;
+    --band-ink: #ffffff;
+    --chip: #9b8ec4;
+  }
+
+  body { background: var(--bg); color: var(--ink); }
+
+  /* 背景の装飾 */
+  .glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 78% 18%, rgba(255,255,255,.85), transparent 42%),
+      radial-gradient(circle at 12% 82%, rgba(255,255,255,.55), transparent 45%);
+  }
+
+  /* 上部リボン */
+  .badge {
+    position: relative;
+    flex: none;
+    background: var(--band);
+    color: var(--band-ink);
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: .04em;
+    text-align: center;
+    padding: 26px 40px 30px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 88%, 0 100%);
+  }
+
+  .body-area {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    padding: 40px 64px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .spacer { flex: 1; min-height: 20px; }
+
+  h1 {
+    font-size: 90px;
+    font-weight: bold;
+    letter-spacing: -.01em;
+    line-height: 1.08;
+    color: var(--ink);
+  }
+  h1 .x { color: var(--accent); margin: 0 8px; }
+
+  .rule {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin: 28px 0 22px;
+    color: var(--accent);
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: .18em;
+  }
+  .rule::before, .rule::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    background: var(--accent);
+    opacity: .55;
+  }
+
+  ul { list-style: none; }
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 1.32;
+    margin-bottom: 14px;
+  }
+  li::before {
+    content: "";
+    flex: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 26px;
+  }
+
+  .divider {
+    height: 2px;
+    background: var(--accent);
+    opacity: .45;
+    margin: 28px 0 26px;
+  }
+
+  .when {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0 14px;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 1.15;
+  }
+  .when .big { font-size: 82px; }
+  .when .small { font-size: 36px; }
+
+  .time { font-size: 56px; font-weight: bold; margin-top: 6px; }
+
+  .place {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 1.34;
+    margin-top: 24px;
+  }
+  .pin {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    margin-top: 6px;
+    fill: var(--band);
+  }
+
+  .chip {
+    display: inline-block;
+    align-self: flex-start;
+    background: var(--chip);
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: .08em;
+    padding: 14px 40px;
+    margin-top: 26px;
+  }
+
+  /* 下部の主催・登壇者 */
+  footer {
+    flex: none;
+    position: relative; /* .glow より前面に出す */
+    background: var(--band);
+    color: var(--band-ink);
+    padding: 34px 64px 38px;
+    border-top: 6px solid var(--accent);
+  }
+  .credits { display: flex; gap: 72px; flex-wrap: wrap; }
+  .credit-label {
+    font-size: 26px;
+    letter-spacing: .12em;
+    opacity: .78;
+    margin-bottom: 8px;
+  }
+  .credit-value { font-size: 36px; font-weight: bold; line-height: 1.3; }
+  .support {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,.3);
+    font-size: 28px;
+    letter-spacing: .04em;
+    opacity: .9;
+  }
+
+  /* 写真(任意) */
+  .photo {
+    position: absolute;
+    right: 0;
+    bottom: 300px;
+    width: 560px;
+    height: auto;
+    object-fit: contain;
+  }
+  .photo.hidden { display: none; }
+</style>
+</head>
+<body class="{{THEME}}">
+  <div class="glow"></div>
+
+  <div class="badge">{{BADGE}}</div>
+
+  <div class="body-area">
+    <h1>{{TITLE}}</h1>
+
+    <div class="rule">{{SECTION_LABEL}}</div>
+    <ul>{{BULLETS}}</ul>
+
+    <div class="divider"></div>
+
+    <div class="when">
+      <span>{{YEAR}}年</span>
+      <span class="big">{{MONTH}}</span><span>月</span>
+      <span class="big">{{DAY}}</span><span>日</span>
+      <span class="small">{{WEEKDAY}}</span>
+    </div>
+    <div class="time">{{TIME}}</div>
+
+    <div class="place">
+      <svg class="pin" viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+      <span>{{PLACE}}</span>
+    </div>
+
+    <div class="chip">{{FORMAT}}</div>
+
+    <div class="spacer"></div>
+  </div>
+
+  <img class="photo {{PHOTO_CLASS}}" src="{{PHOTO}}" alt="">
+
+  <footer>
+    <div class="credits">
+      <div>
+        <div class="credit-label">主催</div>
+        <div class="credit-value">{{HOST}}</div>
+      </div>
+      <div>
+        <div class="credit-label">登壇者</div>
+        <div class="credit-value">{{SPEAKERS}}</div>
+      </div>
+    </div>
+    <div class="support">{{SUPPORT}}</div>
+  </footer>
+</body>
+</html>

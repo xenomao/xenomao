@@ -57,6 +57,100 @@ class InstagramPostError(Exception):
     """投稿処理の失敗(APIエラー・入力不備の両方)"""
 
 
+class MediaNotReady(Exception):
+    """メディアの公開URLがまだ配信されていない(次回実行で再試行する)"""
+
+
+# ---------------------------------------------------------------- 事前検証
+
+# Instagramフィードの許容アスペクト比(幅÷高さ)
+MIN_ASPECT_RATIO = 0.8   # 4:5
+MAX_ASPECT_RATIO = 1.91  # 1.91:1
+MAX_IMAGE_BYTES = 8 * 1024 * 1024
+
+
+def verify_image(url):
+    """
+    投稿前に画像の公開URLを検証する。
+
+    GitHub Pagesへの反映待ちなど「まだ取得できない」場合は MediaNotReady を投げ、
+    仕様違反(サイズ超過・比率外)は InstagramPostError を投げる。
+    """
+    try:
+        res = requests.get(url, timeout=60, stream=True)
+    except requests.RequestException as e:
+        raise MediaNotReady(f"画像URLに到達できません: {e}") from e
+
+    if res.status_code == 404:
+        raise MediaNotReady(f"画像URLがまだ公開されていません(404): {url}")
+    if res.status_code >= 400:
+        raise MediaNotReady(f"画像URLの取得に失敗({res.status_code}): {url}")
+
+    content = res.content
+    if len(content) > MAX_IMAGE_BYTES:
+        raise InstagramPostError(
+            f"画像が8MBを超えています({len(content) // 1024 // 1024}MB): {url}"
+        )
+
+    content_type = res.headers.get("content-type", "")
+    if "image" not in content_type:
+        raise InstagramPostError(
+            f"画像ではないコンテンツが返りました(content-type={content_type}): {url}"
+        )
+
+    try:
+        from PIL import Image
+    except ImportError:
+        print("  [warn] Pillow未導入のため画像サイズの検証をスキップします")
+        return
+
+    import io
+
+    with Image.open(io.BytesIO(content)) as image:
+        width, height = image.size
+        image_format = image.format
+
+    ratio = width / height
+    if not MIN_ASPECT_RATIO <= ratio <= MAX_ASPECT_RATIO:
+        raise InstagramPostError(
+            f"アスペクト比が範囲外です({width}×{height} = {ratio:.2f}:1)。"
+            f"{MIN_ASPECT_RATIO}〜{MAX_ASPECT_RATIO} に収めてください: {url}"
+        )
+    if image_format != "JPEG":
+        print(f"  [warn] JPEG以外の形式です({image_format})。失敗する場合はJPEGに変換してください")
+
+    print(f"  画像OK: {width}×{height} ({ratio:.2f}:1) / {len(content) // 1024}KB")
+
+
+def verify_video(url):
+    """動画URLが到達可能かだけ確認する(内容の検証はInstagram側に任せる)。"""
+    try:
+        res = requests.head(url, timeout=60, allow_redirects=True)
+    except requests.RequestException as e:
+        raise MediaNotReady(f"動画URLに到達できません: {e}") from e
+
+    if res.status_code >= 400:
+        raise MediaNotReady(f"動画URLがまだ公開されていません({res.status_code}): {url}")
+
+
+def verify_media(post):
+    """投稿タイプに応じて、使用するすべてのメディアURLを検証する。"""
+    media_type = post.get("type", "IMAGE").upper()
+
+    if media_type == "CAROUSEL":
+        for child in post.get("children") or []:
+            if child.get("video_url"):
+                verify_video(child["video_url"])
+            elif child.get("image_url"):
+                verify_image(child["image_url"])
+        return
+
+    if post.get("video_url"):
+        verify_video(post["video_url"])
+    elif post.get("image_url"):
+        verify_image(post["image_url"])
+
+
 # ---------------------------------------------------------------- API 共通
 
 def _request(method, path, params):
@@ -227,6 +321,7 @@ def create_carousel_children(post):
 
 def publish_post(post):
     """1件を投稿し、公開されたメディアの情報を返す。"""
+    verify_media(post)
     media_type, params = build_container_params(post)
 
     if media_type == "CAROUSEL":
@@ -279,8 +374,10 @@ def parse_scheduled_at(value):
     return dt.replace(tzinfo=JST) if dt.tzinfo is None else dt
 
 
-def select_targets(posts, now, post_id=None, limit=None):
+def select_targets(posts, now, post_id=None, limit=None, retry_errors=False):
     """投稿対象を抽出する。"""
+    postable = [None, "", "scheduled"] + (["error"] if retry_errors else [])
+
     targets = []
     for post in posts:
         if post_id:
@@ -288,7 +385,7 @@ def select_targets(posts, now, post_id=None, limit=None):
                 targets.append(post)
             continue
 
-        if post.get("status") not in (None, "", "scheduled"):
+        if post.get("status") not in postable:
             continue
 
         scheduled_at = post.get("scheduled_at")
@@ -312,6 +409,9 @@ def main():
     parser.add_argument("--post-id", help="ID指定で即時投稿(予約時刻を無視)")
     parser.add_argument("--limit", type=int, help="1回の実行で投稿する最大件数")
     parser.add_argument("--dry-run", action="store_true", help="投稿せず対象のみ表示")
+    parser.add_argument(
+        "--retry-errors", action="store_true", help="status=error の投稿も再試行する"
+    )
     args = parser.parse_args()
 
     now = datetime.now(JST)
@@ -319,7 +419,9 @@ def main():
     print(f"API: {ENDPOINT}")
 
     posts = load_queue(args.queue)
-    targets = select_targets(posts, now, args.post_id, args.limit)
+    targets = select_targets(
+        posts, now, args.post_id, args.limit, args.retry_errors
+    )
 
     if not targets:
         print("投稿対象はありません。")
@@ -342,6 +444,7 @@ def main():
         return 0
 
     failed = 0
+    skipped = 0
     for post in targets:
         print(f"\n▶ {post.get('id')} を投稿します")
         try:
@@ -350,7 +453,12 @@ def main():
             post["published_at"] = datetime.now(JST).isoformat(timespec="seconds")
             post["media_id"] = result["media_id"]
             post["permalink"] = result["permalink"]
+            post.pop("error", None)
             print(f"  ✅ 公開完了: {result['permalink'] or result['media_id']}")
+        except MediaNotReady as e:
+            # 画像の配信待ちなど。statusは変えず、次回の実行で再試行する
+            skipped += 1
+            print(f"  ⏳ 見送り(次回再試行): {e}")
         except InstagramPostError as e:
             failed += 1
             post["status"] = "error"
@@ -359,7 +467,8 @@ def main():
 
         save_queue(args.queue, posts)
 
-    print(f"\n完了: 成功 {len(targets) - failed}件 / 失敗 {failed}件")
+    published = len(targets) - failed - skipped
+    print(f"\n完了: 成功 {published}件 / 見送り {skipped}件 / 失敗 {failed}件")
     return 1 if failed else 0
 
 

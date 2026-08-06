@@ -47,8 +47,11 @@
 ### Instagram 自動投稿
 
 - マニュアル: `docs/guides/instagram_auto_post_manual.md`(手動予約〜API完全自動の3段階)
-- スクリプト: `scripts/instagram_auto_post.py` / 投稿キュー: `marketing/instagram/post_queue.json`(記入例は `post_queue.example.json`)
-- 定期実行: `.github/workflows/instagram_auto_post.yml`(毎時05分)。Secretsに `IG_USER_ID` / `IG_ACCESS_TOKEN` が必要
+- 投稿キュー: `marketing/instagram/post_queue.json` — **ここだけ編集すれば画像生成〜投稿まで自動**(記入例は `post_queue.example.json`)
+- 画像生成: `scripts/generate_post_image.py` + `marketing/instagram/templates/*.html`(1080×1350・4:5)。キューの `image` ブロックから自動生成し、縦に収まらない場合はエラーで停止する
+- 投稿: `scripts/instagram_auto_post.py`。投稿前に公開URL・形式・アスペクト比を検証し、Pages未反映なら見送って次回再試行
+- ワークフロー: `instagram_generate_images.yml`(キュー更新時に画像生成)/ `instagram_auto_post.yml`(毎時05分に投稿・失敗はIssue通知)
+- Secretsに `IG_USER_ID` / `IG_ACCESS_TOKEN` が必要(システムユーザートークンなら無期限)
 - 投稿画像は `public/instagram/` に置き、GitHub Pagesの公開URLをAPIに渡す(APIは公開URLからしかメディアを取得できない)
 
 ### 法令・コンプライアンス問題集

@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": "20260820_mens_esthe_ai",
+      "type": "IMAGE",
+      "image_url": "https://xenomao.github.io/xenomao/instagram/20260820_mens_esthe_ai.jpg",
+      "image": {
+        "template": "seminar",
+        "theme": "navy",
+        "badge": "「アナログ業界」を変える！",
+        "title_html": "メンズエステ<span class=\"x\">×</span>AI",
+        "section_label": "セミナー内容",
+        "bullets": [
+          "驚異のDX成功事例！",
+          "AIで店販率アップ",
+          "クロージングの仕組み化"
+        ],
+        "year": "2026",
+        "month": "8",
+        "day": "20",
+        "weekday": "(木)",
+        "time": "10:00 START",
+        "place": "四ツ谷駅 徒歩5分 KINUJOスタジオ",
+        "format": "リアル開催",
+        "host": "J.N Beauty合同会社",
+        "speakers": "高橋 佑・大野 有輝",
+        "support": "後援：一般社団法人デジラボビューティー"
+      },
+      "caption": "【後援セミナー】メンズエステ × AI ──「アナログ業界」を変える！\n\nJ.N Beauty合同会社さま主催のセミナーを、一般社団法人デジラボビューティーが後援いたします。\n\n▼ セミナー内容\n・驚異のDX成功事例\n・AIで店販率アップ\n・クロージングの仕組み化\n\n📅 2026年8月20日(木) 10:00 START\n📍 四ツ谷駅 徒歩5分／KINUJOスタジオ(リアル開催)\n🎤 登壇：高橋 佑・大野 有輝\n\nメンズエステ業界でAI活用をどう進めるか、実際の成功事例をもとにお話しいただきます。サロン経営の現場で明日から使える内容です。\n\nお申し込み・詳細は主催者さまのご案内をご確認ください。\n\n#メンズエステ #サロン経営 #美容AI #サロンDX #店販 #エステサロン #AI活用 #セミナー #digilabbeauty",
+      "scheduled_at": "2026-08-07T19:00:00",
+      "status": "scheduled"
+    }
+  ]
+}

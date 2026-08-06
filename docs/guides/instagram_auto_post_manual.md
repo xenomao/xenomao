@@ -71,29 +71,59 @@ Google スプレッドシート(投稿日時・画像URL・本文)
 ## 3. 方法C: Content Publishing API で完全自動化
 
 本リポジトリに実装済みの構成です。JSONに投稿内容を書いてプッシュすれば、
-GitHub Actions が毎時チェックして予約時刻に自動投稿します。
+**画像の生成からInstagramへの公開まで自動**で行われます。
+
+### 自動化の到達点(重要)
+
+| 作業 | 誰が | 頻度 |
+|---|---|---|
+| Metaアプリ作成・トークン取得(Step 2〜5) | **人** | **最初の1回だけ** |
+| 投稿内容(テキスト)をJSONに書く | 人 or AI | 投稿ごと |
+| 投稿画像の作成 | **自動** | — |
+| 公開URLへの配信 | **自動** | — |
+| 予約時刻の判定・投稿 | **自動** | — |
+| 失敗時の通知 | **自動**(Issue) | — |
+
+> **トークン取得だけは人の手が必要です。** MetaのOAuthは実在の人間がブラウザで
+> ログインして権限を許可する仕組みで、これを回避する方法はありません(回避しようと
+> するとMetaの利用規約違反になります)。ただし **システムユーザートークンは無期限** なので、
+> 一度取得すれば以降ずっと触らずに運用できます。所要時間は30分程度です。
 
 ### 構成ファイル
 
 | ファイル | 役割 |
 |---|---|
-| `scripts/instagram_auto_post.py` | 投稿スクリプト本体 |
-| `marketing/instagram/post_queue.json` | 投稿キュー(実データ・自分で作成) |
+| `marketing/instagram/post_queue.json` | **投稿キュー(ここだけ編集すればよい)** |
 | `marketing/instagram/post_queue.example.json` | 投稿キューの記入例 |
-| `.github/workflows/instagram_auto_post.yml` | 毎時実行するワークフロー |
+| `marketing/instagram/templates/seminar.html` | 投稿画像のデザインテンプレート |
+| `scripts/generate_post_image.py` | テキストから投稿画像(1080×1350)を生成 |
+| `scripts/instagram_auto_post.py` | 投稿スクリプト本体 |
+| `.github/workflows/instagram_generate_images.yml` | 画像の自動生成(キュー更新時) |
+| `.github/workflows/instagram_auto_post.yml` | 自動投稿(毎時05分) |
 | `public/instagram/` | 投稿画像・動画の置き場(GitHub Pagesで公開) |
 
 ### 処理の流れ
 
 ```
-post_queue.json(予約時刻・画像URL・キャプション)
-  → GitHub Actions(毎時05分)
-  → 予約時刻を過ぎた未投稿を抽出
-  → POST /{ig-user-id}/media          … メディアコンテナ作成
-  → GET  /{container-id}?status_code  … 動画は処理完了まで待機
-  → POST /{ig-user-id}/media_publish  … 公開
-  → 投稿URLをキューに書き戻してコミット
+① post_queue.json を編集してmainにプッシュ
+      ↓
+② instagram_generate_images.yml
+   テンプレート + テキスト → 1080×1350のJPEGを生成 → public/instagram/ にコミット
+      ↓
+③ deploy-lp.yml(既存)
+   public/ をGitHub Pagesへデプロイ → 画像が公開URLになる
+      ↓
+④ instagram_auto_post.yml(毎時05分)
+   予約時刻を過ぎた投稿を抽出
+      → 画像URLを事前検証(未配信ならスキップして次回再試行)
+      → POST /{ig-user-id}/media          … メディアコンテナ作成
+      → GET  /{container-id}?status_code  … 動画は処理完了まで待機
+      → POST /{ig-user-id}/media_publish  … 公開
+      → 投稿URLをキューに書き戻してコミット
+      → 失敗したらIssueで通知
 ```
+
+②〜④はすべて自動です。①も内容が決まっていればAIエージェントに任せられます。
 
 ---
 
@@ -179,15 +209,49 @@ https://developers.facebook.com/tools/debug/accesstoken/
 > トークンは絶対にコードやコミットに含めないこと。誤ってコミットした場合は
 > Meta側でトークンを失効(再生成)させてから、Secretsを入れ直します。
 
-### Step 6. 画像・動画を公開URLで用意する
+### Step 6. 画像を用意する(自動生成 / 手持ち画像)
 
 Instagram APIは **公開URL経由でしかメディアを取得できません**(ローカルファイル添付は不可)。
 本リポジトリでは GitHub Pages をそのまま画像置き場に使います。
 
+**A. テキストから自動生成する(推奨・デザイン作業ゼロ)**
+
+キューの投稿に `image` ブロックを書くと、`generate_post_image.py` が
+テンプレートをレンダリングして 1080×1350 のJPEGを自動生成します。
+
+```json
+"image": {
+  "template": "seminar",
+  "theme": "navy",
+  "badge": "「アナログ業界」を変える！",
+  "title_html": "メンズエステ<span class=\"x\">×</span>AI",
+  "bullets": ["驚異のDX成功事例！", "AIで店販率アップ", "クロージングの仕組み化"],
+  "year": "2026", "month": "8", "day": "20", "weekday": "(木)",
+  "time": "10:00 START",
+  "place": "四ツ谷駅 徒歩5分 KINUJOスタジオ",
+  "format": "リアル開催",
+  "host": "J.N Beauty合同会社",
+  "speakers": "高橋 佑・大野 有輝",
+  "support": "後援：一般社団法人デジラボビューティー"
+}
+```
+
+- `theme` は `navy`(セミナー・検定向けの権威系)か `lavender`(団体標準色)
+- `photo` に画像URLを指定すると人物写真を右下に合成できる(省略可)
+- 文字数が増えて縦1350pxに収まらない場合は **生成時にエラーで止まる**ため、
+  下部の「後援」表記などが黙って切れることはない
+- ローカルで確認するには `python scripts/generate_post_image.py`
+
+**B. デザイナーが作った画像を使う**
+
+`image` ブロックを書かず、JPEGを直接 `public/instagram/` に置きます。
+
 1. `public/instagram/` に画像を置く(例: `20260810_kentei.jpg`)
 2. `main` にプッシュすると `deploy-lp.yml` が自動デプロイ
 3. 公開URLは `https://xenomao.github.io/xenomao/instagram/20260810_kentei.jpg`
-4. ブラウザのシークレットウィンドウで開き、**ログインなしで表示できること** を必ず確認
+
+いずれの場合も、投稿直前にスクリプトが公開URL・形式・サイズ・アスペクト比を検証します。
+**まだPagesに反映されていない場合はエラーにせず見送り、次の実行で自動的に再試行** します。
 
 > Googleドライブの共有リンク・Dropbox・期限付き署名URLは失敗しやすいため使わないこと。
 
@@ -217,6 +281,7 @@ Instagram APIは **公開URL経由でしかメディアを取得できません*
 |---|---|---|
 | `id` | ✅ | 一意のID。`YYYYMMDD_内容` の形式を推奨 |
 | `type` | ✅ | `IMAGE` / `CAROUSEL` / `REELS` / `STORIES` |
+| `image` | | 画像を自動生成する場合のテキスト一式(Step 6-A) |
 | `image_url` | 画像時 | 公開URL(JPEG) |
 | `video_url` | 動画時 | 公開URL(MP4) |
 | `children` | カルーセル時 | 2〜10件の `{"image_url": …}` 配列 |
@@ -258,6 +323,15 @@ python scripts/instagram_auto_post.py
   (`dry_run` にチェックを入れると確認のみ)
 - 投稿結果は Actions のログと、キューへの自動コミットで追跡できます
 - 一時停止したいときは Actions 画面から該当ワークフローを **Disable**
+
+**無人運用のための仕掛け**
+
+- **失敗はIssueで通知**されます(ラベル `instagram-auto-post`)。同じ問題が続いても
+  Issueは増えず、既存Issueにコメントが追記されます。Actionsを毎日見に行く必要はありません
+- 画像が **まだPagesに反映されていないだけ**の場合は失敗扱いにせず見送り、次の毎時実行で再試行します
+- 一度失敗した投稿を作り直したいときは、Run workflowで `retry_errors` にチェック
+  (または `status` を `scheduled` に戻す)
+- Secretsが未設定のまま定期実行されると、その旨のエラーでIssueが立ちます
 
 > スケジュール実行はGitHub側の負荷で数分〜十数分遅れることがあります。
 > 「19:00ちょうど」が重要な投稿は方法Aで予約してください。
@@ -321,6 +395,9 @@ curl -s "https://graph.facebook.com/v25.0/${IG_USER_ID}/content_publishing_limit
 | コンテナが `EXPIRED` | 作成から24時間放置された。再実行すれば新しいコンテナが作られる |
 | Actionsは成功なのに投稿されない | `status` が `scheduled` 以外、または `scheduled_at` が未来のまま |
 | 改行が反映されない | JSON内では `\n` で改行を表現する(実際の改行は入れない) |
+| ログに「⏳ 見送り(次回再試行)」 | 画像がまだGitHub Pagesに反映されていない。次の毎時実行で自動的に投稿される |
+| 画像生成が「縦1350pxに収まりません」で停止 | 箇条書きの文字数が多すぎる。文言を短くするか項目を減らす |
+| 生成画像の日本語が豆腐(□)になる | ローカル実行時のフォント不足。`apt-get install fonts-noto-cjk` を実行する |
 
 失敗した投稿は `status` が `error` になり、`error` フィールドに原因が記録されます。
 原因を直したら `status` を `scheduled` に戻せば、次回の実行で再試行されます。
