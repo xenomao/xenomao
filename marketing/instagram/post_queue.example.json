@@ -1,0 +1,45 @@
+{
+  "posts": [
+    {
+      "id": "20260810_kentei",
+      "type": "IMAGE",
+      "image_url": "https://xenomao.github.io/xenomao/instagram/20260810_kentei.jpg",
+      "caption": "美容AIセキュリティ基礎検定 3級、受付中です。\n\nサロンで生成AIを使うときの「お客様情報の扱い」を体系的に学べる検定です。プロフィールのリンクから詳細をご確認ください。\n\n#美容AI #サロン経営 #エステサロン #美容室 #AI活用 #digilabbeauty",
+      "scheduled_at": "2026-08-10T19:00:00",
+      "status": "scheduled"
+    },
+    {
+      "id": "20260812_shindan",
+      "type": "CAROUSEL",
+      "caption": "サロンAI活用度診断(全10問・約2分)を公開しました。\n\n1️⃣ 現状の活用レベルがわかる\n2️⃣ 次に取り組むべきことがわかる\n3️⃣ 無料・登録不要\n\n#サロンDX #美容業界 #AI診断 #digilabbeauty",
+      "children": [
+        { "image_url": "https://xenomao.github.io/xenomao/instagram/20260812_shindan_1.jpg" },
+        { "image_url": "https://xenomao.github.io/xenomao/instagram/20260812_shindan_2.jpg" },
+        { "image_url": "https://xenomao.github.io/xenomao/instagram/20260812_shindan_3.jpg" }
+      ],
+      "scheduled_at": "2026-08-12T12:00:00",
+      "status": "scheduled"
+    },
+    {
+      "id": "20260815_reels",
+      "type": "REELS",
+      "video_url": "https://xenomao.github.io/xenomao/instagram/20260815_reels.mp4",
+      "cover_url": "https://xenomao.github.io/xenomao/instagram/20260815_reels_cover.jpg",
+      "caption": "30秒でわかる、サロンのAI接客導入ステップ。\n\n#リール #美容サロン #AI接客 #digilabbeauty",
+      "share_to_feed": true,
+      "scheduled_at": "2026-08-15T20:00:00",
+      "status": "scheduled"
+    },
+    {
+      "id": "20260716_seminar",
+      "type": "IMAGE",
+      "image_url": "https://xenomao.github.io/xenomao/instagram/20260716_seminar.jpg",
+      "caption": "第2回オンラインセミナーは満席となりました。ありがとうございました。",
+      "scheduled_at": "2026-07-16T18:00:00",
+      "status": "published",
+      "published_at": "2026-07-16T18:00:12+09:00",
+      "media_id": "17900000000000000",
+      "permalink": "https://www.instagram.com/p/XXXXXXXXXXX/"
+    }
+  ]
+}

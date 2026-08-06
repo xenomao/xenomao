@@ -44,6 +44,13 @@
 - KPIダッシュボード(社内用): `tools/kpi_dashboard.html`(+ マニュアル)。公開はしない
 - 過去ブランチに散在していた成果物は2026-07-06にmainへ集約済み(アプリは `apps/` 配下)
 
+### Instagram 自動投稿
+
+- マニュアル: `docs/guides/instagram_auto_post_manual.md`(手動予約〜API完全自動の3段階)
+- スクリプト: `scripts/instagram_auto_post.py` / 投稿キュー: `marketing/instagram/post_queue.json`(記入例は `post_queue.example.json`)
+- 定期実行: `.github/workflows/instagram_auto_post.yml`(毎時05分)。Secretsに `IG_USER_ID` / `IG_ACCESS_TOKEN` が必要
+- 投稿画像は `public/instagram/` に置き、GitHub Pagesの公開URLをAPIに渡す(APIは公開URLからしかメディアを取得できない)
+
 ### 法令・コンプライアンス問題集
 
 - 配信: `public/compliance/index.html`(元はNetlify公開のHTMLをそのまま移設。単一HTML・印刷対応)

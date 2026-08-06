@@ -33,6 +33,7 @@
 | ホワイトペーパー「AI時代のエステティシャン」 | `docs/whitepaper_aesthetician_ai_era.md` |
 | 5/19セミナー会員募集チラシ | `docs/seminar/0519_member_flyer.html` |
 | 運用ガイド(AIエージェント口座/一斉メール/Codex CLI/Lovart/News API/note) | `docs/guides/*.md` |
+| Instagram 自動投稿マニュアル | `docs/guides/instagram_auto_post_manual.md` |
 | レポート(NewsAPI検証/フェーズ1完了) | `docs/reports/*.md` |
 | 営業メールテンプレ(Jエステ) | `docs/templates/email_j-esthe_approach.md` |
 

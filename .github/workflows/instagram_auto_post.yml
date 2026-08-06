@@ -1,0 +1,68 @@
+name: Instagram 自動投稿
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 投稿せず対象のみ確認する
+        type: boolean
+        default: false
+      post_id:
+        description: ID指定で即時投稿(空なら予約時刻順)
+        type: string
+        default: ''
+  schedule:
+    # 毎時05分(UTC)に予約投稿をチェック。JSTの分は変わらない
+    - cron: '5 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-auto-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 依存パッケージをインストール
+        run: pip install requests
+
+      - name: 投稿キューの有無を確認
+        id: check
+        run: |
+          if [ -f marketing/instagram/post_queue.json ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "投稿キュー(marketing/instagram/post_queue.json)がないためスキップします。"
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Instagramへ投稿
+        if: steps.check.outputs.ready == 'true'
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GRAPH_API_VERSION: v25.0
+        run: |
+          python scripts/instagram_auto_post.py \
+            ${{ inputs.dry_run && '--dry-run' || '' }} \
+            ${{ inputs.post_id && format('--post-id {0}', inputs.post_id) || '' }}
+
+      - name: 投稿結果をキューに反映
+        if: always() && steps.check.outputs.ready == 'true' && !inputs.dry_run
+        run: |
+          if [ -n "$(git status --porcelain marketing/instagram/post_queue.json)" ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email 'github-actions[bot]@users.noreply.github.com'
+            git add marketing/instagram/post_queue.json
+            git commit -m 'chore: Instagram投稿キューの状態を更新'
+            git push
+          fi
