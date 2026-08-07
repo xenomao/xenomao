@@ -1,0 +1,61 @@
+name: Publish Instagram queue
+
+# instagram/queue/ 内の status=ready かつ予約時刻を過ぎた投稿を Instagram へ自動投稿する。
+# 投稿済みファイルは instagram/posted/ へ移動してコミットする。
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "投稿せず対象のみ表示する"
+        type: boolean
+        default: false
+  schedule:
+    # 毎日 JST 10:00 と 19:00(UTC 01:00 / 10:00)に実行
+    - cron: "0 1 * * *"
+    - cron: "0 10 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate queue
+        run: python instagram/publish.py --validate
+
+      - name: Publish (or dry-run)
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_IMAGE_BASE_URL: ${{ secrets.IG_IMAGE_BASE_URL }}
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python instagram/publish.py --dry-run
+          else
+            python instagram/publish.py
+          fi
+
+      - name: Commit posted archive
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          if [ -n "$(git status --porcelain instagram/)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add instagram/queue instagram/posted
+            git commit -m "chore(instagram): archive published posts"
+            git push
+          else
+            echo "変更なし(投稿対象なし)"
+          fi
