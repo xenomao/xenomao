@@ -2,6 +2,10 @@
 
 一般社団法人デジラボビューティー(美容業界のAI・DX支援団体)のリポジトリ。
 
+## LEARNINGS.md ループ
+
+各セッションの開始時に、1. `LEARNINGS.md` を読め。2. 読み込んだ内容を簡潔に要約し、処理済みだと分かるようにせよ。セッション終了時は `/update-learnings` を、週1回は `/consolidate-learnings` を実行すること(詳細は `LEARNINGS.md` 冒頭を参照)。
+
 ## 重要: 機密データの所在
 
 **DB・営業リストは非公開リポジトリ `xenomao/digilab-beauty-data` に移動済み(2026-07-03)。**
