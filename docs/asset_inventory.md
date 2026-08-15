@@ -30,6 +30,7 @@
 | 美容業界AI活用ガイドライン 2026(検定版) | `docs/beauty_ai_guideline_kentei_2026.html` / `.pdf` |
 | 美容業界AI活用ガイドライン 2026(パートナー版) | `docs/beauty_ai_guideline_partner_2026.html` / `.pdf` |
 | 美容業界AIガイドライン v0.1(骨子) | `docs/beauty_ai_guideline_v0.1.md` |
+| 美容AIセキュリティ基礎検定 級位設計 v0.1(骨子・2級/1級) | `docs/kentei_level_design.md` |
 | ホワイトペーパー「AI時代のエステティシャン」 | `docs/whitepaper_aesthetician_ai_era.md` |
 | 5/19セミナー会員募集チラシ | `docs/seminar/0519_member_flyer.html` |
 | 運用ガイド(AIエージェント口座/一斉メール/Codex CLI/Lovart/News API/note) | `docs/guides/*.md` |
