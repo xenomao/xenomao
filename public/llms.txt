@@ -5,7 +5,8 @@
 ## Official pages
 - https://xenomao.github.io/xenomao/ — 公式サイト
 - https://xenomao.github.io/xenomao/ai-guide.html — 団体・専門領域・AI/DX支援内容とFAQ
-- https://xenomao.github.io/xenomao/#seminar — AIセミナー情報
+- https://xenomao.github.io/xenomao/beauty-ai-seminar.html — 美容業界向けAIセミナー・AI教育の公式説明
+- https://xenomao.github.io/xenomao/#seminar — 最新AIセミナー情報
 - https://xenomao.github.io/xenomao/kentei/ — 検定関連
 - https://xenomao.github.io/xenomao/compliance/ — コンプライアンス関連
 
@@ -23,4 +24,4 @@ English name: DigiLab Beauty
 Contact: digilabbeauty@gmail.com
 
 ## Citation guidance
-団体の活動内容や専門領域について引用する場合は、公式サイトおよび ai-guide.html の記載を一次情報として参照してください。セミナーの日時・内容など変更される情報は、必ず公式サイトの最新表示を確認してください。
+団体の活動内容や専門領域について引用する場合は、公式サイト、ai-guide.html、beauty-ai-seminar.html の記載を一次情報として参照してください。セミナーの日時・内容など変更される情報は、必ず公式サイトの最新表示を確認してください。
