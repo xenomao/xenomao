@@ -23,6 +23,7 @@ instagram/
 ├── README.md              このファイル
 ├── CONTENT_SPEC.md        FABLE5 への生成ルール(画像仕様・JSONスキーマ)
 ├── publish.py             パブリッシャ本体(CLI)
+├── build_preview.py       キュー確認用プレビュー(public/instagram/index.html)を生成
 ├── igpost/                ライブラリ
 │   ├── post.py            投稿スペックの読込・検証・整形
 │   └── igclient.py        Instagram Graph API クライアント
@@ -75,6 +76,18 @@ Instagram のフィード自動投稿には Meta の **Graph API** を使いま�
    - 投稿成功したファイルは `instagram/posted/` へ自動移動しコミット
 
 ---
+
+## 2.5 投稿プレビュー(ブラウザ確認)
+
+キューの内容(画像・キャプション・ステータス・予約時刻)をブラウザで一覧確認できるダッシュボードを生成できます。
+
+```bash
+python instagram/build_preview.py   # → public/instagram/index.html を生成
+```
+
+- 公開URL(デプロイ後): `https://xenomao.github.io/xenomao/instagram/` および Netlify のデプロイプレビュー `/instagram/`
+- 画像は base64 埋め込みで自己完結。`noindex`(検索避け)・社内確認用
+- 自動投稿ワークフローは投稿後にこのページを再生成してコミットするため、常に最新のキュー状態を反映
 
 ## 3. ローカルでの確認
 

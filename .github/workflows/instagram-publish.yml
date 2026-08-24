@@ -47,14 +47,18 @@ jobs:
             python instagram/publish.py
           fi
 
-      - name: Commit posted archive
+      - name: Rebuild preview page
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: python instagram/build_preview.py
+
+      - name: Commit posted archive & preview
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
-          if [ -n "$(git status --porcelain instagram/)" ]; then
+          if [ -n "$(git status --porcelain instagram/ public/instagram/)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add instagram/queue instagram/posted
-            git commit -m "chore(instagram): archive published posts"
+            git add instagram/queue instagram/posted public/instagram
+            git commit -m "chore(instagram): archive published posts & rebuild preview"
             git push
           else
             echo "変更なし(投稿対象なし)"
