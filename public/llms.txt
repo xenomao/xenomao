@@ -1,4 +1,4 @@
-# 一般社団法人デジラボビューティー
+# 一般社団法人デジラボビュティ
 
 > 美容業界に特化したAI・DX活用支援、AI教育、セミナー、コミュニティ、実践的ビジネス支援を行う一般社団法人です。
 
@@ -19,7 +19,7 @@
 - 美容プロフェッショナルのデジタルリテラシー
 
 ## Organization
-Name: 一般社団法人デジラボビューティー
+Name: 一般社団法人デジラボビュティ
 English name: DigiLab Beauty
 Contact: digilabbeauty@gmail.com
 

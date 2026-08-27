@@ -7,7 +7,7 @@ html = p.read_text(encoding='utf-8')
 aio_head = '''
 <link rel="canonical" href="https://xenomao.github.io/xenomao/">
 <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
-<meta name="keywords" content="美容業界 AI,美容サロン ChatGPT,美容業界 DX,美容サロン AIO,美容業界 AIセミナー,デジラボビューティー">
+<meta name="keywords" content="美容業界 AI,美容サロン ChatGPT,美容業界 DX,美容サロン AIO,美容業界 AIセミナー,デジラボビュティ">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -15,7 +15,7 @@ aio_head = '''
     {
       "@type":"Organization",
       "@id":"https://xenomao.github.io/xenomao/#organization",
-      "name":"一般社団法人デジラボビューティー",
+      "name":"一般社団法人デジラボビュティ",
       "alternateName":"DigiLab Beauty",
       "url":"https://xenomao.github.io/xenomao/",
       "description":"美容業界に特化したAI・DX活用支援、AI教育、セミナー、コミュニティ、実践的ビジネス支援を行う一般社団法人。",
@@ -26,7 +26,7 @@ aio_head = '''
       "@type":"WebSite",
       "@id":"https://xenomao.github.io/xenomao/#website",
       "url":"https://xenomao.github.io/xenomao/",
-      "name":"一般社団法人デジラボビューティー",
+      "name":"一般社団法人デジラボビュティ",
       "publisher":{"@id":"https://xenomao.github.io/xenomao/#organization"},
       "inLanguage":"ja"
     },
@@ -54,7 +54,7 @@ aio_intro = '''
   <div class="wrap">
     <p style="font-family:var(--en);font-size:11px;letter-spacing:.24em;color:var(--lav-deep);margin-bottom:10px;">BEAUTY × AI / DX</p>
     <h2 id="aio-definition-title" style="font-family:var(--head);font-size:clamp(22px,3vw,32px);line-height:1.6;color:var(--ink-strong);margin-bottom:16px;">美容業界のAI・DXを、実務と信頼の両面から支援する</h2>
-    <p style="max-width:820px;color:#6f6578;">一般社団法人デジラボビューティーは、美容サロン経営者、美容師、エステティシャン、美容関連企業などを対象に、生成AI・ChatGPT、AI検索時代の情報発信、SNS、業務効率化など、美容業界に特化したAI・DX教育と実践支援を行っています。</p>
+    <p style="max-width:820px;color:#6f6578;">一般社団法人デジラボビュティは、美容サロン経営者、美容師、エステティシャン、美容関連企業などを対象に、生成AI・ChatGPT、AI検索時代の情報発信、SNS、業務効率化など、美容業界に特化したAI・DX教育と実践支援を行っています。</p>
     <p style="margin-top:18px;"><a href="./ai-guide.html">美容×AIの専門領域を見る →</a>　<a href="./beauty-ai-seminar.html">AIセミナーを見る →</a></p>
   </div>
 </section>
