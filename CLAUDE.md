@@ -83,12 +83,31 @@
 やり取りの接点は `SPEC.md` / `TASKS.md` / `.claude/reports/` 配下のレポート・
 スクリーンショットの3つだけ。
 
+**3役は対等。主役を1つ作らない。** planner の仕様を generator が勝手に握り潰さない、
+generator の実装を evaluator が勝手に直さない、evaluator の判定を generator が
+上書きしない。各役が自分の禁止事項を守ることでのみ、この体制は機能する。
+
 ### タスクの状態
 
 `pending` → `in_progress` → `self_reviewed` → `evaluated(pass)` / `evaluated(fail)`
 
 状態は `TASKS.md` の表で管理する。状態を書き換えてよいのは、その時点で
 そのタスクを担当しているエージェントのみ。
+
+### 動き方は7手
+
+1. **依頼** — ユーザーから短い一言を受け取る
+2. **計画** — planner が `SPEC.md` / `TASKS.md` を作る
+3. **1つ作る** — generator が未着手タスクを1つだけ実装する
+4. **検査** — evaluator が実機で見て pass / fail を判定する
+5. **不合格なら直して再検査** — fail は同じタスクを generator に差し戻す
+6. **合格したら次の1つへ** — pass になって初めて次のタスクに移る
+7. **人間が確認する** — 全タスク pass の後、ユーザーが最終確認する
+
+**合格するまで、次の1つには進まない。** 依存関係が無いタスクであっても、
+`evaluated(pass)` 以外のタスクが残っている間は次のタスクに着手しない。
+同時に2つのタスクが `in_progress` / `self_reviewed` / `evaluated(fail)` に
+なっている状態を作らないこと。
 
 ### ループの回り方(オーケストレーターの手順)
 
