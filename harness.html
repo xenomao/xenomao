@@ -66,6 +66,12 @@
   li{font-size:12.5px;line-height:1.75;color:#33415c}
   .io{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--muted);line-height:1.7}
   .io code{background:#eef1f6;border-radius:4px;padding:1px 5px;font-size:11px}
+  .badge{margin:0 0 12px;font-size:11.5px;font-weight:bold;letter-spacing:.06em;
+    display:inline-block;padding:4px 10px;border-radius:20px}
+  .badge.ok{background:#e7ecf5;color:#0f1f3a}
+  .badge.warn{background:#eef1f6;color:#2b3d5e}
+  .badge.ng{background:#f5e3df;color:#8f3a2e}
+  .role.ng h3{background:var(--alert)}
   .note{margin:20px 0 0;text-align:center;font-size:12.5px;color:var(--muted);letter-spacing:.04em}
   .sub{margin:0 0 14px;font-size:12px;letter-spacing:.1em;color:var(--muted)}
   .sub + .figure{margin-bottom:34px}
@@ -385,6 +391,79 @@
       <line x1="190" y1="88" x2="190" y2="174" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
       <line x1="510" y1="180" x2="510" y2="94" stroke="#8f3a2e" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ahr)"/>
       <line x1="830" y1="180" x2="830" y2="94" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+    </g>
+  </svg>
+  </div>
+</section>
+
+<!-- ⑤ このリポジトリでの当てはめ -->
+<section class="card">
+  <h2><span class="num">5</span>このリポジトリでの当てはめ</h2>
+  <div class="roles">
+
+    <div class="role">
+      <h3>A <small>アプリ開発</small></h3>
+      <div class="body">
+        <p class="badge ok">7手をそのまま適用</p>
+        <ul>
+          <li><code>apps/web</code>（Next.js）</li>
+          <li><code>apps/webapp</code>（Flask）</li>
+        </ul>
+        <div class="io">evaluator はサーバを起動して実機確認する</div>
+      </div>
+    </div>
+
+    <div class="role">
+      <h3>B <small>単一HTML成果物</small></h3>
+      <div class="body">
+        <p class="badge warn">読み替えて適用</p>
+        <ul>
+          <li>タスク単位は「機能」でなく<strong>セクション</strong></li>
+          <li>起動不要・<code>file://</code> で開く</li>
+          <li><strong>同期ペアを <code>diff -q</code> で機械検証</strong></li>
+          <li>巨大HTMLは全文Read禁止・部分編集</li>
+          <li>配色規約は合否条件</li>
+        </ul>
+        <div class="io">LP／検定／診断／教材／デッキ</div>
+      </div>
+    </div>
+
+    <div class="role ng">
+      <h3>C <small>人が決める領域</small></h3>
+      <div class="body">
+        <p class="badge ng">適用しない</p>
+        <ul>
+          <li>薬機法・景表法・特商法の表現</li>
+          <li>正式名称・役職・実績の表記</li>
+          <li>料金・会費の掲載可否</li>
+          <li>個人情報の取り扱い</li>
+          <li>QRコードの読み取り可否</li>
+        </ul>
+        <div class="io">evaluator は pass も fail も出さず人間へ上げる</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="sub" style="margin:28px 0 12px">同期ペア — 片方だけ見ても気づけないので目視より先に機械検証する</p>
+  <div class="figure">
+  <svg viewBox="0 0 1000 132" role="img" aria-label="同期ペアの検証">
+    <g font-family="inherit">
+      <rect x="14" y="16" width="340" height="58" rx="8" fill="#fff" stroke="#0f1f3a" stroke-width="1.4"/>
+      <text x="184" y="42" text-anchor="middle" font-size="13" font-weight="bold">marketing/ の本体</text>
+      <text x="184" y="61" text-anchor="middle" font-size="11" fill="#5d6b83">編集する側</text>
+
+      <rect x="430" y="16" width="140" height="58" rx="29" fill="#0f1f3a"/>
+      <text x="500" y="51" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">diff -q</text>
+      <line x1="362" y1="45" x2="422" y2="45" stroke="#0f1f3a" stroke-width="1.5" marker-end="url(#ah)"/>
+      <line x1="646" y1="45" x2="586" y2="45" stroke="#0f1f3a" stroke-width="1.5" marker-end="url(#ah)"/>
+
+      <rect x="654" y="16" width="332" height="58" rx="8" fill="#fff" stroke="#0f1f3a" stroke-width="1.4"/>
+      <text x="820" y="42" text-anchor="middle" font-size="13" font-weight="bold">public/ の配信コピー</text>
+      <text x="820" y="61" text-anchor="middle" font-size="11" fill="#5d6b83">公開される側</text>
+
+      <rect x="14" y="88" width="972" height="34" rx="8" fill="#faf1ef"/>
+      <text x="36" y="110" font-size="12.5" font-weight="bold" fill="#8f3a2e">不一致ならその時点で fail。generator は必ず両方を更新する。</text>
     </g>
   </svg>
   </div>

@@ -30,7 +30,7 @@
 - LP本体(`digilab_beauty_lp.html` / `public/index.html`)のグローバルナビ「検定」からリンク
 - デザインは「検定・認定証」らしい権威性を出すため、**ディープネイビー×ゴールド**の専用スタイル(明朝: Shippori Mincho / Noto Serif JP)。パステルラベンダーはサブアクセント。認定エンブレム(シール)はSVGで生成
 - OGP画像: `public/kentei/ogp.png`(1200×630・ネイビー×ゴールド・認定シール入り)。`og:image`は絶対URL(https://xenomao.github.io/xenomao/kentei/ogp.png)で指定
-- 配信の実体: 現状Pagesは **`gh-pages` ブランチ** から配信されている(Settings→Pages の Source が「Deploy from a branch」)。`public/` を更新したら、`gh-pages` にも反映しないと本番に出ない点に注意
+- 配信の実体: Pages は **GitHub Actions**(`deploy-lp.yml` / `actions/deploy-pages`)から配信されている。`main` の `public/` を更新すれば本番に出る。`gh-pages` ブランチは存在しない(2026-08-28 時点で origin は `main` のみ・直近のデプロイは全て成功)
 
 ### サロンAI活用度診断
 
@@ -145,6 +145,65 @@ generator の実装を evaluator が勝手に直さない、evaluator の判定�
 - 配色: 背景グレー `#e9edf3`、カード白、基調 紺 `#0f1f3a`
 - LPのパステルラベンダー配色は適用しない(このHTMLは社内向けの説明資料)
 - `public/` 配下には置かない(GitHub Pagesへは公開しない)
+
+### このリポジトリでの当てはめ
+
+このリポジトリの課題は3種類ある。**ハーネスをそのまま適用できるのはAだけ**で、
+BとCは読み替えが必要。
+
+| | 課題の種類 | ハーネスの適用 |
+|---|---|---|
+| **A** | アプリ開発(`apps/web` Next.js / `apps/webapp` Flask) | 7手をそのまま適用 |
+| **B** | 単一HTML成果物(LP・診断・教材・デッキ) | 適用するが下記の読み替えが必須 |
+| **C** | 文言・法令表現・ブランド・名称の判断 | **適用しない。人間が決める** |
+
+#### B(単一HTML成果物)での読み替え
+
+1. **タスクの単位は「機能」ではなく「セクション/ページ」**。
+   1ファイルで完結するため、planner は画面のセクション単位で分割する。
+2. **起動コマンドは不要**。evaluator は `file://` で直接開く。
+   サーバ起動が要るのはAのときだけ。
+3. **同期ペアの一致は受け入れ基準に必ず入れる**（最重要）。
+   `marketing/` の本体と `public/` の配信コピーは同一内容を保つ規約だが、
+   **片方だけ見ても絶対に気づけない**ため、目視ではなく `diff -q` で機械的に
+   検証する。現在の同期ペア:
+
+   | 本体 | 配信コピー |
+   |---|---|
+   | `marketing/digilab_beauty_lp.html` | `public/index.html` |
+   | `marketing/kentei_lp.html` | `public/kentei/index.html` |
+   | `marketing/salon_ai_shindan.html` | `public/shindan/index.html` |
+   | `marketing/digilab_beauty_sponsor_deck.html` | `public/sponsor/index.html` |
+   | `marketing/kamata_mao_lp.html` | `public/kamata/index.html` |
+
+4. **単一HTMLが巨大**(最大1.2MB・画像はbase64埋め込み)。
+   generator は**全文を `Read` しない**。`Grep` で該当箇所を特定し、
+   `Edit` で部分置換する。`Write` による全文書き直しは禁止。
+5. **公開ページはデプロイ時に書き換わる**。`scripts/aio_deploy_patch.py` が
+   `public/index.html` にJSON-LD等を注入するため、**ローカル確認の結果は
+   本番と一致しない**。evaluator が判定できるのはリポジトリ内のHTMLまで。
+   デプロイ後の実ページ確認は人間の担当。
+6. **ブランド規約は「好み」ではなく合否条件**。planner は SPEC の受け入れ基準に
+   明記する(通常のLP/教材=白基調×パステルラベンダー、検定LP=ネイビー×ゴールド)。
+   evaluator はこれを根拠に fail を出してよい。
+7. **QRコードは目視で pass にしない**。読み取り検証を行うか、できなければ
+   人間確認へ回す。
+
+#### C(人間が決める領域)— evaluator は pass を出してはならない
+
+以下は画面を見ても正しさを判定できない。planner は SPEC の
+「人間が確認する事項」に切り出し、evaluator は判定を保留して
+オーケストレーター経由で人間に上げる。
+
+- 薬機法・景表法・特商法に関わる表現の可否
+- 団体・個人の**正式名称、役職、実績**の表記
+- 料金・会費の掲載可否と金額
+- 個人情報の取り扱い・プライバシーポリシーの記載内容
+
+#### 全課題共通の禁止事項(generator)
+
+- 機密データ(DB・営業リスト・個人情報)をこの公開リポジトリに置くこと
+- `tools/kpi_dashboard.html`(社内用)を `public/` 配下に移すこと
 
 ### 人がやること
 
