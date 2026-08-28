@@ -1,0 +1,29 @@
+{
+  "recommendations": [
+    // ── Markdown ──────────────────────────────────────────────────
+    "yzhang.markdown-all-in-one",       // 目次・プレビュー・ショートカット
+    "bierner.markdown-preview-github-styles", // GitHub風プレビュー
+
+    // ── Python ────────────────────────────────────────────────────
+    "ms-python.python",                 // Python基本サポート
+    "ms-python.autopep8",               // 自動フォーマット
+    "ms-python.pylint",                 // 静的解析
+
+    // ── HTML/CSS ──────────────────────────────────────────────────
+    "formulahendry.auto-close-tag",     // HTMLタグ自動補完
+    "formulahendry.auto-rename-tag",    // タグ名の一括変更
+    "ecmel.vscode-html-css",            // CSSクラス補完
+
+    // ── Git ───────────────────────────────────────────────────────
+    "eamodio.gitlens",                  // Git履歴・blame・比較
+
+    // ── ユーティリティ ────────────────────────────────────────────
+    "streetsidesoftware.code-spell-checker", // スペルチェック
+    "mechatroner.rainbow-csv",          // CSVをカラー表示（db/*.csv用）
+    "mtxr.sqltools",                    // SQLiteビューワー（db/*.db用）
+    "qwtel.sqlite-viewer",              // SQLiteファイルをGUIで確認
+
+    // ── Claude Code 連携 ──────────────────────────────────────────
+    "anthropic.claude-code"             // Claude Code VS Code拡張
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Claude: 単発タスク実行",
+      "type": "shell",
+      "command": "bash scripts/run_task.sh \"${input:claudePrompt}\"",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Claude: 日次タスク実行",
+      "type": "shell",
+      "command": "bash scripts/daily_claude_tasks.sh",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "DB: データベース初期化",
+      "type": "shell",
+      "command": "python3 scripts/init_database.py",
+      "group": "build",
+      "presentation": { "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "DB: ニュース収集",
+      "type": "shell",
+      "command": "python3 scripts/daily_news_collection.py",
+      "group": "build",
+      "presentation": { "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: 変更をコミット&プッシュ",
+      "type": "shell",
+      "command": "git add -A && git commit -m \"手動コミット: $(date '+%Y-%m-%d %H:%M')\" && git push",
+      "group": "build",
+      "presentation": { "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "HTMLプレビュー: ai_starter_guide",
+      "type": "shell",
+      "command": "open marketing/member_benefits/ai_starter_guide.html || xdg-open marketing/member_benefits/ai_starter_guide.html",
+      "group": "test",
+      "presentation": { "reveal": "silent" },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "claudePrompt",
+      "description": "Claudeへの指示を入力してください",
+      "default": "タスクリストを確認して未完了のタスクを実行してください",
+      "type": "promptString"
+    }
+  ]
+}
