@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自律開発ハーネス — planner / generator / evaluator</title>
+<style>
+  :root{
+    --navy:#0f1f3a;
+    --navy-2:#2b3d5e;
+    --bg:#e9edf3;
+    --card:#ffffff;
+    --line:#c7d0dd;
+    --muted:#5d6b83;
+    --alert:#8f3a2e;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--navy);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",Meiryo,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:40px 24px 72px}
+  header{text-align:center;padding:24px 0 36px}
+  header h1{margin:0;font-size:22px;letter-spacing:.04em}
+  header p{margin:10px 0 0;color:var(--muted);font-size:13px;letter-spacing:.02em}
+  .card{
+    background:var(--card);
+    border-radius:14px;
+    padding:28px 28px 32px;
+    margin-bottom:28px;
+    box-shadow:0 1px 3px rgba(15,31,58,.08);
+  }
+  .card > h2{
+    display:flex;align-items:center;gap:12px;
+    margin:0 0 24px;font-size:17px;letter-spacing:.03em;
+  }
+  .num{
+    width:26px;height:26px;border-radius:50%;
+    background:var(--navy);color:#fff;
+    font-size:13px;display:flex;align-items:center;justify-content:center;
+    flex:0 0 auto;
+  }
+  .figure{width:100%;overflow-x:auto}
+  .figure svg{display:block;width:100%;height:auto;min-width:640px}
+  .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.roles{grid-template-columns:1fr}}
+  .role{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .role h3{
+    margin:0;padding:12px 16px;background:var(--navy);color:#fff;
+    font-size:15px;letter-spacing:.06em;display:flex;align-items:baseline;gap:8px;
+  }
+  .role h3 small{font-size:11px;opacity:.7;letter-spacing:.1em}
+  .role .body{padding:14px 16px 18px}
+  .lbl{
+    display:flex;align-items:center;gap:6px;
+    font-size:12px;letter-spacing:.06em;margin:12px 0 8px;color:var(--navy-2);
+  }
+  .lbl.ng{color:var(--alert)}
+  .lbl .dot{width:14px;height:14px;border-radius:50%;flex:0 0 auto;
+    display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;background:var(--navy-2)}
+  .lbl.ng .dot{background:var(--alert)}
+  ul{margin:0;padding-left:18px}
+  li{font-size:12.5px;line-height:1.75;color:#33415c}
+  .io{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:11.5px;color:var(--muted);line-height:1.7}
+  .io code{background:#eef1f6;border-radius:4px;padding:1px 5px;font-size:11px}
+  footer{text-align:center;color:var(--muted);font-size:11.5px;letter-spacing:.04em;padding-top:8px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="ah" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#0f1f3a"/></marker>
+  <marker id="ahg" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#8a97ad"/></marker>
+  <marker id="ahr" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#8f3a2e"/></marker>
+</defs></svg>
+<div class="wrap">
+
+<header>
+  <h1>自律開発ハーネス</h1>
+  <p>planner / generator / evaluator — 3役ループで、短い一言から動くものまで</p>
+</header>
+
+<!-- ① 体制図 -->
+<section class="card">
+  <h2><span class="num">1</span>体制図</h2>
+  <div class="figure">
+  <svg viewBox="0 0 1000 520" role="img" aria-label="体制図">
+    <g font-family="inherit">
+      <!-- ユーザー -->
+      <rect x="400" y="8" width="200" height="52" rx="10" fill="#0f1f3a"/>
+      <text x="500" y="40" text-anchor="middle" fill="#fff" font-size="16" letter-spacing="2">ユーザー</text>
+
+      <!-- ユーザー → オーケストレーター -->
+      <line x1="470" y1="60" x2="470" y2="126" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+      <text x="458" y="98" text-anchor="end" font-size="11.5" fill="#5d6b83">依頼</text>
+      <line x1="536" y1="126" x2="536" y2="62" stroke="#8a97ad" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ahg)"/>
+      <text x="550" y="90" font-size="11.5" fill="#5d6b83">完了報告／</text>
+      <text x="550" y="106" font-size="11.5" fill="#5d6b83">3回fail時のみ相談</text>
+
+      <!-- オーケストレーター -->
+      <rect x="310" y="132" width="380" height="68" rx="12" fill="#0f1f3a"/>
+      <text x="500" y="162" text-anchor="middle" fill="#fff" font-size="16" letter-spacing="1">オーケストレーター</text>
+      <text x="500" y="183" text-anchor="middle" fill="#aebbd0" font-size="11.5">（メインのあなた・進行管理のみ）</text>
+
+      <!-- 自律ループ範囲 -->
+      <rect x="40" y="250" width="920" height="240" rx="14" fill="none" stroke="#8a97ad" stroke-width="1.3" stroke-dasharray="7 6"/>
+      <text x="58" y="243" font-size="11.5" fill="#5d6b83">自律ループ範囲</text>
+
+      <!-- orchestrator → 3役 -->
+      <path d="M400,200 C330,235 250,250 200,300" fill="none" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+      <text x="264" y="240" text-anchor="middle" font-size="11" fill="#5d6b83">① 最初に1回</text>
+      <line x1="500" y1="200" x2="500" y2="300" stroke="#8a97ad" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ahg)"/>
+      <text x="512" y="240" font-size="11" fill="#5d6b83">② ループ起動</text>
+      <path d="M600,200 C670,235 750,250 800,300" fill="none" stroke="#8a97ad" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ahg)"/>
+      <text x="746" y="240" text-anchor="middle" font-size="11" fill="#5d6b83">③ ループ起動</text>
+
+      <!-- planner -->
+      <rect x="100" y="306" width="200" height="140" rx="12" fill="#fff" stroke="#0f1f3a" stroke-width="1.4"/>
+      <circle cx="200" cy="342" r="17" fill="#0f1f3a"/>
+      <path d="M192,342 l6,6 l11,-12" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="200" y="392" text-anchor="middle" font-size="15.5" font-weight="bold">planner</text>
+      <text x="200" y="414" text-anchor="middle" font-size="11.5" fill="#5d6b83">仕様・タスクを作る</text>
+      <text x="200" y="431" text-anchor="middle" font-size="11.5" fill="#5d6b83">（企画）</text>
+
+      <!-- generator -->
+      <rect x="400" y="306" width="200" height="140" rx="12" fill="#fff" stroke="#0f1f3a" stroke-width="1.4"/>
+      <circle cx="500" cy="342" r="17" fill="#0f1f3a"/>
+      <path d="M495,336 l-6,6 l6,6 M505,336 l6,6 l-6,6" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="500" y="392" text-anchor="middle" font-size="15.5" font-weight="bold">generator</text>
+      <text x="500" y="414" text-anchor="middle" font-size="11.5" fill="#5d6b83">1タスクずつ実装</text>
+      <text x="500" y="431" text-anchor="middle" font-size="11.5" fill="#5d6b83">（エンジニア）</text>
+
+      <!-- evaluator -->
+      <rect x="700" y="306" width="200" height="140" rx="12" fill="#fff" stroke="#0f1f3a" stroke-width="1.4"/>
+      <circle cx="800" cy="342" r="17" fill="#0f1f3a"/>
+      <ellipse cx="800" cy="342" rx="9" ry="6" fill="none" stroke="#fff" stroke-width="1.8"/>
+      <circle cx="800" cy="342" r="2.6" fill="#fff"/>
+      <text x="800" y="392" text-anchor="middle" font-size="15.5" font-weight="bold">evaluator</text>
+      <text x="800" y="414" text-anchor="middle" font-size="11.5" fill="#5d6b83">実機で見て判定</text>
+      <text x="800" y="431" text-anchor="middle" font-size="11.5" fill="#5d6b83">（レビュアー）</text>
+
+      <!-- generator ⇄ evaluator -->
+      <line x1="600" y1="368" x2="694" y2="368" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+      <text x="650" y="359" text-anchor="middle" font-size="10.5" fill="#5d6b83">self_reviewed</text>
+      <line x1="700" y1="410" x2="606" y2="410" stroke="#8a97ad" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ahg)"/>
+      <text x="650" y="428" text-anchor="middle" font-size="10.5" fill="#5d6b83">fail → 差し戻し</text>
+
+      <!-- 接点ファイル -->
+      <text x="500" y="474" text-anchor="middle" font-size="11" fill="#5d6b83">連携はファイルベース：SPEC.md ／ TASKS.md ／ .claude/reports/（メモリは共有されない）</text>
+    </g>
+  </svg>
+  </div>
+</section>
+
+<!-- ② 3役の担当と禁止事項 -->
+<section class="card">
+  <h2><span class="num">2</span>3役の担当と禁止事項</h2>
+  <div class="roles">
+
+    <div class="role">
+      <h3>planner <small>企画</small></h3>
+      <div class="body">
+        <div class="lbl"><span class="dot">✓</span>やること</div>
+        <ul>
+          <li>依頼の曖昧さを自分で確定させる</li>
+          <li><code>SPEC.md</code> に受け入れ基準を書く</li>
+          <li><code>TASKS.md</code> に依存順でタスクを並べる</li>
+          <li>補った前提を明記する</li>
+        </ul>
+        <div class="lbl ng"><span class="dot">✕</span>やらないこと</div>
+        <ul>
+          <li>コードを書く</li>
+          <li>実装方法・ライブラリを指定する</li>
+          <li>ユーザーに質問する</li>
+          <li>2回目以降の起動（最初の1回だけ）</li>
+        </ul>
+        <div class="io">出力 <code>SPEC.md</code> <code>TASKS.md</code></div>
+      </div>
+    </div>
+
+    <div class="role">
+      <h3>generator <small>実装</small></h3>
+      <div class="body">
+        <div class="lbl"><span class="dot">✓</span>やること</div>
+        <ul>
+          <li>未着手タスクを<strong>1つだけ</strong>選んで実装</li>
+          <li>技術選定・設計を自分で判断</li>
+          <li>実際に動かして自己評価を書く</li>
+          <li>差し戻し時は指摘だけを潰す</li>
+        </ul>
+        <div class="lbl ng"><span class="dot">✕</span>やらないこと</div>
+        <ul>
+          <li>1回で2タスク以上に手を付ける</li>
+          <li>自分を <code>pass</code> にする</li>
+          <li><code>SPEC.md</code> を書き換える</li>
+          <li>未確認の項目を「OK」と書く</li>
+        </ul>
+        <div class="io">出力 コード <code>*_self_review.md</code> → <code>self_reviewed</code></div>
+      </div>
+    </div>
+
+    <div class="role">
+      <h3>evaluator <small>評価</small></h3>
+      <div class="body">
+        <div class="lbl"><span class="dot">✓</span>やること</div>
+        <ul>
+          <li>headless Chrome で実機を開く</li>
+          <li>スクリーンショットを<strong>自分の目で見る</strong></li>
+          <li>受け入れ基準と照合して pass/fail</li>
+          <li>fail は直し方まで書く</li>
+        </ul>
+        <div class="lbl ng"><span class="dot">✕</span>やらないこと</div>
+        <ul>
+          <li>コードを直して pass にする</li>
+          <li>受け入れ基準を緩める</li>
+          <li>画面を見ずコードだけで判定</li>
+          <li>自己評価の結論を鵜呑みにする</li>
+        </ul>
+        <div class="io">出力 <code>*_eval_n.md</code> スクリーンショット → <code>evaluated(pass/fail)</code></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ③ ループの回り方 -->
+<section class="card">
+  <h2><span class="num">3</span>ループの回り方</h2>
+  <div class="figure">
+  <svg viewBox="0 0 1000 760" role="img" aria-label="ループの回り方">
+    <g font-family="inherit">
+      <!-- 依頼 -->
+      <rect x="380" y="8" width="220" height="46" rx="23" fill="#0f1f3a"/>
+      <text x="490" y="37" text-anchor="middle" fill="#fff" font-size="14">短い依頼を受け取る</text>
+      <line x1="490" y1="54" x2="490" y2="88" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+
+      <!-- planner -->
+      <rect x="300" y="94" width="380" height="62" rx="10" fill="#fff" stroke="#0f1f3a" stroke-width="1.5"/>
+      <text x="490" y="122" text-anchor="middle" font-size="14.5" font-weight="bold">planner：SPEC.md / TASKS.md 作成</text>
+      <text x="490" y="142" text-anchor="middle" font-size="11.5" fill="#5d6b83">（1回だけ）</text>
+      <line x1="490" y1="156" x2="490" y2="190" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+
+      <!-- harness.html -->
+      <rect x="300" y="196" width="380" height="58" rx="10" fill="#f3f6fa" stroke="#0f1f3a" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="490" y="222" text-anchor="middle" font-size="14" font-weight="bold">harness.html を出力して open</text>
+      <text x="490" y="241" text-anchor="middle" font-size="11.5" fill="#5d6b83">実装に入る前に必ず</text>
+      <line x1="490" y1="254" x2="490" y2="316" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+
+      <!-- ループ枠 -->
+      <rect x="40" y="290" width="920" height="360" rx="14" fill="none" stroke="#8a97ad" stroke-width="1.3" stroke-dasharray="7 6"/>
+      <text x="58" y="283" font-size="11.5" fill="#5d6b83">タスクごとのループ</text>
+
+      <!-- generator -->
+      <rect x="300" y="322" width="380" height="62" rx="10" fill="#fff" stroke="#0f1f3a" stroke-width="1.5"/>
+      <text x="490" y="350" text-anchor="middle" font-size="14.5" font-weight="bold">generator：1タスク実装＋自己評価</text>
+      <text x="490" y="370" text-anchor="middle" font-size="11.5" fill="#5d6b83">状態 → self_reviewed</text>
+      <line x1="490" y1="384" x2="490" y2="418" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+
+      <!-- evaluator -->
+      <rect x="300" y="424" width="380" height="62" rx="10" fill="#fff" stroke="#0f1f3a" stroke-width="1.5"/>
+      <text x="490" y="452" text-anchor="middle" font-size="14.5" font-weight="bold">evaluator：headless Chromeで確認</text>
+      <text x="490" y="472" text-anchor="middle" font-size="11.5" fill="#5d6b83">目で見て判定</text>
+      <line x1="490" y1="486" x2="490" y2="520" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+
+      <!-- 合格? -->
+      <path d="M490,526 L586,574 L490,622 L394,574 Z" fill="#fff" stroke="#0f1f3a" stroke-width="1.5"/>
+      <text x="490" y="570" text-anchor="middle" font-size="14" font-weight="bold">合格？</text>
+      <text x="490" y="590" text-anchor="middle" font-size="11" fill="#5d6b83">pass / fail</text>
+
+      <!-- fail 差し戻し -->
+      <path d="M394,574 L200,574 L200,353 L294,353" fill="none" stroke="#0f1f3a" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#ah)"/>
+      <circle cx="200" cy="574" r="4" fill="#0f1f3a"/>
+      <text x="192" y="466" text-anchor="middle" font-size="11" fill="#5d6b83" transform="rotate(-90 192 466)">fail：差し戻し（+1回）</text>
+
+      <!-- 3連続fail -->
+      <path d="M200,578 L200,668" fill="none" stroke="#8f3a2e" stroke-width="1.5" marker-end="url(#ahr)"/>
+      <text x="210" y="622" font-size="11" fill="#8f3a2e">同一タスク3連続fail</text>
+
+      <!-- pass → 次のpendingは？ -->
+      <line x1="586" y1="574" x2="704" y2="574" stroke="#0f1f3a" stroke-width="1.5" marker-end="url(#ah)"/>
+      <text x="645" y="565" text-anchor="middle" font-size="11" fill="#5d6b83">pass</text>
+      <path d="M800,528 L892,574 L800,620 L708,574 Z" fill="#fff" stroke="#0f1f3a" stroke-width="1.5"/>
+      <text x="800" y="570" text-anchor="middle" font-size="13" font-weight="bold">次の</text>
+      <text x="800" y="590" text-anchor="middle" font-size="12.5" font-weight="bold">pendingは？</text>
+
+      <!-- ある → 次のタスクへ -->
+      <path d="M892,574 L926,574 L926,353 L686,353" fill="none" stroke="#0f1f3a" stroke-width="1.5" marker-end="url(#ah)"/>
+      <text x="916" y="452" text-anchor="middle" font-size="11" fill="#5d6b83" transform="rotate(-90 916 452)">ある → 次のタスクへ</text>
+
+      <!-- ない → 完了報告 -->
+      <path d="M800,620 L800,668" fill="none" stroke="#0f1f3a" stroke-width="1.5" marker-end="url(#ah)"/>
+      <text x="810" y="646" font-size="11" fill="#5d6b83">ない</text>
+
+      <!-- 終端 -->
+      <rect x="60" y="674" width="280" height="62" rx="10" fill="#8f3a2e"/>
+      <text x="200" y="702" text-anchor="middle" fill="#fff" font-size="14.5" font-weight="bold">ユーザーへ相談</text>
+      <text x="200" y="722" text-anchor="middle" fill="#f0d5cf" font-size="11">評価と自己評価の乖離を報告</text>
+
+      <rect x="660" y="674" width="280" height="62" rx="10" fill="#0f1f3a"/>
+      <text x="800" y="702" text-anchor="middle" fill="#fff" font-size="14.5" font-weight="bold">完了報告</text>
+      <text x="800" y="722" text-anchor="middle" fill="#aebbd0" font-size="11">全タスク evaluated(pass)</text>
+    </g>
+  </svg>
+  </div>
+</section>
+
+<!-- ④ 人がやること -->
+<section class="card">
+  <h2><span class="num">4</span>人がやること</h2>
+  <div class="figure">
+  <svg viewBox="0 0 1000 320" role="img" aria-label="人がやること">
+    <g font-family="inherit">
+      <text x="24" y="46" font-size="12" fill="#5d6b83" letter-spacing="2">人</text>
+      <text x="24" y="228" font-size="12" fill="#5d6b83" letter-spacing="2">AI</text>
+      <line x1="60" y1="150" x2="960" y2="150" stroke="#dde3ec" stroke-width="1"/>
+
+      <!-- 人のアクション -->
+      <rect x="70" y="24" width="240" height="64" rx="10" fill="#fff" stroke="#0f1f3a" stroke-width="1.5"/>
+      <text x="190" y="52" text-anchor="middle" font-size="14" font-weight="bold">最初の一言を渡す</text>
+      <text x="190" y="72" text-anchor="middle" font-size="11" fill="#5d6b83">「〜を作って」</text>
+
+      <rect x="390" y="24" width="240" height="64" rx="10" fill="#fff" stroke="#8f3a2e" stroke-width="1.5"/>
+      <text x="510" y="52" text-anchor="middle" font-size="14" font-weight="bold" fill="#8f3a2e">3連続failの相談に答える</text>
+      <text x="510" y="72" text-anchor="middle" font-size="11" fill="#8f3a2e">起きたときだけ</text>
+
+      <rect x="710" y="24" width="240" height="64" rx="10" fill="#fff" stroke="#0f1f3a" stroke-width="1.5"/>
+      <text x="830" y="52" text-anchor="middle" font-size="14" font-weight="bold">完了報告を確認する</text>
+      <text x="830" y="72" text-anchor="middle" font-size="11" fill="#5d6b83">最終チェック</text>
+
+      <!-- AIレーン -->
+      <rect x="70" y="180" width="880" height="96" rx="12" fill="#0f1f3a"/>
+      <text x="510" y="216" text-anchor="middle" fill="#fff" font-size="15" letter-spacing="1">planner → （ generator → evaluator ）× タスク数</text>
+      <text x="510" y="244" text-anchor="middle" fill="#aebbd0" font-size="12">仕様づくり・実装・実機確認・差し戻しは、すべてこの中で自律的に回る</text>
+      <text x="510" y="264" text-anchor="middle" fill="#7f8ea8" font-size="11">この間、人の介入は不要</text>
+
+      <!-- 矢印 -->
+      <line x1="190" y1="88" x2="190" y2="174" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+      <line x1="510" y1="180" x2="510" y2="94" stroke="#8f3a2e" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ahr)"/>
+      <line x1="830" y1="180" x2="830" y2="94" stroke="#0f1f3a" stroke-width="1.6" marker-end="url(#ah)"/>
+    </g>
+  </svg>
+  </div>
+</section>
+
+<footer>定義ファイル： .claude/agents/planner.md ／ generator.md ／ evaluator.md ＋ CLAUDE.md「自律開発ハーネス」</footer>
+
+</div>
+</body>
+</html>
