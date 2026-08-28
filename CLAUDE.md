@@ -38,6 +38,18 @@
 - 公開URL: https://xenomao.github.io/xenomao/shindan/
 - 全10問・約2分のセルフ診断
 
+### Beauty TIMES LP(美容業界特化 情報プラットフォーム)
+
+- 本体: `marketing/beauty_times_lp.html` / 配信用コピー: `public/beauty_times/index.html`(内容は同一。更新時は両方を同期すること)
+- 公開URL: https://xenomao.github.io/xenomao/beauty_times/
+- コンセプト: 「展示会は3日間。ブランドは365日。」展示会(Beautyworld Japan等)で終わらない情報発信を行うデジタルショールーム
+- デザインは他LPと別系統の**エディトリアル調**(白基調 × ローズ→ラベンダーのグラデーション、ダークヒーロー)。ブランドページのUIモックアップ・情報接触量グラフ(SVG)・Before/During/Afterのインフォグラフィックで「サービスを体験できるLP」として構成
+- CV導線は**30分のオンライン(Zoom)相談予約**に一本化。ヘッダーCTA・ヒーロー・各プラン・クロージング・スティッキーバー(下部固定)のすべてが予約フォーム(`#contact`)へ着地する
+- 予約フォームはバックエンドなしの静的実装。送信すると入力内容が本文に整形された `mailto:digilabbeauty@gmail.com` が生成される(件名: `[Beauty TIMES] 30分オンライン相談のご予約`)。メールソフトが開かない環境向けに「入力内容をコピー」ボタンを併設
+- 予約ツール(TimeRex/Spir/Calendly等)を導入する場合は、`#contact` のフォームを予約ページへのリンクに差し替えるだけでよい
+- 掲載プランは**税別・年額**表記: Starter ¥50,000 / Standard ¥180,000(Popular) / Premium ¥360,000 / Enterprise ¥600,000〜。金額を変更する際は、プランカード・FAQ・フォームのプラン選択肢・ヒーロー/スティッキーバーの「年額 ¥50,000〜」の**5か所**を揃えること
+- OGP画像は未作成(`og:image` 未指定)。SNS拡散を行う場合は1200×630のOGPを用意する
+
 ### 成果物一覧
 
 - 全成果物(公開URL・ガイドライン・ツール・アプリ・販促資料)の棚卸しは `docs/asset_inventory.md` を参照
