@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="ビューティAIトラストマーク">
+<title>ビューティAIトラストマーク(スペクトラム)</title>
+<desc>一般社団法人デジラボビュティ ビューティAI認証制度 / 美容向けAIツールの第三者認証</desc>
+<defs>
+  <linearGradient id="tgsp" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#5eead4"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#a78bfa"/>
+  </linearGradient>
+  <radialGradient id="tdsp" cx=".5" cy=".36" r=".78">
+    <stop offset="0" stop-color="#1a1436"/><stop offset="1" stop-color="#080a14"/>
+  </radialGradient>
+  <path id="ttopsp" d="M 22 100 A 78 78 0 0 1 178 100" fill="none"/>
+  <path id="tbotsp" d="M 26.5 100 A 73.5 73.5 0 0 0 173.5 100" fill="none"/>
+</defs>
+<circle cx="100" cy="100" r="96" fill="url(#tdsp)"/>
+<circle cx="100" cy="100" r="96" fill="none" stroke="url(#tgsp)" stroke-width="2.6"/>
+<circle cx="100" cy="100" r="87" fill="none" stroke="url(#tgsp)" stroke-width="1" opacity=".55"/>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="12.4" font-weight="600" letter-spacing="2.5" fill="#a5f3ec">
+  <textPath href="#ttopsp" startOffset="50%" text-anchor="middle">BEAUTY AI TRUST MARK</textPath>
+</text>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="8.4" font-weight="500" letter-spacing="3.1" fill="#7dd3fc">
+  <textPath href="#tbotsp" startOffset="50%" text-anchor="middle">DIGILAB BEAUTY</textPath>
+</text>
+<circle cx="12.5" cy="100" r="2.6" fill="#38bdf8"/>
+<circle cx="187.5" cy="100" r="2.6" fill="#38bdf8"/>
+<path d="M100 46 L136 67 V109 L100 130 L64 109 V67 Z" fill="rgba(94,234,212,.09)" stroke="url(#tgsp)" stroke-width="1.9"/>
+<path d="M100 56 L128 72 V104 L100 120 L72 104 V72 Z" fill="none" stroke="#38bdf8" stroke-width="0.9" opacity=".55"/>
+<path d="M85 92 L96 103 L117 80" fill="none" stroke="url(#tgsp)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="100" y="78" font-family="Poppins,sans-serif" font-size="10.5" font-weight="600" letter-spacing="3.4" fill="#f2fbff" text-anchor="middle">TRUST</text>
+<text x="100" y="150" font-family="'Shippori Mincho B1','Noto Serif JP',serif" font-weight="700" font-size="10.5" letter-spacing="1.2" fill="#a5f3ec" text-anchor="middle">ツール認証</text>
+</svg>
