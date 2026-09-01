@@ -26,9 +26,8 @@
 </text>
 <text x="12.5" y="103.5" font-size="9" fill="#b79ad1" text-anchor="middle">&#9670;</text>
 <text x="187.5" y="103.5" font-size="9" fill="#b79ad1" text-anchor="middle">&#9670;</text>
-<path d="M100 46 L136 67 V109 L100 130 L64 109 V67 Z" fill="rgba(183,154,209,.10)" stroke="url(#tg)" stroke-width="1.8"/>
-<path d="M100 56 L128 72 V104 L100 120 L72 104 V72 Z" fill="none" stroke="url(#tl)" stroke-width="0.9" opacity=".7"/>
-<path d="M85 92 L96 103 L117 80" fill="none" stroke="url(#tg)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="100" y="78" font-family="Poppins,sans-serif" font-size="10.5" font-weight="600" letter-spacing="3.4" fill="#f2ead4" text-anchor="middle">TRUST</text>
-<text x="100" y="150" font-family="'Shippori Mincho B1','Noto Serif JP',serif" font-weight="700" font-size="10.5" letter-spacing="1.2" fill="#e6cd8f" text-anchor="middle">ツール認証</text>
+<path d="M100 44 L141 68 V116 L100 140 L59 116 V68 Z" fill="rgba(183,154,209,.10)" stroke="url(#tg)" stroke-width="1.8"/>
+<path d="M100 55 L131 73 V111 L100 129 L69 111 V73 Z" fill="none" stroke="url(#tl)" stroke-width="0.9" opacity=".7"/>
+<path d="M84 104 L96 116 L119 91" fill="none" stroke="url(#tg)" stroke-width="6.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="100" y="87" font-family="Poppins,sans-serif" font-size="11.5" font-weight="600" letter-spacing="3.4" fill="#f2ead4" text-anchor="middle">TRUST</text>
 </svg>

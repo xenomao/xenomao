@@ -24,8 +24,7 @@
 <circle cx="12.5" cy="100" r="2.6" fill="#38bdf8"/>
 <circle cx="187.5" cy="100" r="2.6" fill="#38bdf8"/>
 <circle cx="100" cy="100" r="68" fill="none" stroke="#38bdf8" stroke-width="0.8" opacity=".3"/>
-<path d="M100 34 L131 46 V74 C131 92.5 118 105.5 100 112 C82 105.5 69 92.5 69 74 V46 Z" fill="rgba(94,234,212,.09)" stroke="url(#sgsp)" stroke-width="1.8"/>
-<path d="M84.5 71.5 L95.5 82.5 L116 59.5" fill="none" stroke="url(#sgsp)" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="100" y="128" font-family="'Shippori Mincho B1','Noto Serif JP',serif" font-weight="700" font-size="16" letter-spacing="1.6" fill="#f2fbff" text-anchor="middle">AIセーフ</text>
-<text x="100" y="148" font-family="'Shippori Mincho B1','Noto Serif JP',serif" font-weight="700" font-size="16" letter-spacing="1.6" fill="url(#sgsp)" text-anchor="middle">サロン認証</text>
+<path d="M100 44 L138 60 V96 C138 124 121 142 100 152 C79 142 62 124 62 96 V60 Z" fill="rgba(94,234,212,.09)" stroke="url(#sgsp)" stroke-width="2"/>
+<text x="100" y="87" font-family="Poppins,sans-serif" font-size="12.5" font-weight="600" letter-spacing="3.6" fill="#f2fbff" text-anchor="middle">SAFE</text>
+<path d="M83 104 L96 117 L120 90" fill="none" stroke="url(#sgsp)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
