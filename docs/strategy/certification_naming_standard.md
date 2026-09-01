@@ -114,8 +114,8 @@
 - [x] `CLAUDE.md`(プロジェクト規約)
 - [x] `docs/strategy/*`(事業設計書・ブループリント)
 - [x] `docs/asset_inventory.md`
-- [ ] `public/kentei/ogp.png`(画像内の旧名称。要再生成)
+- [x] `public/kentei/ogp.png`(新名称で再生成済み。ソース: `marketing/assets/certification/ogp_kentei.html`)
 - [ ] メインLPのグローバルナビ表記(「検定」→ 変更不要)
 - [ ] 団体名表記の最終確認(`CLAUDE.md` / `public/kamata/` の「デジラボビュティ」)
-- [ ] `public/llms.txt` / `sitemap.xml` の説明文
-- [ ] 認定証・エンブレムのマスターデータ(未作成)
+- [x] `public/llms.txt` / `sitemap.xml` の説明文
+- [x] 認定証・エンブレム・認証マークのマスターデータ(`marketing/assets/certification/`)

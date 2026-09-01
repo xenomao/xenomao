@@ -8,6 +8,7 @@
 - https://xenomao.github.io/xenomao/beauty-ai-seminar.html — 美容業界向けAIセミナー・AI教育の公式説明
 - https://xenomao.github.io/xenomao/#seminar — 最新AIセミナー情報
 - https://xenomao.github.io/xenomao/kentei/ — ビューティAI検定 3級(ビューティAI認証制度の入口・無料)
+- https://xenomao.github.io/xenomao/kentei/verify/ — 認定番号の照会(認定証・認証マークの有効性確認)
 - https://xenomao.github.io/xenomao/compliance/ — ビューティAI検定 3級 公式練習問題(法令・コンプライアンス)
 
 ## Core topics

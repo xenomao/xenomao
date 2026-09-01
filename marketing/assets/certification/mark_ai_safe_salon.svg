@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="AIセーフサロン認証マーク">
+<title>AIセーフサロン認証マーク</title>
+<desc>一般社団法人デジラボビュティ ビューティAI認証制度 / 事業所認証</desc>
+<defs>
+  <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f0dca0"/><stop offset=".5" stop-color="#c9a24e"/><stop offset="1" stop-color="#9a7526"/>
+  </linearGradient>
+  <radialGradient id="sd" cx=".5" cy=".4" r=".72">
+    <stop offset="0" stop-color="#2a3363"/><stop offset="1" stop-color="#141834"/>
+  </radialGradient>
+  <path id="s_top" d="M 22 100 A 78 78 0 0 1 178 100" fill="none"/>
+  <path id="s_bot" d="M 26.5 100 A 73.5 73.5 0 0 0 173.5 100" fill="none"/>
+</defs>
+<circle cx="100" cy="100" r="96" fill="url(#sd)"/>
+<circle cx="100" cy="100" r="96" fill="none" stroke="url(#sg)" stroke-width="2.4"/>
+<circle cx="100" cy="100" r="87" fill="none" stroke="url(#sg)" stroke-width="0.9" opacity=".8"/>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="12.4" font-weight="600" letter-spacing="2.6" fill="#e6cd8f">
+  <textPath href="#s_top" startOffset="50%" text-anchor="middle">AI SAFE SALON CERTIFIED</textPath>
+</text>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="8.4" font-weight="500" letter-spacing="3.1" fill="#c9a24e">
+  <textPath href="#s_bot" startOffset="50%" text-anchor="middle">DIGILAB BEAUTY</textPath>
+</text>
+<text x="12.5" y="103.5" font-size="9" fill="#c9a24e" text-anchor="middle">&#9670;</text>
+<text x="187.5" y="103.5" font-size="9" fill="#c9a24e" text-anchor="middle">&#9670;</text>
+<circle cx="100" cy="100" r="68" fill="none" stroke="#c9a24e" stroke-width="0.8" opacity=".45"/>
+<path d="M100 34 L131 46 V74 C131 92.5 118 105.5 100 112 C82 105.5 69 92.5 69 74 V46 Z" fill="rgba(230,205,143,.07)" stroke="url(#sg)" stroke-width="1.7"/>
+<path d="M84.5 71.5 L95.5 82.5 L116 59.5" fill="none" stroke="url(#sg)" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="100" y="128" font-family="'Shippori Mincho B1','Noto Serif JP',serif" font-weight="700" font-size="16" letter-spacing="1.6" fill="#f2ead4" text-anchor="middle">AIセーフ</text>
+<text x="100" y="148" font-family="'Shippori Mincho B1','Noto Serif JP',serif" font-weight="700" font-size="16" letter-spacing="1.6" fill="url(#sg)" text-anchor="middle">サロン認証</text>
+</svg>

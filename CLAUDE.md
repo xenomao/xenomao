@@ -30,7 +30,7 @@
 - 公開URL: https://xenomao.github.io/xenomao/kentei/
 - LP本体(`digilab_beauty_lp.html` / `public/index.html`)のグローバルナビ「検定」からリンク
 - デザインは「検定・認定証」らしい権威性を出すため、**ディープネイビー×ゴールド**の専用スタイル(明朝: Shippori Mincho / Noto Serif JP)。パステルラベンダーはサブアクセント。認定エンブレム(シール)はSVGで生成
-- OGP画像: `public/kentei/ogp.png`(1200×630・ネイビー×ゴールド・認定シール入り)。`og:image`は絶対URL(https://xenomao.github.io/xenomao/kentei/ogp.png)で指定
+- OGP画像: `public/kentei/ogp.png`(1200×630・ネイビー×ゴールド・認定シール入り)。`og:image`は絶対URL(https://xenomao.github.io/xenomao/kentei/ogp.png)で指定。ソースは `marketing/assets/certification/ogp_kentei.html`(1200×630で撮影して差し替え)
 - 配信の実体: 現状Pagesは **`gh-pages` ブランチ** から配信されている(Settings→Pages の Source が「Deploy from a branch」)。`public/` を更新したら、`gh-pages` にも反映しないと本番に出ない点に注意
 
 ### サロンAI活用度診断
@@ -63,6 +63,8 @@
 - 出題・審査基準: `docs/strategy/digilab_certification_curriculum_blueprint.md`
 - 競合分析: `docs/strategy/cosme_kentei_business_teardown.md`
 - LP掲載の2級・1級の受検料は**理事会承認前の予定額**。承認前に `main` / `gh-pages` へ反映しないこと
+- ブランド素材(認定エンブレム・認証マーク・OGPソース・認定証テンプレ): `marketing/assets/certification/`。再生成手順と使用ルールは同フォルダの `README.md`
+- 認定番号の照会ページ: `public/kentei/verify/`(データは `registry.json`。個人の氏名は掲載しない)
 
 ## ブランド
 

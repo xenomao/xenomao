@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>認定番号の照会 | ビューティAI認証制度</title>
+<meta name="description" content="ビューティAI検定・ビューティAIフェロー・AIセーフサロン認証・ビューティAIトラストマークの認定番号を照会できます。一般社団法人デジラボビュティ。">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Shippori+Mincho+B1:wght@700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#141834;--navy2:#1b2145;--gold:#c19a45;--gold-l:#e6cd8f;--lav:#b79ad1;--line:rgba(193,154,69,.3)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP',sans-serif;color:#e9e7f0;line-height:1.9;letter-spacing:.03em;
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(193,154,69,.16),transparent 60%),linear-gradient(160deg,#141834,#1b2145);min-height:100vh}
+.wrap{max-width:720px;margin:0 auto;padding:0 6vw}
+header{padding:34px 0 0}
+.wordmark{text-decoration:none;display:inline-block;line-height:1.15}
+.wordmark .l1{font-family:'Poppins',sans-serif;font-weight:500;font-size:19px;letter-spacing:.42em;color:#efe7d3}
+.wordmark .l2{font-family:'Poppins',sans-serif;font-weight:300;font-size:11px;letter-spacing:.56em;color:#b79a5a;display:block}
+main{padding:52px 0 70px}
+.en{font-family:'Poppins',sans-serif;font-size:11px;letter-spacing:.34em;color:var(--gold-l);margin-bottom:12px}
+h1{font-family:'Shippori Mincho B1',serif;font-weight:700;font-size:clamp(24px,4.6vw,32px);letter-spacing:.06em;color:#fff;line-height:1.5}
+.lead{margin-top:18px;font-size:13.5px;color:#c3c6d8}
+form{margin-top:32px;display:flex;gap:10px;flex-wrap:wrap}
+input{flex:1 1 260px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:4px;
+  padding:14px 16px;color:#fff;font-size:15px;letter-spacing:.12em;font-family:'Poppins',sans-serif}
+input::placeholder{color:#8c90a8;letter-spacing:.08em}
+button{background:linear-gradient(120deg,#b8863a,#e6cd8f 55%,#b8863a);color:#1a1836;border:none;border-radius:4px;
+  padding:14px 30px;font-weight:700;font-size:14px;letter-spacing:.1em;cursor:pointer;font-family:inherit}
+.result{margin-top:26px;border:1px solid var(--line);border-radius:5px;padding:26px;background:rgba(0,0,0,.2);display:none}
+.result.on{display:block}
+.badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:30px;margin-bottom:16px}
+.ok{background:linear-gradient(120deg,#b8863a,#e6cd8f);color:#1a1836}
+.ng{background:rgba(180,68,79,.16);color:#e59aa2;border:1px solid rgba(180,68,79,.5)}
+.row{display:flex;gap:14px;padding:11px 0;border-bottom:1px dashed rgba(193,154,69,.22);font-size:13.5px}
+.row:last-child{border-bottom:none}
+.row .k{flex:0 0 96px;color:#9498b2;font-size:12.5px}
+.row .v{color:#f0eef6}
+.note{margin-top:34px;font-size:11.5px;line-height:2.1;color:#9498b2;border-top:1px solid rgba(255,255,255,.1);padding-top:22px}
+.note b{color:#c9cbdd}
+footer{border-top:1px solid rgba(193,154,69,.2);padding:26px 0 40px;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.4)}
+footer a{color:rgba(230,205,143,.8);text-decoration:none;margin-right:18px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="wordmark" href="../../"><span class="l1">Digilab</span><span class="l2">beauty</span></a></div></header>
+<main>
+  <div class="wrap">
+    <p class="en">CERTIFICATION REGISTRY</p>
+    <h1>認定番号の照会</h1>
+    <p class="lead">認定証・認証証書・店頭の認証マークに記載された番号を入力してください。有効性・種別・有効期限を確認できます。<br>一般社団法人デジラボビュティ ビューティAI認証制度</p>
+    <form id="f">
+      <input id="q" type="text" placeholder="例: S-2027-0001" autocomplete="off" spellcheck="false">
+      <button type="submit">照会する</button>
+    </form>
+    <div class="result" id="r"></div>
+    <p class="note">
+      <b>個人情報の取り扱い</b><br>
+      検定合格者・フェローについては、個人が特定されないよう<b>氏名を掲載していません</b>(番号・種別・状態のみ)。事業所認証・ツール認証は、認証先の同意のうえで名称を掲載しています。<br><br>
+      <b>この照会結果の意味</b><br>
+      「有効」は、当該番号の認定・認証が所定の基準への適合を確認して交付され、現在も有効であることを示すものです。無条件の安全や品質を保証するものではありません。<br><br>
+      番号が見つからない場合や、掲示されているマークに疑義がある場合は <a href="mailto:digilabbeauty@gmail.com" style="color:#e6cd8f">digilabbeauty@gmail.com</a> までご連絡ください。
+    </p>
+  </div>
+</main>
+<footer><div class="wrap">
+  <a href="../">ビューティAI検定 3級</a><a href="../../">トップ</a><a href="../../privacy.html">プライバシーポリシー</a>
+  <div style="margin-top:12px">&copy; Digilab Beauty. All Rights Reserved.</div>
+</div></footer>
+<script>
+var DATA=null;
+fetch('registry.json').then(function(r){return r.json()}).then(function(j){DATA=j}).catch(function(){DATA={records:[]}});
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault();
+  var q=document.getElementById('q').value.trim().toUpperCase().replace(/\s/g,'');
+  var box=document.getElementById('r');
+  box.className='result on';
+  if(!q){box.innerHTML='<span class="badge ng">未入力</span><p>認定番号を入力してください。</p>';return}
+  if(!DATA){box.innerHTML='<span class="badge ng">読み込み中</span><p>もう一度お試しください。</p>';return}
+  var rec=(DATA.records||[]).filter(function(x){return (x.number||'').toUpperCase()===q})[0];
+  if(!rec){
+    box.innerHTML='<span class="badge ng">該当なし</span>'+
+      '<p style="font-size:13.5px;color:#c3c6d8">番号「'+q.replace(/[<>&]/g,'')+'」は登録されていません。番号の記載をご確認ください。'+
+      ((DATA.records||[]).length===0?'<br><br>※ 認定番号の登録は制度の開始にあわせて順次行います。':'')+'</p>';
+    return;
+  }
+  var label={valid:['有効','ok'],expired:['期限切れ','ng'],revoked:['取消','ng']}[rec.status]||['不明','ng'];
+  box.innerHTML='<span class="badge '+label[1]+'">'+label[0]+'</span>'+
+    '<div class="row"><span class="k">認定番号</span><span class="v">'+rec.number+'</span></div>'+
+    '<div class="row"><span class="k">種別</span><span class="v">'+(rec.type||'')+'</span></div>'+
+    '<div class="row"><span class="k">名称</span><span class="v">'+(rec.title||'')+'</span></div>'+
+    (rec.holder?'<div class="row"><span class="k">認証先</span><span class="v">'+rec.holder+'</span></div>':'')+
+    '<div class="row"><span class="k">交付日</span><span class="v">'+(rec.issued||'')+'</span></div>'+
+    '<div class="row"><span class="k">有効期限</span><span class="v">'+(rec.expires||'なし')+'</span></div>';
+});
+</script>
+</body>
+</html>

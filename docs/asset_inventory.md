@@ -13,7 +13,8 @@
 | 賛助会員向けプレゼンデッキ | https://xenomao.github.io/xenomao/sponsor/ | `public/sponsor/index.html`(本体: `marketing/digilab_beauty_sponsor_deck.html`) |
 | 鎌田麻央 個人ビジネスLP | https://xenomao.github.io/xenomao/kamata/ | `public/kamata/index.html` |
 | プライバシーポリシー | https://xenomao.github.io/xenomao/privacy.html | `public/privacy.html` |
-| 検定LP用OGPシェア画像 | https://xenomao.github.io/xenomao/kentei/ogp.png | `public/kentei/ogp.png` ※旧名称のため要再生成 |
+| 検定LP用OGPシェア画像 | https://xenomao.github.io/xenomao/kentei/ogp.png | `public/kentei/ogp.png`(新名称で再生成済) |
+| 認定番号の照会(レジストリ) | https://xenomao.github.io/xenomao/kentei/verify/ | `public/kentei/verify/index.html` + `registry.json` |
 
 ※ 配信の実体は `gh-pages` ブランチ。`public/` 更新後は `gh-pages` への同期が必要(CLAUDE.md参照)。
 
@@ -62,6 +63,7 @@
 | LPパステル配色案(比較用アーカイブ) | `marketing/digilab_beauty_lp_pastel.html` |
 | 会員特典: AIスターターガイド / 会員証カード / ニュースレターvol.1 | `marketing/member_benefits/*.html` |
 | 素材(写真・QR・鎌田様写真) | `marketing/assets/` |
+| 認証制度ブランド素材(エンブレム3種・認証マーク2種・OGPソース・認定証/認証証書テンプレ) | `marketing/assets/certification/`(+ `README.md`) |
 
 ## F. アプリ(apps/)
 

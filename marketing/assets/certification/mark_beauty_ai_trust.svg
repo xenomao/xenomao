@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="ビューティAIトラストマーク">
+<title>ビューティAIトラストマーク</title>
+<desc>一般社団法人デジラボビュティ ビューティAI認証制度 / 美容向けAIツールの第三者認証</desc>
+<defs>
+  <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#f0dca0"/><stop offset=".5" stop-color="#c9a24e"/><stop offset="1" stop-color="#9a7526"/>
+  </linearGradient>
+  <linearGradient id="tl" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#b79ad1"/><stop offset="1" stop-color="#8e6bb0"/>
+  </linearGradient>
+  <radialGradient id="td" cx=".5" cy=".4" r=".72">
+    <stop offset="0" stop-color="#2a3363"/><stop offset="1" stop-color="#141834"/>
+  </radialGradient>
+  <path id="t_top" d="M 22 100 A 78 78 0 0 1 178 100" fill="none"/>
+  <path id="t_bot" d="M 26.5 100 A 73.5 73.5 0 0 0 173.5 100" fill="none"/>
+</defs>
+<circle cx="100" cy="100" r="96" fill="url(#td)"/>
+<circle cx="100" cy="100" r="96" fill="none" stroke="url(#tg)" stroke-width="2.4"/>
+<circle cx="100" cy="100" r="87" fill="none" stroke="url(#tl)" stroke-width="1.1" opacity=".75"/>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="12.4" font-weight="600" letter-spacing="2.5" fill="#e6cd8f">
+  <textPath href="#t_top" startOffset="50%" text-anchor="middle">BEAUTY AI TRUST MARK</textPath>
+</text>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="8.4" font-weight="500" letter-spacing="3.1" fill="#c9a24e">
+  <textPath href="#t_bot" startOffset="50%" text-anchor="middle">DIGILAB BEAUTY</textPath>
+</text>
+<text x="12.5" y="103.5" font-size="9" fill="#b79ad1" text-anchor="middle">&#9670;</text>
+<text x="187.5" y="103.5" font-size="9" fill="#b79ad1" text-anchor="middle">&#9670;</text>
+<path d="M100 50 L140 73 V119 L100 142 L60 119 V73 Z" fill="rgba(183,154,209,.10)" stroke="url(#tg)" stroke-width="1.8"/>
+<path d="M100 60 L131 78 V114 L100 132 L69 114 V78 Z" fill="none" stroke="url(#tl)" stroke-width="0.9" opacity=".7"/>
+<path d="M85 97 L96 108 L117 85" fill="none" stroke="url(#tg)" stroke-width="5.6" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="100" y="83" font-family="Poppins,sans-serif" font-size="10.5" font-weight="600" letter-spacing="3.4" fill="#f2ead4" text-anchor="middle">TRUST</text>
+<text x="100" y="127" font-family="'Shippori Mincho B1','Noto Serif JP',serif" font-weight="700" font-size="10.5" letter-spacing="1.2" fill="#e6cd8f" text-anchor="middle">ツール認証</text>
+</svg>
