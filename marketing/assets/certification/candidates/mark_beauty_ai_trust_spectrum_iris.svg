@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="ビューティAIトラストマーク">
+<title>ビューティAIトラストマーク(スペクトラム)</title>
+<desc>一般社団法人デジラボビュティ ビューティAI認証制度 / 美容向けAIツールの第三者認証</desc>
+<defs>
+  <linearGradient id="tgspir" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#5eead4"/><stop offset=".5" stop-color="#38bdf8"/><stop offset="1" stop-color="#a78bfa"/>
+  </linearGradient>
+  <radialGradient id="tdspir" cx=".5" cy=".36" r=".78">
+    <stop offset="0" stop-color="#1a1436"/><stop offset="1" stop-color="#080a14"/>
+  </radialGradient>
+  <path id="ttopspir" d="M 22 100 A 78 78 0 0 1 178 100" fill="none"/>
+  <path id="tbotspir" d="M 26.5 100 A 73.5 73.5 0 0 0 173.5 100" fill="none"/>
+</defs>
+<circle cx="100" cy="100" r="96" fill="url(#tdspir)"/>
+<circle cx="100" cy="100" r="96" fill="none" stroke="url(#tgspir)" stroke-width="2.6"/>
+<circle cx="100" cy="100" r="87" fill="none" stroke="url(#tgspir)" stroke-width="1" opacity=".55"/>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="12.4" font-weight="600" letter-spacing="2.5" fill="#a5f3ec">
+  <textPath href="#ttopspir" startOffset="50%" text-anchor="middle">BEAUTY AI TRUST MARK</textPath>
+</text>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="8.4" font-weight="500" letter-spacing="3.1" fill="#7dd3fc">
+  <textPath href="#tbotspir" startOffset="50%" text-anchor="middle">DIGILAB BEAUTY</textPath>
+</text>
+<circle cx="12.5" cy="100" r="2.6" fill="#38bdf8"/>
+<circle cx="187.5" cy="100" r="2.6" fill="#38bdf8"/>
+<path d="M100 44 L141 68 V116 L100 140 L59 116 V68 Z" fill="rgba(94,234,212,.09)" stroke="url(#tgspir)" stroke-width="2"/>
+<path d="M100 55 L131 73 V111 L100 129 L69 111 V73 Z" fill="none" stroke="#38bdf8" stroke-width="0.9" opacity=".5"/>
+<text x="100" y="84" font-family="Poppins,sans-serif" font-size="11.5" font-weight="600" letter-spacing="3.4" fill="#f2fbff" text-anchor="middle">TRUST</text>
+<circle cx="100" cy="108" r="24" fill="none" stroke="url(#tgspir)" stroke-width="1" opacity=".38"/><circle cx="100" cy="108" r="19" fill="none" stroke="url(#tgspir)" stroke-width="1.6" opacity=".62"/><g stroke="url(#tgspir)" stroke-width="1" opacity=".45"><line x1="112.00" y1="108.00" x2="119.00" y2="108.00"/><line x1="110.39" y1="114.00" x2="116.45" y2="117.50"/><line x1="106.00" y1="118.39" x2="109.50" y2="124.45"/><line x1="100.00" y1="120.00" x2="100.00" y2="127.00"/><line x1="94.00" y1="118.39" x2="90.50" y2="124.45"/><line x1="89.61" y1="114.00" x2="83.55" y2="117.50"/><line x1="88.00" y1="108.00" x2="81.00" y2="108.00"/><line x1="89.61" y1="102.00" x2="83.55" y2="98.50"/><line x1="94.00" y1="97.61" x2="90.50" y2="91.55"/><line x1="100.00" y1="96.00" x2="100.00" y2="89.00"/><line x1="106.00" y1="97.61" x2="109.50" y2="91.55"/><line x1="110.39" y1="102.00" x2="116.45" y2="98.50"/></g><circle cx="100" cy="108" r="12" fill="none" stroke="url(#tgspir)" stroke-width="2.6"/><circle cx="100" cy="108" r="5.8" fill="url(#tgspir)"/>
+</svg>

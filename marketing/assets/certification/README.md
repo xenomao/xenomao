@@ -57,3 +57,17 @@ Webフォント(Shippori Mincho B1 / Noto Sans JP / Poppins)を参照してい�
 
 - 検定 `C-西暦-連番` / フェロー `F-` / サロン認証 `S-` / トラストマーク `V-`
 - 照会ページ: `public/kentei/verify/`(データは `registry.json`)。個人の氏名は掲載しない。
+
+## 中央アイコンの検討中の案(`candidates/`)
+
+現行(ノードグラフ)に加えて、以下2案を用意している。採用が決まったら `candidates/` から3配色すべてに反映し、証書テンプレートも差し替える。
+
+| 案 | ファイル | 特徴 |
+|---|---|---|
+| A. ノードグラフ(現行) | `mark_*.svg` | 点と線。AI・ネットワークの含意が強い。最も情報量が多い |
+| B. アイリス(同心円) | `candidates/mark_*_iris.svg` | 虹彩・絞りのような同心円。小サイズでも潰れにくく、印章としての格式が出る |
+| C. AIモノグラム | `candidates/mark_*_mono.svg` | 文字「AI」を大きく。一瞬で何の認証か伝わるが、図像としての独自性は弱い |
+
+`candidates/icon_comparison.png` が3案の比較シート。SVGはスペクトラム版・ライト版を用意している(ネイビー版は採用後に生成)。
+
+生成スクリプト: `scripts/generate_certification_marks.py`(第1引数に `node` / `iris` / `mono`)

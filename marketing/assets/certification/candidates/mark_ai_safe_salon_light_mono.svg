@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="AIセーフサロン認証マーク">
+<title>AIセーフサロン認証マーク(ライト)</title>
+<desc>一般社団法人デジラボビュティ ビューティAI認証制度 / 事業所認証</desc>
+<defs>
+  <linearGradient id="sglimo" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0ea5a4"/><stop offset=".5" stop-color="#2f7df6"/><stop offset="1" stop-color="#8b5cf6"/>
+  </linearGradient>
+  <radialGradient id="sdlimo" cx=".5" cy=".36" r=".78">
+    <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#eef3fb"/>
+  </radialGradient>
+  <path id="stoplimo" d="M 22 100 A 78 78 0 0 1 178 100" fill="none"/>
+  <path id="sbotlimo" d="M 26.5 100 A 73.5 73.5 0 0 0 173.5 100" fill="none"/>
+</defs>
+<circle cx="100" cy="100" r="96" fill="url(#sdlimo)"/>
+<circle cx="100" cy="100" r="96" fill="none" stroke="url(#sglimo)" stroke-width="2.6"/>
+<circle cx="100" cy="100" r="87" fill="none" stroke="url(#sglimo)" stroke-width="0.9" opacity=".65"/>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="12.4" font-weight="600" letter-spacing="2.6" fill="#16305f">
+  <textPath href="#stoplimo" startOffset="50%" text-anchor="middle">AI SAFE SALON CERTIFIED</textPath>
+</text>
+<text font-family="Poppins,'Noto Sans JP',sans-serif" font-size="8.4" font-weight="500" letter-spacing="3.1" fill="#2a5687">
+  <textPath href="#sbotlimo" startOffset="50%" text-anchor="middle">DIGILAB BEAUTY</textPath>
+</text>
+<circle cx="12.5" cy="100" r="2.6" fill="#2f7df6"/>
+<circle cx="187.5" cy="100" r="2.6" fill="#2f7df6"/>
+<circle cx="100" cy="100" r="68" fill="none" stroke="#2f7df6" stroke-width="0.8" opacity=".3"/>
+<path d="M100 44 L138 60 V96 C138 124 121 142 100 152 C79 142 62 124 62 96 V60 Z" fill="rgba(47,125,246,.08)" stroke="url(#sglimo)" stroke-width="2"/>
+<text x="100" y="84" font-family="Poppins,sans-serif" font-size="12.5" font-weight="600" letter-spacing="3.6" fill="#111a33" text-anchor="middle">SAFE</text>
+<circle cx="100" cy="113" r="25" fill="none" stroke="url(#sglimo)" stroke-width="1" opacity=".45"/><text x="100.8" y="123.5" font-family="Poppins,sans-serif" font-size="31" font-weight="600" letter-spacing="1.5" fill="url(#sglimo)" text-anchor="middle">AI</text>
+</svg>
