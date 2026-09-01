@@ -1,19 +1,19 @@
 # DigiLab Beauty 成果物・URL一覧(アセットインベントリ)
 
-最終更新: 2026-09-01(認証事業ドキュメント `docs/strategy/` を追加)
+最終更新: 2026-09-01(認証事業ドキュメント `docs/strategy/` を追加 / ビューティAI認証制度へ名称統一)
 
 ## A. 公開中ページ(GitHub Pages)
 
 | 名前 | URL | ソース |
 |---|---|---|
 | メインLP(団体公式) | https://xenomao.github.io/xenomao/ | `public/index.html` |
-| 美容AIセキュリティ基礎検定3級 LP | https://xenomao.github.io/xenomao/kentei/ | `public/kentei/index.html` |
-| 法令・コンプライアンス問題集 | https://xenomao.github.io/xenomao/compliance/ | `public/compliance/index.html` |
+| ビューティAI検定 3級 LP(制度全体ページ) | https://xenomao.github.io/xenomao/kentei/ | `public/kentei/index.html` |
+| ビューティAI検定 3級 公式練習問題(法令・コンプライアンス) | https://xenomao.github.io/xenomao/compliance/ | `public/compliance/index.html` |
 | サロンAI活用度診断(全10問) | https://xenomao.github.io/xenomao/shindan/ | `public/shindan/index.html` |
 | 賛助会員向けプレゼンデッキ | https://xenomao.github.io/xenomao/sponsor/ | `public/sponsor/index.html`(本体: `marketing/digilab_beauty_sponsor_deck.html`) |
 | 鎌田麻央 個人ビジネスLP | https://xenomao.github.io/xenomao/kamata/ | `public/kamata/index.html` |
 | プライバシーポリシー | https://xenomao.github.io/xenomao/privacy.html | `public/privacy.html` |
-| 検定LP用OGPシェア画像 | https://xenomao.github.io/xenomao/kentei/ogp.png | `public/kentei/ogp.png` |
+| 検定LP用OGPシェア画像 | https://xenomao.github.io/xenomao/kentei/ogp.png | `public/kentei/ogp.png` ※旧名称のため要再生成 |
 
 ※ 配信の実体は `gh-pages` ブランチ。`public/` 更新後は `gh-pages` への同期が必要(CLAUDE.md参照)。
 
@@ -32,6 +32,7 @@
 | 美容業界AIガイドライン v0.1(骨子) | `docs/beauty_ai_guideline_v0.1.md` |
 | ホワイトペーパー「AI時代のエステティシャン」 | `docs/whitepaper_aesthetician_ai_era.md` |
 | 5/19セミナー会員募集チラシ | `docs/seminar/0519_member_flyer.html` |
+| 名称規程 v1.0(ビューティAI認証制度の正式名称・表記ルール・商標対象) | `docs/strategy/certification_naming_standard.md` |
 | 検定事業ティアダウン(日本化粧品検定の構造解体) | `docs/strategy/cosme_kentei_business_teardown.md` |
 | 認証事業 事業設計書 v1.0(資格体系・価格・収益モデル・ロードマップ) | `docs/strategy/digilab_ai_certification_business_design.md` |
 | 出題・審査ブループリント v1.0(級別出題比率・サロン認証35項目・ベンダー審査) | `docs/strategy/digilab_certification_curriculum_blueprint.md` |

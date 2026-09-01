@@ -23,9 +23,10 @@
 - 素材(写真・QRコードSVG): `marketing/assets/`
 - QRコード: Instagram(@digilab.beauty_official)と公式LINE(https://lin.ee/O8g2Egp)。生成時は読み取り検証を行うこと
 
-### 検定LP(美容AIセキュリティ基礎検定 3級)
+### 検定LP(ビューティAI検定 3級)
 
 - 本体: `marketing/kentei_lp.html` / 配信用コピー: `public/kentei/index.html`(内容は同一。更新時は両方を同期すること)
+- 名称は2026-09-01に「美容AIセキュリティ基礎検定 3級」から改称。名称のルールは `docs/strategy/certification_naming_standard.md` が正(表記ゆれ禁止)
 - 公開URL: https://xenomao.github.io/xenomao/kentei/
 - LP本体(`digilab_beauty_lp.html` / `public/index.html`)のグローバルナビ「検定」からリンク
 - デザインは「検定・認定証」らしい権威性を出すため、**ディープネイビー×ゴールド**の専用スタイル(明朝: Shippori Mincho / Noto Serif JP)。パステルラベンダーはサブアクセント。認定エンブレム(シール)はSVGで生成
@@ -48,7 +49,20 @@
 
 - 配信: `public/compliance/index.html`(元はNetlify公開のHTMLをそのまま移設。単一HTML・印刷対応)
 - 公開URL: https://xenomao.github.io/xenomao/compliance/
-- 内容: 特商法・景表法・薬機法・個人情報保護法・SNS・AIガイドラインの10問+解答解説。「AI美容カウンセリング技能資格(ビューティーフェロー3級)」に基づく学習用教材
+- 内容: 特商法・景表法・薬機法・個人情報保護法・SNS・AIガイドラインの10問+解答解説。**ビューティAI検定 3級の公式練習問題**として位置づけ(旧「AI美容カウンセリング技能資格(ビューティーフェロー3級)」の名称は廃止)
+
+
+## 認証事業(ビューティAI認証制度)
+
+- 制度の総称は **ビューティAI認証制度**(Beauty AI Certification Standard)。3階層で構成
+  - 個人: ビューティAI検定 3級/2級/1級 → ビューティAIフェロー → シニアフェロー → 認定インストラクター
+  - 事業所: AIセーフサロン認証(スタンダード/ゴールド)
+  - ツール提供者: ビューティAIトラストマーク
+- **名称の正は `docs/strategy/certification_naming_standard.md`**。「検定(個人が受ける)/認定(個人に与える上位資格)/認証(事業所・ツールに与える)」を混用しないこと
+- 事業設計(価格・収益モデル・ロードマップ): `docs/strategy/digilab_ai_certification_business_design.md`
+- 出題・審査基準: `docs/strategy/digilab_certification_curriculum_blueprint.md`
+- 競合分析: `docs/strategy/cosme_kentei_business_teardown.md`
+- LP掲載の2級・1級の受検料は**理事会承認前の予定額**。承認前に `main` / `gh-pages` へ反映しないこと
 
 ## ブランド
 

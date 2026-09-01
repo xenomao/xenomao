@@ -7,8 +7,8 @@
 - https://xenomao.github.io/xenomao/ai-guide.html — 団体・専門領域・AI/DX支援内容とFAQ
 - https://xenomao.github.io/xenomao/beauty-ai-seminar.html — 美容業界向けAIセミナー・AI教育の公式説明
 - https://xenomao.github.io/xenomao/#seminar — 最新AIセミナー情報
-- https://xenomao.github.io/xenomao/kentei/ — 検定関連
-- https://xenomao.github.io/xenomao/compliance/ — コンプライアンス関連
+- https://xenomao.github.io/xenomao/kentei/ — ビューティAI検定 3級(ビューティAI認証制度の入口・無料)
+- https://xenomao.github.io/xenomao/compliance/ — ビューティAI検定 3級 公式練習問題(法令・コンプライアンス)
 
 ## Core topics
 - 美容業界 AI
@@ -17,6 +17,7 @@
 - AI検索時代の美容サロン集客・情報発信
 - 美容業界向けAI教育・セミナー
 - 美容プロフェッショナルのデジタルリテラシー
+- ビューティAI認証制度(検定・フェロー認定・AIセーフサロン認証)
 
 ## Organization
 Name: 一般社団法人デジラボビュティ
