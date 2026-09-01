@@ -25,6 +25,9 @@
 <text x="187.5" y="103.5" font-size="9" fill="#c9a24e" text-anchor="middle">&#9670;</text>
 <circle cx="100" cy="100" r="68" fill="none" stroke="#c9a24e" stroke-width="0.8" opacity=".45"/>
 <path d="M100 44 L138 60 V96 C138 124 121 142 100 152 C79 142 62 124 62 96 V60 Z" fill="rgba(230,205,143,.07)" stroke="url(#sg)" stroke-width="2"/>
-<text x="100" y="87" font-family="Poppins,sans-serif" font-size="12.5" font-weight="600" letter-spacing="3.6" fill="#f2ead4" text-anchor="middle">SAFE</text>
-<path d="M83 104 L96 117 L120 90" fill="none" stroke="url(#sg)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="100" y="84" font-family="Poppins,sans-serif" font-size="12.5" font-weight="600" letter-spacing="3.6" fill="#f2ead4" text-anchor="middle">SAFE</text>
+<g stroke="url(#sg)" stroke-width="1.5" opacity=".85" fill="none"><path d="M100 113 L79 100 M100 113 L121 100 M100 113 L85 132 M100 113 L115 132 M79 100 L121 100 M85 132 L115 132"/></g>
+<g fill="url(#sg)"><circle cx="79" cy="100" r="3.6"/><circle cx="121" cy="100" r="3.6"/><circle cx="85" cy="132" r="3.6"/><circle cx="115" cy="132" r="3.6"/></g>
+<circle cx="100" cy="113" r="11" fill="none" stroke="url(#sg)" stroke-width="0.9" opacity=".45"/>
+<circle cx="100" cy="113" r="6.4" fill="url(#sg)"/>
 </svg>
