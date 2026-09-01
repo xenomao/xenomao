@@ -1,6 +1,6 @@
 # DigiLab Beauty 成果物・URL一覧(アセットインベントリ)
 
-最終更新: 2026-07-06(全ブランチ・Google Drive棚卸しに基づく)
+最終更新: 2026-09-01(認証事業ドキュメント `docs/strategy/` を追加)
 
 ## A. 公開中ページ(GitHub Pages)
 
@@ -32,6 +32,9 @@
 | 美容業界AIガイドライン v0.1(骨子) | `docs/beauty_ai_guideline_v0.1.md` |
 | ホワイトペーパー「AI時代のエステティシャン」 | `docs/whitepaper_aesthetician_ai_era.md` |
 | 5/19セミナー会員募集チラシ | `docs/seminar/0519_member_flyer.html` |
+| 検定事業ティアダウン(日本化粧品検定の構造解体) | `docs/strategy/cosme_kentei_business_teardown.md` |
+| 認証事業 事業設計書 v1.0(資格体系・価格・収益モデル・ロードマップ) | `docs/strategy/digilab_ai_certification_business_design.md` |
+| 出題・審査ブループリント v1.0(級別出題比率・サロン認証35項目・ベンダー審査) | `docs/strategy/digilab_certification_curriculum_blueprint.md` |
 | 運用ガイド(AIエージェント口座/一斉メール/Codex CLI/Lovart/News API/note) | `docs/guides/*.md` |
 | レポート(NewsAPI検証/フェーズ1完了) | `docs/reports/*.md` |
 | 営業メールテンプレ(Jエステ) | `docs/templates/email_j-esthe_approach.md` |
