@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""一般社団法人デジラボビューティ Instagram安全投稿パブリッシャ。"""
+"""一般社団法人デジラボビュティ Instagram安全投稿パブリッシャ。"""
 
 from __future__ import annotations
 

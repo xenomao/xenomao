@@ -1,6 +1,6 @@
 # Instagram安全投稿ワークフロー
 
-一般社団法人デジラボビューティの公式Instagram `@digilab.beauty_official` へ、人が承認した予約投稿だけを送る仕組みです。
+一般社団法人デジラボビュティの公式Instagram `@digilab.beauty_official` へ、人が承認した予約投稿だけを送る仕組みです。
 
 ## 安全設計
 

@@ -5,7 +5,7 @@
 - [ ] GitHub Actions `Check Instagram automation` が成功
 - [ ] Netlify Deploy Previewのルートと`/instagram/`がHTTP 200で表示
 - [ ] `/instagram/`に検証エラーが出ていない
-- [ ] 法人名が`一般社団法人デジラボビューティ`、投稿先が`@digilab.beauty_official`
+- [ ] 法人名が`一般社団法人デジラボビュティ`、投稿先が`@digilab.beauty_official`
 - [ ] 画像仕様がJPEG（PNG不可）、8MB以下、幅320〜1440px、比率4:5〜1.91:1
 - [ ] 公開リポジトリに機密・未発表情報・個人情報を置かない運用で合意
 - [ ] 追跡済みのルート`.env`に実秘密がないことを責任者が確認。実秘密があればマージ前に失効・再発行し、履歴対策を別途実施

@@ -27,7 +27,7 @@ def write_spec(queue: Path, slug: str = "2026-09-03-safe-post", **updates: objec
         "media_type": "IMAGE",
         "images": [f"{slug}.jpg"],
         "caption": "人が確認した内容だけを投稿します。",
-        "hashtags": ["#美容AI", "#デジラボビューティ"],
+        "hashtags": ["#美容AI", "#デジラボビュティ"],
         "alt_text": "白い背景の告知画像",
         "scheduled_for": None,
         "status": "draft",

@@ -125,7 +125,7 @@ TEMPLATE = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>Instagram投稿承認プレビュー | 一般社団法人デジラボビューティ</title>
+<title>Instagram投稿承認プレビュー | 一般社団法人デジラボビュティ</title>
 <style>
 :root{{--lav:#8b77c7;--soft:#f3effb;--ink:#2c2740;--muted:#6c657e;--line:#ded6ef;--ok:#18794e;--warn:#9a6700;--danger:#b42318}}
 *{{box-sizing:border-box}} body{{margin:0;background:#faf9fd;color:var(--ink);font:15px/1.7 system-ui,-apple-system,"Noto Sans JP",sans-serif}}
@@ -142,7 +142,7 @@ TEMPLATE = """<!doctype html>
 </style>
 </head>
 <body><main class="wrap">
-<header><div class="brand">一般社団法人デジラボビューティ</div><h1>Instagram 投稿承認プレビュー</h1>
+<header><div class="brand">一般社団法人デジラボビュティ</div><h1>Instagram 投稿承認プレビュー</h1>
 <p class="sub">閲覧しただけでは承認になりません。内容ハッシュ付きの承認だけが投稿対象です。生成 {generated}</p>
 <div class="stats"><div class="stat"><b>{ready}</b>承認済み</div><div class="stat"><b>{draft}</b>下書き</div><div class="stat"><b>{publishing}</b>処理停止中</div></div></header>
 {errors}{queue}{posted}

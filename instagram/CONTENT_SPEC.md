@@ -1,6 +1,6 @@
 # Instagram投稿生成・承認仕様
 
-一般社団法人デジラボビューティのInstagram `@digilab.beauty_official` 用です。AIは下書きを作れますが、外部公開は人の承認後に限ります。
+一般社団法人デジラボビュティのInstagram `@digilab.beauty_official` 用です。AIは下書きを作れますが、外部公開は人の承認後に限ります。
 
 ## 1投稿のファイル
 
@@ -25,7 +25,7 @@
   "media_type": "IMAGE",
   "images": ["2026-09-03-ai-counseling.jpg"],
   "caption": "本文",
-  "hashtags": ["#美容AI", "#デジラボビューティ"],
+  "hashtags": ["#美容AI", "#デジラボビュティ"],
   "alt_text": "画像内容の説明",
   "scheduled_for": "2026-09-03T19:00:00+09:00",
   "status": "draft"
@@ -41,7 +41,7 @@
 
 ## ブランド表記
 
-- 法人名: `一般社団法人デジラボビューティ`
+- 法人名: `一般社団法人デジラボビュティ`
 - Instagram: `@digilab.beauty_official`
 - 配色: 白基調×パステルラベンダー
 - トーン: 清潔・信頼・先進、美容業界のプロ向け
