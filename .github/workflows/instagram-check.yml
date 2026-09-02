@@ -1,0 +1,24 @@
+name: Check Instagram automation
+
+on:
+  pull_request:
+    paths:
+      - "instagram/**"
+      - ".github/workflows/instagram-*.yml"
+      - "netlify.toml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m unittest discover -s instagram/tests -v
+      - run: python instagram/publish.py --validate
+      - run: python instagram/build_preview.py --output /tmp/instagram-preview/index.html
+      - run: test -s /tmp/instagram-preview/index.html

@@ -1,27 +1,5 @@
 #!/usr/bin/env python3
-"""DigiLab Beauty — Instagram 自動投稿パブリッシャ。
-
-instagram/queue/ 内の投稿スペック(FABLE5 が生成)を読み込み、
-status=ready かつ scheduled_for を過ぎたものを Instagram へ投稿する。
-投稿に成功したスペックと画像は instagram/posted/ へ移動する。
-
-使い方:
-  # 検証のみ(APIを呼ばない)
-  python instagram/publish.py --validate
-
-  # 投稿せず対象を確認(ドライラン)
-  python instagram/publish.py --dry-run
-
-  # 実際に投稿(要 環境変数 IG_USER_ID / IG_ACCESS_TOKEN)
-  python instagram/publish.py
-
-環境変数:
-  IG_USER_ID          Instagram プロアカウントの user id(数値)
-  IG_ACCESS_TOKEN     長期アクセストークン
-  IG_IMAGE_BASE_URL   画像の公開URLベース(省略時は GitHub raw から自動生成)
-  GITHUB_REPOSITORY   "owner/repo"(Actions が自動設定)
-  GITHUB_REF_NAME     ブランチ名(Actions が自動設定)
-"""
+"""一般社団法人デジラボビューティ Instagram安全投稿パブリッシャ。"""
 
 from __future__ import annotations
 
@@ -34,7 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from igpost import InstagramAPIError, InstagramClient, Post, PostError, load_posts  # noqa: E402
+from igpost import DELETE, InstagramAPIError, InstagramClient, Post, PostError, load_posts  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 QUEUE_DIR = HERE / "queue"
@@ -42,20 +20,24 @@ POSTED_DIR = HERE / "posted"
 
 
 def default_image_base_url() -> str:
-    """GitHub raw URL から画像の公開URLベースを組み立てる。"""
     repo = os.getenv("GITHUB_REPOSITORY", "xenomao/xenomao")
-    ref = os.getenv("GITHUB_REF_NAME", "main")
-    return f"https://raw.githubusercontent.com/{repo}/{ref}/instagram/queue"
+    immutable_ref = os.getenv("GITHUB_SHA") or "main"
+    return f"https://raw.githubusercontent.com/{repo}/{immutable_ref}/instagram/queue"
 
 
 def load_and_validate(queue_dir: Path) -> tuple[list[Post], int]:
-    """検証を通った Post 一覧と、失敗件数を返す。"""
-    posts = load_posts(queue_dir)
     valid: list[Post] = []
     failures = 0
+    try:
+        posts = load_posts(queue_dir)
+    except PostError as exc:
+        print(f"✗ 読み込みエラー: {exc}", file=sys.stderr)
+        return [], 1
     for post in posts:
         try:
-            post.validate()
+            post.validate(queue_dir)
+            if post.status == "posted":
+                raise PostError(f"{post.path.name}: postedはqueueではなくposted/へ置いてください")
             valid.append(post)
         except PostError as exc:
             failures += 1
@@ -67,92 +49,222 @@ def select_due(posts: list[Post], now: datetime) -> list[Post]:
     due: list[Post] = []
     for post in posts:
         if post.status != "ready":
-            print(f"– スキップ (status={post.status}): {post.slug}")
             continue
-        if not post.is_due(now):
-            print(f"– スキップ (予約時刻前 {post.scheduled_for}): {post.slug}")
-            continue
-        due.append(post)
+        if post.is_due(now):
+            due.append(post)
+        else:
+            print(f"– 予約時刻前: {post.slug} ({post.scheduled_for.isoformat()})")
     return due
 
 
-def archive(post: Post) -> None:
-    """スペックと参照画像を posted/ へ移動。"""
-    POSTED_DIR.mkdir(exist_ok=True)
-    shutil.move(str(post.path), str(POSTED_DIR / post.path.name))
-    for img in post.images:
-        if img.startswith("http"):
-            continue
-        src = QUEUE_DIR / img
-        if src.exists():
-            shutil.move(str(src), str(POSTED_DIR / img))
+def find_post(queue_dir: Path, slug: str) -> Post:
+    path = queue_dir / f"{slug}.json"
+    if not path.is_file():
+        raise PostError(f"投稿が見つかりません: {slug}")
+    return Post.from_file(path)
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="Instagram 自動投稿パブリッシャ")
-    parser.add_argument("--validate", action="store_true", help="検証のみ実行(投稿しない)")
-    parser.add_argument("--dry-run", action="store_true", help="対象を表示するが投稿しない")
-    parser.add_argument("--queue", default=str(QUEUE_DIR), help="キューディレクトリ")
-    args = parser.parse_args()
-
-    queue_dir = Path(args.queue)
-    if not queue_dir.exists():
-        print(f"キューディレクトリがありません: {queue_dir}", file=sys.stderr)
-        return 1
-
-    posts, failures = load_and_validate(queue_dir)
-    print(f"検証OK: {len(posts)} 件 / 検証NG: {failures} 件")
-    if args.validate:
-        return 1 if failures else 0
-    if failures:
-        print(f"※ 検証NGの {failures} 件はスキップして続行します。", file=sys.stderr)
-
-    now = datetime.now(timezone.utc)
-    due = select_due(posts, now)
-    if not due:
-        print("投稿対象はありません。")
-        return 0
-
-    base_url = os.getenv("IG_IMAGE_BASE_URL") or default_image_base_url()
-    print(f"画像ベースURL: {base_url}")
-
-    if args.dry_run:
-        for post in due:
-            urls = post.resolve_image_urls(base_url, queue_dir)
-            print(f"\n[DRY-RUN] {post.slug} ({post.media_type})")
-            print(f"  画像: {urls}")
-            print(f"  キャプション:\n{_indent(post.full_caption())}")
-        print(f"\n[DRY-RUN] {len(due)} 件が投稿対象です(実投稿はしていません)。")
-        return 0
-
-    ig_user_id = os.getenv("IG_USER_ID", "")
-    access_token = os.getenv("IG_ACCESS_TOKEN", "")
-    try:
-        client = InstagramClient(ig_user_id, access_token)
-    except InstagramAPIError as exc:
-        print(f"認証情報エラー: {exc}", file=sys.stderr)
-        print("IG_USER_ID と IG_ACCESS_TOKEN を設定してください。", file=sys.stderr)
-        return 1
-
-    failures = 0
-    for post in due:
-        urls = post.resolve_image_urls(base_url, queue_dir)
+def approve(queue_dir: Path, slug: str, approved_by: str, schedule: str | None) -> int:
+    post = find_post(queue_dir, slug)
+    if post.status == "publishing":
+        raise PostError("publishing中の投稿は再承認できません。Instagram確認後に--recoverを使用してください")
+    updates: dict = {}
+    if schedule:
         try:
+            scheduled = datetime.fromisoformat(schedule)
+        except ValueError as exc:
+            raise PostError(f"--scheduleはISO8601形式で指定してください: {exc}") from exc
+        if scheduled.tzinfo is None:
+            raise PostError("--scheduleには+09:00などのタイムゾーンが必須です")
+        updates["scheduled_for"] = scheduled.isoformat()
+    if updates:
+        post.save(**updates)
+        post = find_post(queue_dir, slug)
+    if post.scheduled_for is None or post.scheduled_for.tzinfo is None:
+        raise PostError("承認前にタイムゾーン付きscheduled_forを設定してください")
+
+    post.save(status="draft", approval=DELETE, publish_attempt=DELETE, claimed_at=DELETE, last_error=DELETE)
+    post = find_post(queue_dir, slug)
+    post.validate(queue_dir)
+    approval = {
+        "approved_by": approved_by.strip(),
+        "approved_at": datetime.now(timezone.utc).isoformat(),
+        "content_sha256": post.content_digest(queue_dir),
+    }
+    if not approval["approved_by"]:
+        raise PostError("--approved-byは必須です")
+    post.save(status="ready", approval=approval)
+    find_post(queue_dir, slug).validate(queue_dir)
+    print(f"✓ 承認済み: {slug} / reviewer={approval['approved_by']} / {approval['content_sha256'][:12]}")
+    return 0
+
+
+def claim_due(queue_dir: Path, attempt: str) -> int:
+    posts, failures = load_and_validate(queue_dir)
+    if failures:
+        return 1
+    due = select_due(posts, datetime.now(timezone.utc))
+    claimed_at = datetime.now(timezone.utc).isoformat()
+    for post in due:
+        post.save(status="publishing", publish_attempt=attempt, claimed_at=claimed_at, last_error=DELETE)
+        print(f"✓ claim: {post.slug} / attempt={attempt}")
+    print(f"claim件数: {len(due)}")
+    return 0
+
+
+def client_from_env() -> InstagramClient:
+    return InstagramClient(
+        os.getenv("IG_USER_ID", ""),
+        os.getenv("IG_ACCESS_TOKEN", ""),
+        api_version=os.getenv("IG_GRAPH_API_VERSION", "v26.0"),
+    )
+
+
+def preflight(expected_username: str) -> int:
+    client = client_from_env()
+    account = client.verify_credentials()
+    actual = str(account.get("username", "")).lstrip("@").lower()
+    expected = expected_username.lstrip("@").lower()
+    if not expected:
+        raise InstagramAPIError("想定ユーザー名が空です")
+    if actual != expected:
+        raise InstagramAPIError(
+            f"投稿先アカウント不一致: expected=@{expected}, actual=@{actual or 'unknown'}"
+        )
+    print(f"✓ Meta事前確認OK: @{actual} / Graph API {os.getenv('IG_GRAPH_API_VERSION', 'v26.0')}")
+    return 0
+
+
+def archive(post: Post, media_id: str, published_at: str) -> None:
+    POSTED_DIR.mkdir(exist_ok=True)
+    post.save(
+        status="posted",
+        media_id=media_id,
+        published_at=published_at,
+        last_error=DELETE,
+    )
+    shutil.move(str(post.path), str(POSTED_DIR / post.path.name))
+    for image in post.images:
+        source = post.path.parent / image
+        if source.exists():
+            shutil.move(str(source), str(POSTED_DIR / image))
+
+
+def publish_claimed(queue_dir: Path, attempt: str) -> int:
+    posts, failures = load_and_validate(queue_dir)
+    if failures:
+        return 1
+    claimed = [post for post in posts if post.status == "publishing" and post.publish_attempt == attempt]
+    if not claimed:
+        print("このattemptでclaimされた投稿はありません。")
+        return 0
+    client = client_from_env()
+    base_url = os.getenv("IG_IMAGE_BASE_URL") or default_image_base_url()
+    failed = 0
+    for post in claimed:
+        try:
+            urls = post.resolve_image_urls(base_url, queue_dir)
             if post.media_type == "CAROUSEL":
                 media_id = client.publish_carousel(urls, post.full_caption(), post.alt_text)
             else:
                 media_id = client.publish_image(urls[0], post.full_caption(), post.alt_text)
+            archive(post, media_id, datetime.now(timezone.utc).isoformat())
             print(f"✓ 投稿成功: {post.slug} -> media_id={media_id}")
-            archive(post)
         except (InstagramAPIError, PostError) as exc:
-            failures += 1
-            print(f"✗ 投稿失敗: {post.slug}: {exc}", file=sys.stderr)
+            failed += 1
+            safe_error = str(exc).replace(os.getenv("IG_ACCESS_TOKEN", ""), "[REDACTED]")[:500]
+            post.save(last_error=safe_error)
+            print(f"✗ 投稿失敗（publishingのまま停止）: {post.slug}: {safe_error}", file=sys.stderr)
+    return 1 if failed else 0
 
-    return 1 if failures else 0
+
+def recover(queue_dir: Path, slug: str, result: str, media_id: str | None) -> int:
+    post = find_post(queue_dir, slug)
+    if post.status != "publishing":
+        raise PostError("recoverはstatus=publishingの投稿だけに使用できます")
+    if result == "posted":
+        if not media_id:
+            raise PostError("--result postedには--media-idが必須です")
+        archive(post, media_id, datetime.now(timezone.utc).isoformat())
+        print(f"✓ 投稿済みとして復旧: {slug}")
+    else:
+        post.save(
+            status="draft",
+            approval=DELETE,
+            publish_attempt=DELETE,
+            claimed_at=DELETE,
+            last_error=DELETE,
+        )
+        print(f"✓ draftへ戻しました（再確認・再承認が必要）: {slug}")
+    return 0
 
 
-def _indent(text: str, prefix: str = "    ") -> str:
-    return "\n".join(prefix + line for line in text.splitlines())
+def dry_run(queue_dir: Path) -> int:
+    posts, failures = load_and_validate(queue_dir)
+    if failures:
+        return 1
+    due = select_due(posts, datetime.now(timezone.utc))
+    base_url = os.getenv("IG_IMAGE_BASE_URL") or default_image_base_url()
+    for post in due:
+        urls = post.resolve_image_urls(base_url, queue_dir)
+        print(f"[DRY-RUN] {post.slug} / {post.media_type} / {post.scheduled_for.isoformat()}")
+        print(f"  approval={post.approval.get('content_sha256', '')[:12]} / images={urls}")
+    print(f"[DRY-RUN] 投稿対象: {len(due)}件（実投稿なし）")
+    return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Instagram安全投稿パブリッシャ")
+    action = parser.add_mutually_exclusive_group(required=True)
+    action.add_argument("--validate", action="store_true")
+    action.add_argument("--dry-run", action="store_true")
+    action.add_argument("--preflight", action="store_true")
+    action.add_argument("--approve", metavar="SLUG")
+    action.add_argument("--claim", action="store_true")
+    action.add_argument("--publish-claimed", action="store_true")
+    action.add_argument("--recover", metavar="SLUG")
+    parser.add_argument("--queue", default=str(QUEUE_DIR))
+    parser.add_argument("--approved-by")
+    parser.add_argument("--schedule")
+    parser.add_argument("--attempt")
+    parser.add_argument("--expected-username", default="digilab.beauty_official")
+    parser.add_argument("--result", choices=["posted", "retry"])
+    parser.add_argument("--media-id")
+    args = parser.parse_args()
+    queue_dir = Path(args.queue)
+    if not queue_dir.is_dir():
+        print(f"キューディレクトリがありません: {queue_dir}", file=sys.stderr)
+        return 1
+
+    try:
+        if args.validate:
+            posts, failures = load_and_validate(queue_dir)
+            print(f"検証OK: {len(posts)}件 / 検証NG: {failures}件")
+            return 1 if failures else 0
+        if args.dry_run:
+            return dry_run(queue_dir)
+        if args.preflight:
+            return preflight(args.expected_username)
+        if args.approve:
+            if not args.approved_by:
+                raise PostError("--approveには--approved-byが必須です")
+            return approve(queue_dir, args.approve, args.approved_by, args.schedule)
+        if args.claim:
+            if not args.attempt:
+                raise PostError("--claimには--attemptが必須です")
+            return claim_due(queue_dir, args.attempt)
+        if args.publish_claimed:
+            if not args.attempt:
+                raise PostError("--publish-claimedには--attemptが必須です")
+            return publish_claimed(queue_dir, args.attempt)
+        if args.recover:
+            if not args.result:
+                raise PostError("--recoverには--resultが必須です")
+            return recover(queue_dir, args.recover, args.result, args.media_id)
+    except (PostError, InstagramAPIError) as exc:
+        print(f"エラー: {exc}", file=sys.stderr)
+        return 1
+    return 1
 
 
 if __name__ == "__main__":

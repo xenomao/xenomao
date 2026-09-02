@@ -1,0 +1,12 @@
+[build]
+  publish = "public"
+
+[context.deploy-preview]
+  command = "python -m unittest discover -s instagram/tests -v && python instagram/publish.py --validate && python instagram/build_preview.py --output public/instagram/index.html"
+
+[[headers]]
+  for = "/instagram/*"
+  [headers.values]
+    Cache-Control = "no-store"
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+    Content-Security-Policy = "default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"

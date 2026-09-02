@@ -1,137 +1,80 @@
-# Instagram 画像生成 → 自動投稿の仕組み
+# Instagram安全投稿ワークフロー
 
-FABLE5 が生成した画像とキャプションを **キューに置くだけで、Instagram(@digilab.beauty_official)へ自動投稿**する仕組みです。
+一般社団法人デジラボビューティの公式Instagram `@digilab.beauty_official` へ、人が承認した予約投稿だけを送る仕組みです。
 
-```
- ┌──────────┐   画像+JSONを生成      ┌──────────────┐   status=ready のみ    ┌───────────┐
- │  FABLE5  │ ───────────────────▶ │ instagram/queue/ │ ────────────────────▶ │ publish.py │ ──▶ Instagram
- └──────────┘  CONTENT_SPEC.md 準拠  └──────────────┘   予約時刻を過ぎたもの   └───────────┘        Graph API
-                                              ▲                                       │
-                                     担当者が status を ready に            投稿成功 → instagram/posted/ へ移動
-```
+## 安全設計
 
-- **役割分担**: FABLE5 = コンテンツ生成 / このリポジトリ = 投稿自動化
-- **画像ホスティング**: 追加サービス不要。GitHub の raw URL をそのまま Instagram Graph API に渡す
-- **依存**: 標準ライブラリのみ(Python 3.9+)
+1. AI・担当者は`draft`として画像とJSONを作成
+2. Netlify Deploy Previewの`/instagram/`で人が確認
+3. `--approve`が本文・画像・予約時刻のSHA-256を記録して`ready`化
+4. GitHub Actionsが約15分ごとに期限到来分を`publishing`として先にコミット
+5. Meta APIで投稿し、成功時だけ`posted/`へ移動してmedia IDを記録
 
----
+先に`publishing`を保存するため、投稿成功後にGitHubへの記録が失敗しても次回の自動実行は同じ投稿を再送しません。停止投稿はInstagram上の実在を確認してから手動復旧します。
 
-## ディレクトリ構成
-
-```
-instagram/
-├── README.md              このファイル
-├── CONTENT_SPEC.md        FABLE5 への生成ルール(画像仕様・JSONスキーマ)
-├── publish.py             パブリッシャ本体(CLI)
-├── build_preview.py       キュー確認用プレビュー(public/instagram/index.html)を生成
-├── igpost/                ライブラリ
-│   ├── post.py            投稿スペックの読込・検証・整形
-│   └── igclient.py        Instagram Graph API クライアント
-├── queue/                 投稿待ち(FABLE5 がここに置く)
-│   └── example-*.json     サンプル(status=draft・投稿されない)
-├── posted/                投稿済みアーカイブ(自動移動)
-├── requirements.txt
-└── config.example.env     環境変数サンプル
-```
-
----
-
-## 1. 初回セットアップ(Meta 側・一度だけ)
-
-Instagram のフィード自動投稿には Meta の **Graph API** を使います。以下が必要です。
-
-1. Instagram を**プロアカウント**(ビジネス/クリエイター)にする
-2. Facebook ページと連携する
-3. [Meta for Developers](https://developers.facebook.com/) でアプリを作成し、
-   **Instagram Graph API** を追加、`instagram_basic` と `instagram_content_publish` 権限を取得
-4. 次の2つを取得する:
-   - **IG_USER_ID**: Instagram プロアカウントの user id(数値)
-   - **IG_ACCESS_TOKEN**: 長期アクセストークン(約60日で失効するため定期更新)
-
-> 詳細手順は Meta 公式の "Content Publishing" ガイドを参照してください。
-
-### GitHub Secrets に登録
-
-リポジトリの **Settings → Secrets and variables → Actions** で登録:
-
-| Secret 名 | 値 |
-| --- | --- |
-| `IG_USER_ID` | Instagram user id |
-| `IG_ACCESS_TOKEN` | 長期アクセストークン |
-| `IG_IMAGE_BASE_URL` | (任意)画像公開URLベース。未設定なら raw URL を自動生成 |
-
----
-
-## 2. 日々の運用フロー
-
-1. **FABLE5 に生成を指示**(`CONTENT_SPEC.md` に従う)
-   - `instagram/queue/<slug>.png` と `instagram/queue/<slug>.json` が作られる
-   - 生成直後は `status: "draft"` 推奨
-2. **確認して公開許可**
-   - JSON を確認し、`status` を `"ready"` に変更(必要なら `scheduled_for` を設定)
-3. **commit / push**
-4. **自動投稿**
-   - GitHub Actions が **毎日 JST 10:00 / 19:00** に実行(手動実行も可)
-   - `status=ready` かつ `scheduled_for` を過ぎた投稿だけが対象
-   - 投稿成功したファイルは `instagram/posted/` へ自動移動しコミット
-
----
-
-## 2.5 投稿プレビュー(ブラウザ確認)
-
-キューの内容(画像・キャプション・ステータス・予約時刻)をブラウザで一覧確認できるダッシュボードを生成できます。
+## ローカル確認
 
 ```bash
-python instagram/build_preview.py   # → public/instagram/index.html を生成
-```
-
-- 公開URL(デプロイ後): `https://xenomao.github.io/xenomao/instagram/` および Netlify のデプロイプレビュー `/instagram/`
-- 画像は base64 埋め込みで自己完結。`noindex`(検索避け)・社内確認用
-- 自動投稿ワークフローは投稿後にこのページを再生成してコミットするため、常に最新のキュー状態を反映
-
-## 3. ローカルでの確認
-
-```bash
-# スペックの検証のみ(APIを呼ばない)
+python -m unittest discover -s instagram/tests -v
 python instagram/publish.py --validate
-
-# 投稿せず対象と最終キャプションを表示(ドライラン)
 python instagram/publish.py --dry-run
-
-# 実際に投稿(要 環境変数)
-cp instagram/config.example.env instagram/.env   # 値を設定
-export $(grep -v '^#' instagram/.env | xargs)
-python instagram/publish.py
+python instagram/build_preview.py --output /tmp/instagram-preview/index.html
 ```
 
----
+## 承認
 
-## 4. 手動実行(GitHub Actions)
-
-**Actions → "Publish Instagram queue" → Run workflow** から実行できます。
-`dry_run` を `true` にすると投稿せず対象確認のみ行います。
-
----
-
-## 投稿スペック(最小例)
-
-```json
-{
-  "slug": "2026-08-10-ai-counseling",
-  "images": ["2026-08-10-ai-counseling.png"],
-  "caption": "AIカウンセリングで、接客はもっと“あなたらしく”。",
-  "hashtags": ["#美容AI", "#エステサロン", "#digilabbeauty"],
-  "status": "ready"
-}
+```bash
+python instagram/publish.py --approve <slug> \
+  --approved-by "承認者名" \
+  --schedule "2026-09-03T19:00:00+09:00"
+git add instagram/queue && git commit && git push
 ```
 
-スキーマの全項目は [`CONTENT_SPEC.md`](./CONTENT_SPEC.md) を参照。
+`status: ready`の手入力は禁止です。ハッシュがなければ検証で停止します。
 
----
+## GitHub設定
 
-## 注意事項
+Actions Secrets:
 
-- **画像は公開リポジトリの raw URL 経由で Instagram に取得**されます。非公開にしたい素材は置かないこと
-- アクセストークンは**期限切れ**に注意(失効すると投稿が 400 で失敗)。定期的に更新を
-- Instagram の仕様上限: キャプション 2200 文字 / ハッシュタグ 30 個 / カルーセル 10 枚(パブリッシャが検証)
-- Graph API のコンテンツ公開は**1日あたりの投稿数上限**があります(通常25件/24時間)
+- `IG_USER_ID`
+- `IG_ACCESS_TOKEN`
+
+Actions Variables:
+
+- `IG_EXPECTED_USERNAME=digilab.beauty_official`
+- `IG_GRAPH_API_VERSION=v26.0`
+- `IG_PUBLISH_ENABLED=false`（初期値。ロールアウト完了後だけ`true`）
+- `IG_IMAGE_BASE_URL`（通常は不要。未設定時は実行対象コミットのraw URL）
+
+手動実行の既定は`dry-run`です。`publish`を選んでも、mainブランチ・`IG_PUBLISH_ENABLED=true`・確認欄の`PUBLISH`が揃わない限り実投稿しません。`preflight`は投稿せず、トークンが想定アカウントを指すか確認します。
+
+## Meta設定
+
+この実装はInstagram API with Facebook Loginを前提とします。
+
+- InstagramプロアカウントとFacebookページを正しくリンク
+- Metaアプリを本番利用できる状態にし、必要なApp Review・Business Verificationを完了
+- 少なくとも`instagram_basic`と`instagram_content_publish`を付与。ページ・IG user ID取得フローで必要なページ権限も確認
+- トークンの有効期限と失効時の更新責任者を決める
+- `preflight`結果が必ず`@digilab.beauty_official`になることを確認
+- Graph APIバージョンは定期的に更新。現在の既定はv26.0
+
+固定の投稿上限値には依存せず、Meta管理画面・`content_publishing_limit`で実アカウントの利用状況を確認してください。
+
+## 予約精度
+
+ワークフローは毎時7/22/37/52分に起動します。`scheduled_for`は「この時刻以降の最初の正常実行で投稿」の意味で、GitHub ActionsやMeta側の遅延により時刻ぴったりは保証されません。
+
+## 停止投稿の復旧
+
+`status=publishing`は自動再送しません。先にInstagramを確認します。
+
+```bash
+# すでにInstagramへ出ていた場合
+python instagram/publish.py --recover <slug> --result posted --media-id <MEDIA_ID>
+
+# 出ていないことを確認し、内容確認からやり直す場合
+python instagram/publish.py --recover <slug> --result retry
+```
+
+`retry`は`draft`へ戻し承認を消すため、再承認が必須です。

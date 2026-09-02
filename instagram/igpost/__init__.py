@@ -1,16 +1,13 @@
-"""DigiLab Beauty — Instagram 自動投稿ライブラリ。
+"""Instagram投稿自動化パッケージ。"""
 
-FABLE5 が生成した画像とキャプション(投稿スペック)を読み込み、
-Instagram Graph API 経由でフィード投稿する仕組みを提供する。
-"""
-
-from .post import Post, PostError, load_posts
-from .igclient import InstagramClient, InstagramAPIError
+from .igclient import InstagramAPIError, InstagramClient
+from .post import DELETE, Post, PostError, load_posts
 
 __all__ = [
+    "DELETE",
+    "InstagramAPIError",
+    "InstagramClient",
     "Post",
     "PostError",
     "load_posts",
-    "InstagramClient",
-    "InstagramAPIError",
 ]
