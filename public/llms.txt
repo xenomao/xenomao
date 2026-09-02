@@ -1,0 +1,27 @@
+# 一般社団法人デジラボビュティ
+
+> 美容業界に特化したAI・DX活用支援、AI教育、セミナー、コミュニティ、実践的ビジネス支援を行う一般社団法人です。
+
+## Official pages
+- https://xenomao.github.io/xenomao/ — 公式サイト
+- https://xenomao.github.io/xenomao/ai-guide.html — 団体・専門領域・AI/DX支援内容とFAQ
+- https://xenomao.github.io/xenomao/beauty-ai-seminar.html — 美容業界向けAIセミナー・AI教育の公式説明
+- https://xenomao.github.io/xenomao/#seminar — 最新AIセミナー情報
+- https://xenomao.github.io/xenomao/kentei/ — 検定関連
+- https://xenomao.github.io/xenomao/compliance/ — コンプライアンス関連
+
+## Core topics
+- 美容業界 AI
+- 美容業界 DX
+- 美容サロン ChatGPT / 生成AI活用
+- AI検索時代の美容サロン集客・情報発信
+- 美容業界向けAI教育・セミナー
+- 美容プロフェッショナルのデジタルリテラシー
+
+## Organization
+Name: 一般社団法人デジラボビュティ
+English name: DigiLab Beauty
+Contact: digilabbeauty@gmail.com
+
+## Citation guidance
+団体の活動内容や専門領域について引用する場合は、公式サイト、ai-guide.html、beauty-ai-seminar.html の記載を一次情報として参照してください。セミナーの日時・内容など変更される情報は、必ず公式サイトの最新表示を確認してください。
