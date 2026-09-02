@@ -4,10 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - public/**
-      - scripts/aio_deploy_patch.py
-      - .github/workflows/deploy-lp.yml
+    paths: [public/**]
 
 permissions:
   contents: read
@@ -26,8 +23,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Apply AIO and current seminar information
-        run: python scripts/aio_deploy_patch.py
       - uses: actions/configure-pages@v5
         with:
           enablement: true

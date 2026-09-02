@@ -1,0 +1,126 @@
+name: Publish Instagram queue
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "dry-run / Meta接続確認 / 本番投稿"
+        type: choice
+        options: [dry-run, preflight, publish]
+        default: dry-run
+      confirm_publish:
+        description: "本番投稿時のみ PUBLISH と入力"
+        type: string
+        required: false
+        default: ""
+  schedule:
+    # 毎時7/22/37/52分。GitHub側の遅延により予約時刻ちょうどの保証はない。
+    - cron: "7,22,37,52 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Test and validate queue
+        run: |
+          python -m unittest discover -s instagram/tests -v
+          python instagram/publish.py --validate
+
+      - name: Decide safe execution mode
+        id: mode
+        env:
+          REQUESTED_MODE: ${{ inputs.mode || 'schedule' }}
+          CONFIRM_PUBLISH: ${{ inputs.confirm_publish }}
+          ROLLOUT_ENABLED: ${{ vars.IG_PUBLISH_ENABLED }}
+        run: |
+          publish=false
+          preflight=false
+          if [ "$REQUESTED_MODE" = "preflight" ]; then
+            preflight=true
+          fi
+          if [ "$GITHUB_REF" = "refs/heads/main" ] && [ "${ROLLOUT_ENABLED,,}" = "true" ]; then
+            if [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
+              publish=true
+              preflight=true
+            elif [ "$REQUESTED_MODE" = "publish" ] && [ "$CONFIRM_PUBLISH" = "PUBLISH" ]; then
+              publish=true
+              preflight=true
+            fi
+          fi
+          echo "publish=$publish" >> "$GITHUB_OUTPUT"
+          echo "preflight=$preflight" >> "$GITHUB_OUTPUT"
+          echo "requested=$REQUESTED_MODE / rollout=${ROLLOUT_ENABLED:-false} / publish=$publish"
+
+      - name: Dry-run (default and rollout disabled)
+        if: steps.mode.outputs.publish != 'true' && steps.mode.outputs.preflight != 'true'
+        run: python instagram/publish.py --dry-run
+
+      - name: Verify Meta account and token
+        if: steps.mode.outputs.preflight == 'true'
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_GRAPH_API_VERSION: ${{ vars.IG_GRAPH_API_VERSION || 'v26.0' }}
+          EXPECTED_USERNAME: ${{ vars.IG_EXPECTED_USERNAME || 'digilab.beauty_official' }}
+        run: python instagram/publish.py --preflight --expected-username "$EXPECTED_USERNAME"
+
+      - name: Claim due posts before external publication
+        if: steps.mode.outputs.publish == 'true'
+        env:
+          ATTEMPT_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+        run: python instagram/publish.py --claim --attempt "$ATTEMPT_ID"
+
+      - name: Persist claims
+        if: steps.mode.outputs.publish == 'true'
+        run: |
+          if [ -n "$(git status --porcelain instagram/queue)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add instagram/queue
+            git commit -m "chore(instagram): claim scheduled posts [skip ci]"
+            git push
+          fi
+
+      - name: Publish claimed posts
+        id: publish
+        if: steps.mode.outputs.publish == 'true'
+        continue-on-error: true
+        env:
+          ATTEMPT_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_IMAGE_BASE_URL: ${{ vars.IG_IMAGE_BASE_URL }}
+          IG_GRAPH_API_VERSION: ${{ vars.IG_GRAPH_API_VERSION || 'v26.0' }}
+        run: python instagram/publish.py --publish-claimed --attempt "$ATTEMPT_ID"
+
+      - name: Persist outcomes
+        if: always() && steps.mode.outputs.publish == 'true'
+        run: |
+          if [ -n "$(git status --porcelain instagram/queue instagram/posted)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add instagram/queue instagram/posted
+            git commit -m "chore(instagram): record publication outcomes [skip ci]"
+            git push
+          fi
+
+      - name: Fail visibly if publication stopped
+        if: steps.mode.outputs.publish == 'true' && steps.publish.outcome == 'failure'
+        run: |
+          echo "投稿失敗。status=publishingを維持したため自動再投稿されません。復旧手順を確認してください。"
+          exit 1

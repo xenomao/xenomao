@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://xenomao.github.io/xenomao/sitemap.xml
