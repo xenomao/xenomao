@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>デジラボビューティ｜AI駆動オペレーション組織図（社内用）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Shippori+Mincho+B1:wght@500;600;700&family=Noto+Sans+JP:wght@350;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #37303e;
+    --ink-strong: #2a2331;
+    --muted: #8b8093;
+    --lav: #9a85b8;
+    --lav-deep: #7a659a;
+    --pink: #c888a0;
+    --azure: #7aaac4;
+    --cream: #fbf8f4;
+    --wash: #faf7fb;
+    --line: #e6dced;
+    --wire: #cbbdd8;
+    --head: 'Shippori Mincho B1', 'Noto Serif JP', serif;
+    --body: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+    --en: 'Cormorant Garamond', serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--body); background:var(--cream); color:var(--ink); line-height:1.8; font-size:14px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1160px; margin:0 auto; padding:0 24px; }
+
+  /* header */
+  .head { background:#fff; border-bottom:1px solid var(--line); padding:44px 0 36px; }
+  .tag { display:inline-block; font-size:11px; letter-spacing:.14em; color:#fff; background:var(--pink); padding:3px 12px; border-radius:999px; margin-bottom:14px; }
+  .eyebrow { font-family:var(--en); font-size:13px; letter-spacing:.28em; color:var(--lav-deep); text-transform:uppercase; margin-bottom:10px; }
+  h1 { font-family:var(--head); font-size:clamp(24px,3.6vw,34px); font-weight:700; color:var(--ink-strong); line-height:1.5; letter-spacing:.02em; }
+  .head p.lead { margin-top:16px; max-width:760px; color:#5f5568; }
+  .meta { margin-top:22px; display:flex; gap:10px; flex-wrap:wrap; }
+  .meta div { background:var(--wash); border:1px solid var(--line); border-radius:10px; padding:10px 16px; font-size:12.5px; }
+  .meta b { font-family:var(--head); color:var(--ink-strong); font-size:15px; }
+
+  section { padding:52px 0; }
+  h2 { font-family:var(--head); font-size:clamp(19px,2.4vw,23px); font-weight:700; color:var(--ink-strong); margin-bottom:8px; }
+  h2 .num { font-family:var(--en); color:var(--lav); margin-right:.5em; }
+  .sec-lead { color:#5f5568; margin-bottom:26px; max-width:780px; }
+
+  /* chart */
+  .chart-scroll { overflow-x:auto; padding-bottom:8px; }
+  .chart { min-width:900px; }
+  .tier { display:flex; justify-content:center; gap:16px; }
+  .wire { width:1px; height:26px; background:var(--wire); margin:0 auto; }
+
+  .node { background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px 20px; text-align:center; }
+  .node .role { font-family:var(--en); font-size:11px; letter-spacing:.2em; color:var(--muted); display:block; margin-bottom:5px; }
+  .node .nm { font-family:var(--head); font-weight:700; font-size:16px; color:var(--ink-strong); display:block; line-height:1.5; }
+  .node .ds { font-size:12px; color:#6f6578; display:block; margin-top:5px; line-height:1.7; }
+
+  .n-human { border-top:3px solid var(--ink-strong); min-width:290px; }
+  .n-audit { border:1px dashed var(--wire); background:var(--wash); min-width:250px; }
+  .n-orch { border-top:3px solid var(--lav-deep); min-width:420px; }
+  .n-agent { border-top:3px solid var(--lav); padding:14px 12px; }
+  .n-super { border-top:3px solid var(--pink); width:100%; }
+  .n-mem { border-top:3px solid var(--azure); width:100%; }
+  .n-mem .ds { margin-top:8px; }
+  .n-reflect { border-top:3px solid var(--lav-deep); width:100%; }
+
+  .agents { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; position:relative; margin-top:26px; }
+  .agents::before { content:""; position:absolute; top:-14px; left:8.34%; right:8.34%; height:1px; background:var(--wire); }
+  .agents > .n-agent { position:relative; }
+  .agents > .n-agent::before { content:""; position:absolute; top:-14px; left:50%; width:1px; height:14px; background:var(--wire); }
+  .agents .no { font-family:var(--en); font-size:12px; letter-spacing:.16em; color:var(--lav); display:block; }
+  .agents .nm { font-size:14px; }
+  .agents .ds { font-size:11.5px; }
+  .agents .clause { display:inline-block; margin-top:8px; font-size:10.5px; color:var(--lav-deep); background:var(--wash); border-radius:6px; padding:2px 8px; }
+
+  .loop-back { display:flex; align-items:center; gap:10px; justify-content:center; margin:22px 0 0; font-size:12px; color:var(--lav-deep); }
+  .loop-back::before, .loop-back::after { content:""; height:1px; background:var(--wire); flex:1; max-width:220px; }
+
+  .governance { display:flex; justify-content:center; align-items:stretch; gap:14px; }
+
+  /* loop strip */
+  .loop { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-top:34px; }
+  .loop span { background:#fff; border:1px solid var(--line); border-radius:999px; padding:9px 6px; text-align:center; font-size:12.5px; color:var(--lav-deep); position:relative; }
+  .loop span:last-child { border-color:var(--lav); color:var(--ink-strong); }
+
+  /* forbidden */
+  .forbid { background:#fff; border:1px solid var(--line); border-left:4px solid var(--pink); border-radius:14px; padding:26px 28px; }
+  .forbid h3 { font-family:var(--head); font-size:17px; color:var(--ink-strong); margin-bottom:6px; }
+  .forbid .why { font-size:12.5px; color:var(--muted); margin-bottom:16px; }
+  .forbid table { width:100%; border-collapse:collapse; }
+  .forbid th, .forbid td { text-align:left; vertical-align:top; padding:11px 12px 11px 0; border-bottom:1px solid var(--line); font-size:13.5px; }
+  .forbid th { width:32%; color:var(--pink); font-weight:700; white-space:nowrap; }
+
+  /* roadmap */
+  .road { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .ph { background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px 22px 20px; }
+  .ph.now { border-color:var(--lav); box-shadow:0 8px 24px rgba(122,101,154,.10); }
+  .ph .st { font-family:var(--en); font-size:12px; letter-spacing:.2em; color:var(--lav); display:block; margin-bottom:6px; }
+  .ph h3 { font-family:var(--head); font-size:16px; color:var(--ink-strong); margin-bottom:10px; }
+  .ph ul { margin-left:1.15em; font-size:13px; color:#5f5568; }
+  .ph li { margin-bottom:4px; }
+  .ph .badge { display:inline-block; font-size:10.5px; color:#fff; background:var(--lav); border-radius:999px; padding:2px 10px; margin-bottom:10px; }
+
+  .notes { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px 28px; font-size:13px; color:#5f5568; }
+  .notes h3 { font-family:var(--head); font-size:16px; color:var(--ink-strong); margin-bottom:10px; }
+  .notes li { margin:0 0 6px 1.15em; }
+
+  footer { padding:30px 0 56px; font-size:12px; color:var(--muted); }
+  footer p { margin-bottom:5px; }
+
+  @media (max-width:900px) {
+    .chart { min-width:820px; }
+    .road { grid-template-columns:1fr; }
+    .loop { grid-template-columns:repeat(3,1fr); }
+    .governance { flex-wrap:wrap; }
+  }
+  @media print {
+    body { background:#fff; font-size:11px; }
+    .head { padding:20px 0 16px; }
+    section { padding:22px 0; page-break-inside:avoid; }
+    .chart { min-width:0; }
+    .chart-scroll { overflow:visible; }
+  }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="wrap">
+    <span class="tag">社内用・非公開（noindex）</span>
+    <p class="eyebrow">DigiLab Beauty — AI-Driven Operations</p>
+    <h1>一般社団法人デジラボビューティ<br>AI駆動オペレーション組織図</h1>
+    <p class="lead">「実行 → 評価 → 記録 → 分析 → 改善 → 再実行」のループを、AIエージェントで回すための運営設計図です。営利企業のAI駆動モデルとの決定的な違いは、<strong>認証・検定の中立性と法定機関の職務はAIに委任できない</strong>という制約を、構造として先に固定している点にあります。</p>
+    <div class="meta">
+      <div>人間の意思決定層 <b>2職位</b></div>
+      <div>AIエージェント <b>8体</b></div>
+      <div>AI禁止領域 <b>4項目</b></div>
+      <div>導入 <b>第1段階：2体先行</b></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2><span class="num">01</span>組織図</h2>
+    <p class="sec-lead">上段ほど代替不可の意思決定、下段ほど自動化可能な実行。監事は業務執行から独立するため、実行ラインの外に破線で置いています。</p>
+
+    <div class="chart-scroll">
+    <div class="chart">
+
+      <!-- governance -->
+      <div class="governance">
+        <div class="node n-human">
+          <span class="role">Human 01</span>
+          <span class="nm">代表理事</span>
+          <span class="ds">事業方針の決定・最終承認<br>対外的な代表権</span>
+        </div>
+        <div class="node n-human">
+          <span class="role">Human 02</span>
+          <span class="nm">法務・中立性ゲート</span>
+          <span class="ds">薬機法／景表法／個人情報保護法の最終確認<br>認証の利益相反判定</span>
+        </div>
+        <div class="node n-audit">
+          <span class="role">Independent</span>
+          <span class="nm">監事</span>
+          <span class="ds">業務執行から独立して監査<br>実行ラインには入らない</span>
+        </div>
+      </div>
+
+      <div class="wire"></div>
+
+      <div class="tier">
+        <div class="node n-orch">
+          <span class="role">Orchestrator</span>
+          <span class="nm">オーケストレーターAI</span>
+          <span class="ds">年間目標の月次分解 ・ タスク配布 ・ 進捗管理 ・ 期限管理</span>
+        </div>
+      </div>
+
+      <div class="wire"></div>
+
+      <!-- agents -->
+      <div class="agents">
+        <div class="node n-agent">
+          <span class="no">A1</span><span class="nm">教材AI</span>
+          <span class="ds">検定問題・ガイドライン・教材の生成</span>
+          <span class="clause">定款 1〜3号</span>
+        </div>
+        <div class="node n-agent">
+          <span class="no">A2</span><span class="nm">コンテンツAI</span>
+          <span class="ds">ブログ・SNS・LPの制作と改稿</span>
+          <span class="clause">定款 5号</span>
+        </div>
+        <div class="node n-agent">
+          <span class="no">A3</span><span class="nm">会員CS AI</span>
+          <span class="ds">入会案内・問い合わせ一次対応</span>
+          <span class="clause">定款 3号</span>
+        </div>
+        <div class="node n-agent">
+          <span class="no">A4</span><span class="nm">営業AI</span>
+          <span class="ds">B2B営業先の管理・文面作成</span>
+          <span class="clause">会員獲得</span>
+        </div>
+        <div class="node n-agent">
+          <span class="no">A5</span><span class="nm">標準化ウォッチAI</span>
+          <span class="ds">世界のAI規制・国際標準の追随</span>
+          <span class="clause">国際標準化</span>
+        </div>
+        <div class="node n-agent">
+          <span class="no">A6</span><span class="nm">請求・会員管理AI</span>
+          <span class="ds">会費請求・入退会処理・名簿管理</span>
+          <span class="clause">定款 3号</span>
+        </div>
+      </div>
+
+      <div class="wire"></div>
+
+      <div class="tier">
+        <div class="node n-super">
+          <span class="role">A7 — Supervisor</span>
+          <span class="nm">監督AI</span>
+          <span class="ds">出力品質の評価と修正指示　／　薬機法・景表法・個人情報保護法の3観点スクリーニング（可・要修正・不可の3段階判定＋根拠条文＋修正案）<br>※ 一次スクリーニングであり、専門家確認の代替ではない。要修正・不可の判定は必ず Human 02 へ差し戻す</span>
+        </div>
+      </div>
+
+      <div class="wire"></div>
+
+      <div class="tier">
+        <div class="node n-mem">
+          <span class="role">Shared Memory</span>
+          <span class="nm">共有メモリ ・ KPI ・ 実行ログ</span>
+          <span class="ds">リポジトリ main（一次情報の正本）　／　public/glossary・llms.txt（用語定義の正本）　／　KPIダッシュボード　／　Git履歴（実行ログ）<br>全エージェントはここを唯一の参照元とする（RAGの参照元固定）</span>
+        </div>
+      </div>
+
+      <div class="wire"></div>
+
+      <div class="tier">
+        <div class="node n-reflect">
+          <span class="role">A8 — Reflection</span>
+          <span class="nm">分析AI ／ REFLECTION</span>
+          <span class="ds">全パイプラインの分析・ボトルネック特定・改善案の提出　→　オーケストレーターAIへ再投入</span>
+        </div>
+      </div>
+
+      <p class="loop-back">分析結果はオーケストレーターAIへ戻り、次サイクルの目標分解に反映される</p>
+
+      <div class="loop">
+        <span>実行</span><span>評価</span><span>記録</span><span>分析</span><span>改善</span><span>再実行</span>
+      </div>
+
+    </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">02</span>AI禁止領域</h2>
+    <p class="sec-lead">元にした営利企業モデルとの最大の差分です。ここを自動化した瞬間に、団体の最大資産である「認証の信頼性」が失われます。</p>
+    <div class="forbid">
+      <h3>この4項目はAIに委任しない</h3>
+      <p class="why">中立性・法定職務・個人情報の3つが理由。運用開始前に、担当者全員がこの表を確認すること。</p>
+      <table>
+        <tr>
+          <th>検定・認証の合否判定</th>
+          <td>AIが自動判定した資格は市場価値を持たない。採点補助は可、最終判定は人が行う。認定証の発行権限もAIに渡さない。</td>
+        </tr>
+        <tr>
+          <th>会員・受検者の個人情報</th>
+          <td>外部AIサービスへの投入は、利用目的の特定・本人同意・委託先管理の整理が完了するまで不可。A3・A6は個人情報を含まない範囲から着手する。</td>
+        </tr>
+        <tr>
+          <th>監事の監査職務</th>
+          <td>法定の職務であり委任できない。監査に用いる資料をAIが整えることは可。</td>
+        </tr>
+        <tr>
+          <th>3法・利益相反の最終判断</th>
+          <td>監督AI（A7）の判定は一次スクリーニング。対外公開物・広告表現・認証判断は Human 02 の確認を経る。法人法・税務は3法パネルの範囲外のため、専門家確認を別途行う。</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">03</span>導入ロードマップ</h2>
+    <p class="sec-lead">8体の同時立ち上げは行いません。構築が目的化すると、売上基盤からリソースを奪います。稼働実績を確認してから拡張します。</p>
+    <div class="road">
+      <div class="ph now">
+        <span class="badge">現在ここ</span>
+        <span class="st">Phase 1</span>
+        <h3>2体先行（目安2週間）</h3>
+        <ul>
+          <li>A1 教材AI ＋ A7 監督AI のみ稼働</li>
+          <li>共有メモリは既存リポジトリを流用（追加投資なし）</li>
+          <li>成果物1本あたりの制作時間を計測</li>
+          <li>監督AIの3法判定の的中率を人手で検証</li>
+        </ul>
+      </div>
+      <div class="ph">
+        <span class="st">Phase 2</span>
+        <h3>集客・会員導線</h3>
+        <ul>
+          <li>A2 コンテンツAI ／ A3 会員CS AI を追加</li>
+          <li>A3は公開情報のみを参照元とし、個人情報は扱わない</li>
+          <li>用語集 → 診断 → 検定 の導線CVを計測</li>
+        </ul>
+      </div>
+      <div class="ph">
+        <span class="st">Phase 3</span>
+        <h3>全体最適</h3>
+        <ul>
+          <li>A4 営業AI ／ A5 標準化ウォッチAI ／ A6 請求・会員管理AI</li>
+          <li>A8 分析AI を接続し、ループを閉じる</li>
+          <li>A6着手前に個人情報の取り扱い方針を確定</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">04</span>この図の前提と注意</h2>
+    <div class="notes">
+      <h3>運用前に確認すること</h3>
+      <ul>
+        <li>本図は<strong>役職ベース</strong>で作成しています。実名の割り当ては、本人の合意を得たうえで追記してください。現任者はLP掲載の組織体制を参照。</li>
+        <li>「Human 02 法務・中立性ゲート」は新設の役割です。既存の法務顧問に担っていただく場合、職務範囲と稼働量の合意が必要です。</li>
+        <li>AIエージェントの参照元は共有メモリに固定します。参照元を各自のチャット履歴に置くと、団体として一貫した回答ができなくなります。</li>
+        <li>営業先・取引先の固有名は、AIへの入力・出力とも非公開情報として扱います。</li>
+        <li>本図は社内オペレーション設計であり、法人の機関設計（社員総会・理事会・監事）を置き換えるものではありません。</li>
+        <li>公開版として外部に出す場合は、本図をそのまま使わず、公開用に再設計してください（社内の運用詳細を含むため）。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>一般社団法人デジラボビューティ（DigiLab Beauty）　社内用ドキュメント・公開しない</p>
+    <p>ファイル: tools/digilab_ai_org_chart.html　／　運用開始・体制変更のたびに更新すること</p>
+  </div>
+</footer>
+
+</body>
+</html>

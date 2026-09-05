@@ -43,6 +43,7 @@
 |---|---|---|
 | 事業KPIダッシュボード(管理画面) | `tools/kpi_dashboard.html` | データはブラウザlocalStorage保存。社内用・未公開 |
 | KPIダッシュボード使い方マニュアル | `tools/kpi_dashboard_manual.html` | 入力担当者向け |
+| AI駆動オペレーション組織図 | `tools/digilab_ai_org_chart.html` | 社内用・非公開(noindex)。AI禁止領域と導入ロードマップを含む |
 
 ## E. 販促・営業資料(marketing/)
 
