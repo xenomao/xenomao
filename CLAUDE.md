@@ -1,6 +1,6 @@
 # DigiLab Beauty プロジェクト
 
-一般社団法人デジラボビューティー(美容業界のAI・DX支援団体)のリポジトリ。
+一般社団法人デジラボビューティ(美容業界のAI・DX支援団体)のリポジトリ。
 
 ## 重要: 機密データの所在
 
@@ -44,6 +44,15 @@
 - KPIダッシュボード(社内用): `tools/kpi_dashboard.html`(+ マニュアル)。公開はしない
 - 過去ブランチに散在していた成果物は2026-07-06にmainへ集約済み(アプリは `apps/` 配下)
 
+### 美容AI用語集(AI活用で押さえる基本用語)
+
+- 本体: `marketing/ai_glossary.html` / 配信用コピー: `public/glossary/index.html`(内容は同一。更新時は両方を同期すること)
+- 公開URL: https://xenomao.github.io/xenomao/glossary/
+- LP本体のグローバルナビ「用語集」からリンク
+- 内容: メタデータ / エンベディング / ベクトル / RAG の4語を、美容サロンの実務に置き換えて定義。各語に「定義・サロンでの意味・使いどころ・よくある誤解」を持たせ、末尾に薬機法/景表法/個人情報保護法の観点と理解度チェックを付す
+- **定義の正本はこのページ**。schema.org の `DefinedTermSet` / `DefinedTerm` で構造化し、`public/llms.txt` の "Defined terms" にも同じ定義を記載する。用語を追加・改訂したら、HTMLのJSON-LDとllms.txtの両方を必ず更新すること(片方だけの更新はAIに矛盾した定義を渡すことになる)
+- 配色は白基調×パステルラベンダー、見出しは Shippori Mincho B1 × Cormorant Garamond。装飾絵文字は使わない
+
 ### 法令・コンプライアンス問題集
 
 - 配信: `public/compliance/index.html`(元はNetlify公開のHTMLをそのまま移設。単一HTML・印刷対応)
@@ -66,3 +75,4 @@
 
 - ドキュメントは日本語
 - ファイル名は snake_case
+- **団体名の正式表記は「一般社団法人デジラボビューティ」**(末尾に長音「ー」を付けない / 「デジラボビュティ」は誤記)。公開ページ・JSON-LD・llms.txt では表記を必ず統一する
