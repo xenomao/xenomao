@@ -11,6 +11,7 @@
 | 法令・コンプライアンス問題集 | https://xenomao.github.io/xenomao/compliance/ | `public/compliance/index.html` |
 | サロンAI活用度診断(全10問) | https://xenomao.github.io/xenomao/shindan/ | `public/shindan/index.html` |
 | 美容AI用語集(基本用語①) | https://xenomao.github.io/xenomao/glossary/ | `public/glossary/index.html`(本体: `marketing/ai_glossary.html`) |
+| AI活用ガバナンス方針 | https://xenomao.github.io/xenomao/governance/ | `public/governance/index.html`(本体: `marketing/digilab_ai_governance.html`) |
 | 賛助会員向けプレゼンデッキ | https://xenomao.github.io/xenomao/sponsor/ | `public/sponsor/index.html`(本体: `marketing/digilab_beauty_sponsor_deck.html`) |
 | 鎌田麻央 個人ビジネスLP | https://xenomao.github.io/xenomao/kamata/ | `public/kamata/index.html` |
 | プライバシーポリシー | https://xenomao.github.io/xenomao/privacy.html | `public/privacy.html` |
@@ -44,6 +45,7 @@
 | 事業KPIダッシュボード(管理画面) | `tools/kpi_dashboard.html` | データはブラウザlocalStorage保存。社内用・未公開 |
 | KPIダッシュボード使い方マニュアル | `tools/kpi_dashboard_manual.html` | 入力担当者向け |
 | AI駆動オペレーション組織図 | `tools/digilab_ai_org_chart.html` | 社内用・非公開(noindex)。AI禁止領域と導入ロードマップを含む |
+| Phase 1 運用手順書(教材AI＋監督AI) | `tools/ai_ops_phase1_manual.html` | 社内用・非公開(noindex)。プロンプト雛形・記録表・判断基準 |
 
 ## E. 販促・営業資料(marketing/)
 
@@ -58,6 +60,7 @@
 | ロゴプレビュー集 | `marketing/logo_preview.html` |
 | セルフチェックシート | `marketing/digilab_beauty_self_check.html` |
 | 美容AI用語集 本体 | `marketing/ai_glossary.html` |
+| AI活用ガバナンス方針 本体 | `marketing/digilab_ai_governance.html` |
 | LPパステル配色案(比較用アーカイブ) | `marketing/digilab_beauty_lp_pastel.html` |
 | 会員特典: AIスターターガイド / 会員証カード / ニュースレターvol.1 | `marketing/member_benefits/*.html` |
 | 素材(写真・QR・鎌田様写真) | `marketing/assets/` |
