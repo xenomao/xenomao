@@ -142,6 +142,11 @@
   }
   .txt { font-size: 14.5px; color: var(--body-ink); }
   input:checked ~ .txt { color: var(--muted); }
+  .txt .idx {
+    font-family: var(--label); font-size: 13px; letter-spacing: .06em;
+    color: var(--lav-ink); margin-right: 7px; font-variant-numeric: tabular-nums;
+  }
+  input:checked ~ .txt .idx { color: var(--muted); }
   .txt strong { color: var(--ink); font-weight: 700; }
   .txt .sub { display: block; font-size: 12.5px; color: var(--muted); margin-top: 3px; }
 
@@ -195,7 +200,7 @@
   <div class="intro">
     <p class="eyebrow">DigiLab Beauty — Pre-shoot Checklist</p>
     <h1>動画撮影前チェックリスト</h1>
-    <p class="use"><b>使い方</b>　撮影を始める<strong>前</strong>に、Aから順に確認します。動画は公開後の部分修正ができません。該当しない項目は飛ばしてください。1つでも確認できない項目があれば、それを解消してから撮影します。</p>
+    <p class="use"><b>使い方</b>　撮影を始める<strong>前</strong>に、Aから順に確認します。動画は公開後の部分修正ができません。該当しない項目は飛ばしてください。項目には番号（A1、B3…）が付いています。1つでも確認できない項目があれば、それを解消してから撮影します。</p>
     <p class="draft">本チェックリストは法務顧問の確認前のドラフトです。運用開始前に確認を受けてください。</p>
   </div>
 
@@ -208,10 +213,10 @@
   <section class="grp">
     <div class="grp-head"><span class="grp-letter">A</span><h2>撮る内容<small>医薬品医療機器等法（薬機法）</small></h2></div>
     <ul class="items">
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">施術について「<strong>治る</strong>」「<strong>改善する</strong>」「<strong>効果がある</strong>」と<strong>言う場面・テロップの予定がない</strong></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">医療行為と誤認させる映像がない<span class="sub">注射器、医療機器、白衣、医師の関与を思わせる演出など</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">化粧品・機器の説明が、承認・届出された範囲を超えていない</span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">ナレーション台本に、悩みの解消を断定する言い回しがない<span class="sub">「必ず」「確実に」「〇〇がなくなる」など</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">A1</span>施術について「<strong>治る</strong>」「<strong>改善する</strong>」「<strong>効果がある</strong>」と<strong>言う場面・テロップの予定がない</strong></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">A2</span>医療行為と誤認させる映像がない<span class="sub">注射器、医療機器、白衣、医師の関与を思わせる演出など</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">A3</span>化粧品・機器の説明が、承認・届出された範囲を超えていない</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">A4</span>ナレーション台本に、悩みの解消を断定する言い回しがない<span class="sub">「必ず」「確実に」「〇〇がなくなる」など</span></span></label></li>
     </ul>
     <p class="grp-note">エステティックの施術は医療行為ではありません。医療を思わせる映像・語彙は使いません。</p>
   </section>
@@ -219,21 +224,21 @@
   <section class="grp">
     <div class="grp-head"><span class="grp-letter">B</span><h2>ビフォーアフター<small>景品表示法</small></h2></div>
     <ul class="items">
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">撮影条件を<strong>統一できる</strong><span class="sub">照明・角度・距離・メイクの有無・時間帯を前後で揃える</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">加工・フィルター・美肌補正を<strong>オフにできる</strong></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">「個人差があります」等の注記を、<strong>スマホの実機で読める大きさと長さ</strong>で画面に出せる<span class="sub">打消し表示。小さすぎる・短すぎる表示は表示していないものと扱われ得ます</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">1回の施術の変化か、複数回の結果かを明示できる</span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">施術回数・期間・併用したホームケアを<strong>記録に残す</strong><span class="sub">後から根拠を示せるようにする</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B1</span>撮影条件を<strong>統一できる</strong><span class="sub">照明・角度・距離・メイクの有無・時間帯を前後で揃える</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B2</span>加工・フィルター・美肌補正を<strong>オフにできる</strong></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B3</span>「個人差があります」等の注記を、<strong>スマホの実機で読める大きさと長さ</strong>で画面に出せる<span class="sub">打消し表示。小さすぎる・短すぎる表示は表示していないものと扱われ得ます</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B4</span>1回の施術の変化か、複数回の結果かを明示できる</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B5</span>施術回数・期間・併用したホームケアを<strong>記録に残す</strong><span class="sub">後から根拠を示せるようにする</span></span></label></li>
     </ul>
   </section>
 
   <section class="grp">
     <div class="grp-head"><span class="grp-letter">C</span><h2>体験談・口コミ<small>景品表示法／ステルスマーケティング規制</small></h2></div>
     <ul class="items">
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">投稿を<strong>依頼するかどうか</strong>を確認した<span class="sub">依頼する場合、責任はサロン側にあります</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">依頼・金銭・商品・施術の無償提供がある場合、「広告」「PR」等の表示を<strong>動画内と投稿文の両方</strong>に入れる<span class="sub">冒頭で分かる位置に置く</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">お客様の感想を、<strong>代表的な結果と誤認させない</strong>構成にしている</span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">スタッフ・関係者が一般のお客様を装って出演していない</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">C1</span>投稿を<strong>依頼するかどうか</strong>を確認した<span class="sub">依頼する場合、責任はサロン側にあります</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">C2</span>依頼・金銭・商品・施術の無償提供がある場合、「広告」「PR」等の表示を<strong>動画内と投稿文の両方</strong>に入れる<span class="sub">冒頭で分かる位置に置く</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">C3</span>お客様の感想を、<strong>代表的な結果と誤認させない</strong>構成にしている</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">C4</span>スタッフ・関係者が一般のお客様を装って出演していない</span></label></li>
     </ul>
     <p class="grp-note"><b>最も誤解される点</b>　規制対象は広告主（サロン）です。依頼を受けて投稿したインフルエンサーは規制の対象外とされています。「本人が勝手に言った」では免れません。</p>
   </section>
@@ -241,28 +246,28 @@
   <section class="grp">
     <div class="grp-head"><span class="grp-letter">D</span><h2>映る人<small>個人情報保護法／肖像権</small></h2></div>
     <ul class="items">
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">お客様が映る場合、撮影と公開について<strong>記録の残る形で同意</strong>を得た<span class="sub">書面・アプリ・メールなど、後から確認できる形</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">同意の範囲を本人と確認した<span class="sub">掲載する媒体／掲載期間／二次利用の可否／削除依頼の窓口</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">施術部位や肌の状態が映る場合、本人が特定される範囲を確認した</span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">背景に<strong>映ってはいけないもの</strong>がない<span class="sub">他のお客様、カルテ、予約表、PCやタブレットの画面、氏名の掲示</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">出演するスタッフ本人の同意を得た<span class="sub">退職後の取り扱いも決めておく</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D1</span>お客様が映る場合、撮影と公開について<strong>記録の残る形で同意</strong>を得た<span class="sub">書面・アプリ・メールなど、後から確認できる形</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D2</span>同意の範囲を本人と確認した<span class="sub">掲載する媒体／掲載期間／二次利用の可否／削除依頼の窓口</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D3</span>施術部位や肌の状態が映る場合、本人が特定される範囲を確認した</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D4</span>背景に<strong>映ってはいけないもの</strong>がない<span class="sub">他のお客様、カルテ、予約表、PCやタブレットの画面、氏名の掲示</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D5</span>出演するスタッフ本人の同意を得た<span class="sub">退職後の取り扱いも決めておく</span></span></label></li>
     </ul>
   </section>
 
   <section class="grp">
     <div class="grp-head"><span class="grp-letter">E</span><h2>音源・素材<small>著作権</small></h2></div>
     <ul class="items">
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">使用する楽曲が、<strong>その媒体で商用利用できる</strong>許諾範囲にある<span class="sub">SNSアプリ内の音源は、商用利用の可否が媒体ごとに異なります</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">他社の動画・画像・ロゴ・文章を無断で使っていない</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">E1</span>使用する楽曲が、<strong>その媒体で商用利用できる</strong>許諾範囲にある<span class="sub">SNSアプリ内の音源は、商用利用の可否が媒体ごとに異なります</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">E2</span>他社の動画・画像・ロゴ・文章を無断で使っていない</span></label></li>
     </ul>
   </section>
 
   <section class="grp">
     <div class="grp-head"><span class="grp-letter">F</span><h2>AIを使う場合<small>当団体のAI活用ガバナンス方針</small></h2></div>
     <ul class="items">
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">AIで生成・加工した映像や音声を使う場合、<strong>その旨を表示する</strong></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">AIが作成したナレーション台本・テロップを、撮影前に<strong>人が確認した</strong><span class="sub">Aの薬機法・Bの打消し表示の観点で読み直す</span></span></label></li>
-      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt">お客様の顔・肌の画像を外部のAIサービスに入力していない</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">F1</span>AIで生成・加工した映像や音声を使う場合、<strong>その旨を表示する</strong></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">F2</span>AIが作成したナレーション台本・テロップを、撮影前に<strong>人が確認した</strong><span class="sub">Aの薬機法・Bの打消し表示の観点で読み直す</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">F3</span>お客様の顔・肌の画像を外部のAIサービスに入力していない</span></label></li>
     </ul>
   </section>
 

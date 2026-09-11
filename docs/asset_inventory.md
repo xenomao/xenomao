@@ -61,7 +61,7 @@
 | ロゴプレビュー集 | `marketing/logo_preview.html` |
 | セルフチェックシート | `marketing/digilab_beauty_self_check.html` |
 | 美容AI用語集 本体 | `marketing/ai_glossary.html` |
-| 動画撮影前チェックリスト | `marketing/video_checklist.html` ※法務確認前ドラフト・未公開 |
+| 動画撮影前チェックリスト | `marketing/video_checklist.html` / `.pdf`(A4・3ページ) ※法務確認前ドラフト・未公開 |
 | AI活用ガバナンス方針 本体 | `marketing/digilab_ai_governance.html` |
 | LPパステル配色案(比較用アーカイブ) | `marketing/digilab_beauty_lp_pastel.html` |
 | 会員特典: AIスターターガイド / 会員証カード / ニュースレターvol.1 | `marketing/member_benefits/*.html` |
