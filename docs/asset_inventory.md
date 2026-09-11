@@ -37,6 +37,7 @@
 | 運用ガイド(AIエージェント口座/一斉メール/Codex CLI/Lovart/News API/note) | `docs/guides/*.md` |
 | レポート(NewsAPI検証/フェーズ1完了) | `docs/reports/*.md` |
 | 営業メールテンプレ(Jエステ) | `docs/templates/email_j-esthe_approach.md` |
+| プレスリリース(設立/AI活用ガバナンス方針) | `docs/press/*.md` ※いずれもドラフト。配信前に所在地・設立年月・団体名表記の統一が必要 |
 
 ## D. ツール(tools/)
 
