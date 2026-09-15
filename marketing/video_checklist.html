@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>動画撮影前チェックリスト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Shippori+Mincho+B1:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+
+<style>
+  :root {
+    --ground: #fbf8f4;
+    --paper: #ffffff;
+    --ink: #2a2331;
+    --body-ink: #443b4d;
+    --muted: #7d7288;
+    --lav: #9a85b8;
+    --lav-ink: #6d588f;
+    --lav-wash: #f4eef8;
+    --pink: #c888a0;
+    --pink-ink: #a4607c;
+    --pink-wash: #fbf0f4;
+    --azure: #7aaac4;
+    --azure-ink: #4a85a4;
+    --azure-wash: #eef5f9;
+    --line: #e7ddee;
+    --display: 'Shippori Mincho B1', 'Hiragino Mincho ProN', serif;
+    --body: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+    --label: 'Cormorant Garamond', serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #191520; --paper: #232030; --ink: #f1ebf5; --body-ink: #d4cbdc;
+      --muted: #9c91a7; --lav: #b8a3d5; --lav-ink: #c8b6e1; --lav-wash: #2c2537;
+      --pink: #dda3b8; --pink-ink: #e8b6c7; --pink-wash: #33232b;
+      --azure: #93c2da; --azure-ink: #a7d0e4; --azure-wash: #212c34;
+      --line: #362f41;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #191520; --paper: #232030; --ink: #f1ebf5; --body-ink: #d4cbdc;
+    --muted: #9c91a7; --lav: #b8a3d5; --lav-ink: #c8b6e1; --lav-wash: #2c2537;
+    --pink: #dda3b8; --pink-ink: #e8b6c7; --pink-wash: #33232b;
+    --azure: #93c2da; --azure-ink: #a7d0e4; --azure-wash: #212c34;
+    --line: #362f41;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--body-ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.8;
+    -webkit-text-size-adjust: 100%;
+  }
+  .page { max-width: 620px; margin: 0 auto; padding-left: 16px; padding-right: 16px; padding-block: 0 64px; }
+
+  /* ---- intro ---- */
+  .intro { padding-block: 34px 22px; }
+  .eyebrow {
+    font-family: var(--label); font-size: 14px; letter-spacing: .26em;
+    text-transform: uppercase; color: var(--lav-ink); margin: 0 0 10px;
+  }
+  h1 {
+    font-family: var(--display); font-size: clamp(24px, 6vw, 31px); font-weight: 700;
+    line-height: 1.5; color: var(--ink); margin: 0; letter-spacing: .01em;
+  }
+  .intro .use {
+    margin: 16px 0 0; padding: 14px 16px; border-radius: 4px;
+    background: var(--lav-wash); font-size: 14px; color: var(--body-ink);
+  }
+  .intro .use b { font-family: var(--display); color: var(--ink); }
+  .draft {
+    margin: 14px 0 0; font-size: 12.5px; color: var(--pink-ink);
+    border: 1px dashed var(--pink); border-radius: 4px; padding: 10px 14px;
+  }
+
+  /* ---- sticky status ---- */
+  .status {
+    position: sticky; top: 0; z-index: 5;
+    background: var(--ground);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .verdict {
+    font-family: var(--display); font-weight: 700; font-size: 15px;
+    padding: 5px 14px; border-radius: 999px; border: 1px solid var(--pink);
+    color: var(--pink-ink); background: var(--pink-wash); white-space: nowrap;
+  }
+  .verdict.ok { border-color: var(--azure); color: var(--azure-ink); background: var(--azure-wash); }
+  .count { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .count b { color: var(--ink); font-family: var(--display); font-size: 16px; }
+  .reset {
+    margin-left: auto; font-family: var(--body); font-size: 12.5px;
+    border: 1px solid var(--line); background: var(--paper); color: var(--muted);
+    border-radius: 999px; padding: 6px 16px; cursor: pointer; min-height: 34px;
+  }
+  .reset:hover { border-color: var(--lav); color: var(--lav-ink); }
+  .reset:focus-visible, input:focus-visible + .box { outline: 2px solid var(--lav); outline-offset: 2px; }
+
+  /* ---- groups ---- */
+  .grp { margin-top: 30px; }
+  .grp-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .grp-letter {
+    font-family: var(--label); font-size: 22px; line-height: 1;
+    color: var(--lav); width: 20px; flex: none;
+  }
+  .grp h2 {
+    font-family: var(--display); font-size: 17px; font-weight: 700;
+    color: var(--ink); margin: 0; line-height: 1.5;
+  }
+  .grp h2 small { display: block; font-family: var(--body); font-size: 12px; font-weight: 400; color: var(--muted); letter-spacing: .04em; }
+  .grp-note {
+    margin: 10px 0 0 30px; font-size: 12.5px; color: var(--muted);
+    border-left: 2px solid var(--line); padding-left: 12px;
+  }
+  .grp-note b { color: var(--pink-ink); }
+
+  ul.items { list-style: none; margin: 12px 0 0; padding: 0; }
+  ul.items li { border-top: 1px solid var(--line); }
+  ul.items li:last-child { border-bottom: 1px solid var(--line); }
+  label.item {
+    display: grid; grid-template-columns: 26px 1fr; gap: 14px;
+    align-items: start; padding: 14px 2px; min-height: 48px; cursor: pointer;
+  }
+  label.item input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .box {
+    width: 24px; height: 24px; margin-top: 2px; border-radius: 4px;
+    border: 1.5px solid var(--lav); background: var(--paper);
+    position: relative; flex: none;
+  }
+  input:checked + .box { background: var(--azure); border-color: var(--azure); }
+  input:checked + .box::after {
+    content: ""; position: absolute; left: 7px; top: 3px;
+    width: 7px; height: 12px; border: solid var(--paper);
+    border-width: 0 2.5px 2.5px 0; transform: rotate(45deg);
+  }
+  .txt { font-size: 14.5px; color: var(--body-ink); }
+  input:checked ~ .txt { color: var(--muted); }
+  .txt .idx {
+    font-family: var(--label); font-size: 13px; letter-spacing: .06em;
+    color: var(--lav-ink); margin-right: 7px; font-variant-numeric: tabular-nums;
+  }
+  input:checked ~ .txt .idx { color: var(--muted); }
+  .txt strong { color: var(--ink); font-weight: 700; }
+  .txt .sub { display: block; font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+
+  /* ---- final / judge ---- */
+  .final {
+    margin-top: 34px; background: var(--paper); border: 1px solid var(--line);
+    border-left: 4px solid var(--azure); border-radius: 4px; padding: 22px 24px;
+  }
+  .final h2 { font-family: var(--display); font-size: 16.5px; color: var(--ink); margin: 0 0 4px; }
+  .final p.l { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+  .final ol { margin: 0; padding-left: 1.3em; font-size: 14px; }
+  .final li { margin-bottom: 6px; }
+  .final li:last-child { margin-bottom: 0; }
+
+  .judge { margin-top: 20px; display: grid; gap: 10px; }
+  .judge div {
+    border: 1px solid var(--line); border-radius: 4px; padding: 14px 18px;
+    background: var(--paper); font-size: 14px;
+  }
+  .judge .j-go { border-left: 4px solid var(--azure); }
+  .judge .j-no { border-left: 4px solid var(--pink); }
+  .judge .j-ask { border-left: 4px solid var(--lav); }
+  .judge b { font-family: var(--display); color: var(--ink); display: block; margin-bottom: 2px; }
+  .judge .j-no b { color: var(--pink-ink); }
+
+  .disclaimer {
+    margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line);
+    font-size: 12.5px; color: var(--muted);
+  }
+  .disclaimer p { margin: 0 0 6px; }
+  .disclaimer a { color: var(--lav-ink); }
+
+  @media print {
+    body { background: #fff; font-size: 10.5px; line-height: 1.6; }
+    .page { max-width: none; padding: 0; }
+    .status, .reset { display: none; }
+    .grp { margin-top: 16px; page-break-inside: avoid; }
+    label.item { padding: 6px 2px; min-height: 0; }
+    .box { border-color: #999; }
+    input:checked + .box { background: #fff; border-color: #999; }
+    input:checked + .box::after { border-color: #333; }
+    .final, .judge div { page-break-inside: avoid; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="intro">
+    <p class="eyebrow">DigiLab Beauty — Pre-shoot Checklist</p>
+    <h1>動画撮影前チェックリスト</h1>
+    <p class="use"><b>使い方</b>　撮影を始める<strong>前</strong>に、Aから順に確認します。動画は公開後の部分修正ができません。該当しない項目は飛ばしてください。項目には番号（A1、B3…）が付いています。1つでも確認できない項目があれば、それを解消してから撮影します。</p>
+    <p class="draft">本チェックリストは法務顧問の確認前のドラフトです。運用開始前に確認を受けてください。</p>
+  </div>
+
+  <div class="status" role="status" aria-live="polite">
+    <span class="verdict" id="verdict">未確認あり</span>
+    <span class="count"><b id="done">0</b> / <span id="total">0</span> 件</span>
+    <button class="reset" type="button" id="reset">リセット</button>
+  </div>
+
+  <section class="grp">
+    <div class="grp-head"><span class="grp-letter">A</span><h2>撮る内容<small>医薬品医療機器等法（薬機法）</small></h2></div>
+    <ul class="items">
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">A1</span>施術について「<strong>治る</strong>」「<strong>改善する</strong>」「<strong>効果がある</strong>」と<strong>言う場面・テロップの予定がない</strong></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">A2</span>医療行為と誤認させる映像がない<span class="sub">注射器、医療機器、白衣、医師の関与を思わせる演出など</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">A3</span>化粧品・機器の説明が、承認・届出された範囲を超えていない</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">A4</span>ナレーション台本に、悩みの解消を断定する言い回しがない<span class="sub">「必ず」「確実に」「〇〇がなくなる」など</span></span></label></li>
+    </ul>
+    <p class="grp-note">エステティックの施術は医療行為ではありません。医療を思わせる映像・語彙は使いません。</p>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><span class="grp-letter">B</span><h2>ビフォーアフター<small>景品表示法</small></h2></div>
+    <ul class="items">
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B1</span>撮影条件を<strong>統一できる</strong><span class="sub">照明・角度・距離・メイクの有無・時間帯を前後で揃える</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B2</span>加工・フィルター・美肌補正を<strong>オフにできる</strong></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B3</span>「個人差があります」等の注記を、<strong>スマホの実機で読める大きさと長さ</strong>で画面に出せる<span class="sub">打消し表示。小さすぎる・短すぎる表示は表示していないものと扱われ得ます</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B4</span>1回の施術の変化か、複数回の結果かを明示できる</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">B5</span>施術回数・期間・併用したホームケアを<strong>記録に残す</strong><span class="sub">後から根拠を示せるようにする</span></span></label></li>
+    </ul>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><span class="grp-letter">C</span><h2>体験談・口コミ<small>景品表示法／ステルスマーケティング規制</small></h2></div>
+    <ul class="items">
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">C1</span>投稿を<strong>依頼するかどうか</strong>を確認した<span class="sub">依頼する場合、責任はサロン側にあります</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">C2</span>依頼・金銭・商品・施術の無償提供がある場合、「広告」「PR」等の表示を<strong>動画内と投稿文の両方</strong>に入れる<span class="sub">冒頭で分かる位置に置く</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">C3</span>お客様の感想を、<strong>代表的な結果と誤認させない</strong>構成にしている</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">C4</span>スタッフ・関係者が一般のお客様を装って出演していない</span></label></li>
+    </ul>
+    <p class="grp-note"><b>最も誤解される点</b>　規制対象は広告主（サロン）です。依頼を受けて投稿したインフルエンサーは規制の対象外とされています。「本人が勝手に言った」では免れません。</p>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><span class="grp-letter">D</span><h2>映る人<small>個人情報保護法／肖像権</small></h2></div>
+    <ul class="items">
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D1</span>お客様が映る場合、撮影と公開について<strong>記録の残る形で同意</strong>を得た<span class="sub">書面・アプリ・メールなど、後から確認できる形</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D2</span>同意の範囲を本人と確認した<span class="sub">掲載する媒体／掲載期間／二次利用の可否／削除依頼の窓口</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D3</span>施術部位や肌の状態が映る場合、本人が特定される範囲を確認した</span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D4</span>背景に<strong>映ってはいけないもの</strong>がない<span class="sub">他のお客様、カルテ、予約表、PCやタブレットの画面、氏名の掲示</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">D5</span>出演するスタッフ本人の同意を得た<span class="sub">退職後の取り扱いも決めておく</span></span></label></li>
+    </ul>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><span class="grp-letter">E</span><h2>音源・素材<small>著作権</small></h2></div>
+    <ul class="items">
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">E1</span>使用する楽曲が、<strong>その媒体で商用利用できる</strong>許諾範囲にある<span class="sub">SNSアプリ内の音源は、商用利用の可否が媒体ごとに異なります</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">E2</span>他社の動画・画像・ロゴ・文章を無断で使っていない</span></label></li>
+    </ul>
+  </section>
+
+  <section class="grp">
+    <div class="grp-head"><span class="grp-letter">F</span><h2>AIを使う場合<small>当団体のAI活用ガバナンス方針</small></h2></div>
+    <ul class="items">
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">F1</span>AIで生成・加工した映像や音声を使う場合、<strong>その旨を表示する</strong></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">F2</span>AIが作成したナレーション台本・テロップを、撮影前に<strong>人が確認した</strong><span class="sub">Aの薬機法・Bの打消し表示の観点で読み直す</span></span></label></li>
+      <li><label class="item"><input type="checkbox"><span class="box"></span><span class="txt"><span class="idx">F3</span>お客様の顔・肌の画像を外部のAIサービスに入力していない</span></label></li>
+    </ul>
+  </section>
+
+  <div class="final">
+    <h2>撮影後・公開前の最終確認</h2>
+    <p class="l">ここだけは公開直前にもう一度見ます。3点です。</p>
+    <ol>
+      <li>打消し表示が、<strong>実機のスマホで読める</strong>か</li>
+      <li>PR表示が、<strong>冒頭で</strong>分かるか</li>
+      <li>背景に映ってはいけないものが映っていないか</li>
+    </ol>
+  </div>
+
+  <div class="judge">
+    <div class="j-go"><b>すべて確認できた</b>撮影を開始します。</div>
+    <div class="j-no"><b>確認できない項目がある</b>その項目を解消してから撮影します。撮影後には直せません。</div>
+    <div class="j-ask"><b>判断に迷う</b>撮影を止めて、当団体または法務担当に確認します。迷ったまま撮らないこと。</div>
+  </div>
+
+  <div class="disclaimer">
+    <p>本チェックリストは美容業界の実務者向けの教育目的の資料であり、個別の法的助言ではありません。最終的な表示の可否は、所管官庁の公表資料および専門家の確認をもって判断してください。</p>
+    <p>ステルスマーケティング規制の責任主体については、消費者庁「令和5年10月1日からステルスマーケティングは景品表示法違反となります」および同「ステルスマーケティングに関するQ&amp;A」を参照（<a href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/stealth_marketing">消費者庁</a>）。</p>
+    <p>一般社団法人デジラボビューティ（DigiLab Beauty）　第1版ドラフト・法務確認前</p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('ul.items input[type="checkbox"]'));
+  var doneEl = document.getElementById('done');
+  var totalEl = document.getElementById('total');
+  var verdict = document.getElementById('verdict');
+  totalEl.textContent = boxes.length;
+
+  function paint() {
+    var n = boxes.filter(function (b) { return b.checked; }).length;
+    doneEl.textContent = n;
+    var all = n === boxes.length;
+    verdict.textContent = all ? '撮影できます' : '未確認あり';
+    verdict.classList.toggle('ok', all);
+  }
+  boxes.forEach(function (b, i) {
+    b.id = b.id || 'chk' + i;
+    b.addEventListener('change', paint);
+  });
+  document.getElementById('reset').addEventListener('click', function () {
+    boxes.forEach(function (b) { b.checked = false; });
+    paint();
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  });
+  paint();
+})();
+</script>
+
+</body>
+</html>
