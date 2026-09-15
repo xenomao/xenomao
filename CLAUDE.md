@@ -38,6 +38,14 @@
 - 公開URL: https://xenomao.github.io/xenomao/shindan/
 - 全10問・約2分のセルフ診断
 
+### サロン・セルフチェック(経営6軸)
+
+- 配信: `public/selfcheck/index.html` / 本体: `marketing/digilab_beauty_self_check.html`(内容は同一。更新時は両方を同期すること)
+- 公開URL: https://xenomao.github.io/xenomao/selfcheck/
+- 全18問・約1分。DQSをもとに集客／リピート／単価・指名／時間・運営／発信・口コミ／数字・経営の6軸で自己評価を整理する
+- AI活用度診断(`/shindan/`)とは別物。あちらはAI活用レベル、こちらは経営全般の現在地
+- 結果画面のCTAは新規向けの「友だち追加」型。既存の公式LINE友だちへ配信する際は、配信文側で「結果のスクショを送ってください」と案内すること
+
 ### 成果物一覧
 
 - 全成果物(公開URL・ガイドライン・ツール・アプリ・販促資料)の棚卸しは `docs/asset_inventory.md` を参照

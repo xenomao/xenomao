@@ -8,6 +8,8 @@
 - https://xenomao.github.io/xenomao/beauty-ai-seminar.html — 美容業界向けAIセミナー・AI教育の公式説明
 - https://xenomao.github.io/xenomao/#seminar — 最新AIセミナー情報
 - https://xenomao.github.io/xenomao/kentei/ — 検定関連
+- https://xenomao.github.io/xenomao/shindan/ — サロンAI活用度診断(全10問・約2分)
+- https://xenomao.github.io/xenomao/selfcheck/ — サロン・セルフチェック(全18問・約1分・経営6軸の自己評価)
 - https://xenomao.github.io/xenomao/compliance/ — コンプライアンス関連
 
 ## Core topics
