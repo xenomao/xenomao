@@ -2,600 +2,1015 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>サロン・セルフチェック|全18問・約1分|デジラボビューティ</title>
-<meta name="description" content="全18問・約1分で、あなたのサロンの「現在地」を6軸で整理。集客・リピート・単価・指名・時間・運営・発信・口コミ・数字・経営の軸ごとに強みと伸びしろが見えるセルフチェックです。無料・会員登録不要。">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f6fc">
+<title>サロン経営セルフチェック｜全18問・約1分｜一般社団法人デジラボビュティ</title>
+<meta name="description" content="全18問・約1分で、サロン経営の現在地を6つの軸で整理。集客・リピート・単価・指名・時間・運営・発信・口コミ・数字・経営の強みと伸びしろが見える、無料・登録不要のセルフチェックです。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="サロン・セルフチェック|あなたのサロンの「現在地」が1分でわかる">
-<meta property="og:description" content="全18問・約1分。6軸で今の自店を整理し、次の一歩を決めるための地図をつくります。無料・会員登録不要。一般社団法人デジラボビューティ提供。">
+<meta property="og:title" content="サロン経営セルフチェック｜あなたのサロンの現在地が1分でわかる">
+<meta property="og:description" content="全18問・約1分。サロン経営を6つの軸で整理し、次に取り組む一歩を見つけます。無料・登録不要。一般社団法人デジラボビュティ提供。">
 <meta property="og:url" content="https://xenomao.github.io/xenomao/selfcheck/">
-<meta property="og:site_name" content="Digilab beauty">
+<meta property="og:site_name" content="DigiLab Beauty">
 <meta name="twitter:card" content="summary">
 <link rel="canonical" href="https://xenomao.github.io/xenomao/selfcheck/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink:        #1f2540;
-    --ink-soft:   #4a5170;
-    --ink-mute:   #6b7290;
-    --line:       #e4e6f0;
-    --accent:     #2f3566;
-    --accent-2:   #6a30e0;
-    --cta-from:   #00c4cc;
-    --cta-mid:    #4f57f0;
-    --cta-to:     #8b3dff;
-    --bg:         #f6f5fb;
-    --card:       #ffffff;
-    --chip-bg:    #fbfbff;
+    --ink: #1b2037;
+    --ink-soft: #4d536d;
+    --ink-mute: #737991;
+    --line: #e5e5ef;
+    --line-strong: #d7d5e8;
+    --accent: #6156d9;
+    --accent-dark: #4338a9;
+    --accent-soft: #f0eefe;
+    --mint: #19b9b2;
+    --mint-soft: #eafafa;
+    --bg: #f7f6fc;
+    --card: rgba(255,255,255,.96);
+    --shadow: 0 26px 70px -36px rgba(40,34,100,.34);
+    --radius: 24px;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 36px 18px max(28px, env(safe-area-inset-bottom));
     color: var(--ink-soft);
     background:
-      radial-gradient(1200px 500px at 50% -10%, #efeefb 0%, transparent 60%),
+      radial-gradient(900px 420px at 8% -8%, rgba(92,215,209,.16), transparent 62%),
+      radial-gradient(900px 460px at 92% 0%, rgba(128,99,229,.16), transparent 60%),
       var(--bg);
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
-    line-height: 1.8;
-    display: flex;
-    justify-content: center;
-    padding: 48px 20px;
-    min-height: 100vh;
+    text-rendering: optimizeLegibility;
   }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  button { font: inherit; }
+  .wrap { width: min(100%, 760px); margin: 0 auto; }
 
-  .wrap { width: 100%; max-width: 720px; }
-
-  .brand { text-align: center; margin-bottom: 26px; }
+  .brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 20px;
+    color: inherit;
+    text-decoration: none;
+  }
+  .brand__mark {
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(97,86,217,.2);
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, #fff, #f1efff);
+    box-shadow: 0 10px 28px -18px rgba(67,56,169,.8);
+  }
+  .brand__mark::before {
+    content: '';
+    width: 17px;
+    height: 17px;
+    border-radius: 5px 10px 6px 10px;
+    background: linear-gradient(135deg, var(--mint), var(--accent));
+    transform: rotate(14deg);
+  }
+  .brand__copy { line-height: 1.1; }
   .brand__name {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-weight: 600;
-    font-size: 30px; color: var(--accent); letter-spacing: .5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: .09em;
+    color: var(--ink);
   }
   .brand__sub {
-    margin-top: 6px; font-size: 11px; letter-spacing: .42em;
-    color: var(--ink-mute); font-weight: 500;
+    display: block;
+    margin-top: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .24em;
+    color: var(--ink-mute);
   }
 
   .card {
+    overflow: hidden;
+    padding: 48px 48px 38px;
+    border: 1px solid rgba(223,222,237,.9);
+    border-radius: var(--radius);
     background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 22px;
-    padding: 48px 46px 40px;
-    box-shadow: 0 24px 60px -28px rgba(31,37,64,.28);
-    text-align: center;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
   }
-
-  /* 画面切替 */
   .screen { display: none; }
-  .screen.is-active { display: block; animation: fade .35s ease; }
-  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-
-  .eyebrow {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-weight: 600;
-    font-size: 17px; letter-spacing: .22em;
-    color: var(--accent-2); margin-bottom: 14px;
+  .screen.is-active { display: block; animation: screen-in .28s ease both; }
+  @keyframes screen-in {
+    from { opacity: 0; transform: translateY(7px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
+  .intro-badge,
+  .axis-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 12px;
+    border: 1px solid #ddd9fb;
+    border-radius: 999px;
+    color: var(--accent-dark);
+    background: #f7f5ff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .03em;
+  }
+  .intro-badge::before,
+  .axis-badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mint), var(--accent));
+    box-shadow: 0 0 0 4px rgba(97,86,217,.08);
+  }
+  .intro { text-align: center; }
   h1 {
-    font-size: 33px; line-height: 1.42; font-weight: 900;
-    color: var(--ink); letter-spacing: .01em;
+    margin: 20px 0 0;
+    color: var(--ink);
+    font-size: clamp(29px, 5vw, 40px);
+    font-weight: 800;
+    letter-spacing: -.035em;
+    line-height: 1.35;
   }
-  h1 .em { color: var(--accent-2); }
-  h1 .min { font-size: .82em; }
-
+  h1 .em {
+    color: var(--accent-dark);
+    background: linear-gradient(transparent 72%, rgba(92,215,209,.28) 0);
+  }
   .lead {
-    margin: 22px auto 0; max-width: 540px;
-    font-size: 14.5px; color: var(--ink-soft); text-align: left;
+    max-width: 560px;
+    margin: 20px auto 0;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    text-align: left;
   }
-  .lead .note { color: var(--ink); font-weight: 700; }
+  .lead strong { color: var(--ink); }
 
   .meta {
-    display: flex; justify-content: center; align-items: stretch;
-    margin: 30px auto 4px; max-width: 460px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 28px auto 0;
   }
-  .meta__item { flex: 1; padding: 4px 8px; }
-  .meta__item + .meta__item { border-left: 1px solid var(--line); }
-  .meta__num { font-size: 17px; font-weight: 700; color: var(--ink); line-height: 1.4; }
-  .meta__label { font-size: 11px; color: var(--ink-mute); letter-spacing: .06em; }
+  .meta__item {
+    min-height: 78px;
+    padding: 14px 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    background: #fcfcff;
+  }
+  .meta__num { color: var(--ink); font-size: 16px; font-weight: 800; line-height: 1.4; }
+  .meta__label { margin-top: 3px; color: var(--ink-mute); font-size: 11px; }
 
   .axes {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 12px; margin: 26px 0 8px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+    margin: 22px 0 0;
   }
   .axis {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 14px 10px; background: var(--chip-bg);
-    border: 1px solid var(--line); border-radius: 12px;
-    font-size: 13.5px; font-weight: 500; color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 9px 8px;
+    border-radius: 12px;
+    color: #505571;
+    background: #f8f8fc;
+    font-size: 12.5px;
+    font-weight: 600;
   }
-  .axis svg { flex: none; color: var(--accent-2); opacity: .9; }
 
-  .cta {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    width: 100%; margin-top: 26px; padding: 18px 28px;
-    background: linear-gradient(120deg, var(--cta-from) 0%, var(--cta-mid) 52%, var(--cta-to) 100%);
-    color: #fff; font-size: 16px; font-weight: 700; letter-spacing: .04em;
-    font-family: inherit; text-decoration: none; border: none; border-radius: 14px;
-    cursor: pointer;
-    box-shadow: 0 16px 30px -10px rgba(99,55,230,.55), 0 6px 14px -8px rgba(0,196,204,.5);
-    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
-  }
-  .cta:hover { transform: translateY(-2px); filter: saturate(1.08) brightness(1.03);
-    box-shadow: 0 24px 40px -10px rgba(99,55,230,.6), 0 8px 18px -8px rgba(0,196,204,.55); }
-  .cta:active { transform: translateY(0); }
-  .cta svg { transition: transform .15s ease; }
-  .cta:hover svg { transform: translateX(3px); }
-
-  .reassure { margin-top: 12px; font-size: 12px; color: var(--ink-mute); }
-  .disclaimer {
-    margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line);
-    font-size: 11.5px; line-height: 1.7; color: var(--ink-mute);
-  }
-  .footer { margin-top: 24px; text-align: center; font-size: 11px; color: var(--ink-mute); letter-spacing: .04em; }
-
-  /* ===== 設問画面 ===== */
-  .quiz-head { text-align: left; }
-  .progress {
-    display: flex; align-items: center; justify-content: space-between;
-    font-size: 12px; color: var(--ink-mute); margin-bottom: 10px;
-  }
-  .progress__axis { font-weight: 700; color: var(--accent-2); }
-  .bar { height: 8px; background: #eceaf7; border-radius: 99px; overflow: hidden; }
-  .bar__fill {
-    height: 100%; width: 0;
-    background: linear-gradient(90deg, var(--cta-from), var(--cta-mid), var(--cta-to));
-    border-radius: 99px; transition: width .35s ease;
-  }
-  .qno { margin-top: 26px; font-size: 13px; color: var(--ink-mute); }
-  .question {
-    margin-top: 8px; font-size: 22px; line-height: 1.5; font-weight: 700;
-    color: var(--ink); text-align: left; min-height: 66px;
-  }
-  .options { display: grid; gap: 12px; margin-top: 26px; }
-  .opt {
-    display: flex; align-items: center; gap: 14px;
-    width: 100%; padding: 16px 18px; text-align: left;
-    background: var(--chip-bg); border: 1.5px solid var(--line);
-    border-radius: 14px; font-family: inherit; font-size: 15px; font-weight: 500;
-    color: var(--ink); cursor: pointer;
-    transition: border-color .15s ease, background .15s ease, transform .1s ease;
-  }
-  .opt:hover { border-color: var(--accent-2); background: #f7f4ff; }
-  .opt:active { transform: scale(.99); }
-  .opt.is-selected { border-color: var(--accent-2); background: #f1ecfe; }
-  .opt__dot {
-    flex: none; width: 20px; height: 20px; border-radius: 50%;
-    border: 2px solid #c9c6e0; position: relative;
-  }
-  .opt.is-selected .opt__dot { border-color: var(--accent-2); }
-  .opt.is-selected .opt__dot::after {
-    content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--accent-2);
-  }
-  .quiz-foot { display: flex; justify-content: space-between; margin-top: 28px; }
-  .ghost-btn {
-    background: none; border: none; font-family: inherit; font-size: 14px;
-    color: var(--ink-mute); cursor: pointer; padding: 8px 4px;
-  }
-  .ghost-btn:hover { color: var(--accent-2); }
-  .ghost-btn[disabled] { opacity: 0; pointer-events: none; }
-
-  /* ===== 結果画面 ===== */
-  .result-head { text-align: center; }
-  .result-title { font-size: 26px; font-weight: 900; color: var(--ink); margin-top: 6px; }
-  .radar-wrap { display: flex; justify-content: center; margin: 18px 0 6px; }
-  canvas { max-width: 100%; }
-  .scores { display: grid; gap: 12px; margin-top: 18px; text-align: left; }
-  .score-row { display: grid; grid-template-columns: 96px 1fr 38px; align-items: center; gap: 12px; }
-  .score-row .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
-  .score-row .track { display: block; height: 10px; background: #eceaf7; border-radius: 99px; overflow: hidden; }
-  .score-row .fill { display: block; height: 100%; width: 0; border-radius: 99px;
-    background: linear-gradient(90deg, var(--cta-from), var(--cta-to)); transition: width .8s ease; }
-  .score-row .pct { font-size: 13px; font-weight: 700; color: var(--accent-2); text-align: right; }
-  .summary {
-    margin-top: 24px; padding: 20px; text-align: left;
-    background: #f7f4ff; border: 1px solid #e7e1fb; border-radius: 14px;
-    font-size: 14px; color: var(--ink-soft);
-  }
-  .summary b { color: var(--accent-2); }
-  .summary .h { display: block; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-
-  /* ===== 会員獲得（リード）導線 ===== */
-  .offer {
-    margin-top: 28px; padding: 30px 26px 26px; text-align: center;
-    background: linear-gradient(180deg, #ffffff 0%, #faf8ff 100%);
-    border: 1.5px solid #e7e1fb; border-radius: 18px;
-    box-shadow: 0 18px 44px -26px rgba(106,48,224,.4);
-  }
-  .offer__eyebrow {
-    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600;
-    font-size: 15px; letter-spacing: .22em; color: var(--accent-2); margin-bottom: 8px;
-  }
-  .offer__title { font-size: 22px; line-height: 1.5; font-weight: 900; color: var(--ink); }
-  .offer__lead {
-    margin: 14px auto 0; max-width: 480px; text-align: left;
-    font-size: 14px; color: var(--ink-soft);
-  }
-  .offer__lead b { color: var(--accent-2); font-weight: 700; }
-  .offer__list {
-    list-style: none; margin: 18px auto 0; max-width: 480px; text-align: left;
-    display: grid; gap: 10px;
-  }
-  .offer__list li {
-    position: relative; padding-left: 30px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.6;
-  }
-  .offer__list li::before {
-    content: ''; position: absolute; left: 0; top: 3px; width: 19px; height: 19px;
-    border-radius: 50%;
-    background:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat,
-      linear-gradient(135deg, var(--cta-from), var(--cta-to));
-  }
-  .offer__list b { color: var(--ink); }
-
-  .lead { margin-top: 22px; }
-  .lead__input {
-    width: 100%; padding: 15px 16px; font-family: inherit; font-size: 15px; color: var(--ink);
-    background: #fff; border: 1.5px solid var(--line); border-radius: 12px; outline: none;
-    transition: border-color .15s ease, box-shadow .15s ease;
-  }
-  .lead__input::placeholder { color: #a9adc4; }
-  .lead__input:focus { border-color: var(--accent-2); box-shadow: 0 0 0 3px rgba(106,48,224,.12); }
-  .lead .cta { margin-top: 12px; }
-  .lead__error { margin-top: 8px; font-size: 12.5px; color: #d6336c; text-align: left; }
-
-  .lead-or {
-    position: relative; margin: 18px 0; font-size: 12px; color: var(--ink-mute);
-  }
-  .lead-or::before, .lead-or::after {
-    content: ''; position: absolute; top: 50%; width: 38%; height: 1px; background: var(--line);
-  }
-  .lead-or::before { left: 0; } .lead-or::after { right: 0; }
+  .primary-btn,
+  .secondary-btn,
   .line-btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    width: 100%; padding: 14px 20px; text-decoration: none;
-    background: #06c755; color: #fff; font-size: 15px; font-weight: 700;
-    border-radius: 12px; transition: filter .15s ease, transform .15s ease;
+    width: 100%;
+    min-height: 56px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 22px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
   }
-  .line-btn:hover { filter: brightness(1.05); }
-  .line-btn--cta {
-    margin-top: 22px; padding: 18px 22px; font-size: 16.5px; letter-spacing: .02em;
-    box-shadow: 0 16px 30px -10px rgba(6,199,85,.55);
+  .primary-btn {
+    margin-top: 26px;
+    border: 0;
+    color: #fff;
+    background: linear-gradient(115deg, #24bdb6 0%, #5961df 55%, #7452d8 100%);
+    box-shadow: 0 16px 30px -14px rgba(80,74,188,.78);
   }
-  .line-btn--cta:hover { transform: translateY(-2px); box-shadow: 0 22px 38px -10px rgba(6,199,85,.6); }
-  .line-btn--cta:active { transform: translateY(0); }
+  .primary-btn:hover { transform: translateY(-2px); box-shadow: 0 22px 36px -14px rgba(80,74,188,.82); }
+  .primary-btn:active { transform: translateY(0); }
+  .secondary-btn {
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    background: #fff;
+  }
+  .secondary-btn:hover { border-color: #bdb7ec; background: #faf9ff; }
+  .btn-arrow { font-size: 20px; line-height: 1; }
+  .microcopy { margin: 12px 0 0; color: var(--ink-mute); font-size: 11.5px; }
+  .privacy-note {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 18px;
+    color: var(--ink-mute);
+    font-size: 11.5px;
+  }
+  .privacy-note svg { flex: none; margin-top: 3px; }
 
-  .lead-done {
-    margin-top: 6px; padding: 22px; text-align: center;
-    background: #f1ecfe; border: 1px solid #e0d6fb; border-radius: 14px;
+  .resume {
+    display: none;
+    margin: 24px 0 0;
+    padding: 16px;
+    border: 1px solid #ddd9fb;
+    border-radius: 15px;
+    background: #f8f6ff;
+    text-align: left;
   }
-  .lead-done__icon {
-    width: 44px; height: 44px; margin: 0 auto 10px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 22px; font-weight: 700;
-    background: linear-gradient(135deg, var(--cta-from), var(--cta-to));
-  }
-  .lead-done__title { font-size: 16px; font-weight: 700; color: var(--ink); }
-  .lead-done__text { margin-top: 6px; font-size: 13.5px; color: var(--ink-soft); }
-  .lead-done__text b { color: var(--accent-2); }
+  .resume.is-visible { display: block; }
+  .resume__title { margin: 0; color: var(--ink); font-size: 14px; font-weight: 700; }
+  .resume__text { margin: 3px 0 12px; color: var(--ink-soft); font-size: 12.5px; }
+  .resume__actions { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+  .resume .primary-btn,
+  .resume .secondary-btn { min-height: 44px; margin: 0; padding: 10px 14px; border-radius: 11px; font-size: 13px; }
 
-  .ghost-btn--center {
-    display: block; margin: 18px auto 0; font-size: 13.5px;
+  .disclaimer {
+    margin: 22px 0 0;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-mute);
+    font-size: 11px;
+    line-height: 1.7;
+    text-align: left;
   }
 
-  @media (max-width: 560px) {
-    .card { padding: 32px 20px 28px; }
-    h1 { font-size: 25px; }
-    .question { font-size: 19px; }
-    .axes { grid-template-columns: repeat(2, 1fr); }
-    .score-row { grid-template-columns: 78px 1fr 34px; }
+  /* Quiz */
+  .quiz-head { position: relative; }
+  .progress-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .progress-copy { color: var(--ink-mute); font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .bar {
+    height: 8px;
+    margin-top: 14px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #eeedf5;
+  }
+  .bar__fill {
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--mint), var(--accent));
+    transition: width .32s ease;
+  }
+  .axis-track {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    margin-top: 9px;
+  }
+  .axis-track span { height: 3px; border-radius: 99px; background: #ebeaf2; transition: background .2s ease; }
+  .axis-track span.is-done { background: #b8ece8; }
+  .axis-track span.is-current { background: var(--accent); }
+
+  .question-wrap { margin-top: 28px; text-align: left; }
+  .qno { margin: 0; color: var(--accent); font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: .09em; }
+  .question {
+    min-height: 70px;
+    margin: 7px 0 0;
+    color: var(--ink);
+    font-size: clamp(19px, 3.5vw, 23px);
+    font-weight: 700;
+    line-height: 1.55;
+    outline: none;
+  }
+  .answer-help { margin: 10px 0 0; color: var(--ink-mute); font-size: 11.5px; }
+  .options { display: grid; gap: 10px; margin-top: 20px; }
+  .opt {
+    width: 100%;
+    min-height: 58px;
+    padding: 13px 15px;
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    display: grid;
+    grid-template-columns: 28px 1fr 22px;
+    align-items: center;
+    gap: 11px;
+    color: var(--ink);
+    background: #fff;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color .15s ease, background-color .15s ease, transform .1s ease;
+  }
+  .opt:hover { border-color: #b8b2ea; background: #fbfaff; }
+  .opt:active { transform: scale(.995); }
+  .opt:disabled { cursor: default; opacity: 1; }
+  .opt__key {
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    color: var(--ink-mute);
+    background: #f2f2f7;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .opt__label { font-size: 14px; font-weight: 600; }
+  .opt__dot {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #c9c7d8;
+    border-radius: 50%;
+    position: relative;
+  }
+  .opt.is-selected { border-color: var(--accent); background: var(--accent-soft); }
+  .opt.is-selected .opt__key { color: #fff; background: var(--accent); }
+  .opt.is-selected .opt__dot { border-color: var(--accent); }
+  .opt.is-selected .opt__dot::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .quiz-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .text-btn {
+    min-height: 44px;
+    padding: 8px 3px;
+    border: 0;
+    color: var(--ink-mute);
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .text-btn:hover { color: var(--accent-dark); }
+  .autosave { color: var(--ink-mute); font-size: 10.5px; }
+
+  /* Results */
+  .result-head { text-align: center; }
+  .eyebrow {
+    margin: 0;
+    color: var(--accent);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .15em;
+  }
+  .result-title { margin: 6px 0 0; color: var(--ink); font-size: clamp(24px, 4vw, 30px); font-weight: 800; }
+  .result-lead { margin: 7px 0 0; color: var(--ink-mute); font-size: 12.5px; }
+  .result-overview {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    gap: 18px;
+    align-items: center;
+    margin-top: 24px;
+    padding: 18px;
+    border: 1px solid #e4e1fa;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #faf9ff, #f5fffe);
+    text-align: left;
+  }
+  .average {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    background:
+      radial-gradient(circle at center, #fff 61%, transparent 62%),
+      conic-gradient(var(--accent) var(--average, 0%), #e8e7f1 0);
+    box-shadow: inset 0 0 0 1px rgba(97,86,217,.08);
+  }
+  .average__num { color: var(--ink); font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 600; line-height: 1; }
+  .average__num small { font-size: 13px; }
+  .average__label { margin-top: 5px; color: var(--ink-mute); font-size: 10px; }
+  .overview__label { margin: 0; color: var(--ink-mute); font-size: 11px; font-weight: 700; }
+  .overview__title { margin: 3px 0 0; color: var(--ink); font-size: 19px; font-weight: 800; line-height: 1.45; }
+  .overview__text { margin: 7px 0 0; color: var(--ink-soft); font-size: 12.5px; }
+
+  .radar-wrap { display: flex; justify-content: center; margin: 22px 0 4px; overflow: hidden; }
+  canvas { display: block; max-width: 100%; height: auto; }
+  .scores { display: grid; gap: 12px; margin-top: 14px; text-align: left; }
+  .score-row { display: grid; grid-template-columns: 94px 1fr 38px; align-items: center; gap: 11px; }
+  .score-row .name { color: var(--ink); font-size: 12.5px; font-weight: 700; }
+  .score-row .track { display: block; height: 9px; overflow: hidden; border-radius: 99px; background: #ecebf3; }
+  .score-row .fill { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--mint), var(--accent)); transition: width .7s ease; }
+  .score-row .pct { color: var(--accent-dark); font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600; text-align: right; }
+
+  .insights { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
+  .insight {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+    background: #fcfcff;
+    text-align: left;
+  }
+  .insight--priority { border-color: #d9d5fb; background: #f8f6ff; }
+  .insight__label { margin: 0; color: var(--ink-mute); font-size: 10.5px; font-weight: 700; }
+  .insight__value { margin: 3px 0 0; color: var(--ink); font-size: 15px; font-weight: 800; }
+
+  .action-card {
+    margin-top: 12px;
+    padding: 20px;
+    border: 1px solid #cceeea;
+    border-radius: 16px;
+    background: var(--mint-soft);
+    text-align: left;
+  }
+  .action-card__label { margin: 0; color: #117f7a; font-size: 11px; font-weight: 800; letter-spacing: .05em; }
+  .action-card__title { margin: 5px 0 0; color: var(--ink); font-size: 17px; font-weight: 800; line-height: 1.55; }
+  .action-card__text { margin: 7px 0 0; color: var(--ink-soft); font-size: 12.5px; }
+
+  .offer {
+    margin-top: 26px;
+    padding: 25px 22px;
+    border: 1px solid #dfdcf6;
+    border-radius: 18px;
+    background: linear-gradient(155deg, #fff 0%, #f8f6ff 100%);
+    text-align: center;
+  }
+  .offer__eyebrow { margin: 0; color: var(--accent); font-family: 'Poppins', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .14em; }
+  .offer__title { margin: 6px 0 0; color: var(--ink); font-size: 20px; font-weight: 800; line-height: 1.5; }
+  .offer__lead { margin: 10px auto 0; max-width: 500px; color: var(--ink-soft); font-size: 13px; text-align: left; }
+  .line-btn {
+    margin-top: 18px;
+    border: 0;
+    color: #fff;
+    background: #06c755;
+    box-shadow: 0 15px 28px -15px rgba(6,154,66,.8);
+  }
+  .line-btn:hover { transform: translateY(-2px); background: #05b94e; }
+  .result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+  .result-actions .secondary-btn { min-height: 48px; padding: 11px 12px; font-size: 12.5px; }
+  .status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  .footer {
+    margin: 20px 0 0;
+    color: var(--ink-mute);
+    font-size: 10.5px;
+    text-align: center;
+    line-height: 1.7;
+  }
+  .footer a { color: inherit; text-underline-offset: 3px; }
+
+  :focus-visible { outline: 3px solid rgba(97,86,217,.28); outline-offset: 3px; }
+
+  @media (max-width: 600px) {
+    body { padding: 18px 10px max(20px, env(safe-area-inset-bottom)); }
+    .brand { margin-bottom: 14px; }
+    .brand__mark { width: 34px; height: 34px; }
+    .brand__name { font-size: 16px; }
+    .card { padding: 30px 18px 24px; border-radius: 20px; }
+    .lead { font-size: 13.5px; }
+    .meta { gap: 7px; }
+    .meta__item { min-height: 72px; padding: 12px 5px 9px; }
+    .meta__num { font-size: 14px; }
+    .axes { grid-template-columns: repeat(2, 1fr); gap: 7px; }
+    .axis { min-height: 40px; font-size: 11.5px; }
+    .question-wrap { margin-top: 23px; }
+    .question { min-height: 66px; }
+    .opt { min-height: 55px; padding: 11px 13px; }
+    .result-overview { grid-template-columns: 96px 1fr; gap: 12px; padding: 15px; }
+    .average { width: 88px; height: 88px; }
+    .average__num { font-size: 23px; }
+    .overview__title { font-size: 16px; }
+    .score-row { grid-template-columns: 78px 1fr 35px; gap: 8px; }
+    .score-row .name { font-size: 11.5px; }
+    .insights, .result-actions { grid-template-columns: 1fr; }
+    .offer { padding: 22px 17px; }
+    .resume__actions { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+
+  @media print {
+    body { padding: 0; background: #fff; }
+    .brand, #screen-intro, #screen-quiz, .offer, .result-actions, #btn-restart, .footer { display: none !important; }
+    .card { border: 0; box-shadow: none; padding: 0; }
+    #screen-result { display: block !important; }
+    .radar-wrap { break-inside: avoid; }
   }
 </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="brand">
-      <div class="brand__name">DigiLab Beauty</div>
-      <div class="brand__sub">SALON SELF-CHECK</div>
-    </header>
+    <a class="brand" href="https://digilabbeauty.jp/" aria-label="一般社団法人デジラボビュティ公式サイトへ">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__copy">
+        <span class="brand__name">DigiLab Beauty</span>
+        <span class="brand__sub">SALON SELF-CHECK</span>
+      </span>
+    </a>
 
-    <main class="card">
-      <!-- 画面1：イントロ -->
-      <section class="screen is-active" id="screen-intro">
-        <p class="eyebrow">WHERE ARE YOU NOW?</p>
-        <h1>あなたのサロンの<span class="em">「現在地」</span>を、<br><span class="min">たった</span>1分で。</h1>
+    <main class="card" id="main-content">
+      <section class="screen is-active intro" id="screen-intro" aria-labelledby="intro-title">
+        <span class="intro-badge">サロン経営の現在地を可視化</span>
+        <h1 id="intro-title">あなたのサロンの<span class="em">「現在地」</span>を、<br>たった1分で。</h1>
         <p class="lead">
-          これまで、サロンの状態を客観的に映す<span class="note">“ものさし”</span>はありませんでした。
-          デジラボビューティの評価のしくみ（DQS）をもとに、6つの軸で今の自店を整理します。
-          優劣をつけるものではなく、<span class="note">次の一歩を考えるための地図</span>です。
+          18の質問に答えると、サロン経営を<strong>6つの軸</strong>で整理できます。
+          優劣をつける診断ではなく、強みと伸びしろを見つけて、<strong>次の一歩を決めるための地図</strong>です。
         </p>
-        <div class="meta">
+
+        <div class="meta" aria-label="セルフチェックの概要">
           <div class="meta__item"><div class="meta__num">無料</div><div class="meta__label">登録不要</div></div>
           <div class="meta__item"><div class="meta__num">約1分</div><div class="meta__label">所要時間</div></div>
           <div class="meta__item"><div class="meta__num">全18問</div><div class="meta__label">選ぶだけ</div></div>
         </div>
-        <div class="axes">
-          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>集客</div>
-          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>リピート</div>
-          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>単価・指名</div>
-          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>時間・運営</div>
-          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>発信・口コミ</div>
-          <div class="axis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>数字・経営</div>
-        </div>
-        <button class="cta" id="btn-start" type="button">
-          セルフチェックを始める
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </button>
-        <p class="reassure">クレジットカード・会員登録は不要です。</p>
-        <p class="disclaimer">この診断は自己評価を整理するものです。結果は成果や効果を保証・予測するものではありません。</p>
-      </section>
 
-      <!-- 画面2：設問 -->
-      <section class="screen" id="screen-quiz">
-        <div class="quiz-head">
-          <div class="progress">
-            <span class="progress__axis" id="q-axis">集客</span>
-            <span id="q-count">1 / 18</span>
+        <div class="axes" aria-label="確認する6つの軸">
+          <div class="axis">集客</div>
+          <div class="axis">リピート</div>
+          <div class="axis">単価・指名</div>
+          <div class="axis">時間・運営</div>
+          <div class="axis">発信・口コミ</div>
+          <div class="axis">数字・経営</div>
+        </div>
+
+        <div class="resume" id="resume-box" aria-live="polite">
+          <p class="resume__title">前回の続きがあります</p>
+          <p class="resume__text" id="resume-text">回答途中のデータがこの端末に保存されています。</p>
+          <div class="resume__actions">
+            <button class="primary-btn" id="btn-continue" type="button">続きから再開</button>
+            <button class="secondary-btn" id="btn-new" type="button">最初から</button>
           </div>
-          <div class="bar"><div class="bar__fill" id="q-bar"></div></div>
         </div>
-        <p class="qno" id="q-no">Q1</p>
-        <p class="question" id="q-text">—</p>
-        <div class="options" id="q-options"></div>
+
+        <button class="primary-btn" id="btn-start" type="button">
+          無料でセルフチェックを始める
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+        <p class="microcopy">回答を選ぶだけ。氏名やメールアドレスの入力はありません。</p>
+        <p class="privacy-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          回答内容は外部へ送信せず、この端末内だけに一時保存します。
+        </p>
+        <p class="disclaimer">このセルフチェックは自己評価を整理するもので、経営成果や効果を保証・予測するものではありません。</p>
+      </section>
+
+      <section class="screen" id="screen-quiz" aria-labelledby="q-text" aria-hidden="true">
+        <div class="quiz-head">
+          <div class="progress-row">
+            <span class="axis-badge" id="q-axis">集客</span>
+            <span class="progress-copy" id="q-count">1 / 18 ・ 残り17問</span>
+          </div>
+          <div class="bar" id="q-progress" role="progressbar" aria-label="回答の進み具合" aria-valuemin="0" aria-valuemax="18" aria-valuenow="1">
+            <div class="bar__fill" id="q-bar"></div>
+          </div>
+          <div class="axis-track" id="axis-track" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="question-wrap">
+          <p class="qno" id="q-no">QUESTION 01</p>
+          <p class="question" id="q-text" tabindex="-1">—</p>
+          <p class="answer-help">今の状態に一番近いものを選んでください。選ぶと次へ進みます。</p>
+        </div>
+        <div class="options" id="q-options" aria-label="回答の選択肢"></div>
         <div class="quiz-foot">
-          <button class="ghost-btn" id="btn-back" type="button">← 戻る</button>
-          <span></span>
+          <button class="text-btn" id="btn-back" type="button">← 前の質問</button>
+          <span class="autosave">回答は自動保存</span>
         </div>
       </section>
 
-      <!-- 画面3：結果 -->
-      <section class="screen" id="screen-result">
+      <section class="screen" id="screen-result" aria-labelledby="result-title" aria-hidden="true">
         <div class="result-head">
           <p class="eyebrow">YOUR CURRENT MAP</p>
-          <p class="result-title">あなたのサロンの現在地</p>
+          <h2 class="result-title" id="result-title" tabindex="-1">あなたのサロンの現在地</h2>
+          <p class="result-lead">点数の高低よりも「次にどこから整えるか」を見るための結果です。</p>
         </div>
-        <div class="radar-wrap"><canvas id="radar" width="420" height="360"></canvas></div>
-        <div class="scores" id="score-list"></div>
-        <div class="summary" id="summary"></div>
 
-        <!-- 会員獲得（リード）導線 -->
+        <div class="result-overview">
+          <div class="average" id="average-ring">
+            <span class="average__num"><span id="average-value">0</span><small>%</small></span>
+            <span class="average__label">6軸の平均</span>
+          </div>
+          <div>
+            <p class="overview__label">最初に整えたい軸</p>
+            <p class="overview__title" id="priority-title">—</p>
+            <p class="overview__text">伸びしろが大きいところから、無理のない一歩を始めましょう。</p>
+          </div>
+        </div>
+
+        <div class="radar-wrap">
+          <canvas id="radar" width="420" height="350" role="img" aria-label="6軸の診断結果を示すレーダーチャート">6軸の結果は、この下の一覧でも確認できます。</canvas>
+        </div>
+        <div class="scores" id="score-list" aria-label="6軸のスコア一覧"></div>
+
+        <div class="insights">
+          <div class="insight">
+            <p class="insight__label">現在の強み</p>
+            <p class="insight__value" id="strength-axis">—</p>
+          </div>
+          <div class="insight insight--priority">
+            <p class="insight__label">優先して整える軸</p>
+            <p class="insight__value" id="priority-axis">—</p>
+          </div>
+        </div>
+
+        <div class="action-card">
+          <p class="action-card__label">今日からできる小さな一歩</p>
+          <p class="action-card__title" id="action-title">—</p>
+          <p class="action-card__text" id="action-text">—</p>
+        </div>
+
         <div class="offer">
-          <p class="offer__eyebrow">NEXT STEP</p>
-          <h3 class="offer__title">現在地がわかったら、<br>次は「伸ばし方」を。</h3>
+          <p class="offer__eyebrow">NEED SUPPORT?</p>
+          <h3 class="offer__title">ひとりで整理しきれないときは、<br>公式LINEへ。</h3>
           <p class="offer__lead">
-            あなたのいちばんの伸びしろ <b id="offer-axis">時間・運営</b> をはじめ、
-            6軸それぞれの<b>具体的な改善プラン</b>は、デジラボビューティの<b>無料会員</b>に公開しています。
+            結果をスクリーンショットしてお送りいただくと、相談がスムーズです。
+            セミナーや会員制度など、一般社団法人デジラボビュティの最新案内も公式LINEでご確認いただけます。
           </p>
-          <ul class="offer__list">
-            <li>軸ごとの「次の一歩」と優先順位がわかる<b>診断レポート（PDF）</b></li>
-            <li>サロン専門家への<b>無料オンライン相談</b>（30分）</li>
-            <li>成功事例・すぐ使える<b>テンプレート集</b></li>
-          </ul>
-
-          <a class="line-btn line-btn--cta" id="line-btn" href="https://lin.ee/O8g2Egp" target="_blank" rel="noopener">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.58 7.39 8.42 8.02.33.07.78.22.89.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.1-.46 5.9-3.48 8.05-5.96C21.4 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
-            LINEで無料の改善プランを受け取る
+          <a class="line-btn" id="line-btn" href="https://lin.ee/PD33ryL" target="_blank" rel="noopener">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.58 7.39 8.42 8.02.33.07.78.22.89.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.1-.46 5.9-3.48 8.05-5.96C21.4 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
+            公式LINEで相談・案内を見る
           </a>
-          <p class="reassure">友だち追加は無料。診断レポートをLINEでお届けします。いつでもブロックできます。</p>
+          <p class="microcopy">LINEの友だち追加は無料です。</p>
         </div>
 
-        <button class="ghost-btn ghost-btn--center" id="btn-restart" type="button">↻ もう一度チェックする</button>
-        <p class="disclaimer">この診断は自己評価を整理するものです。結果は成果や効果を保証・予測するものではありません。</p>
+        <div class="result-actions">
+          <button class="secondary-btn" id="btn-print" type="button">結果を印刷・PDF保存</button>
+          <button class="secondary-btn" id="btn-restart" type="button">もう一度チェックする</button>
+        </div>
+        <p class="disclaimer">このセルフチェックは自己評価を整理するもので、経営成果や効果を保証・予測するものではありません。</p>
       </section>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
     </main>
 
-    <p class="footer">一般社団法人デジラボビューティ ／ DigiLab Beauty · Salon Self-Check</p>
+    <p class="footer">
+      <a href="https://digilabbeauty.jp/">一般社団法人デジラボビュティ</a><br>
+      DigiLab Beauty · Salon Self-Check
+    </p>
   </div>
 
 <script>
 (function () {
-  "use strict";
+  'use strict';
 
-  var AXES = ["集客", "リピート", "単価・指名", "時間・運営", "発信・口コミ", "数字・経営"];
-
-  // 各軸3問 × 6軸 = 18問
+  var STORAGE_KEY = 'digilab-selfcheck-v2';
+  var AXES = ['集客', 'リピート', '単価・指名', '時間・運営', '発信・口コミ', '数字・経営'];
   var QUESTIONS = [
-    { axis: 0, text: "新規のお客様が「どの経路から来たか」を把握できている" },
-    { axis: 0, text: "毎月の新規客数を、数字で言える" },
-    { axis: 0, text: "集客の手段を複数（紹介・SNS・媒体など）持っている" },
-    { axis: 1, text: "次回予約をその場でご案内する仕組みがある" },
-    { axis: 1, text: "再来率（リピート率）を把握できている" },
-    { axis: 1, text: "来店が途絶えたお客様に、再アプローチしている" },
-    { axis: 2, text: "平均客単価を把握できている" },
-    { axis: 2, text: "追加メニューや店販を、自然に提案できている" },
-    { axis: 2, text: "指名・継続につながる関係づくりができている" },
-    { axis: 3, text: "予約や顧客情報を一元管理できている" },
-    { axis: 3, text: "スタッフの役割分担が明確になっている" },
-    { axis: 3, text: "事務・雑務に追われすぎていない" },
-    { axis: 4, text: "SNSやブログを、定期的に発信できている" },
-    { axis: 4, text: "Googleマップや口コミの評価を意識できている" },
-    { axis: 5, text: "毎月の売上・利益を把握できている" },
-    { axis: 5, text: "目標とする数値（KPI）を決めている" },
-    { axis: 5, text: "数字をもとに、次の打ち手を考えている" },
-    { axis: 4, text: "お客様が思わず紹介したくなる仕掛けがある" }
+    { axis: 0, text: '新規のお客様が「どの経路から来たか」を把握できている' },
+    { axis: 0, text: '毎月の新規客数を、数字で言える' },
+    { axis: 0, text: '集客の手段を複数（紹介・SNS・媒体など）持っている' },
+    { axis: 1, text: '次回予約をその場でご案内する仕組みがある' },
+    { axis: 1, text: '再来率（リピート率）を把握できている' },
+    { axis: 1, text: '来店が途絶えたお客様に、再アプローチしている' },
+    { axis: 2, text: '平均客単価を把握できている' },
+    { axis: 2, text: '追加メニューや店販を、自然に提案できている' },
+    { axis: 2, text: '指名・継続につながる関係づくりができている' },
+    { axis: 3, text: '予約や顧客情報を一元管理できている' },
+    { axis: 3, text: 'スタッフの役割分担が明確になっている' },
+    { axis: 3, text: '事務・雑務に追われすぎていない' },
+    { axis: 4, text: 'SNSやブログを、定期的に発信できている' },
+    { axis: 4, text: 'Googleマップや口コミの評価を意識できている' },
+    { axis: 4, text: 'お客様が思わず紹介したくなる仕掛けがある' },
+    { axis: 5, text: '毎月の売上・利益を把握できている' },
+    { axis: 5, text: '目標とする数値（KPI）を決めている' },
+    { axis: 5, text: '数字をもとに、次の打ち手を考えている' }
   ];
-
   var OPTIONS = [
-    { label: "できている", score: 3 },
-    { label: "まあまあできている", score: 2 },
-    { label: "あまりできていない", score: 1 },
-    { label: "できていない", score: 0 }
+    { key: 'A', label: 'できている', score: 3 },
+    { key: 'B', label: 'まあまあできている', score: 2 },
+    { key: 'C', label: 'あまりできていない', score: 1 },
+    { key: 'D', label: 'できていない', score: 0 }
+  ];
+  var ACTIONS = [
+    { title: '直近10人の「来店経路」を1枚に記録する', text: '紹介・Instagram・Googleマップなど、入口がわかるだけで次の集客投資を決めやすくなります。' },
+    { title: '会計時に伝える「次回来店の目安」を1つ決める', text: 'スタッフ全員が同じ言葉で案内できるよう、短い一文にして共有してみましょう。' },
+    { title: '主力メニューに合う追加提案を1つだけ決める', text: 'すべてを勧めるのではなく、お客様の目的に合う組み合わせを一つ明確にします。' },
+    { title: '毎週繰り返す作業を1つ書き出してテンプレート化する', text: '予約確認や返信文など、小さな定型化から始めると時間を戻しやすくなります。' },
+    { title: 'お客様の声を1件、許可を得て紹介する', text: '誰のどんな悩みに応えたかが伝わる投稿は、次のお客様の安心につながります。' },
+    { title: '売上・客数・客単価を月1回、同じ日に確認する', text: 'まずは3つの数字だけを並べ、前月との差から次の打ち手を一つ決めてみましょう。' }
   ];
 
   var answers = new Array(QUESTIONS.length).fill(null);
   var current = 0;
-
+  var locked = false;
   var screens = {
-    intro:  document.getElementById("screen-intro"),
-    quiz:   document.getElementById("screen-quiz"),
-    result: document.getElementById("screen-result")
+    intro: document.getElementById('screen-intro'),
+    quiz: document.getElementById('screen-quiz'),
+    result: document.getElementById('screen-result')
   };
 
+  function safeLoad() {
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      var saved = JSON.parse(raw);
+      if (!Array.isArray(saved.answers) || saved.answers.length !== QUESTIONS.length) return null;
+      return saved;
+    } catch (e) { return null; }
+  }
+
+  function safeSave() {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers: answers, current: current, updatedAt: Date.now() }));
+    } catch (e) { /* Storage may be unavailable; the check still works. */ }
+  }
+
+  function safeClear() {
+    try { window.localStorage.removeItem(STORAGE_KEY); } catch (e) { /* noop */ }
+  }
+
   function show(name) {
-    Object.keys(screens).forEach(function (k) {
-      screens[k].classList.toggle("is-active", k === name);
+    Object.keys(screens).forEach(function (key) {
+      var active = key === name;
+      screens[key].classList.toggle('is-active', active);
+      screens[key].setAttribute('aria-hidden', active ? 'false' : 'true');
     });
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateResume() {
+    var saved = safeLoad();
+    var answered = saved ? saved.answers.filter(function (value) { return value !== null; }).length : 0;
+    var box = document.getElementById('resume-box');
+    var start = document.getElementById('btn-start');
+    if (saved && answered > 0 && answered < QUESTIONS.length) {
+      box.classList.add('is-visible');
+      document.getElementById('resume-text').textContent = answered + '問まで回答済みです。残り' + (QUESTIONS.length - answered) + '問から再開できます。';
+      start.style.display = 'none';
+    } else {
+      box.classList.remove('is-visible');
+      start.style.display = '';
+    }
+  }
+
+  function startFresh() {
+    current = 0;
+    answers = new Array(QUESTIONS.length).fill(null);
+    safeClear();
+    renderQuestion();
+    show('quiz');
+    focusQuestion();
+  }
+
+  function continueSaved() {
+    var saved = safeLoad();
+    if (!saved) { startFresh(); return; }
+    answers = saved.answers.slice();
+    var firstUnanswered = answers.findIndex(function (value) { return value === null; });
+    current = firstUnanswered >= 0 ? firstUnanswered : Math.min(Number(saved.current) || 0, QUESTIONS.length - 1);
+    renderQuestion();
+    show('quiz');
+    focusQuestion();
+  }
+
+  function focusQuestion() {
+    window.setTimeout(function () { document.getElementById('q-text').focus({ preventScroll: true }); }, 60);
   }
 
   function renderQuestion() {
+    locked = false;
     var q = QUESTIONS[current];
-    document.getElementById("q-axis").textContent = AXES[q.axis];
-    document.getElementById("q-count").textContent = (current + 1) + " / " + QUESTIONS.length;
-    document.getElementById("q-no").textContent = "Q" + (current + 1);
-    document.getElementById("q-text").textContent = q.text;
-    document.getElementById("q-bar").style.width = (current / QUESTIONS.length * 100) + "%";
-    document.getElementById("btn-back").disabled = (current === 0);
+    var remaining = QUESTIONS.length - current - 1;
+    document.getElementById('q-axis').textContent = AXES[q.axis];
+    document.getElementById('q-count').textContent = (current + 1) + ' / ' + QUESTIONS.length + (remaining ? ' ・ 残り' + remaining + '問' : ' ・ 最後の質問');
+    document.getElementById('q-no').textContent = 'QUESTION ' + String(current + 1).padStart(2, '0');
+    document.getElementById('q-text').textContent = q.text;
+    document.getElementById('q-bar').style.width = ((current + 1) / QUESTIONS.length * 100) + '%';
+    document.getElementById('q-progress').setAttribute('aria-valuenow', String(current + 1));
+    document.getElementById('btn-back').textContent = current === 0 ? '← 最初の画面へ' : '← 前の質問';
 
-    var box = document.getElementById("q-options");
-    box.innerHTML = "";
-    OPTIONS.forEach(function (opt, i) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.className = "opt" + (answers[current] === opt.score ? " is-selected" : "");
-      b.innerHTML = '<span class="opt__dot"></span><span>' + opt.label + "</span>";
-      b.addEventListener("click", function () {
-        answers[current] = opt.score;
-        // 選択を見せてから次へ
-        Array.prototype.forEach.call(box.children, function (c) { c.classList.remove("is-selected"); });
-        b.classList.add("is-selected");
-        setTimeout(next, 220);
-      });
-      box.appendChild(b);
+    Array.prototype.forEach.call(document.getElementById('axis-track').children, function (item, index) {
+      item.classList.toggle('is-done', index < q.axis);
+      item.classList.toggle('is-current', index === q.axis);
     });
+
+    var box = document.getElementById('q-options');
+    box.innerHTML = '';
+    OPTIONS.forEach(function (opt) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'opt' + (answers[current] === opt.score ? ' is-selected' : '');
+      button.setAttribute('aria-pressed', answers[current] === opt.score ? 'true' : 'false');
+      button.innerHTML = '<span class="opt__key" aria-hidden="true">' + opt.key + '</span><span class="opt__label">' + opt.label + '</span><span class="opt__dot" aria-hidden="true"></span>';
+      button.addEventListener('click', function () { selectAnswer(opt.score, button, box); });
+      box.appendChild(button);
+    });
+  }
+
+  function selectAnswer(score, button, box) {
+    if (locked) return;
+    locked = true;
+    answers[current] = score;
+    safeSave();
+    Array.prototype.forEach.call(box.children, function (item) {
+      item.classList.remove('is-selected');
+      item.setAttribute('aria-pressed', 'false');
+      item.disabled = true;
+    });
+    button.classList.add('is-selected');
+    button.setAttribute('aria-pressed', 'true');
+    document.getElementById('status').textContent = '回答を保存しました。次の質問へ進みます。';
+    window.setTimeout(next, 320);
   }
 
   function next() {
     if (current < QUESTIONS.length - 1) {
-      current++;
+      current += 1;
+      safeSave();
       renderQuestion();
+      focusQuestion();
     } else {
-      document.getElementById("q-bar").style.width = "100%";
       showResult();
     }
   }
 
   function back() {
-    if (current > 0) { current--; renderQuestion(); }
+    if (locked) return;
+    if (current === 0) {
+      safeSave();
+      show('intro');
+      updateResume();
+      document.getElementById('btn-continue').focus();
+      return;
+    }
+    current -= 1;
+    safeSave();
+    renderQuestion();
+    focusQuestion();
   }
 
   function axisScores() {
-    var sum = [0,0,0,0,0,0], cnt = [0,0,0,0,0,0];
-    QUESTIONS.forEach(function (q, i) {
-      sum[q.axis] += (answers[i] || 0);
-      cnt[q.axis] += 1;
+    var sum = [0, 0, 0, 0, 0, 0];
+    var count = [0, 0, 0, 0, 0, 0];
+    QUESTIONS.forEach(function (q, index) {
+      sum[q.axis] += answers[index] === null ? 0 : answers[index];
+      count[q.axis] += 1;
     });
-    return sum.map(function (s, i) { return Math.round(s / (cnt[i] * 3) * 100); });
+    return sum.map(function (value, index) { return Math.round(value / (count[index] * 3) * 100); });
   }
 
   function showResult() {
     var pct = axisScores();
-    drawRadar(pct);
+    var minIndex = 0;
+    var maxIndex = 0;
+    pct.forEach(function (value, index) {
+      if (value < pct[minIndex]) minIndex = index;
+      if (value > pct[maxIndex]) maxIndex = index;
+    });
+    var average = Math.round(pct.reduce(function (a, b) { return a + b; }, 0) / pct.length);
 
-    var list = document.getElementById("score-list");
-    list.innerHTML = "";
-    pct.forEach(function (p, i) {
-      var row = document.createElement("div");
-      row.className = "score-row";
-      row.innerHTML =
-        '<span class="name">' + AXES[i] + '</span>' +
-        '<span class="track"><span class="fill" style="width:0"></span></span>' +
-        '<span class="pct">' + p + '%</span>';
+    document.getElementById('average-value').textContent = average;
+    document.getElementById('average-ring').style.setProperty('--average', average + '%');
+    document.getElementById('priority-title').textContent = AXES[minIndex];
+    document.getElementById('strength-axis').textContent = AXES[maxIndex] + '（' + pct[maxIndex] + '%）';
+    document.getElementById('priority-axis').textContent = AXES[minIndex] + '（' + pct[minIndex] + '%）';
+    document.getElementById('action-title').textContent = ACTIONS[minIndex].title;
+    document.getElementById('action-text').textContent = ACTIONS[minIndex].text;
+
+    var list = document.getElementById('score-list');
+    list.innerHTML = '';
+    pct.forEach(function (value, index) {
+      var row = document.createElement('div');
+      row.className = 'score-row';
+      row.innerHTML = '<span class="name">' + AXES[index] + '</span><span class="track" aria-hidden="true"><span class="fill"></span></span><span class="pct">' + value + '%</span>';
       list.appendChild(row);
-      // アニメーション
-      setTimeout(function () { row.querySelector(".fill").style.width = p + "%"; }, 60 + i * 90);
+      window.setTimeout(function () { row.querySelector('.fill').style.width = value + '%'; }, 80 + index * 70);
     });
 
-    // サマリー：最も低い軸＝次の一歩
-    var minI = 0, maxI = 0;
-    pct.forEach(function (p, i) { if (p < pct[minI]) minI = i; if (p > pct[maxI]) maxI = i; });
-    var avg = Math.round(pct.reduce(function (a, b) { return a + b; }, 0) / pct.length);
-    document.getElementById("summary").innerHTML =
-      '<span class="h">あなたの現在地</span>' +
-      '6軸の平均は <b>' + avg + '%</b>。いちばんの強みは <b>' + AXES[maxI] + '</b>、' +
-      'いま伸びしろが大きいのは <b>' + AXES[minI] + '</b> です。' +
-      'まずは「' + AXES[minI] + '」から、できそうな一歩を一つ選んでみましょう。';
-
-    // 会員導線に、伸びしろの軸名を差し込む
-    document.getElementById("offer-axis").textContent = AXES[minI];
-
-    show("result");
+    drawRadar(pct);
+    safeClear();
+    show('result');
+    document.getElementById('result-title').focus({ preventScroll: true });
+    document.getElementById('status').textContent = 'セルフチェックが完了しました。結果を表示しています。';
   }
 
-  // ===== レーダーチャート（Canvas, ライブラリ不要） =====
   function drawRadar(pct) {
-    var cv = document.getElementById("radar");
-    var dpr = window.devicePixelRatio || 1;
-    var W = 420, H = 360;
-    cv.width = W * dpr; cv.height = H * dpr;
-    cv.style.width = W + "px"; cv.style.height = H + "px";
-    var ctx = cv.getContext("2d");
-    ctx.scale(dpr, dpr);
-    ctx.clearRect(0, 0, W, H);
+    var canvas = document.getElementById('radar');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var width = 420;
+    var height = 350;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    canvas.setAttribute('aria-label', '6軸の結果。' + AXES.map(function (axis, index) { return axis + pct[index] + '%'; }).join('、'));
+    var ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, width, height);
 
-    var cx = W / 2, cy = H / 2 + 6, R = 120, n = AXES.length;
-    function pt(i, r) {
-      var a = -Math.PI / 2 + i * (2 * Math.PI / n);
-      return [cx + Math.cos(a) * r, cy + Math.sin(a) * r];
+    var cx = width / 2;
+    var cy = height / 2 + 5;
+    var radius = 112;
+    var n = AXES.length;
+    function point(index, r) {
+      var angle = -Math.PI / 2 + index * (2 * Math.PI / n);
+      return [cx + Math.cos(angle) * r, cy + Math.sin(angle) * r];
     }
 
-    // グリッド
-    for (var g = 1; g <= 4; g++) {
+    for (var grid = 1; grid <= 4; grid += 1) {
       ctx.beginPath();
-      for (var i = 0; i <= n; i++) {
-        var p = pt(i % n, R * g / 4);
-        i === 0 ? ctx.moveTo(p[0], p[1]) : ctx.lineTo(p[0], p[1]);
+      for (var i = 0; i <= n; i += 1) {
+        var p = point(i % n, radius * grid / 4);
+        if (i === 0) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]);
       }
-      ctx.strokeStyle = "#e7e4f4"; ctx.lineWidth = 1; ctx.stroke();
+      ctx.strokeStyle = '#e6e5ef';
+      ctx.lineWidth = 1;
+      ctx.stroke();
     }
-    // 軸線＋ラベル
-    ctx.fillStyle = "#4a5170";
-    ctx.font = "12px 'Noto Sans JP', sans-serif";
-    ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    for (var j = 0; j < n; j++) {
-      var e = pt(j, R);
-      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(e[0], e[1]);
-      ctx.strokeStyle = "#ece9f6"; ctx.stroke();
-      var lp = pt(j, R + 24);
-      ctx.fillText(AXES[j], lp[0], lp[1]);
+
+    ctx.fillStyle = '#51566f';
+    ctx.font = "600 12px 'Noto Sans JP', sans-serif";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    for (var axis = 0; axis < n; axis += 1) {
+      var end = point(axis, radius);
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(end[0], end[1]);
+      ctx.strokeStyle = '#ecebf3';
+      ctx.stroke();
+      var label = point(axis, radius + 25);
+      ctx.fillText(AXES[axis], label[0], label[1]);
     }
-    // データポリゴン
-    var grad = ctx.createLinearGradient(cx - R, cy - R, cx + R, cy + R);
-    grad.addColorStop(0, "rgba(0,196,204,0.85)");
-    grad.addColorStop(1, "rgba(139,61,255,0.85)");
+
+    var gradient = ctx.createLinearGradient(cx - radius, cy - radius, cx + radius, cy + radius);
+    gradient.addColorStop(0, 'rgba(25,185,178,.9)');
+    gradient.addColorStop(1, 'rgba(97,86,217,.9)');
     ctx.beginPath();
-    for (var k = 0; k <= n; k++) {
-      var v = pct[k % n] / 100;
-      var pp = pt(k % n, R * Math.max(v, 0.02));
-      k === 0 ? ctx.moveTo(pp[0], pp[1]) : ctx.lineTo(pp[0], pp[1]);
+    for (var dataIndex = 0; dataIndex <= n; dataIndex += 1) {
+      var value = pct[dataIndex % n] / 100;
+      var dataPoint = point(dataIndex % n, radius * Math.max(value, .02));
+      if (dataIndex === 0) ctx.moveTo(dataPoint[0], dataPoint[1]); else ctx.lineTo(dataPoint[0], dataPoint[1]);
     }
     ctx.closePath();
-    ctx.fillStyle = "rgba(106,48,224,0.16)"; ctx.fill();
-    ctx.strokeStyle = grad; ctx.lineWidth = 2.5; ctx.stroke();
-    for (var m = 0; m < n; m++) {
-      var dp = pt(m, R * Math.max(pct[m] / 100, 0.02));
-      ctx.beginPath(); ctx.arc(dp[0], dp[1], 4, 0, Math.PI * 2);
-      ctx.fillStyle = "#6a30e0"; ctx.fill();
-      ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.fillStyle = 'rgba(97,86,217,.14)';
+    ctx.fill();
+    ctx.strokeStyle = gradient;
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    for (var dot = 0; dot < n; dot += 1) {
+      var dotPoint = point(dot, radius * Math.max(pct[dot] / 100, .02));
+      ctx.beginPath();
+      ctx.arc(dotPoint[0], dotPoint[1], 4, 0, Math.PI * 2);
+      ctx.fillStyle = '#6156d9';
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
     }
   }
 
-  // ===== イベント =====
-  document.getElementById("btn-start").addEventListener("click", function () {
-    current = 0; answers.fill(null);
-    renderQuestion();
-    show("quiz");
-  });
-  document.getElementById("btn-back").addEventListener("click", back);
-  document.getElementById("btn-restart").addEventListener("click", function () {
-    current = 0; answers.fill(null);
-    show("intro");
+  document.getElementById('btn-start').addEventListener('click', startFresh);
+  document.getElementById('btn-new').addEventListener('click', startFresh);
+  document.getElementById('btn-continue').addEventListener('click', continueSaved);
+  document.getElementById('btn-back').addEventListener('click', back);
+  document.getElementById('btn-print').addEventListener('click', function () { window.print(); });
+  document.getElementById('btn-restart').addEventListener('click', function () {
+    safeClear();
+    current = 0;
+    answers = new Array(QUESTIONS.length).fill(null);
+    show('intro');
+    updateResume();
+    document.getElementById('btn-start').focus();
   });
 
+  updateResume();
 })();
 </script>
 </body>
