@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>AI駆動オペレーション Phase 1 運用手順書｜デジラボビューティ（社内用）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Shippori+Mincho+B1:wght@500;600;700&family=Noto+Sans+JP:wght@350;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#37303e;--ink-strong:#2a2331;--muted:#8b8093;--lav:#9a85b8;--lav-deep:#7a659a;--pink:#c888a0;--azure:#7aaac4;--cream:#fbf8f4;--wash:#faf7fb;--line:#e6dced;
+  --head:'Shippori Mincho B1','Noto Serif JP',serif;--body:'Noto Sans JP','Hiragino Sans',sans-serif;--en:'Cormorant Garamond',serif;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:var(--body);background:var(--cream);color:var(--ink);line-height:1.85;font-size:14px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px;}
+  .head{background:#fff;border-bottom:1px solid var(--line);padding:44px 0 34px;}
+  .tag{display:inline-block;font-size:11px;letter-spacing:.14em;color:#fff;background:var(--pink);padding:3px 12px;border-radius:999px;margin-bottom:14px;}
+  .eyebrow{font-family:var(--en);font-size:13px;letter-spacing:.28em;color:var(--lav-deep);text-transform:uppercase;margin-bottom:10px;}
+  h1{font-family:var(--head);font-size:clamp(23px,3.4vw,32px);font-weight:700;color:var(--ink-strong);line-height:1.5;letter-spacing:.02em;}
+  .head .lead{margin-top:16px;max-width:740px;color:#5f5568;}
+  .meta{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;}
+  .meta div{background:var(--wash);border:1px solid var(--line);border-radius:10px;padding:9px 16px;font-size:12.5px;}
+  .meta b{font-family:var(--head);color:var(--ink-strong);font-size:15px;}
+
+  nav.toc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:34px 0 0;}
+  nav.toc b{font-family:var(--head);color:var(--ink-strong);display:block;margin-bottom:8px;font-size:15px;}
+  nav.toc ol{margin-left:1.3em;font-size:13.5px;}
+  nav.toc a{color:var(--lav-deep);text-decoration:none;}
+  nav.toc a:hover{text-decoration:underline;}
+
+  section{padding:46px 0;}
+  h2{font-family:var(--head);font-size:clamp(19px,2.4vw,23px);font-weight:700;color:var(--ink-strong);margin-bottom:8px;line-height:1.55;}
+  h2 .num{font-family:var(--en);color:var(--lav);margin-right:.5em;}
+  .sec-lead{color:#5f5568;margin-bottom:24px;max-width:760px;}
+  h3{font-family:var(--head);font-size:16.5px;color:var(--ink-strong);margin:26px 0 10px;}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-bottom:16px;}
+  .card.accent{border-left:4px solid var(--lav);}
+  .card.warn{border-left:4px solid var(--pink);}
+  .card.mem{border-left:4px solid var(--azure);}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th,td{text-align:left;vertical-align:top;padding:10px 12px 10px 0;border-bottom:1px solid var(--line);}
+  th{color:var(--lav-deep);font-weight:700;white-space:nowrap;}
+  .table-scroll{overflow-x:auto;}
+  td code,p code{background:var(--wash);border-radius:5px;padding:1px 6px;font-size:12.5px;}
+
+  ol.steps{counter-reset:s;list-style:none;margin-top:8px;}
+  ol.steps > li{position:relative;padding:0 0 0 40px;margin-bottom:18px;}
+  ol.steps > li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--wash);border:1px solid var(--line);color:var(--lav-deep);font-family:var(--en);font-size:14px;display:flex;align-items:center;justify-content:center;}
+  ol.steps b{font-family:var(--head);color:var(--ink-strong);}
+
+  .prompt{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:12px 0 6px;}
+  .prompt .bar{display:flex;justify-content:space-between;align-items:center;background:var(--wash);border-bottom:1px solid var(--line);padding:9px 14px;font-size:12px;color:var(--lav-deep);}
+  .prompt button{font-family:var(--body);font-size:11.5px;border:1px solid var(--lav);background:none;color:var(--lav-deep);border-radius:999px;padding:3px 14px;cursor:pointer;}
+  .prompt button:hover{background:var(--lav);color:#fff;}
+  .prompt pre{padding:16px 18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.85;white-space:pre-wrap;word-break:break-word;color:#413a49;}
+
+  ul.check{list-style:none;margin-top:8px;}
+  ul.check li{position:relative;padding-left:26px;margin-bottom:8px;}
+  ul.check li::before{content:"";position:absolute;left:0;top:.55em;width:11px;height:11px;border:1px solid var(--lav);border-radius:3px;}
+  ul.ng li::before{border-color:var(--pink);background:var(--pink);}
+
+  .gate{background:var(--wash);border:1px dashed var(--lav);border-radius:12px;padding:18px 22px;margin-top:14px;font-size:13.5px;}
+  .gate b{font-family:var(--head);color:var(--ink-strong);}
+
+  .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .kpi div{background:#fff;border:1px solid var(--line);border-top:3px solid var(--lav);border-radius:12px;padding:18px 20px;}
+  .kpi .lb{font-size:12px;color:var(--muted);display:block;}
+  .kpi .vl{font-family:var(--head);font-size:19px;color:var(--ink-strong);display:block;margin:4px 0 4px;}
+  .kpi .ds{font-size:12px;color:#6f6578;}
+
+  .verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px;}
+  .verdict div{border-radius:12px;padding:16px 18px;border:1px solid var(--line);background:#fff;}
+  .verdict .g{border-top:3px solid #7fb08a;}
+  .verdict .y{border-top:3px solid #d9b166;}
+  .verdict .r{border-top:3px solid var(--pink);}
+  .verdict b{font-family:var(--head);color:var(--ink-strong);display:block;margin-bottom:4px;}
+  .verdict span{font-size:12.5px;color:#6f6578;}
+
+  footer{padding:30px 0 56px;font-size:12px;color:var(--muted);}
+  footer p{margin-bottom:5px;}
+
+  @media(max-width:760px){.kpi,.verdict{grid-template-columns:1fr;}}
+  @media print{
+    body{background:#fff;font-size:11px;}
+    .head{padding:18px 0 14px;}
+    section{padding:20px 0;page-break-inside:avoid;}
+    nav.toc,.prompt button{display:none;}
+    .prompt pre{font-size:10px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="wrap">
+    <span class="tag">社内用・非公開</span>
+    <p class="eyebrow">AI-Driven Operations — Phase 1</p>
+    <h1>Phase 1 運用手順書<br>教材AI（A1）＋ 監督AI（A7）</h1>
+    <p class="lead">AI駆動オペレーション組織図（<code>tools/digilab_ai_org_chart.html</code>）の第1段階を、実際に動かすための手順書です。<strong>この2体以外は、この期間中は立ち上げません。</strong>目的は「AIで教材を量産すること」ではなく、<strong>2週間で拡張の可否を判断できるだけのデータを取ること</strong>です。</p>
+    <div class="meta">
+      <div>対象エージェント <b>2体</b></div>
+      <div>期間 <b>2週間</b></div>
+      <div>判断 <b>拡張 / 継続 / 中止</b></div>
+      <div>版 <b>v1.0</b></div>
+    </div>
+    <nav class="toc">
+      <b>目次</b>
+      <ol>
+        <li><a href="#s1">適用範囲と役割分担</a></li>
+        <li><a href="#s2">共有メモリ（参照元の固定）</a></li>
+        <li><a href="#s3">A1 教材AI の運用手順</a></li>
+        <li><a href="#s4">A7 監督AI の運用手順</a></li>
+        <li><a href="#s5">差し戻しルール</a></li>
+        <li><a href="#s6">入力禁止情報チェックリスト</a></li>
+        <li><a href="#s7">計測項目と記録テンプレート</a></li>
+        <li><a href="#s8">2週間後の判断基準</a></li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<section id="s1">
+  <div class="wrap">
+    <h2><span class="num">01</span>適用範囲と役割分担</h2>
+    <p class="sec-lead">「AIが作る」のではなく「人が承認する」設計です。承認者が不在の日は、成果物を確定させません。</p>
+    <div class="card">
+      <div class="table-scroll">
+      <table>
+        <tr><th>実務担当</th><td>A1・A7を実際に操作する。プロンプトを実行し、出力を共有メモリに保存し、記録表を埋める。原則1名（属人化の可否もPhase 1で確認する）。</td></tr>
+        <tr><th>Human 02<br>法務・中立性ゲート</th><td>A7が「要修正」「不可」と判定した箇所、および対外公開物すべてを確認する。<strong>この確認を経ていない成果物は公開・配布しない。</strong></td></tr>
+        <tr><th>代表理事</th><td>2週間後の拡張可否を判断する。日々の承認には入らない。</td></tr>
+        <tr><th>対象成果物</th><td>検定問題・ガイドライン・教材の<strong>草案</strong>のみ。LP・広告・SNS投稿はPhase 2以降。</td></tr>
+        <tr><th>対象外</th><td>検定の合否判定、認定証の発行、会員・受検者の個人情報を含む作業。組織図の「AI禁止領域」に該当。</td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s2" style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">02</span>共有メモリ（参照元の固定）</h2>
+    <p class="sec-lead">AIに渡す参照元をここに固定します。各自のチャット履歴を参照元にすると、団体として一貫した内容が出せなくなります。</p>
+    <div class="card mem">
+      <div class="table-scroll">
+      <table>
+        <tr><th>用語の定義</th><td><code>public/glossary/index.html</code>（正本）／ <code>public/llms.txt</code> の Defined terms</td></tr>
+        <tr><th>ガイドライン</th><td><code>docs/beauty_ai_guideline_kentei_2026.html</code>（検定版）</td></tr>
+        <tr><th>既存の問題形式</th><td><code>public/compliance/index.html</code>（10問＋解答解説の形式を踏襲する）</td></tr>
+        <tr><th>団体の基本情報</th><td><code>public/ai-guide.html</code> ／ <code>CLAUDE.md</code>（表記ルール）</td></tr>
+        <tr><th>成果物の保存先</th><td>リポジトリ <code>main</code>。草案は必ずコミットし、Git履歴を実行ログとする</td></tr>
+      </table>
+      </div>
+      <div class="gate">
+        <b>ルール</b>：参照元に無い事実をAIが書いてきた場合、その記述は採用しません。AIに「参照元に無い内容は書かない」と明示的に指示し、出力側でも確認します。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s3" style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">03</span>A1 教材AI の運用手順</h2>
+    <p class="sec-lead">1サイクル＝「1テーマ分の草案」。所要時間を必ず計測してください。</p>
+    <ol class="steps">
+      <li><b>テーマと出力形式を決める</b>（例：薬機法／全5問＋解答解説）。決めずに走らせると、比較できるデータが取れません。</li>
+      <li><b>参照元を添付する</b>。02の該当ファイルを渡します。渡していない資料の内容は、AIが推測で埋めます。</li>
+      <li><b>下のプロンプトを実行する</b>。開始時刻を記録します。</li>
+      <li><b>出力をそのまま保存し、A7 監督AI にかける</b>（04へ）。ここで人が先に手を入れると、A1単体の品質が測れません。</li>
+      <li><b>記録表を埋める</b>（07）。所要時間・差し戻し件数・採用可否。</li>
+    </ol>
+
+    <div class="prompt">
+      <div class="bar"><span>A1 教材AI ｜ 検定問題・教材の草案生成</span><button type="button" data-copy>コピー</button></div>
+      <pre>あなたは一般社団法人デジラボビューティの教材制作担当です。
+美容サロン経営者・エステティシャン・美容師を対象とした学習教材の草案を作成してください。
+
+【テーマ】
+（ここにテーマを記入：例「薬機法と広告表現」）
+
+【出力形式】
+・全5問。各問に「設問／選択肢3つ/正解／解答解説（150〜250字）」を付ける
+・解答解説には、根拠となる法令名と条文番号を明記する
+・実務でそのまま起こりうる場面設定にする（架空のサロン名は使わない）
+
+【厳守事項】
+1. 添付した参照資料に記載のない事実・数値・条文は書かない。
+   必要な情報が不足している場合は、推測で埋めず「要確認：〇〇」と明記する。
+2. 効能効果を断定する表現（治る・改善する・必ず等）を正解選択肢に置かない。
+3. 特定の企業名・商品名・サービス名は出さない。
+4. 団体名は「一般社団法人デジラボビューティ」と表記する（末尾に長音を付けない）。
+5. 装飾絵文字は使わない。
+
+【出力の最後に必ず付けるもの】
+・参照資料のどこを根拠にしたかの対応表（設問番号 → 参照箇所）
+・自信度が低い箇所のリスト（「要確認」とした項目）</pre>
+    </div>
+    <p style="font-size:12.5px;color:var(--muted);">※「要確認」リストが空で返ってきた場合は、むしろ疑ってください。参照元が薄いテーマで空になるのは、推測で埋めているサインです。</p>
+  </div>
+</section>
+
+<section id="s4" style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">04</span>A7 監督AI の運用手順</h2>
+    <p class="sec-lead">A1の出力を、別セッション（別の会話）で評価させます。同じ会話の続きで評価させると、自分の出力を肯定する方向に働きます。</p>
+
+    <div class="verdict">
+      <div class="g"><b>可</b><span>そのまま次工程へ。Human 02の確認は対外公開時に行う。</span></div>
+      <div class="y"><b>要修正</b><span>修正案とともにHuman 02へ差し戻す。担当者判断で直さない。</span></div>
+      <div class="r"><b>不可</b><span>その項目を破棄。Human 02へ報告し、原因を記録する。</span></div>
+    </div>
+
+    <div class="prompt">
+      <div class="bar"><span>A7 監督AI ｜ 品質評価＋3法スクリーニング</span><button type="button" data-copy>コピー</button></div>
+      <pre>あなたは一般社団法人デジラボビューティの品質監督担当です。
+以下の教材草案を、2つの観点で評価してください。批判的に読み、問題がなければ「問題なし」と明記してください。
+
+【観点1：法令スクリーニング】
+次の3法の観点で、設問ごとに判定してください。
+・医薬品医療機器等法（薬機法）：効能効果の断定、医療行為との混同がないか
+・景品表示法：No.1・唯一・必ず等、合理的根拠を要する表現がないか
+・個人情報保護法：顧客情報の取り扱いに関する記述が、同意・利用目的の特定を欠いていないか
+
+各設問について、以下の形式で出力してください。
+  設問番号 ／ 判定（可・要修正・不可） ／ 根拠となる法令名と条文 ／ 具体的な修正案
+
+【観点2：教材としての品質】
+・参照資料に無い事実が書かれていないか（該当箇所を引用して指摘）
+・正解が一意に定まるか（複数解釈できる設問を指摘）
+・解答解説が設問に答えているか
+・対象読者（美容サロンの実務者）に対して専門用語が過剰でないか
+
+【出力の最後に必ず付けるもの】
+・「要修正」「不可」と判定した項目の一覧
+・この評価だけでは判断できない論点（＝専門家確認が必要な項目）
+
+【前提】
+この評価は一次スクリーニングであり、専門家による法務確認の代替ではありません。
+判断に迷う場合は「可」ではなく「要修正」としてください。</pre>
+    </div>
+
+    <div class="card warn" style="margin-top:18px;">
+      <h3 style="margin-top:0;">この工程で守ること</h3>
+      <ul class="check">
+        <li>A1とA7は<strong>別の会話</strong>で実行する</li>
+        <li>「要修正」「不可」は担当者が独断で直さず、必ずHuman 02へ渡す</li>
+        <li>A7が「可」と判定しても、対外公開物はHuman 02の確認を経る</li>
+        <li>A7の判定が正しかったかを、Human 02が事後に検証し記録する（＝07の的中率）</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="s5" style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">05</span>差し戻しルール</h2>
+    <div class="card accent">
+      <div class="table-scroll">
+      <table>
+        <tr><th>要修正</th><td>実務担当 → Human 02 へ、AIの修正案を添えて提出。Human 02が採否を決定。修正後は再度A7にかける。</td></tr>
+        <tr><th>不可</th><td>該当項目を破棄。原因（参照元不足／指示不足／AIの誤り）を記録表に記入。同じ原因が3回続いたら、プロンプトかフローを見直す。</td></tr>
+        <tr><th>判断保留</th><td>A7が「専門家確認が必要」とした論点は、法務顧問または税理士等へ確認するまで成果物を確定しない。<strong>AIチェックは専門家助言の代替になりません。</strong></td></tr>
+        <tr><th>法人法・税務</th><td>3法パネルの範囲外です。該当する内容が出てきた場合は、A7の判定にかかわらず専門家確認へ回します。</td></tr>
+      </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s6" style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">06</span>入力禁止情報チェックリスト</h2>
+    <p class="sec-lead">実行前に毎回確認してください。1項目でも該当したら、その情報を除いてから実行します。</p>
+    <div class="card warn">
+      <h3 style="margin-top:0;">AIに入力してはいけないもの</h3>
+      <ul class="check ng">
+        <li>会員・受検者の氏名、連絡先、所属サロン名などの個人情報</li>
+        <li>営業先・取引先の固有名（「B2B営業先」等に置き換える）</li>
+        <li>非公開リポジトリの内容（営業リスト・DD対象リスト・営業戦略）</li>
+        <li>未公表の料金体系、個別プランの金額</li>
+        <li>理事会・社員総会の未確定議案</li>
+        <li>受検者の答案、採点結果</li>
+      </ul>
+      <div class="gate">
+        <b>迷ったとき</b>：「これが外部に出ても問題ないか」ではなく「これが<strong>他社のAIの学習・ログに残っても</strong>問題ないか」で判断します。判断がつかないものは入力しません。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s7" style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">07</span>計測項目と記録テンプレート</h2>
+    <p class="sec-lead">この3つが取れていなければ、Phase 1は失敗です。成果物が何本できたかは、判断材料になりません。</p>
+    <div class="kpi">
+      <div><span class="lb">生産性</span><span class="vl">1本あたり制作時間</span><span class="ds">AI実行から「可」確定までの実時間。従来の手作業と比較する</span></div>
+      <div><span class="lb">品質</span><span class="vl">差し戻し率</span><span class="ds">A7が要修正・不可とした設問数 ÷ 総設問数</span></div>
+      <div><span class="lb">信頼性</span><span class="vl">A7判定の的中率</span><span class="ds">A7の判定とHuman 02の判断が一致した割合。<strong>最重要指標</strong></span></div>
+    </div>
+
+    <h3>記録表（1サイクル1行。リポジトリにコミットする）</h3>
+    <div class="card">
+      <div class="table-scroll">
+      <table>
+        <tr><th>日付</th><th>テーマ</th><th>設問数</th><th>制作時間</th><th>要修正</th><th>不可</th><th>A7判定の的中</th><th>差し戻し原因</th></tr>
+        <tr><td>YYYY-MM-DD</td><td></td><td></td><td>　分</td><td>　件</td><td>　件</td><td>　/　件</td><td>参照元不足／指示不足／AIの誤り</td></tr>
+        <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      </div>
+      <p style="font-size:12.5px;color:var(--muted);margin-top:12px;">※ 「A7判定の的中」は、Human 02が事後に「A7の判定は妥当だったか」を確認して記入します。ここが低いまま拡張すると、監督AIが機能していない状態で自動化が進みます。</p>
+    </div>
+  </div>
+</section>
+
+<section id="s8" style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">08</span>2週間後の判断基準</h2>
+    <p class="sec-lead">代表理事が判断します。基準を先に決めておかないと、「なんとなく続ける」になります。</p>
+    <div class="card accent">
+      <div class="table-scroll">
+      <table>
+        <tr><th>Phase 2 へ拡張</th><td>A7判定の的中率が十分に高く、制作時間が従来より明確に短縮され、「不可」判定が減少傾向にある。→ A2 コンテンツAI・A3 会員CS AI を追加。</td></tr>
+        <tr><th>Phase 1 を継続</th><td>時間短縮は確認できたが、A7の的中率が安定しない。→ プロンプトと参照元を改善し、もう2週間。<strong>エージェントは増やさない。</strong></td></tr>
+        <tr><th>中止・再設計</th><td>Human 02の確認工数が、短縮できた制作時間を上回っている。→ この構成では成立しません。工程を分解し直すか、AI活用範囲を狭めます。</td></tr>
+      </table>
+      </div>
+      <div class="gate">
+        <b>最も重要な判断</b>：AIで作った時間を、何に使ったかを確認してください。空いた時間が会員獲得・検定運営に回っていなければ、生産性は上がっていても事業は前に進んでいません。
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>一般社団法人デジラボビューティ（DigiLab Beauty）　社内用ドキュメント・公開しない</p>
+    <p>ファイル: tools/ai_ops_phase1_manual.html　／　関連: tools/digilab_ai_org_chart.html（組織図）</p>
+    <p>v1.0　プロンプト・判断基準はPhase 1の実績に応じて改訂すること</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var pre = btn.closest('.prompt').querySelector('pre');
+    var done = function () { btn.textContent = 'コピーしました'; setTimeout(function () { btn.textContent = 'コピー'; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(pre.textContent).then(done, function () { btn.textContent = '手動でコピーしてください'; });
+    } else {
+      var r = document.createRange(); r.selectNodeContents(pre);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      try { document.execCommand('copy'); done(); } catch (e) { btn.textContent = '手動でコピーしてください'; }
+    }
+  });
+});
+</script>
+
+</body>
+</html>

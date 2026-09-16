@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI活用で押さえる基本用語① メタデータ・ベクトル・エンベディング・RAG｜一般社団法人デジラボビューティ</title>
+<meta name="description" content="美容サロンの実務目線で、AI活用の基本用語「メタデータ」「ベクトル」「エンベディング」「RAG」を定義します。一般社団法人デジラボビューティによる美容業界向けAI用語の標準定義集です。">
+<link rel="canonical" href="https://xenomao.github.io/xenomao/glossary/">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+<meta name="keywords" content="AI 用語,メタデータ,ベクトル,エンベディング,RAG,美容サロン AI,美容業界 AI 用語集,デジラボビューティ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI活用で押さえる基本用語① メタデータ・ベクトル・エンベディング・RAG">
+<meta property="og:description" content="美容サロンの実務目線で、AI活用の基本用語4語を定義します。一般社団法人デジラボビューティ。">
+<meta property="og:url" content="https://xenomao.github.io/xenomao/glossary/">
+<meta property="og:site_name" content="一般社団法人デジラボビューティ">
+<meta property="og:locale" content="ja_JP">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Shippori+Mincho+B1:wght@500;600;700&family=Noto+Sans+JP:wght@350;400;500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Organization",
+      "@id":"https://xenomao.github.io/xenomao/#organization",
+      "name":"一般社団法人デジラボビューティ",
+      "alternateName":"DigiLab Beauty",
+      "url":"https://xenomao.github.io/xenomao/",
+      "email":"digilabbeauty@gmail.com",
+      "sameAs":["https://www.instagram.com/digilab.beauty_official/"]
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"一般社団法人デジラボビューティ","item":"https://xenomao.github.io/xenomao/"},
+        {"@type":"ListItem","position":2,"name":"美容AI用語集","item":"https://xenomao.github.io/xenomao/glossary/"}
+      ]
+    },
+    {
+      "@type":"DefinedTermSet",
+      "@id":"https://xenomao.github.io/xenomao/glossary/#termset",
+      "name":"美容AI用語集｜AI活用で押さえる基本用語①",
+      "description":"美容サロン・美容関連事業者がAIを実務で使うために必要な基本用語を、一般社団法人デジラボビューティが定義した用語集。",
+      "url":"https://xenomao.github.io/xenomao/glossary/",
+      "inLanguage":"ja",
+      "publisher":{"@id":"https://xenomao.github.io/xenomao/#organization"},
+      "hasDefinedTerm":[
+        {
+          "@type":"DefinedTerm",
+          "@id":"https://xenomao.github.io/xenomao/glossary/#metadata",
+          "termCode":"metadata",
+          "name":"メタデータ",
+          "alternateName":"Metadata",
+          "description":"データそのものではなく、そのデータが何であるかを説明する情報。施術メニューであれば「部位」「所要時間」「対象の悩み」「価格」「更新日」などが該当する。AIが情報を正しく選び取るための最初の手がかりになる。",
+          "inDefinedTermSet":{"@id":"https://xenomao.github.io/xenomao/glossary/#termset"}
+        },
+        {
+          "@type":"DefinedTerm",
+          "@id":"https://xenomao.github.io/xenomao/glossary/#vector",
+          "termCode":"vector",
+          "name":"ベクトル",
+          "alternateName":"Vector",
+          "description":"言葉や文章の意味を数値の並びとして表したもの。数値が近いほど意味が近いとみなされるため、表記が違っても意味が同じ言い回しを結び付けられる。",
+          "inDefinedTermSet":{"@id":"https://xenomao.github.io/xenomao/glossary/#termset"}
+        },
+        {
+          "@type":"DefinedTerm",
+          "@id":"https://xenomao.github.io/xenomao/glossary/#embedding",
+          "termCode":"embedding",
+          "name":"エンベディング",
+          "alternateName":"Embedding／埋め込み",
+          "description":"文章や画像をベクトルに変換する処理、および変換された結果を指す。自店のメニュー表やカウンセリング原稿をAIが比較できる形に変える工程にあたる。",
+          "inDefinedTermSet":{"@id":"https://xenomao.github.io/xenomao/glossary/#termset"}
+        },
+        {
+          "@type":"DefinedTerm",
+          "@id":"https://xenomao.github.io/xenomao/glossary/#rag",
+          "termCode":"rag",
+          "name":"RAG",
+          "alternateName":"Retrieval-Augmented Generation／検索拡張生成",
+          "description":"AIが回答を生成する前に、指定された資料群から関連箇所を検索し、その内容を根拠として回答を組み立てる仕組み。自店の正しい情報に基づいた回答をさせたい場合に用いる。",
+          "inDefinedTermSet":{"@id":"https://xenomao.github.io/xenomao/glossary/#termset"}
+        }
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"メタデータとは何ですか？","acceptedAnswer":{"@type":"Answer","text":"データそのものではなく、そのデータが何であるかを説明する情報です。施術メニューなら部位・所要時間・対象の悩み・価格・更新日などが該当し、AIが情報を正しく選び取るための手がかりになります。"}},
+        {"@type":"Question","name":"ベクトルとは何ですか？","acceptedAnswer":{"@type":"Answer","text":"言葉や文章の意味を数値の並びとして表したものです。数値が近いほど意味が近いとみなされるため、「毛穴の開き」と「毛穴が目立つ」のように表記が違っても意味が近い言い回しを結び付けられます。"}},
+        {"@type":"Question","name":"エンベディングとは何ですか？","acceptedAnswer":{"@type":"Answer","text":"文章や画像をベクトルに変換する処理、およびその結果を指します。自店のメニュー表やカウンセリング原稿を、AIが意味で比較できる形に変える工程です。"}},
+        {"@type":"Question","name":"RAGとは何ですか？","acceptedAnswer":{"@type":"Answer","text":"Retrieval-Augmented Generation（検索拡張生成）の略で、AIが回答する前に指定された資料から関連箇所を検索し、その内容を根拠に回答を組み立てる仕組みです。自店の正しい情報に基づいた回答をさせたい場合に用います。"}},
+        {"@type":"Question","name":"美容サロンがこれらの用語を知る必要はありますか？","acceptedAnswer":{"@type":"Answer","text":"AIツールの導入判断と運用設計に直結するため必要です。用語を理解していれば、AIが誤った内容を答える原因が情報の整理不足にあるのか、仕組みの選定にあるのかを切り分けられます。"}}
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --ink: #37303e;
+    --ink-strong: #2a2331;
+    --muted: #8b8093;
+    --lav: #9a85b8;
+    --lav-deep: #7a659a;
+    --pink: #c888a0;
+    --azure: #7aaac4;
+    --cream: #fbf8f4;
+    --wash: #faf7fb;
+    --line: #ece3f1;
+    --head: 'Shippori Mincho B1', 'Noto Serif JP', serif;
+    --body: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+    --en: 'Cormorant Garamond', 'Poppins', serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--body);
+    color: var(--ink);
+    background: var(--cream);
+    line-height: 1.9;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 22px; }
+  a { color: var(--lav-deep); }
+
+  .topbar {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 14px 0;
+    font-size: 13px;
+  }
+  .topbar .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .topbar a { text-decoration: none; }
+  .topbar a:hover { text-decoration: underline; }
+
+  .hero { background: #fff; padding: 68px 0 56px; border-bottom: 1px solid var(--line); }
+  .eyebrow {
+    font-family: var(--en);
+    font-size: 13px;
+    letter-spacing: .28em;
+    color: var(--lav-deep);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  h1 {
+    font-family: var(--head);
+    font-size: clamp(26px, 4.4vw, 40px);
+    font-weight: 700;
+    line-height: 1.55;
+    color: var(--ink-strong);
+    letter-spacing: .02em;
+  }
+  .hero .lead { margin-top: 20px; max-width: 720px; color: #5f5568; }
+  .rule { width: 64px; height: 2px; background: linear-gradient(90deg, var(--pink), var(--lav), var(--azure)); margin: 26px 0; border: 0; }
+
+  section { padding: 56px 0; }
+  h2 {
+    font-family: var(--head);
+    font-size: clamp(20px, 2.8vw, 26px);
+    font-weight: 700;
+    color: var(--ink-strong);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  h2 .num { font-family: var(--en); color: var(--lav); margin-right: .5em; font-size: .95em; }
+  .sec-lead { color: #5f5568; margin-bottom: 30px; max-width: 720px; }
+
+  .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 34px 0 8px; }
+  .flow-step {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--lav);
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .flow-step .st { font-family: var(--en); font-size: 12px; letter-spacing: .18em; color: var(--muted); display: block; margin-bottom: 6px; }
+  .flow-step .nm { font-family: var(--head); font-weight: 700; color: var(--ink-strong); font-size: 15px; }
+  .flow-step .ds { font-size: 12.5px; color: #6f6578; margin-top: 6px; line-height: 1.7; }
+  .flow-step:nth-child(2) { border-top-color: var(--azure); }
+  .flow-step:nth-child(3) { border-top-color: var(--pink); }
+  .flow-step:nth-child(4) { border-top-color: var(--lav-deep); }
+  @media (max-width: 720px) { .flow { grid-template-columns: repeat(2, 1fr); } }
+
+  .term {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--lav);
+    border-radius: 14px;
+    padding: 30px 30px 26px;
+    margin-bottom: 22px;
+  }
+  .term:nth-of-type(2) { border-left-color: var(--azure); }
+  .term:nth-of-type(3) { border-left-color: var(--pink); }
+  .term:nth-of-type(4) { border-left-color: var(--lav-deep); }
+  .term h3 {
+    font-family: var(--head);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink-strong);
+    line-height: 1.5;
+  }
+  .term .en { font-family: var(--en); font-size: 14px; letter-spacing: .14em; color: var(--muted); display: block; margin-top: 4px; }
+  .term dl { margin-top: 20px; }
+  .term dt {
+    font-size: 11px;
+    letter-spacing: .16em;
+    color: var(--lav-deep);
+    font-weight: 700;
+    margin-top: 18px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+  }
+  .term dt:first-child { margin-top: 0; }
+  .term dd { margin-top: 8px; }
+  .term dd ul { margin: 4px 0 0 1.2em; }
+  .term dd li { margin-bottom: 4px; }
+  .misread { color: #6f6578; }
+  .misread strong { color: var(--pink); font-weight: 700; }
+
+  .steps { counter-reset: s; margin-top: 26px; }
+  .step {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 24px 20px 62px;
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .step::before {
+    counter-increment: s;
+    content: counter(s);
+    position: absolute;
+    left: 22px;
+    top: 21px;
+    font-family: var(--en);
+    font-size: 22px;
+    color: var(--lav);
+    line-height: 1;
+  }
+  .step h3 { font-family: var(--head); font-size: 17px; color: var(--ink-strong); margin-bottom: 6px; }
+  .step p { color: #5f5568; font-size: 14.5px; }
+
+  .legal { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 28px 30px; }
+  .legal h3 { font-family: var(--head); font-size: 17px; color: var(--ink-strong); margin-bottom: 12px; }
+  .legal table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .legal th, .legal td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
+  .legal th { width: 30%; font-weight: 700; color: var(--lav-deep); white-space: nowrap; }
+  .legal .note { font-size: 13px; color: var(--muted); margin-top: 14px; }
+  .table-scroll { overflow-x: auto; }
+
+  details.q {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+  details.q summary { cursor: pointer; font-weight: 700; color: var(--ink-strong); list-style: none; }
+  details.q summary::-webkit-details-marker { display: none; }
+  details.q summary::before { content: "Q. "; font-family: var(--en); color: var(--lav); }
+  details.q[open] summary { border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 10px; }
+  details.q .a { color: #5f5568; font-size: 14.5px; }
+  details.q .a::before { content: "A. "; font-family: var(--en); color: var(--pink); font-weight: 700; }
+
+  .cta { background: #fff; border-top: 1px solid var(--line); padding: 52px 0; text-align: center; }
+  .cta h2 { margin-bottom: 12px; }
+  .cta p { color: #5f5568; margin-bottom: 22px; }
+  .btn {
+    display: inline-block;
+    background: linear-gradient(120deg, var(--lav), var(--lav-deep));
+    color: #fff;
+    text-decoration: none;
+    padding: 13px 30px;
+    border-radius: 999px;
+    font-size: 14px;
+    letter-spacing: .06em;
+  }
+  .btn.ghost { background: none; color: var(--lav-deep); border: 1px solid var(--lav); margin-left: 10px; }
+
+  footer { padding: 34px 0 60px; font-size: 12.5px; color: var(--muted); }
+  footer p { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="../">一般社団法人デジラボビューティ 公式サイト</a>
+    <span>美容AI用語集</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Beauty AI Glossary — Vol.1</p>
+    <h1>AI活用で押さえる基本用語 ①<br>メタデータ／ベクトル／エンベディング／RAG</h1>
+    <hr class="rule">
+    <p class="lead">AIツールが「うちのサロンの情報を正しく答えてくれない」とき、原因はツールの性能ではなく、渡している情報の整え方にあることがほとんどです。この4語は、その整え方を判断するための最小限の共通言語です。美容サロンの実務に置き換えて定義します。</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2><span class="num">01</span>4つの用語は1本の流れでつながっている</h2>
+    <p class="sec-lead">それぞれ独立した用語ではなく、「自店の情報をAIに正しく答えさせる」までの工程です。左から順に積み上がります。</p>
+    <div class="flow">
+      <div class="flow-step"><span class="st">STEP 1</span><span class="nm">メタデータ</span><span class="ds">情報に説明を付ける</span></div>
+      <div class="flow-step"><span class="st">STEP 2</span><span class="nm">エンベディング</span><span class="ds">意味を数値に変換する</span></div>
+      <div class="flow-step"><span class="st">STEP 3</span><span class="nm">ベクトル</span><span class="ds">数値の近さで探す</span></div>
+      <div class="flow-step"><span class="st">STEP 4</span><span class="nm">RAG</span><span class="ds">根拠を引いて答える</span></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">02</span>用語の定義</h2>
+    <p class="sec-lead">各用語について、定義・サロンでの意味・使いどころ・よくある誤解の順に整理します。</p>
+
+    <article class="term" id="metadata">
+      <h3>メタデータ<span class="en">Metadata</span></h3>
+      <dl>
+        <dt>一言でいうと</dt>
+        <dd>データそのものではなく、そのデータが「何であるか」を説明する情報。</dd>
+        <dt>サロンでの意味</dt>
+        <dd>施術メニューの本文が「データ」なら、部位・所要時間・対象の悩み・価格・担当できるスタッフ・最終更新日が「メタデータ」です。人間は文脈で補えますが、AIは付けられた説明の範囲でしか情報を区別できません。</dd>
+        <dt>実務での使いどころ</dt>
+        <dd>
+          <ul>
+            <li>メニュー表・料金表に「更新日」と「対象の悩み」を必ず持たせる</li>
+            <li>店舗情報（住所・営業時間・電話番号）を全媒体で同一表記に揃える</li>
+            <li>ブログ記事に「対象読者」「カテゴリ」を明示する</li>
+          </ul>
+        </dd>
+        <dt>よくある誤解</dt>
+        <dd class="misread"><strong>誤解：</strong>メタデータはWeb制作会社が裏側で付けるもの。<br>実際には、何を対象に、いつ時点の情報かを決められるのはサロン側だけです。ここが曖昧なままだと、後工程をいくら整えてもAIの回答は安定しません。</dd>
+      </dl>
+    </article>
+
+    <article class="term" id="embedding">
+      <h3>エンベディング<span class="en">Embedding／埋め込み</span></h3>
+      <dl>
+        <dt>一言でいうと</dt>
+        <dd>文章や画像を、意味を保ったまま数値の並びに変換する処理、およびその結果。</dd>
+        <dt>サロンでの意味</dt>
+        <dd>自店のメニュー表・カウンセリング原稿・よくある質問を、AIが意味で比較できる形に変える工程です。翻訳に近い操作で、変換した時点の内容が固定されます。</dd>
+        <dt>実務での使いどころ</dt>
+        <dd>
+          <ul>
+            <li>社内マニュアルやFAQをAIに読ませる前段の準備工程</li>
+            <li>料金改定や施術内容の変更時は、変換をやり直す必要がある</li>
+          </ul>
+        </dd>
+        <dt>よくある誤解</dt>
+        <dd class="misread"><strong>誤解：</strong>一度AIに読ませれば、あとは自動で最新化される。<br>実際には、元の文書を更新しても変換をやり直さなければ古い内容が回答され続けます。更新運用まで含めて設計してください。</dd>
+      </dl>
+    </article>
+
+    <article class="term" id="vector">
+      <h3>ベクトル<span class="en">Vector</span></h3>
+      <dl>
+        <dt>一言でいうと</dt>
+        <dd>意味を数値の並びで表したもの。数値が近いほど、意味が近いとみなされる。</dd>
+        <dt>サロンでの意味</dt>
+        <dd>「毛穴の開きが気になる」と「毛穴が目立つ」は文字列としては別物ですが、ベクトルとしては近い位置に来ます。だからAIは、お客様の言い回しがメニュー表の表現と一致していなくても、該当メニューを見つけられます。</dd>
+        <dt>実務での使いどころ</dt>
+        <dd>
+          <ul>
+            <li>お客様が使う言葉（悩みの言い回し）でメニューが引ける状態になる</li>
+            <li>問い合わせ内容を意味ごとに束ねて、需要の傾向を把握する</li>
+          </ul>
+        </dd>
+        <dt>よくある誤解</dt>
+        <dd class="misread"><strong>誤解：</strong>意味が近ければ内容も正しい。<br>ベクトルが測るのは「近さ」であって「正しさ」ではありません。似た表現の別メニューを取り違えることがあるため、最終確認は人が行う前提で運用します。</dd>
+      </dl>
+    </article>
+
+    <article class="term" id="rag">
+      <h3>RAG<span class="en">Retrieval-Augmented Generation／検索拡張生成</span></h3>
+      <dl>
+        <dt>一言でいうと</dt>
+        <dd>AIが答えを作る前に、指定された資料から関連箇所を検索し、その内容を根拠として回答を組み立てる仕組み。</dd>
+        <dt>サロンでの意味</dt>
+        <dd>AIの一般知識ではなく、自店の料金表・施術内容・規約に基づいて答えさせる方法です。「もっともらしいが自店の事実と違う回答」を減らす目的で使います。</dd>
+        <dt>実務での使いどころ</dt>
+        <dd>
+          <ul>
+            <li>予約前の問い合わせ対応（営業時間・料金・所要時間）</li>
+            <li>新人スタッフ向けの社内マニュアル検索</li>
+            <li>カウンセリング時の説明内容の統一</li>
+          </ul>
+        </dd>
+        <dt>よくある誤解</dt>
+        <dd class="misread"><strong>誤解：</strong>RAGを使えば誤りがなくなる。<br>減らせるのは「根拠のない生成」であって、元の資料が古い・誤っていれば誤った回答が返ります。RAGの品質は、STEP1のメタデータ整備の品質を超えません。</dd>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">03</span>サロンが今日から着手できる3ステップ</h2>
+    <p class="sec-lead">ツール選定より先に、渡す情報を整えるほうが効果が大きく、費用もかかりません。</p>
+    <div class="steps">
+      <div class="step">
+        <h3>自店の「一次情報」を1か所に集める</h3>
+        <p>メニュー・料金・営業時間・施術の流れ・キャンセル規定を、1つの文書にまとめます。複数の媒体に分散した状態のままAIに読ませると、どれが正なのか判断できません。</p>
+      </div>
+      <div class="step">
+        <h3>各項目に「最終更新日」と「対象の悩み」を付ける</h3>
+        <p>これがメタデータです。更新日があることで古い情報を除外でき、対象の悩みがあることでお客様の言い回しから引けるようになります。</p>
+      </div>
+      <div class="step">
+        <h3>更新したら読み直させる運用を決める</h3>
+        <p>料金改定・メニュー変更の際に、AIに読ませ直す担当者と頻度を決めます。ここを決めない導入は、数か月で「古い情報を答えるAI」になります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">04</span>運用時に確認すべき法令上の観点</h2>
+    <p class="sec-lead">AIが生成した文章をそのまま公開・送信する運用は、以下の3法との関係で確認が必要です。</p>
+    <div class="legal">
+      <div class="table-scroll">
+      <table>
+        <tr>
+          <th>医薬品医療機器等法<br>（薬機法）</th>
+          <td>AIが生成した施術説明に、医薬品的な効能効果（「治る」「改善する」等）が混入していないか。エステティックの施術内容は医療行為ではないことを前提に確認します。</td>
+        </tr>
+        <tr>
+          <th>景品表示法</th>
+          <td>AIが補った「No.1」「業界唯一」「必ず」などの表現に、裏付けとなる合理的根拠があるか。根拠のない優良誤認表示に該当し得ます。</td>
+        </tr>
+        <tr>
+          <th>個人情報保護法</th>
+          <td>顧客カルテ・問診票・写真を外部AIサービスに入力する場合、利用目的の特定と本人同意、第三者提供・委託の整理が必要です。RAGの資料に個人情報を含める設計は、事前に取り扱い方針を定めてから行います。</td>
+        </tr>
+      </table>
+      </div>
+      <p class="note">本ページは美容業界向けの教育目的の解説であり、個別の法的助言ではありません。実際の広告表現・データ取り扱いの可否は、所管官庁の公表資料および専門家の確認をもって判断してください。</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <h2><span class="num">05</span>理解度チェック</h2>
+    <p class="sec-lead">設問をクリックすると解答が表示されます。</p>
+
+    <details class="q">
+      <summary>AIが自店の古い料金を答え続けている。最初に疑うべき工程はどれか。</summary>
+      <p class="a">元文書の更新後にエンベディング（読み直し）を行っていない可能性です。ツールの性能ではなく、更新運用の設計を先に確認します。</p>
+    </details>
+    <details class="q">
+      <summary>お客様が「毛穴が目立つ」と入力し、メニュー表の「毛穴の開き」が引けた。これはどの仕組みによるものか。</summary>
+      <p class="a">ベクトルによる意味の近さの判定です。文字列の一致ではなく、意味の距離で検索されています。</p>
+    </details>
+    <details class="q">
+      <summary>RAGを導入すればAIの誤りはなくなる、という説明は正しいか。</summary>
+      <p class="a">正しくありません。減らせるのは根拠のない生成であり、参照元の資料が古い・誤っていれば誤った回答が返ります。品質はメタデータ整備の品質を超えません。</p>
+    </details>
+    <details class="q">
+      <summary>メニュー表に「最終更新日」を付ける行為は、4つの用語のどれに当たるか。</summary>
+      <p class="a">メタデータの付与です。データ本体ではなく、そのデータを説明する情報を追加しています。</p>
+    </details>
+    <details class="q">
+      <summary>顧客の問診票をそのまま外部AIサービスに読み込ませてよいか。</summary>
+      <p class="a">そのままでは進められません。個人情報保護法上、利用目的の特定・本人同意・委託先の管理などの整理が必要です。取り扱い方針を定めてから実施してください。</p>
+    </details>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap">
+    <h2>用語の次は、実務での判断基準へ</h2>
+    <p>本用語集は、美容AIセキュリティ基礎検定・美容業界AI活用ガイドラインの前提知識にあたります。</p>
+    <a class="btn" href="../kentei/">美容AIセキュリティ基礎検定 3級</a>
+    <a class="btn ghost" href="../shindan/">サロンAI活用度診断</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>本用語集は、美容業界の実務者がAI活用を判断するための共通言語として、一般社団法人デジラボビューティが定義・公開しています。</p>
+    <p>用語の定義は技術動向に応じて改訂します。引用の際は、公開URLと参照日を併記してください。</p>
+    <p>&copy; 一般社団法人デジラボビューティ（DigiLab Beauty）　digilabbeauty@gmail.com</p>
+  </div>
+</footer>
+
+</body>
+</html>
