@@ -468,15 +468,81 @@
   }
   .offer__eyebrow { margin: 0; color: var(--accent); font-family: 'Poppins', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: .14em; }
   .offer__title { margin: 6px 0 0; color: var(--ink); font-size: 20px; font-weight: 800; line-height: 1.5; }
-  .offer__lead { margin: 10px auto 0; max-width: 500px; color: var(--ink-soft); font-size: 13px; text-align: left; }
+  .offer__lead { margin: 10px auto 0; max-width: 520px; color: var(--ink-soft); font-size: 13px; text-align: center; }
+  .journey { list-style: none; display: grid; gap: 12px; margin: 22px 0 0; padding: 0; text-align: left; }
+  .journey-step {
+    position: relative;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 13px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: #fff;
+  }
+  .journey-step + .journey-step::before {
+    content: '↓';
+    position: absolute;
+    top: -18px;
+    left: 29px;
+    z-index: 2;
+    color: var(--ink-mute);
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .journey-step--seminar { border-color: #d8d5f6; background: linear-gradient(145deg, #fff, #f7f6ff); }
+  .journey-step--instagram { border-color: #eadcf1; background: linear-gradient(145deg, #fff, #fcf7fd); }
+  .journey-step--line { border-color: #cfe9d8; background: linear-gradient(145deg, #fff, #f4fbf6); }
+  .journey-step__number {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: var(--accent);
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 22px -13px rgba(67,56,169,.8);
+  }
+  .journey-step--instagram .journey-step__number { background: #8a4f9d; }
+  .journey-step--line .journey-step__number { background: #07883c; }
+  .journey-step__label { margin: 0; color: var(--ink-mute); font-family: 'Poppins', sans-serif; font-size: 9.5px; font-weight: 600; letter-spacing: .12em; }
+  .journey-step__title { margin: 2px 0 0; color: var(--ink); font-size: 16px; font-weight: 800; line-height: 1.55; }
+  .journey-step__text { margin: 5px 0 0; color: var(--ink-soft); font-size: 12.5px; line-height: 1.7; }
+  .journey-btn {
+    width: 100%;
+    min-height: 48px;
+    margin-top: 12px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 15px;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease;
+  }
+  .journey-btn:hover { transform: translateY(-2px); }
+  .seminar-btn {
+    border: 0;
+    color: #fff;
+    background: linear-gradient(115deg, #117f7a 0%, #4d55cc 60%, #6344c6 100%);
+    box-shadow: 0 14px 26px -15px rgba(77,85,204,.9);
+  }
+  .instagram-btn { border: 1px solid #b99bc5; color: #663b76; background: #fff; }
+  .instagram-btn:hover { background: #faf4fc; }
   .line-btn {
-    margin-top: 18px;
     border: 0;
     color: #fff;
     background: #07883c;
     box-shadow: 0 15px 28px -15px rgba(6,154,66,.8);
   }
-  .line-btn:hover { transform: translateY(-2px); background: #066f32; }
+  .line-btn:hover { background: #066f32; }
+  .journey-note { margin: 14px 0 0; color: var(--ink-mute); font-size: 11px; }
   .result-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
   .result-actions .secondary-btn { min-height: 48px; padding: 11px 12px; font-size: 12.5px; }
   .status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -514,7 +580,12 @@
     .score-row { grid-template-columns: 78px 1fr 35px; gap: 8px; }
     .score-row .name { font-size: 11.5px; }
     .insights, .result-actions { grid-template-columns: 1fr; }
-    .offer { padding: 22px 17px; }
+    .offer { padding: 22px 14px; }
+    .offer__lead { text-align: left; }
+    .journey-step { grid-template-columns: 36px 1fr; gap: 10px; padding: 15px 13px; }
+    .journey-step__number { width: 36px; height: 36px; font-size: 12px; }
+    .journey-step + .journey-step::before { left: 24px; }
+    .journey-step__title { font-size: 15px; }
     .resume__actions { grid-template-columns: 1fr; }
   }
 
@@ -655,17 +726,52 @@
         </div>
 
         <div class="offer">
-          <p class="offer__eyebrow">NEED SUPPORT?</p>
-          <h3 class="offer__title">ひとりで整理しきれないときは、<br>公式LINEへ。</h3>
+          <p class="offer__eyebrow">YOUR NEXT STEP</p>
+          <h3 class="offer__title">結果を見て、気になることがあったら。<br>まずは、セミナーを受けてみて！</h3>
           <p class="offer__lead">
-            結果をスクリーンショットしてお送りいただくと、相談がスムーズです。
-            セミナーや会員制度など、一般社団法人デジラボビュティの最新案内も公式LINEでご確認いただけます。
+            学んで、普段の活動を見て、「もっと知りたい」と思ったときにLINEへ。
+            いきなり相談しなくても大丈夫です。
           </p>
-          <a class="line-btn" id="line-btn" href="https://lin.ee/PD33ryL" target="_blank" rel="noopener">
-            <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.58 7.39 8.42 8.02.33.07.78.22.89.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.1-.46 5.9-3.48 8.05-5.96C21.4 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
-            公式LINEで相談・案内を見る
-          </a>
-          <p class="microcopy">LINEの友だち追加は無料です。</p>
+
+          <ol class="journey" aria-label="デジラボビュティを知る3つのステップ">
+            <li class="journey-step journey-step--seminar">
+              <span class="journey-step__number" aria-hidden="true">1</span>
+              <div>
+                <p class="journey-step__label">FIRST STEP</p>
+                <h4 class="journey-step__title">まずは、セミナーを受けてみて！</h4>
+                <p class="journey-step__text">美容サロンの集客・AI活用・情報発信を、実例を交えてわかりやすく学べます。</p>
+                <a class="journey-btn seminar-btn" id="seminar-btn" href="https://digilabbeauty.jp/#news" target="_blank" rel="noopener">
+                  最新のセミナーを見る <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </li>
+
+            <li class="journey-step journey-step--instagram">
+              <span class="journey-step__number" aria-hidden="true">2</span>
+              <div>
+                <p class="journey-step__label">NEXT</p>
+                <h4 class="journey-step__title">次に、Instagramを見てみて！</h4>
+                <p class="journey-step__text">セミナー告知や日々の活動、サロンで役立つ情報を発信しています。</p>
+                <a class="journey-btn instagram-btn" id="instagram-btn" href="https://www.instagram.com/digilab.beauty_official/" target="_blank" rel="noopener">
+                  公式Instagramを見る <span aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </li>
+
+            <li class="journey-step journey-step--line">
+              <span class="journey-step__number" aria-hidden="true">3</span>
+              <div>
+                <p class="journey-step__label">WHEN YOU ARE READY</p>
+                <h4 class="journey-step__title">もっと知りたい・相談したいと思ったら、公式LINEへ。</h4>
+                <p class="journey-step__text">セミナー参加、会員制度、サロンのお困りごとについてご案内します。</p>
+                <a class="journey-btn line-btn" id="line-btn" href="https://lin.ee/PD33ryL" target="_blank" rel="noopener">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.58 7.39 8.42 8.02.33.07.78.22.89.5.1.26.07.66.03.92l-.14.86c-.04.26-.2 1.02.89.56 1.1-.46 5.9-3.48 8.05-5.96C21.4 13.4 22 11.85 22 10.13 22 5.64 17.52 2 12 2z"/></svg>
+                  公式LINEに登録・相談する
+                </a>
+              </div>
+            </li>
+          </ol>
+          <p class="journey-note">ご自身のタイミングで、必要なところからご覧ください。</p>
         </div>
 
         <div class="result-actions">
